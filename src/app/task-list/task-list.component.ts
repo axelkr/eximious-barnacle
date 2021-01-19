@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ModelTasksService } from '../model-tasks.service';
 import { TaskAddComponent} from '../task-add/task-add.component';
 import { Task } from '../model/task';
+import { Topic } from '../model/topic';
 
 @Component({
   selector: 'app-task-list',
@@ -9,16 +10,12 @@ import { Task } from '../model/task';
   styleUrls: ['./task-list.component.less']
 })
 export class TaskListComponent implements OnInit {
-  tasks: Task[] = [];
+  topic: Topic;
 
-  constructor(private modelTasksService: ModelTasksService) { }
+  constructor(private modelTasksService: ModelTasksService) {
+    this.topic = this.modelTasksService.getTopic();
+   }
 
   ngOnInit(): void {
-    this.getTasks();
-  }
-
-  getTasks(): void {
-    this.modelTasksService.getTasks()
-      .subscribe(tasks => this.tasks = tasks);
   }
 }

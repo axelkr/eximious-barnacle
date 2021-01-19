@@ -25,8 +25,8 @@ export class ModelTasksService {
     backend.getAllObjectEventsOfTopic(this.objectEventFactory.currentTopic).subscribe(x=>x.forEach(a=>this.updateModelWithObjectEvent(a)));
   }
 
-  getTasks(): Observable<Task[]> {
-    return of(this.topic.tasks);
+  getTopic(): Topic {
+    return this.topic;
   }
 
   public processObjectEvent(objectEvent: ObjectEvent): void {
