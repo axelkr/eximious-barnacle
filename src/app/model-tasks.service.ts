@@ -21,7 +21,7 @@ export class ModelTasksService {
 
     availableProcessors.forEach(aService => this.processors.set(aService.objectEventTypeProcessing,aService));
 
-    backend.getAllObjectEventsOfTopic(this.objectEventFactory.currentTopic).subscribe(x=>x.forEach(a=>this.processObjectEvent(a)));
+    backend.getAllObjectEventsOfTopic(this.objectEventFactory.currentTopic).subscribe(x=>x.forEach(a=>this.updateModelWithObjectEvent(a)));
   }
 
   getTasks(): Observable<Task[]> {
@@ -29,13 +29,17 @@ export class ModelTasksService {
   }
 
   public processObjectEvent(objectEvent: ObjectEvent): void {
+    this.updateModelWithObjectEvent(objectEvent);
+    this.backend.storeObjectEvent(objectEvent);
+  }
+
+  private updateModelWithObjectEvent(objectEvent: ObjectEvent): void {
     if ( ! this.processors.has(objectEvent.eventType)) {
       throw new Error('unknown object event '+objectEvent.eventType);
     }
     const aProcessor = this.processors.get(objectEvent.eventType);
     if (aProcessor !== undefined) {
       this.tasks = aProcessor.process(objectEvent,this.tasks);
-      this.backend.storeObjectEvent(objectEvent);
     }
   }
 }
