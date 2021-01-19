@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ObjectEvent } from './objectEvent';
-import { Task } from './task';
+import { Task } from './model/task';
+import { Topic } from './model/topic';
 import { Observable, of } from 'rxjs';
 import { ObjectStoreBackendService } from './backend/object-store-backend.service';
 import { ObjectEventFactoryService } from './object-event-factory.service';
@@ -11,11 +12,11 @@ import { ProcessObjectEventService} from './processObjectEventService';
   providedIn: 'root'
 })
 export class ModelTasksService {
-  private tasks: Task[];
+  private topic: Topic;
   private processors: Map<string,ProcessObjectEventService> = new Map<string,ProcessObjectEventService>();
 
   constructor(private backend: ObjectStoreBackendService, private objectEventFactory: ObjectEventFactoryService) {
-    this.tasks = [];
+    this.topic = new Topic();
     const availableProcessors: ProcessObjectEventService[] = [];
     availableProcessors.push(new ProcessCreateTaskService());
 
@@ -25,7 +26,7 @@ export class ModelTasksService {
   }
 
   getTasks(): Observable<Task[]> {
-    return of(this.tasks);
+    return of(this.topic.tasks);
   }
 
   public processObjectEvent(objectEvent: ObjectEvent): void {
@@ -39,7 +40,7 @@ export class ModelTasksService {
     }
     const aProcessor = this.processors.get(objectEvent.eventType);
     if (aProcessor !== undefined) {
-      this.tasks = aProcessor.process(objectEvent,this.tasks);
+      this.topic.tasks = aProcessor.process(objectEvent,this.topic.tasks);
     }
   }
 }

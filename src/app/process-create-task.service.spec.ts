@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 
 import { ProcessCreateTaskService } from './process-create-task.service';
 
-import { Task } from './task';
+import { Task } from './model/task';
 import { ObjectEvent } from './objectEvent';
 
 describe('ProcessCreateTaskService', () => {

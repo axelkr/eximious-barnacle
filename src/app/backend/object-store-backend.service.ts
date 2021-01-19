@@ -5,7 +5,6 @@ import { Observable} from 'rxjs';
 import { ObjectEvent } from '../objectEvent';
 import { map } from 'rxjs/operators';
 
-
 type ObjectEventBackEnd = {topic: string;
   time: string;
   id: number;

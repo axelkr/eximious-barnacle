@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ProcessObjectEventService} from './processObjectEventService';
 import { ObjectEvent } from './objectEvent';
-import { Task } from './task';
+import { Task } from './model/task';
 
 @Injectable({
   providedIn: 'root'
