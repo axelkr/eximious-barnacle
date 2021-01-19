@@ -1,0 +1,8 @@
+<p>Add task</p>
+<app-task-add></app-task-add>
+<p>Tasks</p>
+<div class="row">
+    <div class="column" *ngFor="let task of tasks" style="list-style-type: none;">
+        <app-task [task]="task"></app-task>
+    </div>
+</div>
