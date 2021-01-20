@@ -1,0 +1,10 @@
+src/
+testResults/
+node_modules/
+deployment/
+.eslintrc.json
+.gitignore
+.nmpignore
+karma.conf.js
+tsconfig.*
+package-lock.json
