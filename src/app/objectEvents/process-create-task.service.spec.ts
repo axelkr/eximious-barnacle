@@ -1,5 +1,3 @@
-import { TestBed } from '@angular/core/testing';
-
 import { ProcessCreateTaskService } from './process-create-task.service';
 
 import { Task } from '../model/task';
@@ -9,8 +7,7 @@ describe('ProcessCreateTaskService', () => {
   let service: ProcessCreateTaskService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(ProcessCreateTaskService);
+    service = new ProcessCreateTaskService();
   });
 
   it('should be created', () => {
@@ -26,11 +23,11 @@ describe('ProcessCreateTaskService', () => {
       eventType: service.objectEventTypeProcessing,
       object: 'asda_asda_asdads',
       objectType: 'objectType',
-      payload: new Map<string,string>([['name','name'],['state','state']])
+      payload: new Map<string, string>([['name', 'name'], ['state', 'state']])
     };
-    const afterProcessingEventOnce = service.process(aCreateTaskEvent,inputTasks);
-    const afterProcessingEventTwice = service.process(aCreateTaskEvent,afterProcessingEventOnce);
-    expect(afterProcessingEventTwice.length).toEqual(inputTasks.length+1);
+    const afterProcessingEventOnce = service.process(aCreateTaskEvent, inputTasks);
+    const afterProcessingEventTwice = service.process(aCreateTaskEvent, afterProcessingEventOnce);
+    expect(afterProcessingEventTwice.length).toEqual(inputTasks.length + 1);
   });
 
   it('should apply CreateTaskEvent if task id is not yet available', () => {
@@ -42,9 +39,9 @@ describe('ProcessCreateTaskService', () => {
       eventType: service.objectEventTypeProcessing,
       object: 'asda_asda_asdads',
       objectType: 'objectType',
-      payload: new Map<string,string>([['name','name'],['state','state']])
+      payload: new Map<string, string>([['name', 'name'], ['state', 'state']])
     };
-    const afterProcessingEventOnce = service.process(aCreateTaskEvent,inputTasks);
-    expect(afterProcessingEventOnce.length).toEqual(inputTasks.length+1);
+    const afterProcessingEventOnce = service.process(aCreateTaskEvent, inputTasks);
+    expect(afterProcessingEventOnce.length).toEqual(inputTasks.length + 1);
   });
 });
