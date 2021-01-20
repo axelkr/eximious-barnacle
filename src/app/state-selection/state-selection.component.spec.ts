@@ -1,5 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { HttpClientModule } from '@angular/common/http';
+import { FormsModule } from '@angular/forms';
+
 import { StateSelectionComponent } from './state-selection.component';
 
 describe('StateSelectionComponent', () => {
@@ -8,7 +11,11 @@ describe('StateSelectionComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ StateSelectionComponent ]
+      declarations: [ StateSelectionComponent ],
+      imports: [
+        FormsModule,
+        HttpClientModule
+      ]
     })
     .compileComponents();
   });
