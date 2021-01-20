@@ -1,5 +1,5 @@
 import { ObjectEvent } from './objectEvent';
-import { Task } from './model/task';
+import { Task } from '../model/task';
 
 export interface ProcessObjectEventService {
   readonly objectEventTypeProcessing: string;

@@ -1,17 +1,16 @@
 import { Injectable } from '@angular/core';
-import { ObjectEvent } from './objectEvent';
-import { Task } from './model/task';
+import { ObjectEvent } from './objectEvents/objectEvent';
 import { Topic } from './model/topic';
-import { Observable, of } from 'rxjs';
+
 import { ObjectStoreBackendService } from './backend/object-store-backend.service';
-import { ObjectEventFactoryService } from './object-event-factory.service';
-import { ProcessCreateTaskService } from './process-create-task.service';
-import { ProcessObjectEventService} from './processObjectEventService';
+import { ObjectEventFactoryService } from './objectEvents/object-event-factory.service';
+import { ProcessCreateTaskService } from './objectEvents/process-create-task.service';
+import { ProcessObjectEventService} from './objectEvents/processObjectEventService';
 
 @Injectable({
   providedIn: 'root'
 })
-export class ModelTasksService {
+export class TopicService {
   private topic: Topic;
   private processors: Map<string,ProcessObjectEventService> = new Map<string,ProcessObjectEventService>();
 

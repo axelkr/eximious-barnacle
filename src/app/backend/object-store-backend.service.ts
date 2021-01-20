@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable} from 'rxjs';
 
-import { ObjectEvent } from '../objectEvent';
+import { ObjectEvent } from '../objectEvents/objectEvent';
 import { map } from 'rxjs/operators';
 
 type ObjectEventBackEnd = {topic: string;

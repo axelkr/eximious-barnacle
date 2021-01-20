@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ModelTasksService } from '../model-tasks.service';
+import { TopicService } from '../model-tasks.service';
 import { Topic } from '../model/topic';
 
 @Component({
@@ -10,7 +10,7 @@ import { Topic } from '../model/topic';
 export class TopicComponent implements OnInit {
   topic: Topic;
 
-  constructor(private modelTasksService: ModelTasksService) {
+  constructor(private modelTasksService: TopicService) {
     this.topic = this.modelTasksService.getTopic();
    }
 

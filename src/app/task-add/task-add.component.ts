@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { ModelTasksService } from '../model-tasks.service';
-import { ObjectEventFactoryService } from '../object-event-factory.service';
+import { TopicService } from '../model-tasks.service';
+import { ObjectEventFactoryService } from '../objectEvents/object-event-factory.service';
 
 @Component({
   selector: 'app-task-add',
@@ -11,7 +11,7 @@ export class TaskAddComponent implements OnInit {
   model = {name:'',state:'To Do'};
   states = ['To Do', 'In Work', 'Done'];
 
-  constructor(private modelTasksService: ModelTasksService,
+  constructor(private modelTasksService: TopicService,
     private objectEventFactory: ObjectEventFactoryService) {
    }
 
