@@ -1,7 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ModelTasksService } from '../model-tasks.service';
-import { TaskAddComponent} from '../task-add/task-add.component';
-import { Task } from '../model/task';
 import { Topic } from '../model/topic';
 
 @Component({
