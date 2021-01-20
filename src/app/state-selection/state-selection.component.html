@@ -1,1 +1,3 @@
-<p>state-selection works!</p>
+<select (change)="onChange()" [(ngModel)]="selectedState" >
+<option *ngFor="let pow of states" value={{pow}} >{{pow}}</option>
+</select>

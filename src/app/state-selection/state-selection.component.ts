@@ -8,11 +8,20 @@ import {Task} from '../model/task';
 })
 export class StateSelectionComponent implements OnInit {
   @Input() task: Task | undefined;
+  states = ['To Do', 'In Work', 'Done'];
+
+  selectedState: string | undefined;
 
   constructor() {
   }
 
   ngOnInit(): void {
+    this.selectedState = this.task?.state;
   }
 
+  onChange(): void {
+    console.log("changed to .."+this.selectedState+" for task "+this.task?.id);
+    //const objectEvent = this.objectEventFactory.constructCreateTaskEvent(this.model.name,this.model.state);
+    //this.modelTasksService.processObjectEvent(objectEvent);
+  }
 }
