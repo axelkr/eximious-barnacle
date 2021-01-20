@@ -8,3 +8,5 @@ deployment/
 karma.conf.js
 tsconfig.*
 package-lock.json
+.browserslistrc
+angular.json
