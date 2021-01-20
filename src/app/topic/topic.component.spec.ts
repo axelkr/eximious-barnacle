@@ -6,7 +6,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { TaskComponent } from '../task/task.component';
 import { TopicComponent } from './topic.component';
 import { TaskAddComponent} from '../task-add/task-add.component';
-import { StateSelectionComponent } from './state-selection/state-selection.component';
+import { StateSelectionComponent } from '../state-selection/state-selection.component';
 
 describe('TopicComponent', () => {
   let component: TopicComponent;
