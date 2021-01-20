@@ -4,20 +4,20 @@ import { Topic } from './model/topic';
 
 import { ObjectStoreBackendService } from './backend/object-store-backend.service';
 import { ObjectEventFactoryService } from './objectEvents/object-event-factory.service';
-import { ProcessCreateTaskService } from './objectEvents/process-create-task.service';
-import { ProcessObjectEventService} from './objectEvents/processObjectEventService';
+import { ProcessCreateTask } from './objectEvents/processCreateTask';
+import { ProcessObjectEventCommand} from './objectEvents/processObjectEventCommand';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TopicService {
   private topic: Topic;
-  private processors: Map<string,ProcessObjectEventService> = new Map<string,ProcessObjectEventService>();
+  private processors: Map<string,ProcessObjectEventCommand> = new Map<string,ProcessObjectEventCommand>();
 
   constructor(private backend: ObjectStoreBackendService, private objectEventFactory: ObjectEventFactoryService) {
     this.topic = new Topic();
-    const availableProcessors: ProcessObjectEventService[] = [];
-    availableProcessors.push(new ProcessCreateTaskService());
+    const availableProcessors: ProcessObjectEventCommand[] = [];
+    availableProcessors.push(new ProcessCreateTask());
 
     availableProcessors.forEach(aService => this.processors.set(aService.objectEventTypeProcessing,aService));
 
