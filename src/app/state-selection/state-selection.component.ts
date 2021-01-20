@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
+import {Task} from '../model/task';
 
 @Component({
   selector: 'app-state-selection',
@@ -6,8 +7,10 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./state-selection.component.less']
 })
 export class StateSelectionComponent implements OnInit {
+  @Input() task: Task | undefined;
 
-  constructor() { }
+  constructor() {
+  }
 
   ngOnInit(): void {
   }

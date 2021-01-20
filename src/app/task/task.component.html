@@ -1,4 +1,5 @@
 <div *ngIf="task" class="taskCard">
   <label>{{task.name}}</label><br/>
   <label>state: {{task.state}}</label>
-  </div>
+  <app-state-selection [task]="task"></app-state-selection>
+</div>
