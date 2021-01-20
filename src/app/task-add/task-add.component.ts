@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { TopicService } from '../model-tasks.service';
+import { TopicService } from '../topic.service';
 import { ObjectEventFactoryService } from '../objectEvents/object-event-factory.service';
 
 @Component({

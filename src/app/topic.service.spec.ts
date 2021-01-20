@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientModule } from '@angular/common/http';
 
-import { TopicService } from './model-tasks.service';
+import { TopicService } from './topic.service';
 
 describe('TopicService', () => {
   let service: TopicService;
