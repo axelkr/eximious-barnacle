@@ -3,7 +3,7 @@ import { ModelTasksService } from '../model-tasks.service';
 import { Topic } from '../model/topic';
 
 @Component({
-  selector: 'app-task-list',
+  selector: 'app-topic',
   templateUrl: './topic.component.html',
   styleUrls: ['./topic.component.less']
 })
