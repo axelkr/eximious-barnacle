@@ -1,6 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Task} from '../model/task';
 
+import { TopicService } from '../topic.service';
+import { ObjectEventFactoryService } from '../objectEvents/object-event-factory.service';
+
 @Component({
   selector: 'app-state-selection',
   templateUrl: './state-selection.component.html',
@@ -12,7 +15,8 @@ export class StateSelectionComponent implements OnInit {
 
   selectedState: string | undefined;
 
-  constructor() {
+  constructor(private modelTasksService: TopicService,
+    private objectEventFactory: ObjectEventFactoryService) {
   }
 
   ngOnInit(): void {
@@ -20,8 +24,9 @@ export class StateSelectionComponent implements OnInit {
   }
 
   onChange(): void {
-    console.log("changed to .."+this.selectedState+" for task "+this.task?.id);
-    //const objectEvent = this.objectEventFactory.constructCreateTaskEvent(this.model.name,this.model.state);
-    //this.modelTasksService.processObjectEvent(objectEvent);
+    if ( this.task !== undefined && this.selectedState !== undefined) {
+      const updateStateEvent = this.objectEventFactory.constructUpdateStateEvent(this.task,this.selectedState);
+      this.modelTasksService.processObjectEvent(updateStateEvent);
+    }
   }
 }

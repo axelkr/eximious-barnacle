@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { ObjectEvent } from './objectEvent';
 
+import { Task } from '../model/task';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -21,6 +23,20 @@ export class ObjectEventFactoryService {
       payload: new Map([['name',name],['state',state]])
     };
     return createObjectEvent;
+  }
+
+  public constructUpdateStateEvent(task:Task,newState: string): ObjectEvent {
+    const eventIdDiscardedByBackend = 0;
+    const updateStateEvent: ObjectEvent = {
+      topic: this.currentTopic,
+      time: new Date(),
+      id: eventIdDiscardedByBackend,
+      eventType: 'UpdateTaskState',
+      object: task.id,
+      objectType: 'Task',
+      payload: new Map([['state',newState]])
+    };
+    return updateStateEvent;
   }
 
   private createUUID(): string {
