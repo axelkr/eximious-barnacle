@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { TopicService } from '../topic.service';
 import { ObjectEventFactoryService } from '../objectEvents/object-event-factory.service';
-import {State} from '../model/state';
+import {TaskState} from '../model/taskState';
 
 @Component({
   selector: 'app-task-add',
@@ -9,8 +9,8 @@ import {State} from '../model/state';
   styleUrls: ['./task-add.component.less']
 })
 export class TaskAddComponent implements OnInit {
-  model = {name:'',state:State.ToDo};
-  states = Object.values(State);
+  model = {name:'',state:TaskState.ToDo};
+  states = Object.values(TaskState);
 
   constructor(private modelTasksService: TopicService,
     private objectEventFactory: ObjectEventFactoryService) {

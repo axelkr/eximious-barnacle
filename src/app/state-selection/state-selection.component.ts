@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {Task} from '../model/task';
-import {State} from '../model/state';
+import {TaskState} from '../model/taskState';
 
 import { TopicService } from '../topic.service';
 import { ObjectEventFactoryService } from '../objectEvents/object-event-factory.service';
@@ -12,7 +12,7 @@ import { ObjectEventFactoryService } from '../objectEvents/object-event-factory.
 })
 export class StateSelectionComponent implements OnInit {
   @Input() task: Task | undefined;
-  states = Object.values(State);
+  states = Object.values(TaskState);
 
   selectedState: string | undefined;
 
