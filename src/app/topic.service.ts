@@ -5,6 +5,7 @@ import { Topic } from './model/topic';
 import { ObjectStoreBackendService } from './backend/object-store-backend.service';
 import { ObjectEventFactoryService } from './objectEvents/object-event-factory.service';
 import { ProcessCreateTask } from './objectEvents/processCreateTask';
+import { ProcessUpdateState } from './objectEvents/processUpdateState';
 import { ProcessObjectEventCommand} from './objectEvents/processObjectEventCommand';
 
 @Injectable({
@@ -12,14 +13,15 @@ import { ProcessObjectEventCommand} from './objectEvents/processObjectEventComma
 })
 export class TopicService {
   private topic: Topic;
-  private processors: Map<string,ProcessObjectEventCommand> = new Map<string,ProcessObjectEventCommand>();
+  private commands: Map<string,ProcessObjectEventCommand> = new Map<string,ProcessObjectEventCommand>();
 
   constructor(private backend: ObjectStoreBackendService, private objectEventFactory: ObjectEventFactoryService) {
     this.topic = new Topic();
-    const availableProcessors: ProcessObjectEventCommand[] = [];
-    availableProcessors.push(new ProcessCreateTask());
+    const availableCommands: ProcessObjectEventCommand[] = [];
+    availableCommands.push(new ProcessCreateTask());
+    availableCommands.push(new ProcessUpdateState());    
 
-    availableProcessors.forEach(aService => this.processors.set(aService.objectEventTypeProcessing,aService));
+    availableCommands.forEach(aService => this.commands.set(aService.objectEventTypeProcessing,aService));
 
     backend.getAllObjectEventsOfTopic(this.objectEventFactory.currentTopic).subscribe(x=>x.forEach(a=>this.updateModelWithObjectEvent(a)));
   }
@@ -34,10 +36,10 @@ export class TopicService {
   }
 
   private updateModelWithObjectEvent(objectEvent: ObjectEvent): void {
-    if ( ! this.processors.has(objectEvent.eventType)) {
+    if ( ! this.commands.has(objectEvent.eventType)) {
       throw new Error('unknown object event '+objectEvent.eventType);
     }
-    const aProcessor = this.processors.get(objectEvent.eventType);
+    const aProcessor = this.commands.get(objectEvent.eventType);
     if (aProcessor !== undefined) {
       this.topic.tasks = aProcessor.process(objectEvent,this.topic.tasks);
     }
