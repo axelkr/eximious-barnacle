@@ -4,16 +4,22 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 
 import { TaskComponent } from '../task/task.component';
-import { TaskListComponent } from './task-list.component';
+import { TopicComponent } from './topic.component';
 import { TaskAddComponent} from '../task-add/task-add.component';
+import { StateSelectionComponent } from './state-selection/state-selection.component';
 
-describe('TaskListComponent', () => {
-  let component: TaskListComponent;
-  let fixture: ComponentFixture<TaskListComponent>;
+describe('TopicComponent', () => {
+  let component: TopicComponent;
+  let fixture: ComponentFixture<TopicComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TaskListComponent,TaskComponent,TaskAddComponent ],
+      declarations: [ 
+        TopicComponent,
+        TaskComponent,
+        TaskAddComponent, 
+        StateSelectionComponent
+      ],
       imports: [
         FormsModule,
         HttpClientModule
@@ -23,7 +29,7 @@ describe('TaskListComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TaskListComponent);
+    fixture = TestBed.createComponent(TopicComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

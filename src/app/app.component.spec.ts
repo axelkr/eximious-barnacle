@@ -3,8 +3,9 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { TaskListComponent } from './task-list/task-list.component';
+import { TopicComponent } from './topic/topic.component';
 import { TaskAddComponent } from './task-add/task-add.component';
+import { StateSelectionComponent } from './state-selection/state-selection.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
@@ -16,8 +17,9 @@ describe('AppComponent', () => {
       ],
       declarations: [
         AppComponent,
-        TaskListComponent,
-        TaskAddComponent
+        TopicComponent,
+        TaskAddComponent,
+        StateSelectionComponent
       ],
     }).compileComponents();
   });

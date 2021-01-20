@@ -6,10 +6,10 @@ import { Topic } from '../model/topic';
 
 @Component({
   selector: 'app-task-list',
-  templateUrl: './task-list.component.html',
-  styleUrls: ['./task-list.component.less']
+  templateUrl: './topic.component.html',
+  styleUrls: ['./topic.component.less']
 })
-export class TaskListComponent implements OnInit {
+export class TopicComponent implements OnInit {
   topic: Topic;
 
   constructor(private modelTasksService: ModelTasksService) {
