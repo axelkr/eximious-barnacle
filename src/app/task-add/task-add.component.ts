@@ -9,7 +9,7 @@ import {TaskState} from '../model/taskState';
   styleUrls: ['./task-add.component.less']
 })
 export class TaskAddComponent implements OnInit {
-  model = {name:'',state:TaskState.ToDo};
+  model = {name:'',state:TaskState.toDo};
   states = Object.values(TaskState);
 
   constructor(private modelTasksService: TopicService,
