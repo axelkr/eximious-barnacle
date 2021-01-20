@@ -1,11 +1,12 @@
 {
   "name": "eximious-barnacle",
-  "version": "1.1.0",
+  "version": "1.0.1",
   "description": "some description.",
   "scripts": {
     "ng": "ng",
     "serve": "ng serve",
     "build": "ng build --base-href ./",
+    "buildProduction": "ng build --base-href ./ --prod ",
     "test": "ng test",
     "testCLI": "ng test --no-watch --no-progress --browsers=ChromeHeadlessCI --reporters=junit",
     "lint": "ng lint"

@@ -5,7 +5,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { TaskComponent } from '../task/task.component';
 import { TopicComponent } from './topic.component';
-import { TaskAddComponent} from '../task-add/task-add.component';
+import { TaskAddComponent } from '../task-add/task-add.component';
 import { StateSelectionComponent } from '../state-selection/state-selection.component';
 
 describe('TopicComponent', () => {
@@ -14,10 +14,10 @@ describe('TopicComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ 
+      declarations: [
         TopicComponent,
         TaskComponent,
-        TaskAddComponent, 
+        TaskAddComponent,
         StateSelectionComponent
       ],
       imports: [
@@ -25,7 +25,7 @@ describe('TopicComponent', () => {
         HttpClientModule
       ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
