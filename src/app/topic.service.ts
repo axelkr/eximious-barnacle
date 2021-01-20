@@ -4,8 +4,8 @@ import { Topic } from './model/topic';
 
 import { ObjectStoreBackendService } from './backend/object-store-backend.service';
 import { ObjectEventFactoryService } from './objectEvents/object-event-factory.service';
-import { ProcessCreateTask } from './objectEvents/processCreateTask';
-import { ProcessUpdateState } from './objectEvents/processUpdateState';
+import { CreateTaskCommand } from './objectEvents/createTaskCommand';
+import { UpdateStateCommand } from './objectEvents/updateStateCommand';
 import { ProcessObjectEventCommand} from './objectEvents/processObjectEventCommand';
 
 @Injectable({
@@ -18,8 +18,8 @@ export class TopicService {
   constructor(private backend: ObjectStoreBackendService, private objectEventFactory: ObjectEventFactoryService) {
     this.topic = new Topic();
     const availableCommands: ProcessObjectEventCommand[] = [];
-    availableCommands.push(new ProcessCreateTask());
-    availableCommands.push(new ProcessUpdateState());    
+    availableCommands.push(new CreateTaskCommand());
+    availableCommands.push(new UpdateStateCommand());    
 
     availableCommands.forEach(aService => this.commands.set(aService.objectEventTypeProcessing,aService));
 

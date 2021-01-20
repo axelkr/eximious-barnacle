@@ -1,13 +1,13 @@
-import { ProcessCreateTask } from './processCreateTask';
+import { CreateTaskCommand } from './createTaskCommand';
 
 import { Task } from '../model/task';
 import { ObjectEvent } from './objectEvent';
 
-describe('ProcessCreateTask', () => {
-  let service: ProcessCreateTask;
+describe('CreateTaskCommand', () => {
+  let service: CreateTaskCommand;
 
   beforeEach(() => {
-    service = new ProcessCreateTask();
+    service = new CreateTaskCommand();
   });
 
   it('should be created', () => {

@@ -2,7 +2,7 @@ import { ProcessObjectEventCommand} from './processObjectEventCommand';
 import { ObjectEvent } from './objectEvent';
 import { Task } from '../model/task';
 
-export class ProcessCreateTask implements ProcessObjectEventCommand {
+export class CreateTaskCommand implements ProcessObjectEventCommand {
   readonly objectEventTypeProcessing: string = 'CreateTask';
 
   constructor() { }

@@ -1,13 +1,13 @@
-import { ProcessUpdateState } from './processUpdateState';
+import { UpdateStateCommand } from './updateStateCommand';
 
 import { Task } from '../model/task';
 import { ObjectEvent } from './objectEvent';
 
-describe('ProcessUpdateState', () => {
-  let service: ProcessUpdateState;
+describe('UpdateStateCommand', () => {
+  let service: UpdateStateCommand;
 
   beforeEach(() => {
-    service = new ProcessUpdateState();
+    service = new UpdateStateCommand();
   });
 
   it('should be created', () => {

@@ -2,7 +2,7 @@ import { ProcessObjectEventCommand} from './processObjectEventCommand';
 import { ObjectEvent } from './objectEvent';
 import { Task } from '../model/task';
 
-export class ProcessUpdateState implements ProcessObjectEventCommand {
+export class UpdateStateCommand implements ProcessObjectEventCommand {
   readonly objectEventTypeProcessing: string = 'UpdateTaskState';
 
   constructor() { }
