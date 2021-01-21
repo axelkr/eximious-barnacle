@@ -1,6 +1,6 @@
 {
   "name": "eximious-barnacle",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "some description.",
   "scripts": {
     "ng": "ng",
@@ -15,6 +15,9 @@
     "type": "git",
     "url": "https://github.com/axelkr/eximious-barnacle.git"
   },
+  "files": [
+    "/dist/"
+  ],
   "keywords": [],
   "author": "Axel",
   "license": "GPL-3.0",
