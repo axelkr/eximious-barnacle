@@ -7,12 +7,14 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeijunkaBoardComponent } from './heijunka-board/heijunka-board.component';
 import { ProjectComponent } from './project/project.component';
+import { ProjectAddComponent } from './project-add/project-add.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     HeijunkaBoardComponent,
-    ProjectComponent
+    ProjectComponent,
+    ProjectAddComponent
   ],
   imports: [
     BrowserModule,
