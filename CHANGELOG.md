@@ -1,3 +1,6 @@
+# v1.1.2
+- fix: contains stuff
+
 # v1.1.1
 - fix: didn't contain correct version
 
