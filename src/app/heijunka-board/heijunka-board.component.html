@@ -1,6 +1,6 @@
 <p>Projects</p>
 <div class="row">
-    <div class="column" *ngFor="let project of heijunkaBoard.projects" style="list-style-type: none;">
+    <div class="column" *ngFor="let project of heijunkaBoardService.getHeijunkaBoard().projects" style="list-style-type: none;">
         <app-project [project]="project"></app-project>
     </div>
 </div>
