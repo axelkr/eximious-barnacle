@@ -9,6 +9,7 @@ import { TaskComponent } from './task/task.component';
 import { TopicComponent } from './topic/topic.component';
 import { TaskAddComponent } from './task-add/task-add.component';
 import { StateSelectionComponent } from './state-selection/state-selection.component';
+import { HeijunkaBoardComponent } from './heijunka-board/heijunka-board.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { StateSelectionComponent } from './state-selection/state-selection.compo
     TaskComponent,
     TopicComponent,
     TaskAddComponent,
-    StateSelectionComponent
+    StateSelectionComponent,
+    HeijunkaBoardComponent
   ],
   imports: [
     BrowserModule,
