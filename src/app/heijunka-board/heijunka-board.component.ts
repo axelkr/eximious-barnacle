@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { HeijunkaBoard } from 'outstanding-barnacle';
+import { HeijunkaBoardService } from '../heijunka-board.service';
 
 @Component({
   selector: 'app-heijunka-board',
@@ -6,10 +8,12 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./heijunka-board.component.less']
 })
 export class HeijunkaBoardComponent implements OnInit {
+  heijunkaBoard: HeijunkaBoard;
 
-  constructor() { }
+  constructor(private heijunkaBoardService: HeijunkaBoardService) {
+    this.heijunkaBoard = this.heijunkaBoardService.getHeijunkaBoard();
+   }
 
   ngOnInit(): void {
   }
-
 }
