@@ -1,19 +1,36 @@
-import { ThrowStmt } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 
-import { HeijunkaBoard, Project } from 'outstanding-barnacle';
+import { HeijunkaBoard, ObjectEventFactory, ObjectEvent, ObjectEventCommandProcessor} from 'outstanding-barnacle';
+
+import { ObjectStoreBackendService } from './backend/object-store-backend.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class HeijunkaBoardService {
-  private board: HeijunkaBoard = HeijunkaBoard.createEmptyHeijunkaBoard();
+  readonly eventFactory = new ObjectEventFactory();
+  readonly currentTopic = 'currentTopic';
 
-  constructor() {
-    this.board = this.board.addProject(new Project('id','project1',new Date())).addProject(new Project('id2','project2',new Date()));
+  private commandProcessor = new ObjectEventCommandProcessor();
+  private heijunkaBoard: HeijunkaBoard;
+
+  constructor(private backend: ObjectStoreBackendService) {
+    this.heijunkaBoard = this.commandProcessor.get();
+
+    backend.getAllObjectEventsOfTopic(this.currentTopic)
+    .subscribe(x => x.forEach(a => this.updateModelWithObjectEvent(a)));
   }
 
   getHeijunkaBoard(): HeijunkaBoard {
-    return this.board;
+    return this.heijunkaBoard;
+  }
+
+  public processObjectEvent(objectEvent: ObjectEvent): void {
+    this.updateModelWithObjectEvent(objectEvent);
+    this.backend.storeObjectEvent(objectEvent);
+  }
+
+  private updateModelWithObjectEvent(objectEvent: ObjectEvent): void {
+    this.heijunkaBoard = this.commandProcessor.process(objectEvent);
   }
 }
