@@ -1,3 +1,7 @@
-<div *ngIf="state" class="projectState">
-    <label>{{state.name}}</label><br/>
-  </div>
+<div *ngIf="project">
+    <div *ngIf="state" class="projectState">
+        <a [routerLink]="['/project-state/']" [queryParams]="{project:project.id, state: state.id }">
+            <label>{{state.name}}</label>
+        </a>
+    </div>
+</div>

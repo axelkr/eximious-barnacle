@@ -9,6 +9,7 @@ import { HeijunkaBoardComponent } from './heijunka-board/heijunka-board.componen
 import { ProjectComponent } from './project/project.component';
 import { ProjectAddComponent } from './project-add/project-add.component';
 import { ProjectStateComponent } from './project-state/project-state.component';
+import { ProjectStateDetailsComponent } from './project-state-details/project-state-details.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { ProjectStateComponent } from './project-state/project-state.component';
     HeijunkaBoardComponent,
     ProjectComponent,
     ProjectAddComponent,
-    ProjectStateComponent
+    ProjectStateComponent,
+    ProjectStateDetailsComponent
   ],
   imports: [
     BrowserModule,

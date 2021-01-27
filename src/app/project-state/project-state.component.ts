@@ -1,4 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { Project, State } from 'outstanding-barnacle';
 
 @Component({
@@ -10,7 +12,7 @@ export class ProjectStateComponent implements OnInit {
   @Input() project: Project | undefined;
   @Input() state: State | undefined;
 
-  constructor() { }
+  constructor(private router: Router, private route: ActivatedRoute) { }
 
   ngOnInit(): void {
   }
