@@ -1,3 +1,6 @@
+# v1.2.0
+- display project's states
+
 # v1.1.2
 - fix: contains stuff
 
