@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Project } from 'outstanding-barnacle';
+import { HeijunkaBoardService } from '../heijunka-board.service';
 
 @Component({
   selector: 'app-project',
@@ -9,7 +10,7 @@ import { Project } from 'outstanding-barnacle';
 export class ProjectComponent implements OnInit {
   @Input() project: Project | undefined;
 
-  constructor() { }
+  constructor(public heijunkaBoardService: HeijunkaBoardService) { }
 
   ngOnInit(): void {
   }

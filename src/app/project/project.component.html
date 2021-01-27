@@ -1,3 +1,6 @@
 <div *ngIf="project" class="project">
     <label>{{project.name.value}}</label><br/>
+    <div class="column" *ngFor="let state of heijunkaBoardService.getHeijunkaBoard().stateModel.states" style="list-style-type: none;">
+      <app-project-state [project]="project" [state]="state"></app-project-state>
+    </div>
   </div>
