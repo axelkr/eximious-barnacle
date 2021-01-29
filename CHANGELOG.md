@@ -1,6 +1,12 @@
+# v1.3.0
+- enable moving them around
+
+# v1.2.1
+- display kanban cards per state and per project
+- enable adding kanban card to initial state 
+
 # v1.2.0
 - display project's states
-- enable adding kanban cards and moving them around
 
 # v1.1.2
 - fix: contains stuff
