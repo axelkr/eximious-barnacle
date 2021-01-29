@@ -5,11 +5,9 @@
         <label>stte id:{{state}}</label><br />
         <label>Cards in this state:</label>
         <div class="row">
-            <div class="column" *ngFor="let kanbanCard of heijunkaBoardService.getHeijunkaBoard().kanbanCards"
+            <div class="column" *ngFor="let kanbanCard of heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:heijunkaBoardService.getHeijunkaBoard().getProject(project)})"
                 style="list-style-type: none;">
-                <div *ngIf="kanbanCard.project==project">
-                        aCard (TODO filter by state as well. Board allows accessing cards for a specific state and project)
-                </div>
+                    {{kanbanCard.name.value}} (TODO filter by state as well)
             </div>
         </div>
     </div>
