@@ -1,6 +1,15 @@
 <div *ngIf="project" class="project">
     <app-kanban-card-create [project]="project"></app-kanban-card-create>
     <div *ngIf="state" class="project">
-        <label>project id:{{project}}</label><br/>
-        <label>stte id:{{state}}</label><br/>
-  </div>
+        <label>project id:{{project}}</label><br />
+        <label>stte id:{{state}}</label><br />
+        <label>Cards in this state:</label>
+        <div class="row">
+            <div class="column" *ngFor="let kanbanCard of heijunkaBoardService.getHeijunkaBoard().kanbanCards"
+                style="list-style-type: none;">
+                <div *ngIf="kanbanCard.project==project">
+                        aCard (TODO filter by state as well. Board allows accessing cards for a specific state and project)
+                </div>
+            </div>
+        </div>
+    </div>

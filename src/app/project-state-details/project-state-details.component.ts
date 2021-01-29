@@ -1,4 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { HeijunkaBoardService } from '../heijunka-board.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { Project, State } from 'outstanding-barnacle';
@@ -12,7 +13,7 @@ export class ProjectStateDetailsComponent implements OnInit {
   @Input() project: string | undefined;
   @Input() state: string | undefined;
 
-  constructor(private router: Router, private route: ActivatedRoute) { }
+  constructor(private router: Router, private route: ActivatedRoute,public heijunkaBoardService: HeijunkaBoardService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
