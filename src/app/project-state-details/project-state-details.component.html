@@ -1,8 +1,8 @@
 <div *ngIf="project" class="project">
     <app-kanban-card-create [project]="project"></app-kanban-card-create>
     <div *ngIf="state" class="project">
-        <label>project id:{{project}}</label><br />
-        <label>stte id:{{state}}</label><br />
+        <label>project:{{heijunkaBoardService.getHeijunkaBoard().getProject(project).name.value}}</label><br />
+        <label>state:{{heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state).name}}</label><br />
         <label>Cards in this state:</label>
         <div class="row">
             <div class="column" *ngFor="let kanbanCard of heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:heijunkaBoardService.getHeijunkaBoard().getProject(project),state:heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state)})"
