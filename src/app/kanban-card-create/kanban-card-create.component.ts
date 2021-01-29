@@ -22,26 +22,21 @@ export class KanbanCardCreateComponent implements OnInit {
     if (this.project === undefined) {
       return;
     }
-    const project = this.modelBoardService.getHeijunkaBoard().projects.find(aProject => aProject.id === this.project);
-    if (project !== undefined) {
-      const objectEvent = this.modelBoardService.eventFactory.createKanbanCard(this.modelBoardService.currentTopic,
-        project, this.model.name);
-      this.modelBoardService.processObjectEvent(objectEvent);
-      const createdKanbanCard = this.modelBoardService.getHeijunkaBoard().kanbanCards.find(aCard => aCard.id === objectEvent.object);
-      if (createdKanbanCard === undefined) {
-        throw new Error('could not find kanban card just created');
-      } else {
-        // TODO: add to domain: find KanbanCard / Project based on id
-        // TODO: move this functionality to a domain service
-        // TODO: stateModel.states[0] is not the correct way to find initial state ==> move functionality to stateModel
-        const initialState: State = this.modelBoardService.getHeijunkaBoard().stateModel.states[0];
-        const moveToInitialState = this.modelBoardService.eventFactory.moveKanbanCardComplete(this.modelBoardService.currentTopic,
-          createdKanbanCard, initialState);
-        this.modelBoardService.processObjectEvent(moveToInitialState);
-      }
-    } else {
+    if (!this.modelBoardService.getHeijunkaBoard().hasProject(this.project)) {
       throw new Error('could not find project with id ' + this.project);
     }
-  }
 
+    const project = this.modelBoardService.getHeijunkaBoard().getProject(this.project);
+
+    const createKanbanCardEvent = this.modelBoardService.eventFactory.createKanbanCard(this.modelBoardService.currentTopic,
+      project, this.model.name);
+    this.modelBoardService.processObjectEvent(createKanbanCardEvent);
+    const createdKanbanCard = this.modelBoardService.getHeijunkaBoard().getKanbanCard(createKanbanCardEvent.object);
+
+    const initialState: State = this.modelBoardService.getHeijunkaBoard().stateModel.initialState();
+    const moveToInitialState = this.modelBoardService.eventFactory.moveKanbanCardComplete(this.modelBoardService.currentTopic,
+      createdKanbanCard, initialState);
+    this.modelBoardService.processObjectEvent(moveToInitialState);
+
+  }
 }
