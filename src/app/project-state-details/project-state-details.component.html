@@ -1,5 +1,5 @@
-<app-kanban-card-create></app-kanban-card-create>
 <div *ngIf="project" class="project">
+    <app-kanban-card-create [project]="project"></app-kanban-card-create>
     <div *ngIf="state" class="project">
         <label>project id:{{project}}</label><br/>
         <label>stte id:{{state}}</label><br/>
