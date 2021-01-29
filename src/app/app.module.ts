@@ -10,6 +10,7 @@ import { ProjectComponent } from './project/project.component';
 import { ProjectAddComponent } from './project-add/project-add.component';
 import { ProjectStateComponent } from './project-state/project-state.component';
 import { ProjectStateDetailsComponent } from './project-state-details/project-state-details.component';
+import { KanbanCardCreateComponent } from './kanban-card-create/kanban-card-create.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +19,8 @@ import { ProjectStateDetailsComponent } from './project-state-details/project-st
     ProjectComponent,
     ProjectAddComponent,
     ProjectStateComponent,
-    ProjectStateDetailsComponent
+    ProjectStateDetailsComponent,
+    KanbanCardCreateComponent
   ],
   imports: [
     BrowserModule,
