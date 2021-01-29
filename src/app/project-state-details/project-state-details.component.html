@@ -5,9 +5,9 @@
         <label>stte id:{{state}}</label><br />
         <label>Cards in this state:</label>
         <div class="row">
-            <div class="column" *ngFor="let kanbanCard of heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:heijunkaBoardService.getHeijunkaBoard().getProject(project)})"
+            <div class="column" *ngFor="let kanbanCard of heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:heijunkaBoardService.getHeijunkaBoard().getProject(project),state:heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state)})"
                 style="list-style-type: none;">
-                    {{kanbanCard.name.value}} (TODO filter by state as well)
+                    {{kanbanCard.name.value}}
             </div>
         </div>
     </div>
