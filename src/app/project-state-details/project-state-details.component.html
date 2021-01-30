@@ -11,5 +11,13 @@
             </div>
         </div>
         <label>Card in predecessor states / project / completed:</label>
-        TBD
+        <div *ngFor="let predecessorState of heijunkaBoardService.getHeijunkaBoard().stateModel.predecessors(heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state))"
+                style="list-style-type: none;">
+                Pull from {{predecessorState.name}}
+
+            <div class="column" *ngFor="let kanbanCard of heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:heijunkaBoardService.getHeijunkaBoard().getProject(project),states:[predecessorState],transitionType:transitionType.completed})"
+            style="list-style-type: none;">
+            <app-kanban-card-complete-overview [kanbanCard]="kanbanCard" [state]="heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state)"></app-kanban-card-complete-overview>
+        </div>
+                </div>
     </div>
