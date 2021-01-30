@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { environment } from './../../environments/environment';
 import { ObjectEvent } from 'outstanding-barnacle';
 import { map } from 'rxjs/operators';
+import { AppConfig } from '../app.config';
 
 type ObjectEventBackEnd = {
   topic: string;
@@ -21,8 +21,10 @@ type ObjectEventBackEnd = {
 })
 
 export class ObjectStoreBackendService {
-  private readonly endpoint = environment.backend;
-  constructor(private httpClient: HttpClient) {
+  private readonly endpoint: string;
+  constructor(private httpClient: HttpClient,private configuration: AppConfig) {
+    this.endpoint = AppConfig.settings.backend;
+    console.log('using as endpoint '+this.endpoint);
   }
 
   public storeObjectEvent(objectEvent: ObjectEvent): void {

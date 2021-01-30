@@ -1,5 +1,6 @@
 # v2.1.0
 - understandable UI for creating project, kanban card
+- modify endpoint in deployed version by providing configuration
 
 # v2.0.1
 - fix: provide latest state

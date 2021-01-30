@@ -1,0 +1,6 @@
+{
+    "env": {
+        "name": "dev"
+     },
+    "backend": "http://localhost:8000"
+}

@@ -1,0 +1,6 @@
+{
+    "env": {
+        "name": "prod"
+     },
+    "backend": "http://localhost:8050"
+}
