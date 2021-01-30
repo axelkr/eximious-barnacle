@@ -1,6 +1,9 @@
+# v2.2.1
+- simplified layout
+
 # v2.2.0
 - title of webpage can be configured
-- projects and individual states have some layout.
+- projects and individual states received a layout update.
 
 # v2.1.1
 - enable separate configuration of backend port.
