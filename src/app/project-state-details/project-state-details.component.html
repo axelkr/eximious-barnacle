@@ -5,7 +5,7 @@
         <label>state:{{heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state).name}}</label><br />
         <label>Cards in this state:</label>
         <div class="row">
-            <div class="column" *ngFor="let kanbanCard of heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:heijunkaBoardService.getHeijunkaBoard().getProject(project),state:heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state)})"
+            <div class="column" *ngFor="let kanbanCard of heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:heijunkaBoardService.getHeijunkaBoard().getProject(project),states:[heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state)]})"
                 style="list-style-type: none;">
                     {{kanbanCard.name.value}}
             </div>
