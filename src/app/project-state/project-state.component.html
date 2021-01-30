@@ -2,7 +2,7 @@
     <div *ngIf="state">
         <a [routerLink]="['/project-state/']" [queryParams]="{project:project.id, state: state.id }">
             <div class="projectState">
-                <h3 class='project-state-title'>{{state.name}}</h3>
+                <h3>{{state.name}}</h3>
                 {{heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:project,states:[state],transitionType:transitionType.inProgress}).length}}
                 (in progress)<br />
                 {{heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:project,states:heijunkaBoardService.getHeijunkaBoard().stateModel.predecessors(state),transitionType:transitionType.completed}).length}} (can be pulled)
