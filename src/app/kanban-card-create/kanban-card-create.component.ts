@@ -34,7 +34,7 @@ export class KanbanCardCreateComponent implements OnInit {
     const createdKanbanCard = this.modelBoardService.getHeijunkaBoard().getKanbanCard(createKanbanCardEvent.object);
 
     const initialState: State = this.modelBoardService.getHeijunkaBoard().stateModel.initialState();
-    const moveToInitialState = this.modelBoardService.eventFactory.moveKanbanCardComplete(this.modelBoardService.currentTopic,
+    const moveToInitialState = this.modelBoardService.eventFactory.moveKanbanCardInProgress(this.modelBoardService.currentTopic,
       createdKanbanCard, initialState);
     this.modelBoardService.processObjectEvent(moveToInitialState);
 
