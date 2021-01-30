@@ -7,7 +7,7 @@
         <div class="row">
             <div class="column" *ngFor="let kanbanCard of heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:heijunkaBoardService.getHeijunkaBoard().getProject(project),states:[heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state)],transitionType:transitionType.inProgress})"
                 style="list-style-type: none;">
-                    {{kanbanCard.name.value}}
+                <app-kanban-card-in-progress-overview [kanbanCard]="kanbanCard"></app-kanban-card-in-progress-overview>
             </div>
         </div>
         <label>Card in predecessor states / project / completed:</label>
