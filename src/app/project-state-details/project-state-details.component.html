@@ -23,6 +23,9 @@
         <div class='state'>
             <div class='in-progress'>
                 <label>In progress:</label>
+                <div *ngIf="0 === heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:heijunkaBoardService.getHeijunkaBoard().getProject(project),states:[heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state)],transitionType:transitionType.inProgress}).length" >
+                    -
+                </div>
                 <div *ngFor="let kanbanCard of heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:heijunkaBoardService.getHeijunkaBoard().getProject(project),states:[heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state)],transitionType:transitionType.inProgress})"
                     style="list-style-type: none; float:center">
                     <app-kanban-card-in-progress-overview [kanbanCard]="kanbanCard">
