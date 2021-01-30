@@ -1,3 +1,6 @@
+# v2.2.0
+- title of webpage can be configured
+
 # v2.1.1
 - enable separate configuration of backend port.
 

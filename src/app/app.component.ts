@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { Title } from '@angular/platform-browser';
+import { AppConfig } from './app.config';
+
 
 @Component({
   selector: 'app-root',
@@ -6,5 +9,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  title = 'EximiousBarnacle';
+  public constructor(private titleService: Title,private configuration: AppConfig) {
+    titleService.setTitle(AppConfig.settings.title);
+   }
 }

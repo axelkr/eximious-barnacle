@@ -6,4 +6,5 @@ export interface IAppConfig {
         url: string;
         port: string;
     };
+    title: string;
 };
