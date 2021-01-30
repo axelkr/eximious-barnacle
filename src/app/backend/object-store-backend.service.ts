@@ -23,7 +23,7 @@ type ObjectEventBackEnd = {
 export class ObjectStoreBackendService {
   private readonly endpoint: string;
   constructor(private httpClient: HttpClient,private configuration: AppConfig) {
-    this.endpoint = AppConfig.settings.backend;
+    this.endpoint = AppConfig.settings.backend.url + ':'+AppConfig.settings.backend.port;
     console.log('using as endpoint '+this.endpoint);
   }
 

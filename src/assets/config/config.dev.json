@@ -2,5 +2,8 @@
     "env": {
         "name": "dev"
      },
-    "backend": "http://localhost:8000"
+    "backend": {
+        "url" : "http://localhost",
+        "port":8000
+    }
 }

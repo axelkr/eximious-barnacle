@@ -2,5 +2,8 @@ export interface IAppConfig {
     env: {
         name: string;
     };
-    backend: string;
+    backend: {
+        url: string;
+        port: string;
+    };
 };

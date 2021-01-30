@@ -2,5 +2,8 @@
     "env": {
         "name": "prod"
      },
-    "backend": "http://localhost:8050"
+    "backend": {
+        "url" : "http://localhost",
+        "port":8050
+    }
 }
