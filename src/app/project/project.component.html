@@ -1,5 +1,5 @@
 <div *ngIf="project" class="project">
-    <label>{{project.name.value}}</label><br/>
+    <label>{{project.name.value}}</label>
     <div *ngFor="let state of heijunkaBoardService.getHeijunkaBoard().stateModel.states">
       <app-project-state [project]="project" [state]="state"></app-project-state>
     </div>
