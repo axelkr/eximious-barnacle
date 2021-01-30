@@ -1,7 +1,7 @@
 <div *ngIf="project">
     <div *ngIf="state" class="projectState">
         <a [routerLink]="['/project-state/']" [queryParams]="{project:project.id, state: state.id }">
-            <label>{{state.name}}</label>
+            {{state.name}} (in progress: {{heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:project,states:[state],transitionType:transitionType.inProgress}).length}})
         </a>
     </div>
 </div>
