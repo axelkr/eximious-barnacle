@@ -12,6 +12,7 @@ import { ProjectStateComponent } from './project-state/project-state.component';
 import { ProjectStateDetailsComponent } from './project-state-details/project-state-details.component';
 import { KanbanCardCreateComponent } from './kanban-card-create/kanban-card-create.component';
 import { KanbanCardInProgressOverviewComponent } from './kanban-card-in-progress-overview/kanban-card-in-progress-overview.component';
+import { KanbanCardCompleteOverviewComponent } from './kanban-card-complete-overview/kanban-card-complete-overview.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { KanbanCardInProgressOverviewComponent } from './kanban-card-in-progress
     ProjectStateComponent,
     ProjectStateDetailsComponent,
     KanbanCardCreateComponent,
-    KanbanCardInProgressOverviewComponent
+    KanbanCardInProgressOverviewComponent,
+    KanbanCardCompleteOverviewComponent
   ],
   imports: [
     BrowserModule,
