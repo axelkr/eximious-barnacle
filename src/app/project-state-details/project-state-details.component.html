@@ -1,49 +1,60 @@
 <div *ngIf="project" class="project">
     <app-kanban-card-create [project]="project"></app-kanban-card-create>
     <div *ngIf="state" class="project">
+        <h2 class='project-state-details-title'>{{heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state).name}} (project:
+            {{heijunkaBoardService.getHeijunkaBoard().getProject(project).name.value}})</h2>
+
         <div *ngFor="let predecessorState of heijunkaBoardService.getHeijunkaBoard().stateModel.predecessors(heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state))"
-            style="list-style-type: none;">
+            class="move-to-predecessor">
 
             <a [routerLink]="['/project-state/']" [queryParams]="{project:project, state:predecessorState.id }">
-                Go to predecessor state {{predecessorState.name}}
+                {{predecessorState.name}}
             </a>
-
         </div>
 
         <div *ngFor="let successorState of heijunkaBoardService.getHeijunkaBoard().stateModel.successors(heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state))"
-            style="list-style-type: none;">
-
+            class='move-to-successor'>
             <a [routerLink]="['/project-state/']" [queryParams]="{project:project, state:successorState.id }">
-                Go to successor state {{successorState.name}}
+                {{successorState.name}}
             </a>
         </div>
 
 
-        <label>project:{{heijunkaBoardService.getHeijunkaBoard().getProject(project).name.value}}</label><br />
-        <label>state:{{heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state).name}}</label><br />
-        <label>Cards in this state / project / in progress:</label>
-        <div class="row">
-            <div class="column"
-                *ngFor="let kanbanCard of heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:heijunkaBoardService.getHeijunkaBoard().getProject(project),states:[heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state)],transitionType:transitionType.inProgress})"
-                style="list-style-type: none;">
-                <app-kanban-card-in-progress-overview [kanbanCard]="kanbanCard">
-                </app-kanban-card-in-progress-overview>
+        <div class='state'>
+            <div class='in-progress'>
+                <label>In progress:</label>
+                <div *ngFor="let kanbanCard of heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:heijunkaBoardService.getHeijunkaBoard().getProject(project),states:[heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state)],transitionType:transitionType.inProgress})"
+                    style="list-style-type: none; float:center">
+                    <app-kanban-card-in-progress-overview [kanbanCard]="kanbanCard">
+                    </app-kanban-card-in-progress-overview>
+                </div>
+            </div>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <div class='pull'>
+                <div *ngFor="let predecessorState of heijunkaBoardService.getHeijunkaBoard().stateModel.predecessors(heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state))"
+                    style="list-style-type: none;">
+                    Pull card from {{predecessorState.name}}:
+                    <div *ngIf="0 === heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:heijunkaBoardService.getHeijunkaBoard().getProject(project),states:[predecessorState],transitionType:transitionType.completed}).length" >
+                        -
+                    </div>
+                    <div *ngFor="let kanbanCard of heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:heijunkaBoardService.getHeijunkaBoard().getProject(project),states:[predecessorState],transitionType:transitionType.completed})"
+                        style="list-style-type: none;">
+                        <app-kanban-card-complete-overview [kanbanCard]="kanbanCard"
+                            [state]="heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state)">
+                        </app-kanban-card-complete-overview>
+                    </div>
+                </div>
             </div>
         </div>
-        <label>Card in predecessor states / project / completed:</label>
-        <div *ngFor="let predecessorState of heijunkaBoardService.getHeijunkaBoard().stateModel.predecessors(heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state))"
-            style="list-style-type: none;">
-            Pull from {{predecessorState.name}}
-
-            <div class="column"
-                *ngFor="let kanbanCard of heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:heijunkaBoardService.getHeijunkaBoard().getProject(project),states:[predecessorState],transitionType:transitionType.completed})"
-                style="list-style-type: none;">
-                <app-kanban-card-complete-overview [kanbanCard]="kanbanCard"
-                    [state]="heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state)">
-                </app-kanban-card-complete-overview>
-            </div>
-        </div>
-
     </div>
 
 </div>
