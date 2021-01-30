@@ -3,11 +3,13 @@
     <div *ngIf="state" class="project">
         <label>project:{{heijunkaBoardService.getHeijunkaBoard().getProject(project).name.value}}</label><br />
         <label>state:{{heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state).name}}</label><br />
-        <label>Cards in this state:</label>
+        <label>Cards in this state / project / in progress:</label>
         <div class="row">
-            <div class="column" *ngFor="let kanbanCard of heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:heijunkaBoardService.getHeijunkaBoard().getProject(project),states:[heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state)]})"
+            <div class="column" *ngFor="let kanbanCard of heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:heijunkaBoardService.getHeijunkaBoard().getProject(project),states:[heijunkaBoardService.getHeijunkaBoard().stateModel.getState(state)],transitionType:transitionType.inProgress})"
                 style="list-style-type: none;">
                     {{kanbanCard.name.value}}
             </div>
         </div>
+        <label>Card in predecessor states / project / completed:</label>
+        TBD
     </div>

@@ -2,7 +2,7 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HeijunkaBoardService } from '../heijunka-board.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Project, State } from 'outstanding-barnacle';
+import { Project, State, TransitionType } from 'outstanding-barnacle';
 
 @Component({
   selector: 'app-project-state-details',
@@ -12,6 +12,7 @@ import { Project, State } from 'outstanding-barnacle';
 export class ProjectStateDetailsComponent implements OnInit {
   @Input() project: string | undefined;
   @Input() state: string | undefined;
+  transitionType = TransitionType;
 
   constructor(private router: Router, private route: ActivatedRoute,public heijunkaBoardService: HeijunkaBoardService) { }
 
