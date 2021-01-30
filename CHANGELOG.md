@@ -1,3 +1,6 @@
+# v2.0.1
+- fix: provide latest state
+
 # v2.0.0
 - provide overview about which states have how many cards in progress
 - user can traverse from one state to adjacent ones
