@@ -1,5 +1,5 @@
 # v1.3.0
-- enable moving them around
+- enable moving card around
 
 # v1.2.1
 - display kanban cards per state and per project
