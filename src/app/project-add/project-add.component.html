@@ -1,17 +1,13 @@
 <div class="container">
-    <div>
-      <form (ngSubmit)="onSubmit()" #projectAddForm="ngForm">
-        <button type="submit" class="btn btn-success" (click)="newProject(); projectAddForm.reset()" [disabled]="!projectAddForm.form.valid">Create new project:</button>
-                <input type="text" class="form-control" id="name"
-                placeholder="enter name of new project"
-                 required
-                 [(ngModel)]="model.name" name="name"
-                 #name="ngModel">
-          <div [hidden]="name.valid || name.pristine"
-               class="alert alert-danger">
-            Name of new project is required.
-          </div>
-  
-        </form>
-    </div>
+  <div>
+    <form (ngSubmit)="onSubmit()" #projectAddForm="ngForm">
+      <button type="submit" class="btn btn-success" (click)="newProject(); projectAddForm.reset()"
+        [disabled]="!projectAddForm.form.valid">Create new project:</button>
+      <input type="text" class="form-control" id="name" placeholder="enter name of new project" required
+        [(ngModel)]="model.name" name="name" #name="ngModel">
+      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+        Name of new project is required.
+      </div>
+    </form>
   </div>
+</div>

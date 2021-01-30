@@ -1,3 +1,6 @@
+# v2.1.0
+- understandable UI for creating project, kanban card
+
 # v2.0.1
 - fix: provide latest state
 
