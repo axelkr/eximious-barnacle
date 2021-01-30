@@ -5,6 +5,7 @@ import { ProjectStateDetailsComponent } from './project-state-details/project-st
 
 
 const routes: Routes = [
+  { path: '', pathMatch: 'prefix', redirectTo: 'heijunka'},
   { path: 'heijunka', component: HeijunkaBoardComponent },
   { path: 'project-state', component: ProjectStateDetailsComponent },];
 
