@@ -1,3 +1,4 @@
 <div *ngIf="kanbanCard">
     {{kanbanCard.name.value}}
+    <button type="submit" class="btn btn-success" (click)="markAsCompleted()">Mark as completed</button>  
 </div>
