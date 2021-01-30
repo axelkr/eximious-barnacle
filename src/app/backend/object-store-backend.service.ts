@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
+import { environment } from './../../environments/environment';
 import { ObjectEvent } from 'outstanding-barnacle';
 import { map } from 'rxjs/operators';
 
@@ -21,7 +21,7 @@ type ObjectEventBackEnd = {
 })
 
 export class ObjectStoreBackendService {
-
+  private readonly endpoint = environment.backend;
   constructor(private httpClient: HttpClient) {
   }
 
@@ -34,12 +34,12 @@ export class ObjectStoreBackendService {
       payload: JSON.stringify(Array.from(objectEvent.payload.entries()))
     };
     const headers = { 'content-type': 'application/json' };
-    this.httpClient.post('http://localhost:8000/objectEvent', JSON.stringify(asJSON), { headers }).subscribe();
+    this.httpClient.post(this.endpoint+ '/objectEvent', JSON.stringify(asJSON), { headers }).subscribe();
   }
 
   public getAllObjectEventsOfTopic(topic: string): Observable<ObjectEvent[]> {
     const allObjectEvents: Observable<ObjectEventBackEnd[]> =
-        this.httpClient.get<any[]>(`http://localhost:8000/objectEvent?topic=` + topic);
+        this.httpClient.get<any[]>(this.endpoint+`/objectEvent?topic=` + topic);
     return map(this.deserializeServerObjectEvent)(allObjectEvents);
   }
 
