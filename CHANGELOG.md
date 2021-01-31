@@ -1,3 +1,7 @@
+# v2.3.0
+- project setup is a separate high-level menu item as it is not an essential interaction
+- reduced clutter. Common layout to indicate links.
+
 # v2.2.1
 - simplified layout
 
