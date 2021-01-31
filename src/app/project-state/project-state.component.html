@@ -5,8 +5,12 @@
                 <h3>{{state.name}}</h3>
                 {{heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:project,states:[state],transitionType:transitionType.inProgress}).length}}
                 (in progress)<br />
+
+    <div *ngIf="0 < heijunkaBoardService.getHeijunkaBoard().stateModel.predecessors(state).length; else noPredecessorBlock">
                 {{heijunkaBoardService.getHeijunkaBoard().findKanbanCards({project:project,states:heijunkaBoardService.getHeijunkaBoard().stateModel.predecessors(state),transitionType:transitionType.completed}).length}} (can be pulled)
-            
+            </div>
+            <ng-template #noPredecessorBlock><br/></ng-template>  
+                      
             </div>
         </a>
     </div>
