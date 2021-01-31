@@ -1,6 +1,14 @@
 <p>Projects</p>
+<div *ngIf="0==heijunkaBoardService.getHeijunkaBoard().projects.length">
+    <a [routerLink]="['/heijunka-setup/']">
+        Define projects first. 
+    </a>
+    You can access the project definition via the menu as well.
+</div>
+
 <div class="row">
-    <div class="column" *ngFor="let project of heijunkaBoardService.getHeijunkaBoard().projects" style="list-style-type: none;">
+    <div class="column" *ngFor="let project of heijunkaBoardService.getHeijunkaBoard().projects"
+        style="list-style-type: none;">
         <app-project [project]="project"></app-project>
     </div>
 </div>
