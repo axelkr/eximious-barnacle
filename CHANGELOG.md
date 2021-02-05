@@ -1,4 +1,4 @@
-# nextVersion
+# v2.5.0
 - enable rename of Kanban Card
 
 # v2.4.0
