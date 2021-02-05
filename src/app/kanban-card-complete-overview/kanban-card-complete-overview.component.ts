@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { KanbanCard , State} from 'outstanding-barnacle';
+import { KanbanCard, State } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../heijunka-board.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { HeijunkaBoardService } from '../heijunka-board.service';
 export class KanbanCardCompleteOverviewComponent implements OnInit {
   @Input() kanbanCard: KanbanCard | undefined;
   @Input() state: State | undefined;
+  renameMode = false;
 
   constructor(private modelBoardService: HeijunkaBoardService) { }
 
@@ -24,5 +25,26 @@ export class KanbanCardCompleteOverviewComponent implements OnInit {
     const pullToState = this.modelBoardService.eventFactory.moveKanbanCardInProgress(this.modelBoardService.currentTopic,
       this.kanbanCard, this.state);
     this.modelBoardService.processObjectEvent(pullToState);
+  }
+
+  commitRename(event: any): void {
+    this.renameTo(event.target.value);
+    this.renameMode = false;
+  }
+
+  cancelRename(): void {
+    this.renameMode = false;
+  }
+
+  activateRenameMode(): void {
+    this.renameMode = true;
+  }
+
+  private renameTo(newName: string): void {
+    if (this.kanbanCard === undefined) {
+      return;
+    }
+    const renameEvent = this.modelBoardService.eventFactory.renameKanbanCard(this.modelBoardService.currentTopic, this.kanbanCard, newName);
+    this.modelBoardService.processObjectEvent(renameEvent);
   }
 }

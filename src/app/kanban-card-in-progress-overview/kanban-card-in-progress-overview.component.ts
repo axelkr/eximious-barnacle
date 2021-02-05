@@ -9,6 +9,7 @@ import { HeijunkaBoardService } from '../heijunka-board.service';
 })
 export class KanbanCardInProgressOverviewComponent implements OnInit {
   @Input() kanbanCard: KanbanCard | undefined;
+  renameMode = false;
 
   constructor(private modelBoardService: HeijunkaBoardService) { }
 
@@ -25,5 +26,26 @@ export class KanbanCardInProgressOverviewComponent implements OnInit {
     const moveToCompleteState = this.modelBoardService.eventFactory.moveKanbanCardComplete(this.modelBoardService.currentTopic,
       this.kanbanCard, currentState);
     this.modelBoardService.processObjectEvent(moveToCompleteState);
+  }
+
+  commitRename(event: any): void {
+    this.renameTo(event.target.value);
+    this.renameMode = false;
+  }
+
+  cancelRename(): void {
+    this.renameMode = false;
+  }
+
+  activateRenameMode(): void {
+    this.renameMode = true;
+  }
+
+  private renameTo(newName: string): void {
+    if (this.kanbanCard === undefined) {
+      return;
+    }
+    const renameEvent = this.modelBoardService.eventFactory.renameKanbanCard(this.modelBoardService.currentTopic, this.kanbanCard, newName);
+    this.modelBoardService.processObjectEvent(renameEvent);
   }
 }

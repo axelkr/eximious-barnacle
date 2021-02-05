@@ -1,3 +1,6 @@
+# nextVersion
+- enable rename of Kanban Card
+
 # v2.4.0
 - enable renaming of a project
 
