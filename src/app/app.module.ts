@@ -15,6 +15,8 @@ import { KanbanCardCreateComponent } from './kanban-card-create/kanban-card-crea
 import { KanbanCardInProgressOverviewComponent } from './kanban-card-in-progress-overview/kanban-card-in-progress-overview.component';
 import { KanbanCardCompleteOverviewComponent } from './kanban-card-complete-overview/kanban-card-complete-overview.component';
 import { HeijunkaDefinitionComponent } from './heijunka-definition/heijunka-definition.component';
+import { ProjectStateKanbanCardsComponent } from './project-state-kanban-cards/project-state-kanban-cards.component';
+import { ProjectStateKanbanCardsByAgeComponent } from './project-state-kanban-cards-by-age/project-state-kanban-cards-by-age.component';
 
 export function initializeApp(appConfig: AppConfig) {
   return () => appConfig.load();
@@ -31,7 +33,9 @@ export function initializeApp(appConfig: AppConfig) {
     KanbanCardCreateComponent,
     KanbanCardInProgressOverviewComponent,
     KanbanCardCompleteOverviewComponent,
-    HeijunkaDefinitionComponent
+    HeijunkaDefinitionComponent,
+    ProjectStateKanbanCardsComponent,
+    ProjectStateKanbanCardsByAgeComponent
   ],
   imports: [
     BrowserModule,
