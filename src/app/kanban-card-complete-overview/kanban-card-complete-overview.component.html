@@ -1,4 +1,4 @@
-<div *ngIf="kanbanCard" class="kanbanCardInState">
+<div *ngIf="kanbanCard" class="kanbanCard">
     <div *ngIf="renameMode">
         <input value="{{kanbanCard.name.value}}" (keydown.enter)="commitRename($event)" (keydown.esc)="cancelRename()">
       </div>
