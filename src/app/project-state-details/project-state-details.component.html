@@ -18,9 +18,14 @@
                 <div>{{successorState.name}}</div>
             </a>
         </div>
-        <br/>
-        <app-project-state-kanban-cards [project]="project" [state]="state"></app-project-state-kanban-cards>
-        <app-project-state-kanban-cards-by-age [project]="project" [state]="state"></app-project-state-kanban-cards-by-age>
-    </div>
+        <br />
+        <div *ngIf="mode=='plain'">
+            <app-project-state-kanban-cards [project]="project" [state]="state"></app-project-state-kanban-cards>
+        </div>
+        <div *ngIf="mode=='byAge'">
 
-</div>
+            <app-project-state-kanban-cards-by-age [project]="project" [state]="state">
+            </app-project-state-kanban-cards-by-age>
+        </div>
+
+    </div>
