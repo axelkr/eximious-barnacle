@@ -1,3 +1,6 @@
+# next version
+- setup D3
+
 # v2.5.0
 - enable rename of Kanban Card
 
