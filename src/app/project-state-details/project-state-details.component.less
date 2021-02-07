@@ -5,6 +5,9 @@
   text-align: center;
 }
 
+@other-state-color: rgb(240,240,240);
+@other-state-color-hover: rgb(230,230,230);
+
 .move-to-predecessor {
     float: left;
     margin-right: 30px;
@@ -16,26 +19,12 @@
 }
 
 .move-to-predecessor a div {
-    background-color: rgb(240,240,240);
+    background-color: @other-state-color;
     padding: 10px;
 }
 
 .move-to-predecessor a div:hover {
-    background-color: rgb(230,230,230);
-}
-
-
-.state {
-    margin:auto;
-    width:80%;
-}
-
-.in-progress {
-    float:left;
-}
-
-.pull {
-    display:inline-flexbox;
+    background-color:@other-state-color-hover;
 }
 
 .move-to-successor {
@@ -49,10 +38,10 @@
 }
 
 .move-to-successor a div {
-    background-color: rgb(240,240,240);
+    background-color: @other-state-color;
     padding: 10px;
 }
 
 .move-to-successor a div:hover {
-    background-color: rgb(230,230,230);
+    background-color: @other-state-color-hover;
 }
