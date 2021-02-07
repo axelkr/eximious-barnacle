@@ -19,11 +19,15 @@
             </a>
         </div>
         <br />
+        
+        <select [(ngModel)]="mode">
+            <option *ngFor="let aMode of projectStateDetailMode" [ngValue]="aMode">{{aMode}}</option>
+        </select>
+
         <div *ngIf="mode=='plain'">
             <app-project-state-kanban-cards [project]="project" [state]="state"></app-project-state-kanban-cards>
         </div>
         <div *ngIf="mode=='byAge'">
-
             <app-project-state-kanban-cards-by-age [project]="project" [state]="state">
             </app-project-state-kanban-cards-by-age>
         </div>

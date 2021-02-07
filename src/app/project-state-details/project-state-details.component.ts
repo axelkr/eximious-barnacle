@@ -2,8 +2,6 @@ import { Component, OnInit, Input } from '@angular/core';
 import { HeijunkaBoardService } from '../heijunka-board.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Project, State, TransitionType } from 'outstanding-barnacle';
-
 enum ProjectStateDetailMode {
   plain = 'plain',
   byAge = 'byAge'
@@ -17,9 +15,9 @@ enum ProjectStateDetailMode {
 export class ProjectStateDetailsComponent implements OnInit {
   @Input() project: string | undefined;
   @Input() state: string | undefined;
-  transitionType = TransitionType;
+  projectStateDetailMode: Array<string> = Object.keys(ProjectStateDetailMode);
+  mode: string;
 
-  mode: ProjectStateDetailMode;
   constructor(private router: Router, private route: ActivatedRoute, public heijunkaBoardService: HeijunkaBoardService) {
     this.mode = ProjectStateDetailMode.plain;
   }
@@ -34,5 +32,4 @@ export class ProjectStateDetailsComponent implements OnInit {
       };
     });
   }
-
 }
