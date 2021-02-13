@@ -1,3 +1,6 @@
+# next version
+- update to next Angular minor version
+
 # v2.6.0
 - setup D3
 - process server side events
