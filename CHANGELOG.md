@@ -1,5 +1,6 @@
-# next version
+# v2.6.0
 - setup D3
+- process server side events
 
 # v2.5.0
 - enable rename of Kanban Card
