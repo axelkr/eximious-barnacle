@@ -1,5 +1,6 @@
-# next version
+# v2.7.0
 - update to next Angular minor version
+- icons for menu entries instead of plain text
 
 # v2.6.0
 - setup D3
