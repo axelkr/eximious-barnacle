@@ -23,7 +23,7 @@ export class ObjectStoreBackendService {
   private readonly endpoint: string;
   private newObjectEventsStream: Observable<ObjectEvent>;
 
-  constructor(private httpClient: HttpClient, private configuration: AppConfig, private zone: NgZone) {
+  constructor(private httpClient: HttpClient, private zone: NgZone) {
     this.endpoint = AppConfig.settings.backend.url + ':' + AppConfig.settings.backend.port;
     this.newObjectEventsStream = this.setupObjectEventStream();
   }
