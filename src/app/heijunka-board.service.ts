@@ -19,11 +19,11 @@ export class HeijunkaBoardService implements OnDestroy {
   constructor(private backend: ObjectStoreBackendService) {
     this.heijunkaBoard = this.commandProcessor.get();
 
-    backend.getAllObjectEventsOfTopic(this.currentTopic)
-    .subscribe(x => x.forEach(a => this.updateModelWithObjectEvent(a)));
     this.newObjectEvents = backend.getNewObjectEvents().subscribe(objectEvent => {
       this.updateModelWithObjectEvent(objectEvent);
     });
+
+    backend.switchToTopic(this.currentTopic);
   }
 
   ngOnDestroy() {
