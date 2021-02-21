@@ -28,10 +28,10 @@ export class AngularHttpClientFacade implements IHTTPClient {
         this.httpClient.post(url, JSON.stringify(json), { headers }).subscribe();
     }
 
-    get(url: string): Observable<ObjectEvent> {
-        const reporter = new Subject<ObjectEvent>();
+    get(url: string): Observable<ObjectEventBackEnd> {
+        const reporter = new Subject<ObjectEventBackEnd>();
         this.httpClient.get<any[]>(url).subscribe(allObjects => {
-            allObjects.map(aObject => reporter.next(AngularHttpClientFacade.deserializeSingleEvent(aObject)));
+            allObjects.map(aObject => reporter.next(aObject));
         });
         return reporter;
     }

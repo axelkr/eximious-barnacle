@@ -6,16 +6,6 @@ import { AppConfig } from '../app.config';
 import { Client as BackendClient, EventSourceFactory } from 'prime-barnacle';
 import { AngularHttpClientFacade } from './AngularHttpClientFacade';
 
-type ObjectEventBackEnd = {
-  topic: string;
-  time: string;
-  id: number;
-  eventType: string;
-  object: string;
-  objectType: string;
-  payload: string;
-};
-
 @Injectable({
   providedIn: 'root'
 })
