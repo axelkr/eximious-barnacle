@@ -1,9 +1,10 @@
 import { Injectable, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { ObjectEvent } from 'outstanding-barnacle';
 import { map } from 'rxjs/operators';
 import { AppConfig } from '../app.config';
+import { Client as BackendClient, EventSourceFactory } from 'prime-barnacle';
 
 type ObjectEventBackEnd = {
   topic: string;
@@ -21,11 +22,14 @@ type ObjectEventBackEnd = {
 
 export class ObjectStoreBackendService {
   private readonly endpoint: string;
-  private newObjectEventsStream: Observable<ObjectEvent>;
+  private readonly newObjectEventStream: Subject<ObjectEvent>;
+  private readonly backendClient: BackendClient;
 
   constructor(private httpClient: HttpClient, private zone: NgZone) {
     this.endpoint = AppConfig.settings.backend.url + ':' + AppConfig.settings.backend.port;
-    this.newObjectEventsStream = this.setupObjectEventStream();
+    this.backendClient = new BackendClient(this.endpoint, new EventSourceFactory());
+    this.newObjectEventStream = new Subject<ObjectEvent>();
+    this.connectNewObjectEventStreamWithBackendClient();
   }
 
   public static deserializeSingleEvent(json: ObjectEventBackEnd): ObjectEvent {
@@ -59,7 +63,7 @@ export class ObjectStoreBackendService {
   }
 
   public getNewObjectEvents(): Observable<ObjectEvent> {
-    return this.newObjectEventsStream;
+    return this.newObjectEventStream;
   }
 
   private deserializeServerObjectEvent(jsonBackend: ObjectEventBackEnd[]): ObjectEvent[] {
@@ -70,23 +74,12 @@ export class ObjectStoreBackendService {
     return results;
   }
 
-  private setupObjectEventStream(): Observable<ObjectEvent> {
-    const events = new EventSource(this.endpoint + '/newObjectEvents');
-    return new Observable((observer: any) => {
-      events.onmessage = event => {
-        this.zone.run(() => {
-          const asObjectEvent = ObjectStoreBackendService.deserializeSingleEvent(JSON.parse(event.data));
-          observer.next(asObjectEvent);
-        });
-      };
-
-      events.onerror = error => {
-        this.zone.run(() => {
-          console.log('error connecting to newObjectEvents backend: ');
-          console.log(error);
-          observer.error(error);
-        });
-      };
+  private connectNewObjectEventStreamWithBackendClient() {
+    const events = this.backendClient.publishedObjectEvents;
+    events.subscribe((objectEvent: ObjectEvent) => {
+      this.zone.run(() => {
+        this.newObjectEventStream.next(objectEvent);
+      });
     });
   }
 }

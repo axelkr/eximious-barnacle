@@ -1,3 +1,6 @@
+# v2.8.0
+- connect more robustly to backend with prime-barnacle
+
 # v2.7.0
 - update to next Angular minor version
 - icons for menu entries instead of plain text
