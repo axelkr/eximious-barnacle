@@ -1,3 +1,6 @@
+# v2.8.1
+- update to version of prime-barnacle, which is more tolerant against server not available for requests
+
 # v2.8.0
 - connect more robustly to backend with prime-barnacle
 
