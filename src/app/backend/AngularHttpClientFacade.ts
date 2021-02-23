@@ -1,3 +1,4 @@
+/* eslint-disable prefer-arrow/prefer-arrow-functions */
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 import { ObjectEvent } from 'happy-barnacle';
@@ -30,8 +31,14 @@ export class AngularHttpClientFacade implements IHTTPClient {
 
     get(url: string): Observable<ObjectEventBackEnd> {
         const reporter = new Subject<ObjectEventBackEnd>();
-        this.httpClient.get<any[]>(url).subscribe(allObjects => {
-            allObjects.map(aObject => reporter.next(aObject));
+        this.httpClient.get<any[]>(url).subscribe({
+            next(allObjects: any[]) {
+                allObjects.map(aObject => reporter.next(aObject));
+                reporter.complete();
+            },
+            error(error: any) {
+                reporter.error(error);
+            }
         });
         return reporter;
     }
