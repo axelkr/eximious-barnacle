@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { ObjectEvent } from 'outstanding-barnacle';
+import { ObjectEvent } from 'choicest-barnacle';
 import { AppConfig } from '../app.config';
 import { Client as BackendClient, EventSourceFactory } from 'prime-barnacle';
 import { AngularHttpClientFacade } from './AngularHttpClientFacade';

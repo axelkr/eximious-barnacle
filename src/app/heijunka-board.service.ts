@@ -1,7 +1,8 @@
-import { Injectable , OnDestroy} from '@angular/core';
+import { Injectable, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { HeijunkaBoard, ObjectEventFactory, ObjectEvent, ObjectEventCommandProcessor} from 'outstanding-barnacle';
+import { ObjectEvent } from 'choicest-barnacle';
+import { HeijunkaBoard, ObjectEventFactory, ObjectEventCommandProcessor } from 'outstanding-barnacle';
 
 import { ObjectStoreBackendService } from './backend/object-store-backend.service';
 
