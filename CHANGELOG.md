@@ -1,3 +1,6 @@
+# v2.8.3
+- fix breaking changes by prime-barnacle
+
 # v2.8.1
 - update to version of prime-barnacle, which is more tolerant against server not available for requests
 

@@ -2,7 +2,8 @@
 import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
-import { IHTTPClient, ObjectEventBackEnd } from 'prime-barnacle';
+import { IHTTPClient } from 'prime-barnacle';
+import { ObjectEventREST} from 'choicest-barnacle';
 
 export class AngularHttpClientFacade implements IHTTPClient {
     private readonly httpClient: HttpClient;
@@ -11,13 +12,13 @@ export class AngularHttpClientFacade implements IHTTPClient {
         this.httpClient = httpClient;
     }
 
-    postJson(url: string, json: Record<string, unknown>): void {
+    postJson(url: string, json: ObjectEventREST): void {
         const headers = { 'content-type': 'application/json' };
         this.httpClient.post(url, JSON.stringify(json), { headers }).subscribe();
     }
 
-    get(url: string): Observable<ObjectEventBackEnd> {
-        const reporter = new Subject<ObjectEventBackEnd>();
+    get(url: string): Observable<ObjectEventREST> {
+        const reporter = new Subject<ObjectEventREST>();
         this.httpClient.get<any[]>(url).subscribe({
             next(allObjects: any[]) {
                 allObjects.map(aObject => reporter.next(aObject));
