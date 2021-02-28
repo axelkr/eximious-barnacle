@@ -2,6 +2,18 @@ import { TestBed } from '@angular/core/testing';
 import { AppConfig } from '../app.config';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ObjectStoreBackendService } from './object-store-backend.service';
+import { Observable, Subject } from 'rxjs';
+import { ObjectEvent } from 'choicest-barnacle';
+
+export class MockObjectStoreBackendService {
+  private newObjectEventStream = new Subject<ObjectEvent>();
+
+  public switchToTopic(topic: string): void {
+  }
+  public getNewObjectEvents(): Observable<ObjectEvent> {
+    return this.newObjectEventStream;
+  }
+}
 
 describe('ObjectStoreBackendService', () => {
   let service: ObjectStoreBackendService;
