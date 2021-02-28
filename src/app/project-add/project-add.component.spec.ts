@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { ProjectAddComponent } from './project-add.component';
 import { MockHeijunkaBoardService } from '../heijunka-board.service.spec';
@@ -10,12 +11,15 @@ describe('ProjectAddComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProjectAddComponent ],
+      declarations: [ProjectAddComponent],
+      imports: [
+        FormsModule]
+      ,
       providers: [
         { provide: HeijunkaBoardService, useClass: MockHeijunkaBoardService }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { KanbanCardCreateComponent } from './kanban-card-create.component';
 import { MockHeijunkaBoardService } from '../heijunka-board.service.spec';
@@ -11,6 +12,9 @@ describe('KanbanCardCreateComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       declarations: [KanbanCardCreateComponent],
+      imports: [
+        FormsModule]
+      ,
       providers: [
         { provide: HeijunkaBoardService, useClass: MockHeijunkaBoardService }
       ]
