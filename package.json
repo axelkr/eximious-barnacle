@@ -1,6 +1,6 @@
 {
   "name": "eximious-barnacle",
-  "version": "2.8.3",
+  "version": "2.8.4",
   "description": "Frontend webpage for a Kanban board with swimlanes",
   "scripts": {
     "ng": "ng",
@@ -31,7 +31,7 @@
     "@angular/platform-browser-dynamic": "~11.2.0",
     "@angular/router": "~11.2.0",
     "d3": "^6.5.0",
-    "outstanding-barnacle": "^2.1.1",
+    "outstanding-barnacle": "^2.1.3",
     "prime-barnacle": "2.0.1",
     "choicest-barnacle": "2.0.0",
     "rxjs": "~6.6.3",

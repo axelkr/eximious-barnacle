@@ -1,3 +1,6 @@
+# v2.8.4
+- fix: handles case if new card is temporarilly not attached to a state
+
 # v2.8.3
 - fix breaking changes by prime-barnacle
 
