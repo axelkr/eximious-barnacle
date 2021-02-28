@@ -18,9 +18,7 @@ import { HeijunkaDefinitionComponent } from './heijunka-definition/heijunka-defi
 import { ProjectStateKanbanCardsComponent } from './project-state-kanban-cards/project-state-kanban-cards.component';
 import { ProjectStateKanbanCardsByAgeComponent } from './project-state-kanban-cards-by-age/project-state-kanban-cards-by-age.component';
 
-export function initializeApp(appConfig: AppConfig) {
-  return () => appConfig.load();
-}
+const initializeApp= (appConfig: AppConfig) => appConfig.load();
 
 @NgModule({
   declarations: [

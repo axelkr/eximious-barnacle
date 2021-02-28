@@ -1,5 +1,7 @@
 # v2.8.4
 - fix: handles case if new card is temporarilly not attached to a state
+- fix: switch to firefox, as its available under the same name in Windows and Linux
+- remove coverage reports as I don't believe in them adding quality
 
 # v2.8.3
 - fix breaking changes by prime-barnacle
