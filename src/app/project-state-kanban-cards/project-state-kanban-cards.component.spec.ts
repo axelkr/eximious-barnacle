@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProjectStateKanbanCardsComponent } from './project-state-kanban-cards.component';
+import {MockHeijunkaBoardService} from '../heijunka-board.service.spec';
+import {HeijunkaBoardService} from '../heijunka-board.service';
 
 describe('ProjectStateKanbanCardsComponent', () => {
   let component: ProjectStateKanbanCardsComponent;
@@ -8,7 +10,10 @@ describe('ProjectStateKanbanCardsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProjectStateKanbanCardsComponent ]
+      declarations: [ ProjectStateKanbanCardsComponent ],
+      providers: [
+        { provide: HeijunkaBoardService, useClass: MockHeijunkaBoardService }
+      ]
     })
     .compileComponents();
   });

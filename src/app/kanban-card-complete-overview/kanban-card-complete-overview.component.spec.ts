@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { KanbanCardCompleteOverviewComponent } from './kanban-card-complete-overview.component';
+import {MockHeijunkaBoardService} from '../heijunka-board.service.spec';
+import {HeijunkaBoardService} from '../heijunka-board.service';
 
 describe('KanbanCardCompleteOverviewComponent', () => {
   let component: KanbanCardCompleteOverviewComponent;
@@ -8,7 +10,10 @@ describe('KanbanCardCompleteOverviewComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ KanbanCardCompleteOverviewComponent ]
+      declarations: [ KanbanCardCompleteOverviewComponent ],
+      providers: [
+        { provide: HeijunkaBoardService, useClass: MockHeijunkaBoardService }
+      ]
     })
     .compileComponents();
   });

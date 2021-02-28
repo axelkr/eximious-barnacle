@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { HeijunkaBoardComponent } from './heijunka-board.component';
+import {MockHeijunkaBoardService} from '../heijunka-board.service.spec';
+import {HeijunkaBoardService} from '../heijunka-board.service';
 
 describe('HeijunkaBoardComponent', () => {
   let component: HeijunkaBoardComponent;
@@ -8,7 +10,10 @@ describe('HeijunkaBoardComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeijunkaBoardComponent ]
+      declarations: [ HeijunkaBoardComponent ],
+      providers: [
+        { provide: HeijunkaBoardService, useClass: MockHeijunkaBoardService }
+      ]
     })
     .compileComponents();
   });
