@@ -1,20 +1,39 @@
 import { TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
+import { AppConfig } from './app.config';
 
 describe('AppComponent', () => {
+  beforeAll(()=>{
+    AppConfig.settings = {
+      backend : {
+        url: 'http://testURL',
+        port: '800'
+      },
+      title : 'title',
+      env: {
+        name:'test'
+      }
+    };
+  });
+
+  afterAll(()=>{
+    AppConfig.settings = undefined;
+  });
+
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
         RouterTestingModule,
         FormsModule,
-        HttpClientModule
+        HttpClientTestingModule
       ],
       declarations: [
         AppComponent
       ],
+      providers: [AppConfig]
     }).compileComponents();
   });
 
