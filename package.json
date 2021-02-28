@@ -8,7 +8,7 @@
     "build": "ng build --base-href ./",
     "buildProduction": "ng build --base-href ./ --prod ",
     "test": "ng test --browsers=Firefox",
-    "testCLI": "ng test --no-watch --no-progress --browsers=FirefoxHeadless --reporters=junit",
+    "testCLI": "ng test --no-watch --no-progress --browsers=FirefoxHeadlessCI --reporters=junit",
     "lint": "ng lint"
   },
   "repository": {

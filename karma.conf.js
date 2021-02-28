@@ -37,7 +37,7 @@ module.exports = function (config) {
     },
     browsers: ['Firefox','FirefoxHeadless'],
     customLaunchers: {
-      FirefoxHeadless: {
+      FirefoxHeadlessCI: {
         base: 'FirefoxHeadless',
         flags: ['--no-sandbox']
       }
