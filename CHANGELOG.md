@@ -1,3 +1,6 @@
+# v2.8.5
+- fix: call AppInit correctly.
+
 # v2.8.4
 - fix: handles case if new card is temporarilly not attached to a state
 - fix: switch to firefox, as its available under the same name in Windows and Linux
