@@ -16,6 +16,9 @@ export class ObjectStoreBackendService {
   private readonly backendClient: BackendClient;
 
   constructor(private httpClient: HttpClient, private zone: NgZone) {
+    if (AppConfig.settings === undefined ) {
+      throw new Error('unavailable as not backend is defined');
+    }
     this.endpoint = AppConfig.settings.backend.url + ':' + AppConfig.settings.backend.port;
     this.backendClient = new BackendClient(this.endpoint, new EventSourceFactory(), new AngularHttpClientFacade(httpClient));
     this.newObjectEventStream = new Subject<ObjectEvent>();

@@ -10,6 +10,8 @@ import { AppConfig } from './app.config';
 })
 export class AppComponent {
   public constructor(private titleService: Title,private configuration: AppConfig) {
-    titleService.setTitle(AppConfig.settings.title);
+    if (AppConfig.settings !== undefined) {
+      titleService.setTitle(AppConfig.settings.title);
+    }
    }
 }

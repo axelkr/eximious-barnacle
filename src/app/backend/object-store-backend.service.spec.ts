@@ -1,15 +1,33 @@
 import { TestBed } from '@angular/core/testing';
-import { HttpClientModule } from '@angular/common/http';
+import { AppConfig } from '../app.config';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ObjectStoreBackendService } from './object-store-backend.service';
 
 describe('ObjectStoreBackendService', () => {
   let service: ObjectStoreBackendService;
+  beforeAll(()=>{
+    AppConfig.settings = {
+      backend : {
+        url: 'http://testURL',
+        port: '800'
+      },
+      title : 'title',
+      env: {
+        name:'test'
+      }
+    };
+  });
+
+  afterAll(()=>{
+    AppConfig.settings = undefined;
+  });
 
   beforeEach(() => {
     TestBed.configureTestingModule({
       imports: [
-        HttpClientModule
-      ]});
+        HttpClientTestingModule
+      ],
+    providers: [AppConfig]});
     service = TestBed.inject(ObjectStoreBackendService);
   });
 

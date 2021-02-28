@@ -5,7 +5,7 @@ import { IAppConfig } from '../app-config.model';
 
 @Injectable()
 export class AppConfig {
-    static settings: IAppConfig;
+    static settings: IAppConfig | undefined;
     constructor(private http: HttpClient) {}
     load() {
         const jsonFile = `assets/config/config.${environment.name}.json`;
