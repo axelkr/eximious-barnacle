@@ -14,7 +14,7 @@ export class ProjectStateComponent implements OnInit {
   @Input() state: State | undefined;
   transitionType = TransitionType;
 
-  constructor(private router: Router, private route: ActivatedRoute, public heijunkaBoardService:HeijunkaBoardService) { }
+  constructor(private router: Router, private route: ActivatedRoute, public heijunkaBoardService: HeijunkaBoardService) { }
 
   ngOnInit(): void {
   }
