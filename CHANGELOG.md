@@ -1,3 +1,6 @@
+# v2.8.6
+- handle breaking change from one library
+
 # v2.8.5
 - fix: call AppInit correctly.
 

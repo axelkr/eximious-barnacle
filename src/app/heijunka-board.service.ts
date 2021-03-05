@@ -19,6 +19,7 @@ export class HeijunkaBoardService implements OnDestroy {
 
   constructor(private backend: ObjectStoreBackendService) {
     this.heijunkaBoard = this.commandProcessor.get();
+    this.commandProcessor.initializeWithPersonalKanban();
 
     this.newObjectEvents = backend.getNewObjectEvents().subscribe(objectEvent => {
       this.updateModelWithObjectEvent(objectEvent);
