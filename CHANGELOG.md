@@ -1,3 +1,6 @@
+# v3.0.0
+- state models are now per project and no longer for the whole board
+
 # v2.8.6
 - handle breaking change from one library
 

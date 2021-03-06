@@ -17,6 +17,7 @@ import { KanbanCardCompleteOverviewComponent } from './kanban-card-complete-over
 import { HeijunkaDefinitionComponent } from './heijunka-definition/heijunka-definition.component';
 import { ProjectStateKanbanCardsComponent } from './project-state-kanban-cards/project-state-kanban-cards.component';
 import { ProjectStateKanbanCardsByAgeComponent } from './project-state-kanban-cards-by-age/project-state-kanban-cards-by-age.component';
+import { StateModelsComponent } from './state-models/state-models.component';
 
 const initializeApp= (appConfig: AppConfig) => () => appConfig.load();
 
@@ -33,7 +34,8 @@ const initializeApp= (appConfig: AppConfig) => () => appConfig.load();
     KanbanCardCompleteOverviewComponent,
     HeijunkaDefinitionComponent,
     ProjectStateKanbanCardsComponent,
-    ProjectStateKanbanCardsByAgeComponent
+    ProjectStateKanbanCardsByAgeComponent,
+    StateModelsComponent
   ],
   imports: [
     BrowserModule,
