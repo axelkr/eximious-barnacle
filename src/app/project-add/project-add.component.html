@@ -5,8 +5,18 @@
         [disabled]="!projectAddForm.form.valid">Create new project:</button>
       <input type="text" class="form-control" id="name" placeholder="enter name of new project" required
         [(ngModel)]="model.name" name="name" #name="ngModel">
+
+      <select [(ngModel)]="model.stateModel" name="stateModel" id="stateModel" required>
+        <option [ngValue]="undefined" ng-selected="selected">select state model</option>
+        <option *ngFor="let stateModel of modelBoardService.getHeijunkaBoard().availableStateModels"
+          [ngValue]="stateModel">{{stateModel.name}}</option>
+      </select>
+
       <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
         Name of new project is required.
+      </div>
+      <div [hidden]="model.stateModel !== undefined" class="alert alert-danger">
+        State model of new project is required.
       </div>
     </form>
   </div>

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { HeijunkaBoardService } from '../heijunka-board.service';
+import { StateModel } from 'outstanding-barnacle';
 
 @Component({
   selector: 'app-project-add',
@@ -8,9 +9,9 @@ import { HeijunkaBoardService } from '../heijunka-board.service';
 })
 export class ProjectAddComponent implements OnInit {
   // 1. user has to select a state model for a new project
-  model = { name: '' };
+  model = { name: '' , stateModel: undefined};
 
-  constructor(private modelBoardService: HeijunkaBoardService) {
+  constructor(public modelBoardService: HeijunkaBoardService) {
   }
 
   ngOnInit(): void {
@@ -19,6 +20,7 @@ export class ProjectAddComponent implements OnInit {
   onSubmit() { }
 
   newProject(): void {
+    console.log(this.model.stateModel);
     const objectEvent = this.modelBoardService.eventFactory.createProject(this.modelBoardService.currentTopic, this.model.name);
     this.modelBoardService.processObjectEvent(objectEvent);
   }
