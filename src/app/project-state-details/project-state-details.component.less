@@ -9,8 +9,11 @@
 @other-state-color-hover: rgb(230,230,230);
 
 .move-to-predecessor {
-    float: left;
-    margin-right: 30px;
+    display: grid;
+    padding-bottom: 20px;
+    padding-left:20px;
+    max-width: 150px;
+    text-align: left;
 }
 
 .move-to-predecessor a {
@@ -28,8 +31,11 @@
 }
 
 .move-to-successor {
-    float: right;
-    padding-left: 30px;
+    float:right;
+    padding-bottom: 20px;
+    padding-right:20px;
+    max-width: 150px;
+    text-align: right;
 }
 
 .move-to-successor a {
@@ -44,4 +50,19 @@
 
 .move-to-successor a div:hover {
     background-color: @other-state-color-hover;
+}
+
+.left {
+    float: left;
+    width: 15%;
+}
+
+.right {
+    float: right;
+    width: 15%;
+}
+
+.middle {
+    float: left;
+    width: 70%;
 }

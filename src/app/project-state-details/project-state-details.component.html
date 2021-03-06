@@ -1,38 +1,48 @@
 <div *ngIf="project" class="project">
     <div *ngIf="state" class="project">
         <div *ngIf="heijunkaBoardService.getHeijunkaBoard().getProject(project) as projectObject">
-            <div *ngIf="heijunkaBoardService.getHeijunkaBoard().getStateModelOf(projectObject).getState(state) as stateObject">
+            <div
+                *ngIf="heijunkaBoardService.getHeijunkaBoard().getStateModelOf(projectObject).getState(state) as stateObject">
                 <h2 class='project-state-details-title'>
                     {{stateObject.name}}
                     (project:
                     {{projectObject.name.value}})</h2>
+                <div class="row">
+                    <div class="column left">
+                    <label>Predecessors</label><br/>
+                        <div *ngFor="let predecessorState of heijunkaBoardService.getHeijunkaBoard().getStateModelOf(projectObject).predecessors(stateObject)"
+                            class="move-to-predecessor">
+                            <a [routerLink]="['/project-state/']"
+                                [queryParams]="{project:project, state:predecessorState.id }">
+                                <div>{{predecessorState.name}}</div>
+                            </a><br />
+                        </div>
+                    </div>
 
-                <div *ngFor="let predecessorState of heijunkaBoardService.getHeijunkaBoard().getStateModelOf(projectObject).predecessors(stateObject)"
-                    class="move-to-predecessor">
-                    <a [routerLink]="['/project-state/']" [queryParams]="{project:project, state:predecessorState.id }">
-                        <div>{{predecessorState.name}}</div>
-                    </a>
-                </div>
+                    <div class="column middle">
+                        <select [(ngModel)]="mode">
+                            <option *ngFor="let aMode of projectStateDetailMode" [ngValue]="aMode">{{aMode}}</option>
+                        </select>
 
-                <div *ngFor="let successorState of heijunkaBoardService.getHeijunkaBoard().getStateModelOf(projectObject).successors(stateObject)"
-                    class='move-to-successor'>
-                    <a [routerLink]="['/project-state/']" [queryParams]="{project:project, state:successorState.id }">
-                        <div>{{successorState.name}}</div>
-                    </a>
-                </div>
-                <br />
-
-                <select [(ngModel)]="mode">
-                    <option *ngFor="let aMode of projectStateDetailMode" [ngValue]="aMode">{{aMode}}</option>
-                </select>
-
-                <div *ngIf="mode=='plain'">
-                    <app-project-state-kanban-cards [project]="projectObject" [state]="stateObject">
-                    </app-project-state-kanban-cards>
-                </div>
-                <div *ngIf="mode=='byAge'">
-                    <app-project-state-kanban-cards-by-age [project]="projectObject" [state]="stateObject">
-                    </app-project-state-kanban-cards-by-age>
+                        <div *ngIf="mode=='plain'">
+                            <app-project-state-kanban-cards [project]="projectObject" [state]="stateObject">
+                            </app-project-state-kanban-cards>
+                        </div>
+                        <div *ngIf="mode=='byAge'">
+                            <app-project-state-kanban-cards-by-age [project]="projectObject" [state]="stateObject">
+                            </app-project-state-kanban-cards-by-age>
+                        </div>
+                    </div>
+                    <div class="column right">
+                        <label>Successors</label><br/>
+                        <div *ngFor="let successorState of heijunkaBoardService.getHeijunkaBoard().getStateModelOf(projectObject).successors(stateObject)"
+                            class='move-to-successor'>
+                            <a [routerLink]="['/project-state/']"
+                                [queryParams]="{project:project, state:successorState.id }">
+                                <div>{{successorState.name}}</div>
+                            </a><br/>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
