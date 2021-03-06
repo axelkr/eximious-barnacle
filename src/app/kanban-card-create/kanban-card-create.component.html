@@ -1,14 +1,8 @@
 <div class="container">
   <div>
-    <form (ngSubmit)="onSubmit()" #kanbanCardCreateForm="ngForm">
-      <button type="submit" class="btn btn-success" (click)="newKanbanCard(); kanbanCardCreateForm.reset()"
-        [disabled]="!kanbanCardCreateForm.form.valid">Create new Kanban card for this project:</button>
-      <input type="text" class="form-control" id="name" placeholder="describe content of new card" required
-        [(ngModel)]="model.name" name="name" #name="ngModel">
-      <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
-        Name is required
-      </div>
-
+    <form (ngSubmit)="newKanbanCard(); kanbanCardCreateForm.reset()" #kanbanCardCreateForm="ngForm">
+      <input type="text" class="form-control" id="name" placeholder="new card" required [(ngModel)]="model.name"
+        name="name" #name="ngModel">
     </form>
   </div>
 </div>

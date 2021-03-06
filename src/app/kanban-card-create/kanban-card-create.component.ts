@@ -16,8 +16,6 @@ export class KanbanCardCreateComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() { }
-
   newKanbanCard(): void {
     if (this.project === undefined) {
       return;
@@ -25,9 +23,9 @@ export class KanbanCardCreateComponent implements OnInit {
     const project = this.project;
 
     const initialState: State | undefined = this.modelBoardService.getHeijunkaBoard().stateModels
-    .find(aStateModel=> aStateModel.id === project.stateModelId)?.initialState();
-    if ( initialState === undefined) {
-      throw new Error ('not reachable');
+      .find(aStateModel => aStateModel.id === project.stateModelId)?.initialState();
+    if (initialState === undefined) {
+      throw new Error('not reachable');
     }
 
     const createKanbanCardEvent = this.modelBoardService.eventFactory.createKanbanCard(this.modelBoardService.currentTopic,

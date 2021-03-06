@@ -2,8 +2,6 @@
     <div *ngIf="state" class="project">
         <div *ngIf="heijunkaBoardService.getHeijunkaBoard().getProject(project) as projectObject">
             <div *ngIf="heijunkaBoardService.getHeijunkaBoard().getStateModelOf(projectObject).getState(state) as stateObject">
-                <app-kanban-card-create [project]="projectObject">
-                </app-kanban-card-create>
                 <h2 class='project-state-details-title'>
                     {{stateObject.name}}
                     (project:
