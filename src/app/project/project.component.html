@@ -5,7 +5,7 @@
   <div *ngIf="!renameMode">
     <label (click)="activateRenameMode()">{{project.name.value}}</label>
   </div>
-    <div *ngFor="let state of linearizeStateModelService.linearize(heijunkaBoardService.getHeijunkaBoard().stateModel)">
+    <div *ngFor="let state of linearizeStateModelService.linearize(heijunkaBoardService.getHeijunkaBoard().getStateModelOf(project))">
       <app-project-state [project]="project" [state]="state"></app-project-state>
     </div>
   </div>

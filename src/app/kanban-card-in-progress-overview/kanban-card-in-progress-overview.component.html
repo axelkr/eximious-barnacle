@@ -1,9 +1,12 @@
-<div *ngIf="kanbanCard" class="kanbanCard">
-    <div *ngIf="renameMode">
-        <input value="{{kanbanCard.name.value}}" (keydown.enter)="commitRename($event)" (keydown.esc)="cancelRename()">
+<div *ngIf="project">
+    <div *ngIf="kanbanCard" class="kanbanCard">
+        <div *ngIf="renameMode">
+            <input value="{{kanbanCard.name.value}}" (keydown.enter)="commitRename($event)"
+                (keydown.esc)="cancelRename()">
+        </div>
+        <div *ngIf="!renameMode">
+            <label (click)="activateRenameMode()">{{kanbanCard.name.value}}</label>
+        </div>
+        <button type="submit" class="btn btn-success" (click)="markAsCompleted()">Mark as completed</button>
     </div>
-    <div *ngIf="!renameMode">
-        <label (click)="activateRenameMode()">{{kanbanCard.name.value}}</label>
-    </div>
-    <button type="submit" class="btn btn-success" (click)="markAsCompleted()">Mark as completed</button>
 </div>

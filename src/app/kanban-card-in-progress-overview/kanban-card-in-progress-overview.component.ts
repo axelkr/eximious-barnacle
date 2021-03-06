@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { KanbanCard } from 'outstanding-barnacle';
+import { KanbanCard, Project } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../heijunka-board.service';
 
 @Component({
@@ -8,6 +8,7 @@ import { HeijunkaBoardService } from '../heijunka-board.service';
   styleUrls: ['./kanban-card-in-progress-overview.component.less']
 })
 export class KanbanCardInProgressOverviewComponent implements OnInit {
+  @Input() project: Project | undefined;
   @Input() kanbanCard: KanbanCard | undefined;
   renameMode = false;
 
@@ -21,12 +22,16 @@ export class KanbanCardInProgressOverviewComponent implements OnInit {
       return;
     }
 
+    if (this.project === undefined) {
+      return;
+    }
+
     const currentStateTransition = this.kanbanCard.history.currentStateTransition();
     if (currentStateTransition === undefined) {
       return;
     }
 
-    const currentState = this.modelBoardService.getHeijunkaBoard().stateModel.getState(currentStateTransition.state);
+    const currentState = this.modelBoardService.getHeijunkaBoard().getStateModelOf(this.project).getState(currentStateTransition.state);
     const moveToCompleteState = this.modelBoardService.eventFactory.moveKanbanCardComplete(this.modelBoardService.currentTopic,
       this.kanbanCard, currentState);
     this.modelBoardService.processObjectEvent(moveToCompleteState);
