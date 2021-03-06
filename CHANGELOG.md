@@ -1,4 +1,4 @@
-# next version
+# v3.0.1
 - project defaults can only be added if they haven't been already
 
 # v3.0.0
