@@ -8,8 +8,7 @@ import { StateModel } from 'outstanding-barnacle';
   styleUrls: ['./project-add.component.less']
 })
 export class ProjectAddComponent implements OnInit {
-  // 1. user has to select a state model for a new project
-  model = { name: '' , stateModel: undefined};
+  model: { name: string; stateModel: StateModel | undefined } = { name: '', stateModel: undefined };
 
   constructor(public modelBoardService: HeijunkaBoardService) {
   }
@@ -20,8 +19,8 @@ export class ProjectAddComponent implements OnInit {
   onSubmit() { }
 
   newProject(): void {
-    console.log(this.model.stateModel);
-    const objectEvent = this.modelBoardService.eventFactory.createProject(this.modelBoardService.currentTopic, this.model.name);
+    const objectEvent = this.modelBoardService.eventFactory.createProject(this.modelBoardService.currentTopic,
+      this.model.name, this.model.stateModel as StateModel);
     this.modelBoardService.processObjectEvent(objectEvent);
   }
 }

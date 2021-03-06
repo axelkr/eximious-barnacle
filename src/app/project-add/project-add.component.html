@@ -8,7 +8,7 @@
 
       <select [(ngModel)]="model.stateModel" name="stateModel" id="stateModel" required>
         <option [ngValue]="undefined" ng-selected="selected">select state model</option>
-        <option *ngFor="let stateModel of modelBoardService.getHeijunkaBoard().availableStateModels"
+        <option *ngFor="let stateModel of modelBoardService.getHeijunkaBoard().stateModels"
           [ngValue]="stateModel">{{stateModel.name}}</option>
       </select>
 

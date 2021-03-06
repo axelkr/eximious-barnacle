@@ -27,13 +27,17 @@ export class KanbanCardCreateComponent implements OnInit {
     }
 
     const project = this.modelBoardService.getHeijunkaBoard().getProject(this.project);
+    const initialState: State | undefined = this.modelBoardService.getHeijunkaBoard().stateModels
+    .find(aStateModel=> aStateModel.id === project.stateModelId)?.initialState();
+    if ( initialState === undefined) {
+      throw new Error ('not reachable');
+    }
 
     const createKanbanCardEvent = this.modelBoardService.eventFactory.createKanbanCard(this.modelBoardService.currentTopic,
       project, this.model.name);
     this.modelBoardService.processObjectEvent(createKanbanCardEvent);
     const createdKanbanCard = this.modelBoardService.getHeijunkaBoard().getKanbanCard(createKanbanCardEvent.object);
 
-    const initialState: State = this.modelBoardService.getHeijunkaBoard().stateModel.initialState();
     const moveToInitialState = this.modelBoardService.eventFactory.moveKanbanCardInProgress(this.modelBoardService.currentTopic,
       createdKanbanCard, initialState);
     this.modelBoardService.processObjectEvent(moveToInitialState);
