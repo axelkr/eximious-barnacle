@@ -1,1 +1,11 @@
-<p>state-models works!</p>
+<label>Available state models:</label>
+<ul>
+<li *ngFor="let stateModel of modelBoardService.getHeijunkaBoard().availableStateModels">
+    <label>{{stateModel.name}}</label>
+</li>
+</ul>
+<label>Add pre-defined state model:</label>
+<div>
+    <button type="submit" class="btn btn-success" (click)="addPersonalKanban()">Add Personal Kanban</button>
+    <button type="submit" class="btn btn-success" (click)="addProjectManagerKanban()">Add Project Manager Kanban</button>
+</div>

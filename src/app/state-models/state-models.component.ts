@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeijunkaBoardService } from '../heijunka-board.service';
 import { State, StateModel } from 'outstanding-barnacle';
 
 @Component({
@@ -7,36 +8,27 @@ import { State, StateModel } from 'outstanding-barnacle';
   styleUrls: ['./state-models.component.less']
 })
 export class StateModelsComponent implements OnInit {
-  // 1. List defined state models
-  // 2. offers to add pre-defined state models
-  predefinedModels: StateModel[] = [];
 
-  constructor() {
-    this.initializePredefinedModels();
+  constructor(public modelBoardService: HeijunkaBoardService) {
   }
 
   ngOnInit(): void {
   }
 
-  private initializePredefinedModels() {
-    this.predefinedModels.push(this.definePersonalKanban());
-    this.predefinedModels.push(this.defineProjectManagerKanban());
-  }
-
-  private definePersonalKanban(): StateModel {
+  public addPersonalKanban() {
     const states: State[] = [];
     states.push(new State('Backlog', 'Backlog'));
     states.push(new State('Doing', 'Doing'));
     states.push(new State('Done', 'Done'));
     const initialState = states[0];
     const finalStates = [states[2]];
-    const personalKanban = new StateModel('PersonalKanban', 'PersonalKanban', states, initialState, finalStates);
+    const personalKanban = new StateModel('Personal Kanban', 'Personal Kanban', states, initialState, finalStates);
     personalKanban.setSuccessorOf(states[0], states[1]);
     personalKanban.setSuccessorOf(states[1], states[2]);
-    return personalKanban;
+    this.addStateModel(personalKanban);
   }
 
-  private defineProjectManagerKanban(): StateModel {
+  public addProjectManagerKanban() {
     const inboxState = new State('Inbox', 'Inbox');
     const trashState = new State('Trash', 'Trash');
     const definingState = new State('Defining', 'Defining');
@@ -49,7 +41,9 @@ export class StateModelsComponent implements OnInit {
     const states: State[] = [inboxState, trashState, definingState, implementingState, goLiveState,
       doneState, waitingForDefiningState, waitingForImplementingState];
 
-    const projectManagerKanban = new StateModel('GettingThingsDone', 'GettingThingsDone', states, inboxState, [trashState, doneState]);
+    const projectManagerKanban = new StateModel('Project Manager Kanban', 'Project Manager Kanban',
+      states, inboxState, [trashState, doneState]);
+
     // in every state, cards can be deleted
     projectManagerKanban.setSuccessorOf(inboxState, trashState);
     projectManagerKanban.setSuccessorOf(definingState, trashState);
@@ -69,7 +63,11 @@ export class StateModelsComponent implements OnInit {
     projectManagerKanban.setSuccessorOf(waitingForDefiningState, definingState);
     projectManagerKanban.setSuccessorOf(implementingState, waitingForImplementingState);
     projectManagerKanban.setSuccessorOf(waitingForImplementingState, implementingState);
+    this.addStateModel(projectManagerKanban);
+  }
 
-    return projectManagerKanban;
+  private addStateModel(aStateModel: StateModel) {
+    const createStateModelEvent = this.modelBoardService.eventFactory.createStateModel(this.modelBoardService.currentTopic, aStateModel);
+    this.modelBoardService.processObjectEvent(createStateModelEvent);
   }
 }
