@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Project } from 'outstanding-barnacle';
+import { Project, LinearizeStateModelService } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../heijunka-board.service';
 
 @Component({
@@ -10,6 +10,7 @@ import { HeijunkaBoardService } from '../heijunka-board.service';
 export class ProjectComponent implements OnInit {
   @Input() project: Project | undefined;
   renameMode = false;
+  linearizeStateModelService = new LinearizeStateModelService();
 
   constructor(public heijunkaBoardService: HeijunkaBoardService) { }
 
