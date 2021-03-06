@@ -8,7 +8,7 @@ import { Project, State, TransitionType } from 'outstanding-barnacle';
   styleUrls: ['./project-state-kanban-cards.component.less']
 })
 export class ProjectStateKanbanCardsComponent implements OnInit {
-  @Input() project: string | undefined;
+  @Input() project: Project | undefined;
   @Input() state: string | undefined;
   transitionType = TransitionType;
 

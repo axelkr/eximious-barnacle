@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { State } from 'outstanding-barnacle';
+import { State, Project } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../heijunka-board.service';
 
 @Component({
@@ -8,7 +8,7 @@ import { HeijunkaBoardService } from '../heijunka-board.service';
   styleUrls: ['./kanban-card-create.component.less']
 })
 export class KanbanCardCreateComponent implements OnInit {
-  @Input() project: string | undefined;
+  @Input() project: Project | undefined;
   model = { name: '' };
 
   constructor(private modelBoardService: HeijunkaBoardService) { }
@@ -22,11 +22,8 @@ export class KanbanCardCreateComponent implements OnInit {
     if (this.project === undefined) {
       return;
     }
-    if (!this.modelBoardService.getHeijunkaBoard().hasProject(this.project)) {
-      throw new Error('could not find project with id ' + this.project);
-    }
+    const project = this.project;
 
-    const project = this.modelBoardService.getHeijunkaBoard().getProject(this.project);
     const initialState: State | undefined = this.modelBoardService.getHeijunkaBoard().stateModels
     .find(aStateModel=> aStateModel.id === project.stateModelId)?.initialState();
     if ( initialState === undefined) {

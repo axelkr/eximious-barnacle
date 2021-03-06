@@ -1,35 +1,38 @@
 <div *ngIf="project" class="project">
-    <app-kanban-card-create [project]="project"></app-kanban-card-create>
-    <div *ngIf="state" class="project">
-        <h2 class='project-state-details-title'>
-            {{heijunkaBoardService.getHeijunkaBoard().getStateModelOf(heijunkaBoardService.getHeijunkaBoard().getProject(project)).getState(state).name}} (project:
-            {{heijunkaBoardService.getHeijunkaBoard().getProject(project).name.value}})</h2>
+    <div *ngIf="heijunkaBoardService.getHeijunkaBoard().getProject(project) as projectObject">
+        <app-kanban-card-create [project]="projectObject">
+        </app-kanban-card-create>
+        <div *ngIf="state" class="project">
+            <h2 class='project-state-details-title'>
+                {{heijunkaBoardService.getHeijunkaBoard().getStateModelOf(projectObject).getState(state).name}}
+                (project:
+                {{projectObject.name.value}})</h2>
 
-        <div *ngFor="let predecessorState of heijunkaBoardService.getHeijunkaBoard().getStateModelOf(heijunkaBoardService.getHeijunkaBoard().getProject(project)).predecessors(heijunkaBoardService.getHeijunkaBoard().getStateModelOf(heijunkaBoardService.getHeijunkaBoard().getProject(project)).getState(state))"
-            class="move-to-predecessor">
-            <a [routerLink]="['/project-state/']" [queryParams]="{project:project, state:predecessorState.id }">
-                <div>{{predecessorState.name}}</div>
-            </a>
-        </div>
+            <div *ngFor="let predecessorState of heijunkaBoardService.getHeijunkaBoard().getStateModelOf(projectObject).predecessors(heijunkaBoardService.getHeijunkaBoard().getStateModelOf(projectObject).getState(state))"
+                class="move-to-predecessor">
+                <a [routerLink]="['/project-state/']" [queryParams]="{project:project, state:predecessorState.id }">
+                    <div>{{predecessorState.name}}</div>
+                </a>
+            </div>
 
-        <div *ngFor="let successorState of heijunkaBoardService.getHeijunkaBoard().getStateModelOf(heijunkaBoardService.getHeijunkaBoard().getProject(project)).successors(heijunkaBoardService.getHeijunkaBoard().getStateModelOf(heijunkaBoardService.getHeijunkaBoard().getProject(project)).getState(state))"
-            class='move-to-successor'>
-            <a [routerLink]="['/project-state/']" [queryParams]="{project:project, state:successorState.id }">
-                <div>{{successorState.name}}</div>
-            </a>
-        </div>
-        <br />
-        
-        <select [(ngModel)]="mode">
-            <option *ngFor="let aMode of projectStateDetailMode" [ngValue]="aMode">{{aMode}}</option>
-        </select>
+            <div *ngFor="let successorState of heijunkaBoardService.getHeijunkaBoard().getStateModelOf(projectObject).successors(heijunkaBoardService.getHeijunkaBoard().getStateModelOf(projectObject).getState(state))"
+                class='move-to-successor'>
+                <a [routerLink]="['/project-state/']" [queryParams]="{project:project, state:successorState.id }">
+                    <div>{{successorState.name}}</div>
+                </a>
+            </div>
+            <br />
 
-        <div *ngIf="mode=='plain'">
-            <app-project-state-kanban-cards [project]="project" [state]="state"></app-project-state-kanban-cards>
-        </div>
-        <div *ngIf="mode=='byAge'">
-            <app-project-state-kanban-cards-by-age [project]="project" [state]="state">
-            </app-project-state-kanban-cards-by-age>
-        </div>
+            <select [(ngModel)]="mode">
+                <option *ngFor="let aMode of projectStateDetailMode" [ngValue]="aMode">{{aMode}}</option>
+            </select>
 
+            <div *ngIf="mode=='plain'">
+                <app-project-state-kanban-cards [project]="projectObject" [state]="state"></app-project-state-kanban-cards>
+            </div>
+            <div *ngIf="mode=='byAge'">
+                <app-project-state-kanban-cards-by-age [project]="project" [state]="state">
+                </app-project-state-kanban-cards-by-age>
+            </div>
+        </div>
     </div>

@@ -1,3 +1,6 @@
+# v3.0.2
+- larger icons for applications
+
 # v3.0.1
 - project defaults can only be added if they haven't been already
 
