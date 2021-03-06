@@ -8,11 +8,24 @@ import { State, StateModel } from 'outstanding-barnacle';
   styleUrls: ['./state-models.component.less']
 })
 export class StateModelsComponent implements OnInit {
+  private readonly personalKanbanStateModelId = 'Personal Kanban';
+  private readonly projectManagerKanbanStateModelId = 'Project Manager Kanban';
+
 
   constructor(public modelBoardService: HeijunkaBoardService) {
   }
 
   ngOnInit(): void {
+  }
+
+  public personalKanbanPartOfStateModels(): boolean {
+    return -1 < this.modelBoardService.getHeijunkaBoard()
+    .stateModels.findIndex(aStateModel => aStateModel.id === this.personalKanbanStateModelId);
+  }
+
+  public projectManagerKanbanPartOfStateModels(): boolean {
+    return -1 < this.modelBoardService.getHeijunkaBoard()
+    .stateModels.findIndex(aStateModel => aStateModel.id === this.projectManagerKanbanStateModelId);
   }
 
   public addPersonalKanban() {
@@ -22,7 +35,7 @@ export class StateModelsComponent implements OnInit {
     states.push(new State('Done', 'Done'));
     const initialState = states[0];
     const finalStates = [states[2]];
-    const personalKanban = new StateModel('Personal Kanban', 'Personal Kanban', states, initialState, finalStates);
+    const personalKanban = new StateModel(this.personalKanbanStateModelId, 'Personal Kanban', states, initialState, finalStates);
     personalKanban.setSuccessorOf(states[0], states[1]);
     personalKanban.setSuccessorOf(states[1], states[2]);
     this.addStateModel(personalKanban);
@@ -41,7 +54,7 @@ export class StateModelsComponent implements OnInit {
     const states: State[] = [inboxState, trashState, definingState, implementingState, goLiveState,
       doneState, waitingForDefiningState, waitingForImplementingState];
 
-    const projectManagerKanban = new StateModel('Project Manager Kanban', 'Project Manager Kanban',
+    const projectManagerKanban = new StateModel(this.projectManagerKanbanStateModelId, 'Project Manager Kanban',
       states, inboxState, [trashState, doneState]);
 
     // in every state, cards can be deleted
