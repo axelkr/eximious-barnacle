@@ -9,7 +9,7 @@ import { Project, State, TransitionType } from 'outstanding-barnacle';
 })
 export class ProjectStateKanbanCardsComponent implements OnInit {
   @Input() project: Project | undefined;
-  @Input() state: string | undefined;
+  @Input() state: State | undefined;
   transitionType = TransitionType;
 
   constructor(public heijunkaBoardService: HeijunkaBoardService) { }

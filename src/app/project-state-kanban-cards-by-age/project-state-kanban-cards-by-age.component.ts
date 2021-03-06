@@ -8,8 +8,8 @@ import { Project, State, TransitionType } from 'outstanding-barnacle';
   styleUrls: ['./project-state-kanban-cards-by-age.component.less']
 })
 export class ProjectStateKanbanCardsByAgeComponent implements OnInit {
-  @Input() project: string | undefined;
-  @Input() state: string | undefined;
+  @Input() project: Project | undefined;
+  @Input() state: State | undefined;
   transitionType = TransitionType;
 
   constructor(public heijunkaBoardService: HeijunkaBoardService) { }
