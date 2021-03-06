@@ -5,18 +5,18 @@
                 <app-kanban-card-create [project]="projectObject">
                 </app-kanban-card-create>
                 <h2 class='project-state-details-title'>
-                    {{heijunkaBoardService.getHeijunkaBoard().getStateModelOf(projectObject).getState(state).name}}
+                    {{stateObject.name}}
                     (project:
                     {{projectObject.name.value}})</h2>
 
-                <div *ngFor="let predecessorState of heijunkaBoardService.getHeijunkaBoard().getStateModelOf(projectObject).predecessors(heijunkaBoardService.getHeijunkaBoard().getStateModelOf(projectObject).getState(state))"
+                <div *ngFor="let predecessorState of heijunkaBoardService.getHeijunkaBoard().getStateModelOf(projectObject).predecessors(stateObject)"
                     class="move-to-predecessor">
                     <a [routerLink]="['/project-state/']" [queryParams]="{project:project, state:predecessorState.id }">
                         <div>{{predecessorState.name}}</div>
                     </a>
                 </div>
 
-                <div *ngFor="let successorState of heijunkaBoardService.getHeijunkaBoard().getStateModelOf(projectObject).successors(heijunkaBoardService.getHeijunkaBoard().getStateModelOf(projectObject).getState(state))"
+                <div *ngFor="let successorState of heijunkaBoardService.getHeijunkaBoard().getStateModelOf(projectObject).successors(stateObject)"
                     class='move-to-successor'>
                     <a [routerLink]="['/project-state/']" [queryParams]="{project:project, state:successorState.id }">
                         <div>{{successorState.name}}</div>
