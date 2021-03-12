@@ -34,8 +34,9 @@ export class StateModelsComponent implements OnInit {
     states.push(new State('Doing', 'Doing'));
     states.push(new State('Done', 'Done'));
     const initialState = states[0];
+    const trashState = states[0];
     const finalStates = [states[2]];
-    const personalKanban = new StateModel(this.personalKanbanStateModelId, 'Personal Kanban', states, initialState, finalStates);
+    const personalKanban = new StateModel(this.personalKanbanStateModelId, 'Personal Kanban', states, initialState, finalStates,trashState);
     personalKanban.setSuccessorOf(states[0], states[1]);
     personalKanban.setSuccessorOf(states[1], states[2]);
     this.addStateModel(personalKanban);
@@ -55,15 +56,8 @@ export class StateModelsComponent implements OnInit {
       doneState, waitingForDefiningState, waitingForImplementingState];
 
     const projectManagerKanban = new StateModel(this.projectManagerKanbanStateModelId, 'Project Manager Kanban',
-      states, inboxState, [trashState, doneState]);
-
-    // in every state, cards can be deleted
-    projectManagerKanban.setSuccessorOf(inboxState, trashState);
-    projectManagerKanban.setSuccessorOf(definingState, trashState);
-    projectManagerKanban.setSuccessorOf(implementingState, trashState);
-    projectManagerKanban.setSuccessorOf(goLiveState, trashState);
-    projectManagerKanban.setSuccessorOf(waitingForDefiningState, trashState);
-    projectManagerKanban.setSuccessorOf(waitingForImplementingState, trashState);
+      states, inboxState, [trashState, doneState],trashState);
+;
     // expected traversal: Inbox -> Defining -> Implementing -> Go-Live -> Done
     projectManagerKanban.setSuccessorOf(inboxState, definingState);
     projectManagerKanban.setSuccessorOf(definingState, implementingState);

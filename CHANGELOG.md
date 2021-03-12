@@ -1,3 +1,6 @@
+# v3.0.3
+- switch to explicitly defined trash state
+
 # v3.0.2
 - larger icons for applications
 
