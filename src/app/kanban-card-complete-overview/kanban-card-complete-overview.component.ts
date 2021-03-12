@@ -27,6 +27,15 @@ export class KanbanCardCompleteOverviewComponent implements OnInit {
     this.modelBoardService.processObjectEvent(pullToState);
   }
 
+  moveToTrash(): void {
+    if (this.kanbanCard === undefined || this.state === undefined) {
+      return;
+    }
+    const moveToTrash = this.modelBoardService.eventFactory.moveKanbanCardToTrash(this.modelBoardService.currentTopic,
+      this.kanbanCard);
+    this.modelBoardService.processObjectEvent(moveToTrash);
+  }
+
   commitRename(event: any): void {
     this.renameTo(event.target.value);
     this.renameMode = false;

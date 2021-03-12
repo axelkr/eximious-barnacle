@@ -20,12 +20,12 @@ export class StateModelsComponent implements OnInit {
 
   public personalKanbanPartOfStateModels(): boolean {
     return -1 < this.modelBoardService.getHeijunkaBoard()
-    .stateModels.findIndex(aStateModel => aStateModel.id === this.personalKanbanStateModelId);
+      .stateModels.findIndex(aStateModel => aStateModel.id === this.personalKanbanStateModelId);
   }
 
   public projectManagerKanbanPartOfStateModels(): boolean {
     return -1 < this.modelBoardService.getHeijunkaBoard()
-    .stateModels.findIndex(aStateModel => aStateModel.id === this.projectManagerKanbanStateModelId);
+      .stateModels.findIndex(aStateModel => aStateModel.id === this.projectManagerKanbanStateModelId);
   }
 
   public addPersonalKanban() {
@@ -36,7 +36,8 @@ export class StateModelsComponent implements OnInit {
     const initialState = states[0];
     const trashState = states[0];
     const finalStates = [states[2]];
-    const personalKanban = new StateModel(this.personalKanbanStateModelId, 'Personal Kanban', states, initialState, finalStates,trashState);
+    const personalKanban = new StateModel(this.personalKanbanStateModelId, this.personalKanbanStateModelId,
+      states, initialState, finalStates, trashState);
     personalKanban.setSuccessorOf(states[0], states[1]);
     personalKanban.setSuccessorOf(states[1], states[2]);
     this.addStateModel(personalKanban);
@@ -55,9 +56,9 @@ export class StateModelsComponent implements OnInit {
     const states: State[] = [inboxState, trashState, definingState, implementingState, goLiveState,
       doneState, waitingForDefiningState, waitingForImplementingState];
 
-    const projectManagerKanban = new StateModel(this.projectManagerKanbanStateModelId, 'Project Manager Kanban',
-      states, inboxState, [trashState, doneState],trashState);
-;
+    const projectManagerKanban = new StateModel(this.projectManagerKanbanStateModelId, this.projectManagerKanbanStateModelId,
+      states, inboxState, [trashState, doneState], trashState);
+    ;
     // expected traversal: Inbox -> Defining -> Implementing -> Go-Live -> Done
     projectManagerKanban.setSuccessorOf(inboxState, definingState);
     projectManagerKanban.setSuccessorOf(definingState, implementingState);
