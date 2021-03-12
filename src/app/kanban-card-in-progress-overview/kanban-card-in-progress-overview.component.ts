@@ -37,6 +37,15 @@ export class KanbanCardInProgressOverviewComponent implements OnInit {
     this.modelBoardService.processObjectEvent(moveToCompleteState);
   }
 
+  moveToTrash(): void {
+    if (this.kanbanCard === undefined) {
+      return;
+    }
+    const moveToTrash = this.modelBoardService.eventFactory.moveKanbanCardToTrash(this.modelBoardService.currentTopic,
+      this.kanbanCard);
+    this.modelBoardService.processObjectEvent(moveToTrash);
+  }
+
   commitRename(event: any): void {
     this.renameTo(event.target.value);
     this.renameMode = false;
