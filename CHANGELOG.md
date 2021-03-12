@@ -1,3 +1,6 @@
+# v3.0.4
+- enable moving kanban card to trash state
+
 # v3.0.3
 - switch to explicitly defined trash state
 

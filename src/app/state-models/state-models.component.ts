@@ -11,7 +11,6 @@ export class StateModelsComponent implements OnInit {
   private readonly personalKanbanStateModelId = 'Personal Kanban';
   private readonly projectManagerKanbanStateModelId = 'Project Manager Kanban';
 
-
   constructor(public modelBoardService: HeijunkaBoardService) {
   }
 
@@ -30,11 +29,12 @@ export class StateModelsComponent implements OnInit {
 
   public addPersonalKanban() {
     const states: State[] = [];
-    states.push(new State('Backlog', 'Backlog'));
-    states.push(new State('Doing', 'Doing'));
-    states.push(new State('Done', 'Done'));
+    states.push(State.generateState('Backlog'));
+    states.push(State.generateState('Doing'));
+    states.push(State.generateState('Done'));
+    states.push(State.generateState('Trash'));
     const initialState = states[0];
-    const trashState = states[0];
+    const trashState = states[3];
     const finalStates = [states[2]];
     const personalKanban = new StateModel(this.personalKanbanStateModelId, this.personalKanbanStateModelId,
       states, initialState, finalStates, trashState);
@@ -44,14 +44,14 @@ export class StateModelsComponent implements OnInit {
   }
 
   public addProjectManagerKanban() {
-    const inboxState = new State('Inbox', 'Inbox');
-    const trashState = new State('Trash', 'Trash');
-    const definingState = new State('Defining', 'Defining');
-    const implementingState = new State('Implementing', 'Implementing');
-    const goLiveState = new State('Go-Live', 'Go-Live');
-    const doneState = new State('Done', 'Done');
-    const waitingForDefiningState = new State('Waiting for (defining)', 'Waiting for (defining)');
-    const waitingForImplementingState = new State('Waiting for (implementing)', 'Waiting for (implementing)');
+    const inboxState = State.generateState('Inbox');
+    const trashState = State.generateState('Trash');
+    const definingState = State.generateState('Defining');
+    const implementingState = State.generateState('Implementing');
+    const goLiveState = State.generateState('Go-Live');
+    const doneState = State.generateState('Done');
+    const waitingForDefiningState = State.generateState('Waiting for (defining)');
+    const waitingForImplementingState = State.generateState('Waiting for (implementing)');
 
     const states: State[] = [inboxState, trashState, definingState, implementingState, goLiveState,
       doneState, waitingForDefiningState, waitingForImplementingState];
