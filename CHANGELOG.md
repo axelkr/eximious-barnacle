@@ -1,3 +1,6 @@
+# v3.1.0
+- integrate updates to domain model
+
 # v3.0.4
 - enable moving kanban card to trash state
 
