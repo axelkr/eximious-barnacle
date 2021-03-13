@@ -29,10 +29,10 @@ export class KanbanCardCreateComponent implements OnInit {
     }
 
     const createKanbanCardEvent = this.modelBoardService.eventFactory.createKanbanCard(this.modelBoardService.currentTopic,
-      project, this.model.name);
+      project);
     this.modelBoardService.processObjectEvent(createKanbanCardEvent);
     const createdKanbanCard = this.modelBoardService.getHeijunkaBoard().getKanbanCard(createKanbanCardEvent.object);
-
+    // TODO: set name of new Kanban card
     const moveToInitialState = this.modelBoardService.eventFactory.moveKanbanCardInProgress(this.modelBoardService.currentTopic,
       createdKanbanCard, initialState);
     this.modelBoardService.processObjectEvent(moveToInitialState);

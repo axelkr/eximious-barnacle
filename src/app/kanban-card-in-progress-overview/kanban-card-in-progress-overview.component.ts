@@ -63,7 +63,8 @@ export class KanbanCardInProgressOverviewComponent implements OnInit {
     if (this.kanbanCard === undefined) {
       return;
     }
-    const renameEvent = this.modelBoardService.eventFactory.renameKanbanCard(this.modelBoardService.currentTopic, this.kanbanCard, newName);
+    const renameEvent = this.modelBoardService.eventFactory.
+      updateKanbanCardProperties(this.modelBoardService.currentTopic, this.kanbanCard, 'name', newName);
     this.modelBoardService.processObjectEvent(renameEvent);
   }
 }
