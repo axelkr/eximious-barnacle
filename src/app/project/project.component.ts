@@ -35,7 +35,7 @@ export class ProjectComponent implements OnInit {
       return;
     }
     const renameEvent = this.heijunkaBoardService.eventFactory.
-      updateProjectProperties(this.heijunkaBoardService.currentTopic, this.project, 'name', newName);
+      updateProjectProperty(this.heijunkaBoardService.currentTopic, this.project, 'name', newName);
     this.heijunkaBoardService.processObjectEvent(renameEvent);
   }
 }

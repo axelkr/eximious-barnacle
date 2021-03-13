@@ -24,7 +24,7 @@ export class ProjectAddComponent implements OnInit {
     this.modelBoardService.processObjectEvent(createProjectEvent);
 
     const createdProject = this.modelBoardService.getHeijunkaBoard().getProject(createProjectEvent.object);
-    const setProjectNameEvent = this.modelBoardService.eventFactory.initializeProjectProperties(this.modelBoardService.currentTopic,
+    const setProjectNameEvent = this.modelBoardService.eventFactory.initializeProjectProperty(this.modelBoardService.currentTopic,
       createdProject, 'name', this.model.name);
     this.modelBoardService.processObjectEvent(setProjectNameEvent);
   }
