@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { StateModel, Project } from 'outstanding-barnacle';
+import { Project } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../heijunka-board.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class KanbanCardCreateComponent implements OnInit {
     }
 
     const project = this.project;
-    const stateModel: StateModel = this.modelBoardService.getHeijunkaBoard().getStateModelOf(project);
+    const stateModel = this.modelBoardService.getHeijunkaBoard().getStateModelOf(project);
 
     const createKanbanCardEvents = this.modelBoardService.kanbanCardEventFactory.create(this.modelBoardService.currentTopic,
       this.model.name, project, stateModel);
