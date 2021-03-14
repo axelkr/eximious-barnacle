@@ -1,10 +1,10 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { ObjectEvent } from 'choicest-barnacle';
+import { ObjectEvent,Topic } from 'choicest-barnacle';
 import {
   HeijunkaBoard, ObjectEventFactory, ObjectEventCommandProcessor,
-  ProjectEventFactory, KanbanCardEventFactory
+  ProjectEventFactory, KanbanCardEventFactory,
 } from 'outstanding-barnacle';
 
 import { ObjectStoreBackendService } from './backend/object-store-backend.service';
@@ -16,7 +16,7 @@ export class HeijunkaBoardService implements OnDestroy {
   readonly eventFactory = new ObjectEventFactory();
   readonly projectEventFactory = new ProjectEventFactory();
   readonly kanbanCardEventFactory = new KanbanCardEventFactory();
-  readonly currentTopic = 'currentTopic';
+  readonly currentTopic = new Topic('currentTopic','currentTopic');
 
   private commandProcessor = new ObjectEventCommandProcessor();
   private heijunkaBoard: HeijunkaBoard;

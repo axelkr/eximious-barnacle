@@ -1,7 +1,7 @@
 import { Injectable, NgZone } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
-import { ObjectEvent } from 'choicest-barnacle';
+import { ObjectEvent, Topic } from 'choicest-barnacle';
 import { AppConfig } from '../app.config';
 import { Client as BackendClient, EventSourceFactory } from 'prime-barnacle';
 import { AngularHttpClientFacade } from './AngularHttpClientFacade';
@@ -29,7 +29,7 @@ export class ObjectStoreBackendService {
     this.backendClient.storeObjectEvent(objectEvent);
   }
 
-  public switchToTopic(topic: string): void {
+  public switchToTopic(topic: Topic): void {
     this.backendClient.switchToTopic(topic);
   }
 

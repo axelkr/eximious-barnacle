@@ -31,9 +31,9 @@
     "@angular/platform-browser-dynamic": "~11.2.0",
     "@angular/router": "~11.2.0",
     "d3": "^6.6.0",
-    "outstanding-barnacle": "^4.2.1",
-    "prime-barnacle": "2.0.1",
-    "choicest-barnacle": "2.0.0",
+    "outstanding-barnacle": "^4.3.2",
+    "prime-barnacle": "2.1.0",
+    "choicest-barnacle": "2.1.0",
     "rxjs": "~6.6.3",
     "tslib": "^2.1.0",
     "zone.js": "~0.11.3"
