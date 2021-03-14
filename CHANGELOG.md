@@ -1,3 +1,6 @@
+# v3.1.1
+- update angular, integrate more updates to domain model
+
 # v3.1.0
 - integrate updates to domain model
 
