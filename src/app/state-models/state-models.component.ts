@@ -75,7 +75,7 @@ export class StateModelsComponent implements OnInit {
   }
 
   private addStateModel(aStateModel: StateModel) {
-    const createStateModelEvent = this.modelBoardService.eventFactory.createStateModel(this.modelBoardService.currentTopic, aStateModel);
+    const createStateModelEvent = this.modelBoardService.eventFactory.createStateModel(this.modelBoardService.currentTopic(), aStateModel);
     this.modelBoardService.processObjectEvent(createStateModelEvent);
   }
 }

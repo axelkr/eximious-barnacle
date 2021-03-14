@@ -1,7 +1,7 @@
 import { Injectable, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
-import { ObjectEvent,Topic } from 'choicest-barnacle';
+import { ObjectEvent, Topic } from 'choicest-barnacle';
 import {
   HeijunkaBoard, ObjectEventFactory, ObjectEventCommandProcessor,
   ProjectEventFactory, KanbanCardEventFactory,
@@ -16,20 +16,15 @@ export class HeijunkaBoardService implements OnDestroy {
   readonly eventFactory = new ObjectEventFactory();
   readonly projectEventFactory = new ProjectEventFactory();
   readonly kanbanCardEventFactory = new KanbanCardEventFactory();
-  readonly currentTopic = new Topic('currentTopic','currentTopic');
+  private topic!: Topic;
 
   private commandProcessor = new ObjectEventCommandProcessor();
   private heijunkaBoard: HeijunkaBoard;
-  private newObjectEvents: Subscription;
+  private newObjectEvents!: Subscription;
 
   constructor(private backend: ObjectStoreBackendService) {
     this.heijunkaBoard = this.commandProcessor.get();
-
-    this.newObjectEvents = backend.getNewObjectEvents().subscribe(objectEvent => {
-      this.updateModelWithObjectEvent(objectEvent);
-    });
-
-    backend.switchToTopic(this.currentTopic);
+    this.switchToTopic(new Topic('currentTopic','currentTopic'));
   }
 
   ngOnDestroy() {
@@ -40,7 +35,15 @@ export class HeijunkaBoardService implements OnDestroy {
     return this.heijunkaBoard;
   }
 
+  currentTopic(): Topic {
+    return this.topic;
+  }
+
   public processObjectEvent(objectEvent: ObjectEvent): void {
+    const objectEventForCurrentTopic = (objectEvent.topic === this.topic.id);
+    if (!objectEventForCurrentTopic) {
+      return;
+    }
     this.updateModelWithObjectEvent(objectEvent);
     this.backend.storeObjectEvent(objectEvent);
   }
@@ -49,6 +52,16 @@ export class HeijunkaBoardService implements OnDestroy {
     objectEvents.forEach(objectEvent => {
       this.processObjectEvent(objectEvent);
     });
+  }
+
+  public switchToTopic(topic: Topic): void {
+    this.topic = topic;
+
+    this.newObjectEvents = this.backend.getNewObjectEvents().subscribe(objectEvent => {
+      this.updateModelWithObjectEvent(objectEvent);
+    });
+
+    this.backend.switchToTopic(this.topic);
   }
 
   private updateModelWithObjectEvent(objectEvent: ObjectEvent): void {

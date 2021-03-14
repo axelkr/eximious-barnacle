@@ -19,7 +19,7 @@ export class ProjectAddComponent implements OnInit {
   onSubmit() { }
 
   newProject(): void {
-    const createdProjectEvents = this.modelBoardService.projectEventFactory.create(this.modelBoardService.currentTopic,
+    const createdProjectEvents = this.modelBoardService.projectEventFactory.create(this.modelBoardService.currentTopic(),
       this.model.name, this.model.stateModel as StateModel);
     this.modelBoardService.processObjectEvents(createdProjectEvents);
   }

@@ -22,7 +22,7 @@ export class KanbanCardCompleteOverviewComponent implements OnInit {
       return;
     }
 
-    const pullToState = this.modelBoardService.kanbanCardEventFactory.moveToInProgress(this.modelBoardService.currentTopic,
+    const pullToState = this.modelBoardService.kanbanCardEventFactory.moveToInProgress(this.modelBoardService.currentTopic(),
       this.kanbanCard, this.state);
     this.modelBoardService.processObjectEvent(pullToState);
   }
@@ -31,7 +31,7 @@ export class KanbanCardCompleteOverviewComponent implements OnInit {
     if (this.kanbanCard === undefined || this.state === undefined) {
       return;
     }
-    const moveToTrash = this.modelBoardService.kanbanCardEventFactory.moveToTrash(this.modelBoardService.currentTopic,
+    const moveToTrash = this.modelBoardService.kanbanCardEventFactory.moveToTrash(this.modelBoardService.currentTopic(),
       this.kanbanCard);
     this.modelBoardService.processObjectEvent(moveToTrash);
   }
@@ -54,7 +54,7 @@ export class KanbanCardCompleteOverviewComponent implements OnInit {
       return;
     }
     const renameKanbanCardEvent = this.modelBoardService.kanbanCardEventFactory.
-      updateProperty(this.modelBoardService.currentTopic, this.kanbanCard, KanbanCardProperties.NAME, newName);
+      updateProperty(this.modelBoardService.currentTopic(), this.kanbanCard, KanbanCardProperties.NAME, newName);
     this.modelBoardService.processObjectEvent(renameKanbanCardEvent);
   }
 }
