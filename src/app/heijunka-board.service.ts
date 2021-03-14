@@ -16,19 +16,20 @@ export class HeijunkaBoardService implements OnDestroy {
   readonly eventFactory = new ObjectEventFactory();
   readonly projectEventFactory = new ProjectEventFactory();
   readonly kanbanCardEventFactory = new KanbanCardEventFactory();
-  private topic!: Topic;
 
-  private commandProcessor = new ObjectEventCommandProcessor();
-  private heijunkaBoard: HeijunkaBoard;
+  private topic!: Topic;
+  private commandProcessor!: ObjectEventCommandProcessor;
+  private heijunkaBoard!: HeijunkaBoard;
   private newObjectEvents!: Subscription;
+  private newTopicEvents!: Subscription;
 
   constructor(private backend: ObjectStoreBackendService) {
-    this.heijunkaBoard = this.commandProcessor.get();
-    this.switchToTopic(new Topic('currentTopic','currentTopic'));
+    this.switchToTopic(new Topic('currentTopic', 'currentTopic'));
   }
 
   ngOnDestroy() {
     this.newObjectEvents.unsubscribe();
+    this.newTopicEvents.unsubscribe();
   }
 
   getHeijunkaBoard(): HeijunkaBoard {
@@ -55,6 +56,8 @@ export class HeijunkaBoardService implements OnDestroy {
   }
 
   public switchToTopic(topic: Topic): void {
+    this.commandProcessor = new ObjectEventCommandProcessor();
+    this.heijunkaBoard = this.commandProcessor.get();
     this.topic = topic;
 
     this.newObjectEvents = this.backend.getNewObjectEvents().subscribe(objectEvent => {
