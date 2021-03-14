@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { ObjectEvent } from 'choicest-barnacle';
 import {
   HeijunkaBoard, ObjectEventFactory, ObjectEventCommandProcessor,
-  ProjectEventFactory, ProjectProperties, KanbanCardEventFactory, KanbanCardProperties
+  ProjectEventFactory, KanbanCardEventFactory
 } from 'outstanding-barnacle';
 
 import { ObjectStoreBackendService } from './backend/object-store-backend.service';
