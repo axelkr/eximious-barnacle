@@ -19,13 +19,8 @@ export class ProjectAddComponent implements OnInit {
   onSubmit() { }
 
   newProject(): void {
-    const createProjectEvent = this.modelBoardService.eventFactory.createProject(this.modelBoardService.currentTopic,
-      this.model.stateModel as StateModel);
-    this.modelBoardService.processObjectEvent(createProjectEvent);
-
-    const createdProject = this.modelBoardService.getHeijunkaBoard().getProject(createProjectEvent.object);
-    const setProjectNameEvent = this.modelBoardService.eventFactory.initializeProjectProperty(this.modelBoardService.currentTopic,
-      createdProject, 'name', this.model.name);
-    this.modelBoardService.processObjectEvent(setProjectNameEvent);
+    const createdProjectEvents = this.modelBoardService.projectEventFactory.create(this.modelBoardService.currentTopic,
+      this.model.name, this.model.stateModel as StateModel);
+    this.modelBoardService.processObjectEvents(createdProjectEvents);
   }
 }

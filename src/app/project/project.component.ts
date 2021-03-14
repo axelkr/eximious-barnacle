@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Project, LinearizeStateModelService } from 'outstanding-barnacle';
+import { Project, ProjectProperties, LinearizeStateModelService } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../heijunka-board.service';
 
 @Component({
@@ -34,8 +34,8 @@ export class ProjectComponent implements OnInit {
     if (this.project === undefined) {
       return;
     }
-    const renameEvent = this.heijunkaBoardService.eventFactory.
-      updateProjectProperty(this.heijunkaBoardService.currentTopic, this.project, 'name', newName);
+    const renameEvent = this.heijunkaBoardService.projectEventFactory.
+      updateProperty(this.heijunkaBoardService.currentTopic, this.project, ProjectProperties.NAME, newName);
     this.heijunkaBoardService.processObjectEvent(renameEvent);
   }
 }

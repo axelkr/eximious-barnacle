@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { KanbanCard, State } from 'outstanding-barnacle';
+import { KanbanCard, KanbanCardProperties, State } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../heijunka-board.service';
 
 @Component({
@@ -22,7 +22,7 @@ export class KanbanCardCompleteOverviewComponent implements OnInit {
       return;
     }
 
-    const pullToState = this.modelBoardService.eventFactory.moveKanbanCardInProgress(this.modelBoardService.currentTopic,
+    const pullToState = this.modelBoardService.kanbanCardEventFactory.moveToInProgress(this.modelBoardService.currentTopic,
       this.kanbanCard, this.state);
     this.modelBoardService.processObjectEvent(pullToState);
   }
@@ -31,7 +31,7 @@ export class KanbanCardCompleteOverviewComponent implements OnInit {
     if (this.kanbanCard === undefined || this.state === undefined) {
       return;
     }
-    const moveToTrash = this.modelBoardService.eventFactory.moveKanbanCardToTrash(this.modelBoardService.currentTopic,
+    const moveToTrash = this.modelBoardService.kanbanCardEventFactory.moveToTrash(this.modelBoardService.currentTopic,
       this.kanbanCard);
     this.modelBoardService.processObjectEvent(moveToTrash);
   }
@@ -53,8 +53,8 @@ export class KanbanCardCompleteOverviewComponent implements OnInit {
     if (this.kanbanCard === undefined) {
       return;
     }
-    const renameKanbanCardEvent = this.modelBoardService.eventFactory.
-      updateKanbanCardProperty(this.modelBoardService.currentTopic, this.kanbanCard, 'name', newName);
+    const renameKanbanCardEvent = this.modelBoardService.kanbanCardEventFactory.
+      updateProperty(this.modelBoardService.currentTopic, this.kanbanCard, KanbanCardProperties.NAME, newName);
     this.modelBoardService.processObjectEvent(renameKanbanCardEvent);
   }
 }

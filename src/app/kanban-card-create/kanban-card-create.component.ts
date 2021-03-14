@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { State, Project } from 'outstanding-barnacle';
+import { StateModel, Project } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../heijunka-board.service';
 
 @Component({
@@ -20,26 +20,12 @@ export class KanbanCardCreateComponent implements OnInit {
     if (this.project === undefined) {
       return;
     }
+
     const project = this.project;
+    const stateModel: StateModel = this.modelBoardService.getHeijunkaBoard().getStateModelOf(project);
 
-    const initialState: State | undefined = this.modelBoardService.getHeijunkaBoard().stateModels
-      .find(aStateModel => aStateModel.id === project.stateModelId)?.initialState();
-    if (initialState === undefined) {
-      throw new Error('not reachable');
-    }
-
-    const createKanbanCardEvent = this.modelBoardService.eventFactory.createKanbanCard(this.modelBoardService.currentTopic,
-      project);
-    this.modelBoardService.processObjectEvent(createKanbanCardEvent);
-    const createdKanbanCard = this.modelBoardService.getHeijunkaBoard().getKanbanCard(createKanbanCardEvent.object);
-    // TODO: set name of new Kanban card
-    const setName = this.modelBoardService.eventFactory.initializeKanbanCardProperty(this.modelBoardService.currentTopic,
-      createdKanbanCard, 'name', this.model.name);
-    this.modelBoardService.processObjectEvent(setName);
-
-    const moveToInitialState = this.modelBoardService.eventFactory.moveKanbanCardInProgress(this.modelBoardService.currentTopic,
-      createdKanbanCard, initialState);
-    this.modelBoardService.processObjectEvent(moveToInitialState);
-
+    const createKanbanCardEvents = this.modelBoardService.kanbanCardEventFactory.create(this.modelBoardService.currentTopic,
+      this.model.name, project, stateModel);
+    this.modelBoardService.processObjectEvents(createKanbanCardEvents);
   }
 }
