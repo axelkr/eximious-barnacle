@@ -1,18 +1,21 @@
 <label>Available state models:</label>
-<ul>
-<li *ngFor="let stateModel of modelBoardService.getHeijunkaBoard().stateModels">
-    <label>{{stateModel.name}}</label>
-</li>
-</ul>
+<div *ngIf="modelBoardService.getHeijunkaBoard()">
+    <ul>
+        <li *ngFor="let stateModel of modelBoardService.getHeijunkaBoard().stateModels">
+            <label>{{stateModel.name}}</label>
+        </li>
+    </ul>
 
-<div *ngIf="!personalKanbanPartOfStateModels()||!projectManagerKanbanPartOfStateModels()">   
-<label>Add pre-defined state model:</label>
-<div>
-    <div *ngIf="!personalKanbanPartOfStateModels()">
-        <button type="submit" class="btn btn-success" (click)="addPersonalKanban()">Add Personal Kanban</button>
+    <div *ngIf="!personalKanbanPartOfStateModels()||!projectManagerKanbanPartOfStateModels()">
+        <label>Add pre-defined state model:</label>
+        <div>
+            <div *ngIf="!personalKanbanPartOfStateModels()">
+                <button type="submit" class="btn btn-success" (click)="addPersonalKanban()">Add Personal Kanban</button>
+            </div>
+            <div *ngIf="!projectManagerKanbanPartOfStateModels()">
+                <button type="submit" class="btn btn-success" (click)="addProjectManagerKanban()">Add Project Manager
+                    Kanban</button>
+            </div>
+        </div>
     </div>
-    <div *ngIf="!projectManagerKanbanPartOfStateModels()">
-    <button type="submit" class="btn btn-success" (click)="addProjectManagerKanban()">Add Project Manager Kanban</button>
-    </div>
-</div>
 </div>

@@ -1,13 +1,16 @@
-<div *ngIf="0==heijunkaBoardService.getHeijunkaBoard().projects.length">
+<div
+    *ngIf="heijunkaBoardService.getHeijunkaBoard()===undefined || 0==heijunkaBoardService.getHeijunkaBoard().projects.length else projectsAvailable">
     <a [routerLink]="['/heijunka-setup/']">
-        Define projects first. 
+        Define projects first.
     </a>
     You can access the project definition via the menu as well.
 </div>
 
-<div class="row">
-    <div class="column" *ngFor="let project of heijunkaBoardService.getHeijunkaBoard().projects"
-        style="list-style-type: none;">
-        <app-project [project]="project"></app-project>
+<ng-template #projectsAvailable>
+    <div class="row">
+        <div class="column" *ngFor="let project of heijunkaBoardService.getHeijunkaBoard().projects"
+            style="list-style-type: none;">
+            <app-project [project]="project"></app-project>
+        </div>
     </div>
-</div>
+</ng-template>
