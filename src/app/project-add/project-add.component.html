@@ -1,6 +1,6 @@
 <div class="project-add">
   <div>
-    <form (ngSubmit)="addProject()" #projectAddForm="ngForm">
+    <form (ngSubmit)="addProject(); projectAddForm.reset()" #projectAddForm="ngForm">
       <button type="submit" class="btn btn-success" (click)="addProject(); projectAddForm.reset()"
         [disabled]="!projectAddForm.form.valid">Create new project:</button>
       <input type="text" class="form-control" id="name" placeholder="enter name of new project" required

@@ -17,6 +17,10 @@ export class ProjectAddComponent implements OnInit {
   }
 
   addProject(): void {
+    const isDoubleSubmit = ( this.model.name === null || this.model.name.length === 0 );
+    if (isDoubleSubmit) {
+      return;
+    }
     const createdProjectEvents = this.modelBoardService.projectEventFactory.create(this.modelBoardService.currentTopic(),
       this.model.name, this.model.stateModel as StateModel);
     this.modelBoardService.processObjectEvents(createdProjectEvents);
