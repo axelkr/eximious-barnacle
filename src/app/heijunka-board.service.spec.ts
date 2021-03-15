@@ -17,7 +17,7 @@ export class MockHeijunkaBoardService {
   public currentTopic(): Topic {
     return this.topic;
   }
-  
+
   public availableTopics(): Topic[] {
     return [];
   }

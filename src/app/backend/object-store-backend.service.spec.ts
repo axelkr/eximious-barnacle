@@ -18,7 +18,7 @@ export class MockObjectStoreBackendService {
   public getNewObjectEvents(): Observable<ObjectEvent> {
     return this.newObjectEventStream;
   }
-  
+
   public getNewTopics(): Observable<Topic> {
     return this.newTopicsStream;
   }
@@ -26,20 +26,20 @@ export class MockObjectStoreBackendService {
 
 describe('ObjectStoreBackendService', () => {
   let service: ObjectStoreBackendService;
-  beforeAll(()=>{
+  beforeAll(() => {
     AppConfig.settings = {
-      backend : {
+      backend: {
         url: 'http://testURL',
         port: '800'
       },
-      title : 'title',
+      title: 'title',
       env: {
-        name:'test'
+        name: 'test'
       }
     };
   });
 
-  afterAll(()=>{
+  afterAll(() => {
     AppConfig.settings = undefined;
   });
 
@@ -48,7 +48,8 @@ describe('ObjectStoreBackendService', () => {
       imports: [
         HttpClientTestingModule
       ],
-    providers: [AppConfig]});
+      providers: [AppConfig]
+    });
     service = TestBed.inject(ObjectStoreBackendService);
   });
 

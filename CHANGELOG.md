@@ -1,3 +1,6 @@
+# v3.2.1
+- small fixes
+
 # v3.2.0
 - user can enter/select topic
 

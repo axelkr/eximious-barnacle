@@ -16,10 +16,10 @@ export class TopicCreateComponent implements OnInit {
   }
 
   createTopic(): void {
-    const isDoubleSubmit = ( this.model.name === null || this.model.name.length === 0 );
+    const isDoubleSubmit = (this.model.name === null || this.model.name.length === 0);
     if (isDoubleSubmit) {
       return;
     }
     this.modelBoardService.createTopic(this.model.name);
-  }  
+  }
 }
