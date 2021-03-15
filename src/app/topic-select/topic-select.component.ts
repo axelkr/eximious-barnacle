@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HeijunkaBoardService } from '../heijunka-board.service';
 
 @Component({
   selector: 'app-topic-select',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TopicSelectComponent implements OnInit {
 
-  constructor() { }
+  constructor(public modelBoardService: HeijunkaBoardService) { }
 
   ngOnInit(): void {
   }

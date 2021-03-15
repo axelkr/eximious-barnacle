@@ -76,6 +76,7 @@ export class HeijunkaBoardService implements OnDestroy {
     const newTopicId = UUIDGenerator.createUUID();
     const newTopic = new Topic(newTopicId, name);
     this.backend.storeTopic(newTopic);
+    this.topics.push(newTopic);
   }
 
   private updateModelWithObjectEvent(objectEvent: ObjectEvent): void {
