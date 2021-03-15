@@ -1,16 +1,26 @@
 <div
-    *ngIf="heijunkaBoardService.getHeijunkaBoard()===undefined || 0==heijunkaBoardService.getHeijunkaBoard().projects.length else projectsAvailable">
+    *ngIf="heijunkaBoardService.getHeijunkaBoard()===undefined else topicAvailable">
     <a [routerLink]="['/heijunka-setup/']">
-        Define projects first.
+        Define and select a topic first. Then define a project as well.
     </a>
-    You can access the project definition via the menu as well.
+    You can access the topic definition and the project definition via the menu as well.
 </div>
 
-<ng-template #projectsAvailable>
-    <div class="row">
-        <div class="column" *ngFor="let project of heijunkaBoardService.getHeijunkaBoard().projects"
-            style="list-style-type: none;">
-            <app-project [project]="project"></app-project>
-        </div>
+<ng-template #topicAvailable>
+    <div
+        *ngIf="0==heijunkaBoardService.getHeijunkaBoard().projects.length else projectsAvailable">
+        <a [routerLink]="['/heijunka-setup/']">
+            Define a project first.
+        </a>
+        You can access the project definition via the menu as well.
     </div>
+
+    <ng-template #projectsAvailable>
+        <div class="row">
+            <div class="column" *ngFor="let project of heijunkaBoardService.getHeijunkaBoard().projects"
+                style="list-style-type: none;">
+                <app-project [project]="project"></app-project>
+            </div>
+        </div>
+    </ng-template>
 </ng-template>

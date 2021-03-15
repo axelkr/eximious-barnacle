@@ -1,5 +1,5 @@
-<label>Available state models:</label>
 <div *ngIf="modelBoardService.getHeijunkaBoard()">
+    <label>Available state models:</label>
     <ul>
         <li *ngFor="let stateModel of modelBoardService.getHeijunkaBoard().stateModels">
             <label>{{stateModel.name}}</label>
