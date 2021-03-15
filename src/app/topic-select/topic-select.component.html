@@ -1,6 +1,4 @@
-<label>Available topics</label>
-<ul>
-<li *ngFor="let aTopic of modelBoardService.availableTopics()">
-    <label>{{aTopic.name}}{{aTopic.id}}</label>
-</li>
-</ul>
+<label>Select topic to display</label>
+<select  (ngModelChange)="setTopic($event)" [(ngModel)]="topic">
+    <option *ngFor="let aTopic of modelBoardService.availableTopics()" [ngValue]="aTopic">{{aTopic.name}}</option>
+</select>
