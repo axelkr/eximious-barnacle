@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { ObjectEvent, Topic } from 'choicest-barnacle';
 import {
   HeijunkaBoard, ObjectEventFactory, ObjectEventCommandProcessor,
-  ProjectEventFactory, KanbanCardEventFactory,
+  ProjectEventFactory, KanbanCardEventFactory, UUIDGenerator,
 } from 'outstanding-barnacle';
 
 import { ObjectStoreBackendService } from './backend/object-store-backend.service';
@@ -65,6 +65,12 @@ export class HeijunkaBoardService implements OnDestroy {
     });
 
     this.backend.switchToTopic(this.topic);
+  }
+
+  public createTopic(name: string): void {
+    const newTopicId = UUIDGenerator.createUUID();
+    const newTopic = new Topic(newTopicId,name);
+    this.backend.storeTopic(newTopic);
   }
 
   private updateModelWithObjectEvent(objectEvent: ObjectEvent): void {
