@@ -40,9 +40,9 @@ export class HeijunkaBoardService implements OnDestroy {
   public currentTopic(): Topic {
     return this.topic;
   }
-  
+
   public availableTopics(): Topic[] {
-    return [...this.topics];
+    return this.topics;
   }
 
   public processObjectEvent(objectEvent: ObjectEvent): void {
