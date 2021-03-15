@@ -1,3 +1,6 @@
+# v3.2.0
+- user can enter/select topic
+
 # v3.1.1
 - update angular, integrate more updates to domain model
 
