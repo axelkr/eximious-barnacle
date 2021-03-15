@@ -16,9 +16,7 @@ export class ProjectAddComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  onSubmit() { }
-
-  newProject(): void {
+  addProject(): void {
     const createdProjectEvents = this.modelBoardService.projectEventFactory.create(this.modelBoardService.currentTopic(),
       this.model.name, this.model.stateModel as StateModel);
     this.modelBoardService.processObjectEvents(createdProjectEvents);
