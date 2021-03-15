@@ -17,7 +17,7 @@ export class TopicSelectComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  setTopic(topic:Topic) {
+  setTopic(topic: Topic) {
     if (topic === undefined) {
       return;
     }
