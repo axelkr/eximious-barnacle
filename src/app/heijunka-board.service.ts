@@ -18,26 +18,31 @@ export class HeijunkaBoardService implements OnDestroy {
   readonly kanbanCardEventFactory = new KanbanCardEventFactory();
 
   private topic!: Topic;
+  private topics: Topic[] = [];
   private commandProcessor!: ObjectEventCommandProcessor;
   private heijunkaBoard!: HeijunkaBoard;
   private newObjectEvents!: Subscription;
   private newTopicEvents!: Subscription;
 
   constructor(private backend: ObjectStoreBackendService) {
-    this.switchToTopic(new Topic('currentTopic', 'currentTopic'));
+    this.connectWithBackend();
+    this.backend.queryAllTopics();
   }
 
   ngOnDestroy() {
-    this.newObjectEvents.unsubscribe();
-    this.newTopicEvents.unsubscribe();
+    this.disconnectFromBackend();
   }
 
-  getHeijunkaBoard(): HeijunkaBoard {
+  public getHeijunkaBoard(): HeijunkaBoard {
     return this.heijunkaBoard;
   }
 
-  currentTopic(): Topic {
+  public currentTopic(): Topic {
     return this.topic;
+  }
+  
+  public availableTopics(): Topic[] {
+    return [...this.topics];
   }
 
   public processObjectEvent(objectEvent: ObjectEvent): void {
@@ -56,24 +61,41 @@ export class HeijunkaBoardService implements OnDestroy {
   }
 
   public switchToTopic(topic: Topic): void {
+    const switchToCurrentTopic = (topic === this.topic);
+    if (switchToCurrentTopic) {
+      return;
+    }
+
     this.commandProcessor = new ObjectEventCommandProcessor();
     this.heijunkaBoard = this.commandProcessor.get();
     this.topic = topic;
-
-    this.newObjectEvents = this.backend.getNewObjectEvents().subscribe(objectEvent => {
-      this.updateModelWithObjectEvent(objectEvent);
-    });
-
     this.backend.switchToTopic(this.topic);
   }
 
   public createTopic(name: string): void {
     const newTopicId = UUIDGenerator.createUUID();
-    const newTopic = new Topic(newTopicId,name);
+    const newTopic = new Topic(newTopicId, name);
     this.backend.storeTopic(newTopic);
   }
 
   private updateModelWithObjectEvent(objectEvent: ObjectEvent): void {
     this.heijunkaBoard = this.commandProcessor.process(objectEvent);
+  }
+
+  private connectWithBackend(): void {
+    this.newObjectEvents = this.backend.getNewObjectEvents().subscribe(objectEvent => {
+      this.updateModelWithObjectEvent(objectEvent);
+    });
+    this.newTopicEvents = this.backend.getNewTopics().subscribe(topic => {
+      this.topics.push(topic);
+      if (this.topic === undefined) {
+        this.switchToTopic(topic);
+      }
+    });
+  }
+
+  private disconnectFromBackend(): void {
+    this.newObjectEvents.unsubscribe();
+    this.newTopicEvents.unsubscribe();
   }
 }
