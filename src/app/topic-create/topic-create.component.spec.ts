@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
 
 import { TopicCreateComponent } from './topic-create.component';
+import { MockHeijunkaBoardService } from '../heijunka-board.service.spec';
+import { HeijunkaBoardService } from '../heijunka-board.service';
 
 describe('TopicCreateComponent', () => {
   let component: TopicCreateComponent;
@@ -8,7 +11,13 @@ describe('TopicCreateComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TopicCreateComponent ]
+      declarations: [ TopicCreateComponent ],
+      imports: [
+        FormsModule]
+      ,
+      providers: [
+        { provide: HeijunkaBoardService, useClass: MockHeijunkaBoardService }
+      ]
     })
     .compileComponents();
   });

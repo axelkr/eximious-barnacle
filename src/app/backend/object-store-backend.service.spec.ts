@@ -3,15 +3,24 @@ import { AppConfig } from '../app.config';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ObjectStoreBackendService } from './object-store-backend.service';
 import { Observable, Subject } from 'rxjs';
-import { ObjectEvent } from 'choicest-barnacle';
+import { ObjectEvent, Topic } from 'choicest-barnacle';
 
 export class MockObjectStoreBackendService {
   private newObjectEventStream = new Subject<ObjectEvent>();
+  private newTopicsStream = new Subject<Topic>();
 
   public switchToTopic(topic: string): void {
   }
+
+  public queryAllTopics(topic: string): void {
+  }
+
   public getNewObjectEvents(): Observable<ObjectEvent> {
     return this.newObjectEventStream;
+  }
+  
+  public getNewTopics(): Observable<Topic> {
+    return this.newTopicsStream;
   }
 }
 

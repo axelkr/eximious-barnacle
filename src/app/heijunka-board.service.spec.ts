@@ -5,16 +5,27 @@ import { ObjectStoreBackendService } from './backend/object-store-backend.servic
 
 import { HeijunkaBoardService } from './heijunka-board.service';
 import { HeijunkaBoard } from 'outstanding-barnacle';
+import { Topic } from 'choicest-barnacle';
 
 export class MockHeijunkaBoardService {
   private board = HeijunkaBoard.createEmptyHeijunkaBoard();
+  private topic!: Topic;
 
   public switchToTopic(topic: string): void {
   }
-  getHeijunkaBoard(): HeijunkaBoard {
-    return this.board;
+
+  public currentTopic(): Topic {
+    return this.topic;
+  }
+  
+  public availableTopics(): Topic[] {
+    return [];
   }
 
+
+  public getHeijunkaBoard(): HeijunkaBoard {
+    return this.board;
+  }
 }
 
 describe('HeijunkaBoardService', () => {
