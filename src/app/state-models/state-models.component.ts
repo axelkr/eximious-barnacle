@@ -18,13 +18,11 @@ export class StateModelsComponent implements OnInit {
   }
 
   public personalKanbanPartOfStateModels(): boolean {
-    return -1 < this.modelBoardService.getHeijunkaBoard()
-      .stateModels.findIndex(aStateModel => aStateModel.id === this.personalKanbanStateModelId);
+    return this.modelBoardService.getStateModels().has(this.personalKanbanStateModelId);
   }
 
   public projectManagerKanbanPartOfStateModels(): boolean {
-    return -1 < this.modelBoardService.getHeijunkaBoard()
-      .stateModels.findIndex(aStateModel => aStateModel.id === this.projectManagerKanbanStateModelId);
+    return this.modelBoardService.getStateModels().has(this.projectManagerKanbanStateModelId);
   }
 
   public addPersonalKanban() {

@@ -22,7 +22,7 @@ export class KanbanCardCreateComponent implements OnInit {
     }
 
     const project = this.project;
-    const stateModel = this.modelBoardService.getHeijunkaBoard().getStateModelOf(project);
+    const stateModel = this.modelBoardService.getDomainModel().getStateModelOf(project);
 
     const createKanbanCardEvents = this.modelBoardService.kanbanCardEventFactory.create(this.modelBoardService.currentTopic(),
       this.model.name, project, stateModel);

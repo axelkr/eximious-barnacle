@@ -8,7 +8,7 @@
 
   <app-kanban-card-create [project]="project"></app-kanban-card-create>
   <div
-    *ngFor="let state of linearizeStateModelService.linearize(heijunkaBoardService.getHeijunkaBoard().getStateModelOf(project))">
+    *ngFor="let state of linearizeStateModelService.linearize(heijunkaBoardService.getDomainModel().getStateModelOf(project))">
     <app-project-state [project]="project" [state]="state"></app-project-state>
   </div>
 </div>

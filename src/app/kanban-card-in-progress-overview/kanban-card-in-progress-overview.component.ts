@@ -31,7 +31,7 @@ export class KanbanCardInProgressOverviewComponent implements OnInit {
       return;
     }
 
-    const currentState = this.modelBoardService.getHeijunkaBoard().getStateModelOf(this.project).getState(currentStateTransition.state);
+    const currentState = this.modelBoardService.getDomainModel().getStateModelOf(this.project).getState(currentStateTransition.state);
     const moveToCompleteState = this.modelBoardService.kanbanCardEventFactory.moveToComplete(this.modelBoardService.currentTopic(),
       this.kanbanCard, currentState);
     this.modelBoardService.processObjectEvent(moveToCompleteState);

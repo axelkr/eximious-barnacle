@@ -1,4 +1,4 @@
-<div *ngIf="modelBoardService.getHeijunkaBoard()" class="project-add">
+<div *ngIf="modelBoardService.getDomainModel()" class="project-add">
   <form (ngSubmit)="addProject(); projectAddForm.reset()" #projectAddForm="ngForm">
     <button type="submit" class="btn btn-success" (click)="addProject(); projectAddForm.reset()"
       [disabled]="!projectAddForm.form.valid">Create new project:</button>
@@ -7,7 +7,7 @@
 
     <select [(ngModel)]="model.stateModel" name="stateModel" id="stateModel" required>
       <option [ngValue]="undefined" ng-selected="selected">select state model</option>
-      <option *ngFor="let stateModel of modelBoardService.getHeijunkaBoard().stateModels" [ngValue]="stateModel">
+      <option *ngFor="let stateModel of modelBoardService.getStateModels().getStateModels()" [ngValue]="stateModel">
         {{stateModel.name}}</option>
     </select>
 

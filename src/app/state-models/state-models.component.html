@@ -1,7 +1,7 @@
-<div *ngIf="modelBoardService.getHeijunkaBoard()">
+<div *ngIf="modelBoardService.getDomainModel()">
     <label>Available state models:</label>
     <ul>
-        <li *ngFor="let stateModel of modelBoardService.getHeijunkaBoard().stateModels">
+        <li *ngFor="let stateModel of modelBoardService.getStateModels().getStateModels()">
             <label>{{stateModel.name}}</label>
         </li>
     </ul>

@@ -3,8 +3,9 @@ import { Subscription } from 'rxjs';
 
 import { ObjectEvent, Topic } from 'choicest-barnacle';
 import {
-  HeijunkaBoard, ObjectEventFactory, ObjectEventCommandProcessor,
+  RootAggregate, ObjectEventFactory, ObjectEventCommandProcessor,
   ProjectEventFactory, KanbanCardEventFactory, UUIDGenerator,
+  KanbanCardCollection, ProjectCollection, ContextCollection, StateModelCollection
 } from 'outstanding-barnacle';
 
 import { ObjectStoreBackendService } from './backend/object-store-backend.service';
@@ -20,7 +21,7 @@ export class HeijunkaBoardService implements OnDestroy {
   private topic!: Topic;
   private topics: Topic[] = [];
   private commandProcessor!: ObjectEventCommandProcessor;
-  private heijunkaBoard!: HeijunkaBoard;
+  private domainModel!: RootAggregate;
   private newObjectEvents!: Subscription;
   private newTopicEvents!: Subscription;
 
@@ -33,8 +34,24 @@ export class HeijunkaBoardService implements OnDestroy {
     this.disconnectFromBackend();
   }
 
-  public getHeijunkaBoard(): HeijunkaBoard {
-    return this.heijunkaBoard;
+  public getKanbanCards(): KanbanCardCollection {
+    return this.domainModel.kanbanCards;
+  }
+
+  public getProjects(): ProjectCollection {
+    return this.domainModel.projects;
+  }
+
+  public getContexts(): ContextCollection {
+    return this.domainModel.contexts;
+  }
+
+  public getStateModels(): StateModelCollection {
+    return this.domainModel.stateModels;
+  }
+
+  public getDomainModel(): RootAggregate {
+    return this.domainModel;
   }
 
   public currentTopic(): Topic {
@@ -67,7 +84,7 @@ export class HeijunkaBoardService implements OnDestroy {
     }
 
     this.commandProcessor = new ObjectEventCommandProcessor();
-    this.heijunkaBoard = this.commandProcessor.get();
+    this.domainModel = RootAggregate.createEmptyRootAggregate();
     this.topic = topic;
     this.backend.switchToTopic(this.topic);
   }
@@ -80,7 +97,7 @@ export class HeijunkaBoardService implements OnDestroy {
   }
 
   private updateModelWithObjectEvent(objectEvent: ObjectEvent): void {
-    this.heijunkaBoard = this.commandProcessor.process(objectEvent);
+    this.commandProcessor.process(objectEvent);
   }
 
   private connectWithBackend(): void {

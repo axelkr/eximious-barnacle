@@ -1,3 +1,6 @@
+# v3.3.0
+- integrate breaking changes from domain model
+
 # v3.2.1
 - small fixes
 
