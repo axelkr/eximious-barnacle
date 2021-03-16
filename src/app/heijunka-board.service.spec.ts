@@ -4,11 +4,11 @@ import { MockObjectStoreBackendService } from './backend/object-store-backend.se
 import { ObjectStoreBackendService } from './backend/object-store-backend.service';
 
 import { HeijunkaBoardService } from './heijunka-board.service';
-import { HeijunkaBoard } from 'outstanding-barnacle';
+import { ProjectCollection, RootAggregate, StateModelCollection } from 'outstanding-barnacle';
 import { Topic } from 'choicest-barnacle';
 
 export class MockHeijunkaBoardService {
-  private board = HeijunkaBoard.createEmptyHeijunkaBoard();
+  private board = RootAggregate.createEmptyRootAggregate();
   private topic!: Topic;
 
   public switchToTopic(topic: string): void {
@@ -22,9 +22,16 @@ export class MockHeijunkaBoardService {
     return [];
   }
 
-
-  public getHeijunkaBoard(): HeijunkaBoard {
+  public getDomainModel(): RootAggregate {
     return this.board;
+  }
+
+  public getProjects(): ProjectCollection {
+    return this.board.projects;
+  }
+
+  public getStateModels(): StateModelCollection {
+    return this.board.stateModels;
   }
 }
 
