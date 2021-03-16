@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HeijunkaBoardService } from '../heijunka-board.service';
+import { HeijunkaBoardService } from '../../heijunka-board.service';
 import { Project, State, TransitionType } from 'outstanding-barnacle';
 
 @Component({

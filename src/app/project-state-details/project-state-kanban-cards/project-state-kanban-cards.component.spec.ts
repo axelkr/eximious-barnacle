@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProjectStateKanbanCardsComponent } from './project-state-kanban-cards.component';
-import {MockHeijunkaBoardService} from '../heijunka-board.service.spec';
-import {HeijunkaBoardService} from '../heijunka-board.service';
+import {MockHeijunkaBoardService} from '../../heijunka-board.service.spec';
+import {HeijunkaBoardService} from '../../heijunka-board.service';
 
 describe('ProjectStateKanbanCardsComponent', () => {
   let component: ProjectStateKanbanCardsComponent;

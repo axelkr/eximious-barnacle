@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { KanbanCard, KanbanCardProperties, State } from 'outstanding-barnacle';
-import { HeijunkaBoardService } from '../heijunka-board.service';
+import { HeijunkaBoardService } from '../../heijunka-board.service';
 
 @Component({
   selector: 'app-kanban-card-complete-overview',
