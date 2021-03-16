@@ -84,7 +84,7 @@ export class HeijunkaBoardService implements OnDestroy {
     }
 
     this.commandProcessor = new ObjectEventCommandProcessor();
-    this.domainModel = RootAggregate.createEmptyRootAggregate();
+    this.domainModel = this.commandProcessor.getRootAggregate();
     this.topic = topic;
     this.backend.switchToTopic(this.topic);
   }
@@ -98,6 +98,7 @@ export class HeijunkaBoardService implements OnDestroy {
 
   private updateModelWithObjectEvent(objectEvent: ObjectEvent): void {
     this.commandProcessor.process(objectEvent);
+    this.domainModel = this.commandProcessor.getRootAggregate();
   }
 
   private connectWithBackend(): void {
