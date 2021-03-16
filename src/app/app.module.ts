@@ -6,24 +6,16 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { SetupModule } from './setup/setup.module';
 import { ProjectStateDetailsModule } from './project-state-details/project-state-details.module';
+import { HeijunkaBoardModule } from './heijunka-board/heijunka-board.module';
 
 import { AppComponent } from './app.component';
 import { AppConfig } from './app.config';
-
-import { HeijunkaBoardComponent } from './heijunka-board/heijunka-board.component';
-import { ProjectComponent } from './project/project.component';
-import { ProjectStateComponent } from './project-state/project-state.component';
-import { KanbanCardCreateComponent } from './kanban-card-create/kanban-card-create.component';
 
 const initializeApp= (appConfig: AppConfig) => () => appConfig.load();
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeijunkaBoardComponent,
-    ProjectComponent,
-    ProjectStateComponent,
-    KanbanCardCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -31,7 +23,8 @@ const initializeApp= (appConfig: AppConfig) => () => appConfig.load();
     FormsModule,
     HttpClientModule,
     SetupModule,
-    ProjectStateDetailsModule
+    ProjectStateDetailsModule,
+    HeijunkaBoardModule
   ],
   providers: [AppConfig,
     { provide: APP_INITIALIZER,

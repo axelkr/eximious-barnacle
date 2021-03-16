@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Project, ProjectProperties, LinearizeStateModelService } from 'outstanding-barnacle';
-import { HeijunkaBoardService } from '../heijunka-board.service';
+import { HeijunkaBoardService } from '../../heijunka-board.service';
 
 @Component({
   selector: 'app-project',
