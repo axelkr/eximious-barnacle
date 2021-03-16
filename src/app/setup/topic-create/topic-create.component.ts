@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HeijunkaBoardService } from '../heijunka-board.service';
+import { HeijunkaBoardService } from '../../heijunka-board.service';
 
 @Component({
   selector: 'app-topic-create',

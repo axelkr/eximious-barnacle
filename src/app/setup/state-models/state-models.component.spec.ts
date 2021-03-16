@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { StateModelsComponent } from './state-models.component';
-import {MockHeijunkaBoardService} from '../heijunka-board.service.spec';
-import {HeijunkaBoardService} from '../heijunka-board.service';
+import {MockHeijunkaBoardService} from '../../heijunka-board.service.spec';
+import {HeijunkaBoardService} from '../../heijunka-board.service';
 
 describe('StateModelsComponent', () => {
   let component: StateModelsComponent;

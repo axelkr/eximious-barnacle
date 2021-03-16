@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { HeijunkaBoardComponent } from './heijunka-board/heijunka-board.component';
-import { HeijunkaDefinitionComponent} from './heijunka-definition/heijunka-definition.component';
+import { HeijunkaDefinitionComponent} from './setup/heijunka-definition/heijunka-definition.component';
 import { ProjectStateDetailsComponent } from './project-state-details/project-state-details.component';
 
 const routes: Routes = [

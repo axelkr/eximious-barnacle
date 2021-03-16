@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Topic } from 'choicest-barnacle';
-import { HeijunkaBoardService } from '../heijunka-board.service';
+import { HeijunkaBoardService } from '../../heijunka-board.service';
 
 @Component({
   selector: 'app-topic-select',

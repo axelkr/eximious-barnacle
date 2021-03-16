@@ -1,17 +1,17 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormsModule } from '@angular/forms';
 
-import { TopicCreateComponent } from './topic-create.component';
-import { MockHeijunkaBoardService } from '../heijunka-board.service.spec';
-import { HeijunkaBoardService } from '../heijunka-board.service';
+import { TopicSelectComponent } from './topic-select.component';
+import { MockHeijunkaBoardService } from '../../heijunka-board.service.spec';
+import { HeijunkaBoardService } from '../../heijunka-board.service';
 
-describe('TopicCreateComponent', () => {
-  let component: TopicCreateComponent;
-  let fixture: ComponentFixture<TopicCreateComponent>;
+describe('TopicSelectComponent', () => {
+  let component: TopicSelectComponent;
+  let fixture: ComponentFixture<TopicSelectComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ TopicCreateComponent ],
+      declarations: [ TopicSelectComponent ],
       imports: [
         FormsModule]
       ,
@@ -23,7 +23,7 @@ describe('TopicCreateComponent', () => {
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(TopicCreateComponent);
+    fixture = TestBed.createComponent(TopicSelectComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
