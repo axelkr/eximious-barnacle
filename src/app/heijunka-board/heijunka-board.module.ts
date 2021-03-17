@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
+import { CumulativeFlowChartModule } from '../cumulative-flow-chart/cumulative-flow-chart.module';
 
 import { HeijunkaBoardComponent } from './heijunka-board.component';
 import { ProjectComponent } from './project/project.component';
@@ -19,7 +20,8 @@ import { ViewProjectsStateModelComponent } from './view-projects-state-model/vie
   imports: [
     CommonModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    CumulativeFlowChartModule
   ],
   exports: [HeijunkaBoardComponent]
 })

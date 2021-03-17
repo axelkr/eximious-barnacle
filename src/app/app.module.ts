@@ -4,6 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
+import { CumulativeFlowChartModule } from './cumulative-flow-chart/cumulative-flow-chart.module';
 import { SetupModule } from './setup/setup.module';
 import { ProjectStateDetailsModule } from './project-state-details/project-state-details.module';
 import { HeijunkaBoardModule } from './heijunka-board/heijunka-board.module';
@@ -24,7 +25,8 @@ const initializeApp= (appConfig: AppConfig) => () => appConfig.load();
     HttpClientModule,
     SetupModule,
     ProjectStateDetailsModule,
-    HeijunkaBoardModule
+    HeijunkaBoardModule,
+    CumulativeFlowChartModule
   ],
   providers: [AppConfig,
     { provide: APP_INITIALIZER,
