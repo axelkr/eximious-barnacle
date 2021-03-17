@@ -47,7 +47,7 @@ export class CumulativeFlowChartComponent implements OnInit {
       .domain([0, 50])
       .range([0, width]);
     const y = d3.scaleBand()
-      .domain(['0','1','2','3','4','5'])
+      .domain(d3.range(this.data.length).map(aNumber => '' + aNumber))
       .range([0, 20 * this.data.length]);
     this.svg.selectAll("rect")
       .data(this.data,(d,i)=>''+i)
