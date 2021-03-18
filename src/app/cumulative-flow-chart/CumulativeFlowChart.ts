@@ -8,12 +8,14 @@ import { ColorModel } from './ColorModel';
 export class CumulativeFlowChart {
     private readonly chartBox = new BoxModel(260, 200, 10);
     private readonly colorModel = new ColorModel();
-    private stateModel!: StateModel;
-
+    private readonly stateModel: StateModel;
     private svg!: d3.Selection<SVGGElement, unknown, HTMLElement, any>;
 
-    public init(aStateModel: StateModel) {
-        this.stateModel = aStateModel;
+    constructor(stateModel: StateModel) {
+        this.stateModel = stateModel;
+    }
+
+    public init() {
         this.svg = d3.select('#renderCFD').append("svg")
             .attr("width", this.chartBox.width())
             .attr("height", this.chartBox.height())
