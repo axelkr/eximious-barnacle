@@ -30,10 +30,6 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
     this.reinitializeChart();
   }
 
-  public swap(): void {
-    this.redraw();
-  }
-
   private redraw(): void {
     const kanbanCardsToChart = this.heijunkaBoardService.getKanbanCards().find({ project: this.project });
     this.d3Chart.draw(this.dataGenerator.generateData(kanbanCardsToChart, this.dateRange));
