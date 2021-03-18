@@ -3,6 +3,9 @@ import { StateTimeSeries } from './CfdDataGenerator';
 export class StackingService {
     public convertToStack(completeData: StateTimeSeries[]): [number,number][][] {
         const result: [number,number][][] = [];
+        if (completeData.length===0) {
+            return result;
+        }
 
         const firstSeries = completeData[0].entries;
         let asStack: [number,number][] = [];
