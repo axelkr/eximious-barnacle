@@ -16,25 +16,25 @@ export class CumulativeFlowChart {
         this.stateModel = stateModel;
     }
 
-    public init(id:string) {
-        this.svg = d3.select('#'+id).append("svg")
-            .attr("width", this.chartBox.width())
-            .attr("height", this.chartBox.height())
-            .attr("text-anchor", "end")
-            .append("g").attr("transform",
-                "translate(" + this.chartBox.marginLeft() + "," + this.chartBox.marginTop() + ")");
+    public init(id: string) {
+        this.svg = d3.select('#' + id).append('svg')
+            .attr('width', this.chartBox.width())
+            .attr('height', this.chartBox.height())
+            .attr('text-anchor', 'end')
+            .append('g').attr('transform',
+                'translate(' + this.chartBox.marginLeft() + ',' + this.chartBox.marginTop() + ')');
     }
 
     public draw(completeData: StateTimeSeries[]): void {
-        if ( completeData.length === 0) {
+        if (completeData.length === 0) {
             // clear previous data
-            this.svg.selectAll("path")
-            .data([])
-            .join(
-                enter => enter,
-                update => update,
-                exit => exit.remove()
-            )
+            this.svg.selectAll('path')
+                .data([])
+                .join(
+                    enter => enter,
+                    update => update,
+                    exit => exit.remove()
+                );
             return;
         }
         const stacked = new StackingService().convertToStack(completeData);
@@ -47,11 +47,11 @@ export class CumulativeFlowChart {
             .domain([d3.min(stacked[0], a => a[0]), d3.max(stacked[stacked.length - 1], a => a[1])] as [number, number])
             .range([this.chartBox.contentHeight(), 0]);
 
-        this.svg.selectAll("path")
+        this.svg.selectAll('path')
             .data(stacked)
             .join(
-                enter => enter.append("path")
-                    .style("fill", (_, index) => colorOfData.get(completeData[index].state) as string),
+                enter => enter.append('path')
+                    .style('fill', (_, index) => colorOfData.get(completeData[index].state) as string),
                 update => update,
                 exit => exit.remove()
             )

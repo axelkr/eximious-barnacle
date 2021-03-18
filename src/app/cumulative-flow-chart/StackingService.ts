@@ -15,9 +15,9 @@ export class StackingService {
             } else {
                 asStack.push([0, anEntry.value]);
             }
-        })
+        });
         result.push(asStack);
-        for (var i = 1; i < completeData.length; i = i + 1) {
+        for (let i = 1; i < completeData.length; i = i + 1) {
             asStack = [];
             const nextSeries = completeData[i].entries;
             const lastStack = result[i - 1];
@@ -28,7 +28,7 @@ export class StackingService {
                 } else {
                     asStack.push([lastStackAtEntry, lastStackAtEntry + anEntry.value]);
                 }
-            })
+            });
             result.push(asStack);
         }
 

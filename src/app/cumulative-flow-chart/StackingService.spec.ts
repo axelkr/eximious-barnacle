@@ -35,14 +35,15 @@ describe('StackingService', () => {
         const testObject = new StackingService();
         const positiveOnlySeries = generateRandomSeries(new Date(2020, 11, 1), new Date(2020, 11, 7), 5);
         const anotherPositiveOnlySeries = generateRandomSeries(new Date(2020, 11, 1), new Date(2020, 11, 7), 10);
-        const bothStateTimeSeries = [{ state: states[0], entries: anotherPositiveOnlySeries }, { state: states[1], entries: positiveOnlySeries }];
+        const bothStateTimeSeries = [{ state: states[0], entries: anotherPositiveOnlySeries },
+        { state: states[1], entries: positiveOnlySeries }];
         const asStack = testObject.convertToStack(bothStateTimeSeries);
         expect(asStack.length).toEqual(2);
         expect(asStack[0][0][1]).toEqual(asStack[1][0][0]);
         expect(asStack[1][0][1]).toEqual(5 + 10);
     });
 
-    function generateRandomSeries(fromDate: Date, toDate: Date, min: number, max: number = min, seed: number = 0): TimeSeries {
+    const generateRandomSeries = (fromDate: Date, toDate: Date, min: number, max: number = min, seed: number = 0) => {
         const currentDate = fromDate;
         const result: TimeSeries = [];
         while (currentDate < toDate) {
@@ -50,5 +51,8 @@ describe('StackingService', () => {
             currentDate.setDate(currentDate.getDate() + 1);
         }
         return result;
-    }
+    };
 });
+
+
+
