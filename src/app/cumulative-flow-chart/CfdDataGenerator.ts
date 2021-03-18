@@ -1,4 +1,4 @@
-import { KanbanCard, State } from 'outstanding-barnacle';
+import { KanbanCard, State, StateTransition } from 'outstanding-barnacle';
 
 export type TimeSeriesEntry = { date: Date, value: number };
 export type TimeSeries = TimeSeriesEntry[];
@@ -20,7 +20,25 @@ export class CfdDataGenerator {
         this.numberDays = 1 + this.dayOffset(this.endDate);
         let counterPerDayPerState = this.createZeroKanbanCardsAtEveryDayInEveryState();
 
+        kanbanCards.forEach(aKanbanCard => {
+            counterPerDayPerState = this.countKanbanCard(aKanbanCard,counterPerDayPerState);
+        })
+
         return this.convertToStateTimeSeries(counterPerDayPerState);
+    }
+
+    private countKanbanCard(kanbanCard: KanbanCard, counterPerDayPerState: number[]) : number[] {
+        const currentDay = new Date(this.startDate.getTime());
+        for (var i = 0; i < this.numberDays; i = i + 1) {
+            const stateAtDay : string = 'fixme'; //(kanbanCard.history.atDate(currentDay) as StateTransition).state;
+            const indexState = this.states.findIndex(x=> x.id === stateAtDay);
+            if (indexState>=0){
+                const indexCounter = this.indexOf(currentDay,this.states[indexState])
+                counterPerDayPerState[indexCounter] = counterPerDayPerState[indexCounter] + 1;
+            }
+            currentDay.setDate(currentDay.getDate()+1);
+        }
+        return counterPerDayPerState;
     }
 
     private indexOf(aDate: Date, aState: State): number {
