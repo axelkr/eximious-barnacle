@@ -1,8 +1,8 @@
-import { KanbanCard, State, StateTransition } from 'outstanding-barnacle';
+import { KanbanCard, State } from 'outstanding-barnacle';
 
-export type TimeSeriesEntry = { date: Date, value: number };
+export type TimeSeriesEntry = { date: Date; value: number };
 export type TimeSeries = TimeSeriesEntry[];
-export type StateTimeSeries = { state: State, entries: TimeSeries };
+export type StateTimeSeries = { state: State; entries: TimeSeries };
 
 export class CfdDataGenerator {
     private readonly states: State[];
@@ -17,26 +17,30 @@ export class CfdDataGenerator {
     public generateData(kanbanCards: KanbanCard[], dateRange: [Date, Date]): StateTimeSeries[] {
         this.startDate = dateRange[0];
         this.endDate = dateRange[1];
+        console.log(dateRange);
         this.numberDays = 1 + this.dayOffset(this.endDate);
         let counterPerDayPerState = this.createZeroKanbanCardsAtEveryDayInEveryState();
 
         kanbanCards.forEach(aKanbanCard => {
-            counterPerDayPerState = this.countKanbanCard(aKanbanCard,counterPerDayPerState);
-        })
+            counterPerDayPerState = this.countKanbanCard(aKanbanCard, counterPerDayPerState);
+        });
 
         return this.convertToStateTimeSeries(counterPerDayPerState);
     }
 
-    private countKanbanCard(kanbanCard: KanbanCard, counterPerDayPerState: number[]) : number[] {
+    private countKanbanCard(kanbanCard: KanbanCard, counterPerDayPerState: number[]): number[] {
         const currentDay = new Date(this.startDate.getTime());
-        for (var i = 0; i < this.numberDays; i = i + 1) {
-            const stateAtDay : string = 'fixme'; //(kanbanCard.history.atDate(currentDay) as StateTransition).state;
-            const indexState = this.states.findIndex(x=> x.id === stateAtDay);
-            if (indexState>=0){
-                const indexCounter = this.indexOf(currentDay,this.states[indexState])
+        for (let i = 0; i < this.numberDays; i = i + 1) {
+            const transitionAtDay = kanbanCard.history.atDate(currentDay);
+            if ( transitionAtDay === undefined) {
+                continue;
+            }
+            const indexState = this.states.findIndex(x => x.id === transitionAtDay.state);
+            if (indexState >= 0) {
+                const indexCounter = this.indexOf(currentDay, this.states[indexState]);
                 counterPerDayPerState[indexCounter] = counterPerDayPerState[indexCounter] + 1;
             }
-            currentDay.setDate(currentDay.getDate()+1);
+            currentDay.setDate(currentDay.getDate() + 1);
         }
         return counterPerDayPerState;
     }
@@ -48,7 +52,7 @@ export class CfdDataGenerator {
     private createZeroKanbanCardsAtEveryDayInEveryState(): number[] {
         const numberStates = this.states.length;
         const result = new Array<number>(numberStates * this.numberDays);
-        for (var i = 0; i < result.length; i = i + 1) {
+        for (let i = 0; i < result.length; i = i + 1) {
             result[i] = 0;
         }
         return result;
@@ -67,12 +71,13 @@ export class CfdDataGenerator {
         this.states.forEach(aState => {
             const entries: TimeSeries = [];
             const currentDay = new Date(this.startDate.getTime());
-            for (var i = 0; i < this.numberDays; i = i + 1) {
-                entries.push({date:new Date(currentDay.getTime()),value: counterPerDayPerState[this.indexOf(currentDay,aState)]});
-                currentDay.setDate(currentDay.getDate()+1);
+            for (let i = 0; i < this.numberDays; i = i + 1) {
+                entries.push({ date: new Date(currentDay.getTime()), value: counterPerDayPerState[this.indexOf(currentDay, aState)] });
+                currentDay.setDate(currentDay.getDate() + 1);
             }
             result.push({ state: aState, entries });
-        })
+        });
+        console.log(result);
         return result;
     }
 }

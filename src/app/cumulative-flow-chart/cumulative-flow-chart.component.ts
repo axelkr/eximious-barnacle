@@ -16,17 +16,14 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
 
   private dataGenerator!: CfdDataGenerator;
   private d3Chart!: CumulativeFlowChart;
-  private dateRange:[Date,Date];
+  private dateRange: [Date, Date];
 
   constructor(private heijunkaBoardService: HeijunkaBoardService) {
-    const today = new Date();
-    today.setHours(23);
-    today.setMinutes(59);
-    today.setSeconds(59);
-    today.setMilliseconds(999);
+    const now = new Date();
+    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     const twoWeeksAgo = new Date(today.getTime());
-    twoWeeksAgo.setDate(twoWeeksAgo.getDate()-14);
-    this.dateRange = [twoWeeksAgo,today];
+    twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
+    this.dateRange = [twoWeeksAgo, today];
   }
 
   ngAfterViewInit(): void {
@@ -38,8 +35,8 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
   }
 
   private redraw(): void {
-    const kanbanCardsToChart = this.heijunkaBoardService.getKanbanCards().find({project:this.project});
-    this.d3Chart.draw(this.dataGenerator.generateData(kanbanCardsToChart,this.dateRange));
+    const kanbanCardsToChart = this.heijunkaBoardService.getKanbanCards().find({ project: this.project });
+    this.d3Chart.draw(this.dataGenerator.generateData(kanbanCardsToChart, this.dateRange));
   }
 
   private reinitializeChart(): void {
@@ -56,19 +53,19 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
     this.redraw();
   }
 
-  private orderStatesFromFinalToBeginToOther(stateModel:StateModel) : State[] {
-    let result: State[] = new LinearizeStateModelService().linearize(stateModel);
+  private orderStatesFromFinalToBeginToOther(stateModel: StateModel): State[] {
+    const result: State[] = new LinearizeStateModelService().linearize(stateModel);
     const finalStates = stateModel.finalStates();
     finalStates.forEach(aFinalState => {
-      if ( aFinalState === stateModel.initialState()) {
-         return;
+      if (aFinalState === stateModel.initialState()) {
+        return;
       }
-      const indexOfFinalState = result.findIndex(a=> a === aFinalState);
+      const indexOfFinalState = result.findIndex(a => a === aFinalState);
       if (indexOfFinalState > 0) {
-        result.splice(indexOfFinalState,1);
+        result.splice(indexOfFinalState, 1);
         result.unshift(aFinalState);
       }
-    })
+    });
 
     return result;
   }
