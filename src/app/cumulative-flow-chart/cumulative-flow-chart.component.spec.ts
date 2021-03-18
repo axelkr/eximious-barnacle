@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CumulativeFlowChartComponent } from './cumulative-flow-chart.component';
+import {MockHeijunkaBoardService} from '../heijunka-board.service.spec';
+import {HeijunkaBoardService} from '../heijunka-board.service';
 
 describe('CumulativeFlowChartComponent', () => {
   let component: CumulativeFlowChartComponent;
@@ -8,7 +10,10 @@ describe('CumulativeFlowChartComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CumulativeFlowChartComponent ]
+      declarations: [ CumulativeFlowChartComponent ],
+      providers: [
+        { provide: HeijunkaBoardService, useClass: MockHeijunkaBoardService }
+      ]
     })
     .compileComponents();
   });
