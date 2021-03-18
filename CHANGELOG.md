@@ -1,3 +1,6 @@
+# v3.4.0
+- Display cumulative flow diagram for every project
+
 # v3.3.0
 - integrate breaking changes from domain model
 
