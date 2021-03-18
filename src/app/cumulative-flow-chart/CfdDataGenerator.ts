@@ -32,6 +32,7 @@ export class CfdDataGenerator {
         for (let i = 0; i < this.numberDays; i = i + 1) {
             const transitionAtDay = kanbanCard.history.atDate(currentDay);
             if (transitionAtDay === undefined) {
+                currentDay.setDate(currentDay.getDate() + 1);
                 continue;
             }
             const indexState = this.states.findIndex(x => x.id === transitionAtDay.state);
@@ -76,7 +77,6 @@ export class CfdDataGenerator {
             }
             result.push({ state: aState, entries });
         });
-        console.log(result);
         return result;
     }
 }
