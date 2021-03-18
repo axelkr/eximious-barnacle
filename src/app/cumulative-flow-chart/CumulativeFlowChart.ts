@@ -3,6 +3,7 @@ import { StateModel } from 'outstanding-barnacle';
 
 import { BoxModel } from './BoxModel';
 import { TimeSeriesEntry, TimeSeries, StateTimeSeries } from './CfdDataGenerator';
+import { StackingService } from './StackingService';
 import { ColorModel } from './ColorModel';
 
 export class CumulativeFlowChart {
@@ -25,7 +26,7 @@ export class CumulativeFlowChart {
     }
 
     public draw(completeData: StateTimeSeries[]): void {
-        this.convertToStack(completeData);
+        const stacked = new StackingService().convertToStack(completeData);
         const data = completeData[0].entries;
         const colorOfData = this.colorModel.createColors(this.stateModel).get(completeData[0].state) as string;
 
@@ -49,18 +50,5 @@ export class CumulativeFlowChart {
                 .x((d) => x(d.date))
                 .y0(y(0))
                 .y1((d) => y(d.value)));
-    }
-
-    public convertToStack(completeData: StateTimeSeries[]): number[][][] {
-        const firstSeries = completeData[0].entries;
-        let asStack : number[][] = [];
-        firstSeries.forEach((anEntry)=>{
-            if (anEntry.value<0) {
-                asStack.push([anEntry.value,0]);
-            } else {
-                asStack.push([0, anEntry.value]);
-            }
-        })
-        return [asStack];
     }
 }
