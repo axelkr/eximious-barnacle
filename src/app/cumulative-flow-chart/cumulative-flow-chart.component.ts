@@ -20,7 +20,7 @@ export class CumulativeFlowChartComponent implements OnInit {
 
   ngOnInit(): void {
     this.initChart();
-    this.draw(this.dataGenerator.generateData()[0].entries);
+    this.draw(this.dataGenerator.generateData());
   }
 
   private initChart() {
@@ -33,10 +33,11 @@ export class CumulativeFlowChartComponent implements OnInit {
   }
 
   public swap(): void {
-    this.draw(this.dataGenerator.generateData()[0].entries);
+    this.draw(this.dataGenerator.generateData());
   }
 
-  private draw(data:TimeSeries): void {
+  private draw(completeData:StateTimeSeries[]): void {
+    const data = completeData[0].entries;
     const x = d3.scaleTime<number>()
       .domain(d3.extent(data, d => d.date) as [Date, Date])
       .range([0, this.chartBox.contentWidth()]);
