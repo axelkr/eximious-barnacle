@@ -7,7 +7,7 @@ import { StackingService } from './StackingService';
 import { ColorModel } from './ColorModel';
 
 export class CumulativeFlowChart {
-    private readonly chartBox = new BoxModel(260, 200, 10);
+    private readonly chartBox = new BoxModel(240, 100, 5);
     private readonly colorModel = new ColorModel();
     private readonly stateModel: StateModel;
     private svg!: d3.Selection<SVGGElement, unknown, HTMLElement, any>;
