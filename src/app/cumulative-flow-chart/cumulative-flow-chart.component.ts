@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import * as d3 from 'd3';
-import * as d3Array from 'd3-array';
+
+interface TimeSeriesEntry { date: Date, value: number };
 
 @Component({
   selector: 'app-cumulative-flow-chart',
@@ -8,10 +9,16 @@ import * as d3Array from 'd3-array';
   styleUrls: ['./cumulative-flow-chart.component.less']
 })
 export class CumulativeFlowChartComponent implements OnInit {
-  private data: number[];
-  private readonly data1 = [4, 8, 15, 16, 23, 42];
-  private readonly data2 = [6, 10, 12, 17, 10, 32];
-  private svg!: d3.Selection<SVGSVGElement, unknown, HTMLElement, any>;
+  private readonly margin = { top: 10, right: 10, bottom: 10, left: 10 };
+  private readonly width = 260 - this.margin.left - this.margin.right;
+  private readonly height = 200 - this.margin.top - this.margin.bottom;
+
+  private data: TimeSeriesEntry[];
+  private readonly data1 = [{ date: new Date(2020, 11, 1), value: 4 }, { date: new Date(2020, 11, 2), value: 8 }, { date: new Date(2020, 11, 3), value: 15 },
+  { date: new Date(2020, 11, 4), value: 16 }, { date: new Date(2020, 11, 5), value: 23 }, { date: new Date(2020, 11, 6), value: 24 }];
+  private readonly data2 = [{ date: new Date(2020, 11, 1), value: 6 }, { date: new Date(2020, 11, 2), value: 10 }, { date: new Date(2020, 11, 3), value: 12 },
+  { date: new Date(2020, 11, 4), value: 17 }, { date: new Date(2020, 11, 5), value: 10 }, { date: new Date(2020, 11, 6), value: 32 }];
+  private svg!: d3.Selection<SVGGElement, unknown, HTMLElement, any>;
 
   constructor() {
     this.data = this.data1;
@@ -23,13 +30,12 @@ export class CumulativeFlowChartComponent implements OnInit {
   }
 
   private initChart() {
-    const width = 300;
     this.svg = d3.select('#renderCFD').append("svg")
-      .attr("width", width)
-      .attr("height", 20 * this.data.length)
-      .attr("font-family", "sans-serif")
-      .attr("font-size", "10")
-      .attr("text-anchor", "end");
+      .attr("width", this.width + this.margin.left + this.margin.right)
+      .attr("height", this.height + this.margin.top + this.margin.bottom)
+      .attr("text-anchor", "end")
+      .append("g").attr("transform",
+        "translate(" + this.margin.left + "," + this.margin.top + ")");
   }
 
   public swap(): void {
@@ -41,25 +47,26 @@ export class CumulativeFlowChartComponent implements OnInit {
     this.draw();
   }
 
-  public draw(): void {
-    const width = 300;
-    const x = d3.scaleLinear()
-      .domain([0, 50])
-      .range([0, width]);
-    const y = d3.scaleBand()
-      .domain(d3.range(this.data.length).map(aNumber => '' + aNumber))
-      .range([0, 20 * this.data.length]);
-    this.svg.selectAll("rect")
-      .data(this.data,(d,i)=>''+i)
+  private draw(): void {
+    const x = d3.scaleTime<number>()
+      .domain(d3.extent(this.data, d => d.date) as [Date, Date])
+      .range([0, this.width]);
+    const y = d3.scaleLinear()
+      .domain(d3.extent(this.data, d => d.value) as [number, number])
+      .range([this.height, 0]);
+
+    this.svg.selectAll("path")
+      .data([this.data])
       .join(
-        enter => enter.append("rect")
-          .attr("fill", "steelblue")
-          .attr("width", x)
-          .attr("height", y.bandwidth() - 1)
-          .attr("transform", (d, i) => `translate(0,${y('' + i)})`),
-        update => update
-          .attr("width", x),
+        enter => enter.append("path")
+          .attr("fill", "#cce5df")
+        ,
+        update => update,
         exit => exit.remove()
       )
+      .attr('d', d3.area<TimeSeriesEntry>()
+        .x((d) => x(d.date))
+        .y0(y(0))
+        .y1((d) => y(d.value)))
   }
 }
