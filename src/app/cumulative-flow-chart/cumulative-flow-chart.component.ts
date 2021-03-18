@@ -26,8 +26,6 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
     today.setMilliseconds(999);
     const twoWeeksAgo = new Date(today.getTime());
     twoWeeksAgo.setDate(twoWeeksAgo.getDate()-14);
-    console.log(today);
-    console.log(twoWeeksAgo);
     this.dateRange = [twoWeeksAgo,today];
   }
 
@@ -40,7 +38,8 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
   }
 
   private redraw(): void {
-    this.d3Chart.draw(this.dataGenerator.generateData());
+    const kanbanCardsToChart = this.heijunkaBoardService.getKanbanCards().find({project:this.project});
+    this.d3Chart.draw(this.dataGenerator.generateData(kanbanCardsToChart,this.dateRange));
   }
 
   private reinitializeChart(): void {

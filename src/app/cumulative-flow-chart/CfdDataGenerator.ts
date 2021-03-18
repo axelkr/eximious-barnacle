@@ -1,4 +1,4 @@
-import { State } from 'outstanding-barnacle';
+import { KanbanCard, State } from 'outstanding-barnacle';
 
 export type TimeSeriesEntry = { date: Date, value: number };
 export type TimeSeries = TimeSeriesEntry[];
@@ -30,7 +30,7 @@ export class CfdDataGenerator {
             .set(this.states[2], series2);
     }
 
-    public generateData(): StateTimeSeries[] {
+    public generateData(kanbanCards: KanbanCard[], dateRange: [Date,Date]): StateTimeSeries[] {
         const result: StateTimeSeries[] = [];
         const toReturn = this.return1NextTime ? this.data1 : this.data2;
         this.return1NextTime = !this.return1NextTime;
