@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import * as d3 from 'd3';
 
+import { BoxModel } from './BoxModel';
+
 interface TimeSeriesEntry { date: Date, value: number };
 
 @Component({
@@ -9,9 +11,7 @@ interface TimeSeriesEntry { date: Date, value: number };
   styleUrls: ['./cumulative-flow-chart.component.less']
 })
 export class CumulativeFlowChartComponent implements OnInit {
-  private readonly margin = { top: 10, right: 10, bottom: 10, left: 10 };
-  private readonly width = 260 - this.margin.left - this.margin.right;
-  private readonly height = 200 - this.margin.top - this.margin.bottom;
+  private readonly chartBox = new BoxModel(260, 200, 10);
 
   private data: TimeSeriesEntry[];
   private readonly data1 = [{ date: new Date(2020, 11, 1), value: 4 }, { date: new Date(2020, 11, 2), value: 8 }, { date: new Date(2020, 11, 3), value: 15 },
@@ -31,11 +31,11 @@ export class CumulativeFlowChartComponent implements OnInit {
 
   private initChart() {
     this.svg = d3.select('#renderCFD').append("svg")
-      .attr("width", this.width + this.margin.left + this.margin.right)
-      .attr("height", this.height + this.margin.top + this.margin.bottom)
+      .attr("width", this.chartBox.width())
+      .attr("height", this.chartBox.height())
       .attr("text-anchor", "end")
       .append("g").attr("transform",
-        "translate(" + this.margin.left + "," + this.margin.top + ")");
+        "translate(" + this.chartBox.marginLeft() + "," + this.chartBox.marginTop() + ")");
   }
 
   public swap(): void {
@@ -50,10 +50,10 @@ export class CumulativeFlowChartComponent implements OnInit {
   private draw(): void {
     const x = d3.scaleTime<number>()
       .domain(d3.extent(this.data, d => d.date) as [Date, Date])
-      .range([0, this.width]);
+      .range([0, this.chartBox.contentWidth()]);
     const y = d3.scaleLinear()
       .domain(d3.extent(this.data, d => d.value) as [number, number])
-      .range([this.height, 0]);
+      .range([this.chartBox.contentHeight(), 0]);
 
     this.svg.selectAll("path")
       .data([this.data])

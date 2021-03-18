@@ -26,7 +26,11 @@ export class BoxModel {
         return this.totalHeight;
     }
 
-    public margin(): number {
+    public marginLeft(): number {
+        return this.marginOnEachSide;
+    }
+
+    public marginTop(): number {
         return this.marginOnEachSide;
     }
 }
