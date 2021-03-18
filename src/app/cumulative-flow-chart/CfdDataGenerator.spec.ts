@@ -14,8 +14,8 @@ describe('CfdDataGenerator', () => {
         const aKanbanCard = KanbanCard.create('id','project').transitToNewState(transition);
         const result = testObject.generateData([aKanbanCard],[fromDate,toDate]);
         expect(result[0].entries[0].value).toEqual(0);
-        expect(result[0].entries[6].value).toEqual(1);
-        expect(result[0].entries[7].value).toEqual(1);
+        expect(result[0].entries[6].value).toEqual(0); // 7.11
+        expect(result[0].entries[7].value).toEqual(1); // 8.11
         expect(result[0].entries[13].value).toEqual(1);
         expect(result[0].entries.length).toEqual(14);
     });
