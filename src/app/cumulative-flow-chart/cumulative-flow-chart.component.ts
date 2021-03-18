@@ -2,8 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as d3 from 'd3';
 
 import { BoxModel } from './BoxModel';
-
-interface TimeSeriesEntry { date: Date, value: number };
+import { CfdDataGenerator,TimeSeriesEntry,TimeSeries,StateTimeSeries } from './CfdDataGenerator';
 
 @Component({
   selector: 'app-cumulative-flow-chart',
@@ -12,21 +11,16 @@ interface TimeSeriesEntry { date: Date, value: number };
 })
 export class CumulativeFlowChartComponent implements OnInit {
   private readonly chartBox = new BoxModel(260, 200, 10);
+  private readonly dataGenerator = new CfdDataGenerator();
 
-  private data: TimeSeriesEntry[];
-  private readonly data1 = [{ date: new Date(2020, 11, 1), value: 4 }, { date: new Date(2020, 11, 2), value: 8 }, { date: new Date(2020, 11, 3), value: 15 },
-  { date: new Date(2020, 11, 4), value: 16 }, { date: new Date(2020, 11, 5), value: 23 }, { date: new Date(2020, 11, 6), value: 24 }];
-  private readonly data2 = [{ date: new Date(2020, 11, 1), value: 6 }, { date: new Date(2020, 11, 2), value: 10 }, { date: new Date(2020, 11, 3), value: 12 },
-  { date: new Date(2020, 11, 4), value: 17 }, { date: new Date(2020, 11, 5), value: 10 }, { date: new Date(2020, 11, 6), value: 32 }];
   private svg!: d3.Selection<SVGGElement, unknown, HTMLElement, any>;
 
   constructor() {
-    this.data = this.data1;
   }
 
   ngOnInit(): void {
     this.initChart();
-    this.draw();
+    this.draw(this.dataGenerator.generateData()[0].entries);
   }
 
   private initChart() {
@@ -39,24 +33,19 @@ export class CumulativeFlowChartComponent implements OnInit {
   }
 
   public swap(): void {
-    if (this.data === this.data1) {
-      this.data = this.data2;
-    } else {
-      this.data = this.data1;
-    }
-    this.draw();
+    this.draw(this.dataGenerator.generateData()[0].entries);
   }
 
-  private draw(): void {
+  private draw(data:TimeSeries): void {
     const x = d3.scaleTime<number>()
-      .domain(d3.extent(this.data, d => d.date) as [Date, Date])
+      .domain(d3.extent(data, d => d.date) as [Date, Date])
       .range([0, this.chartBox.contentWidth()]);
     const y = d3.scaleLinear()
-      .domain(d3.extent(this.data, d => d.value) as [number, number])
+      .domain(d3.extent(data, d => d.value) as [number, number])
       .range([this.chartBox.contentHeight(), 0]);
 
     this.svg.selectAll("path")
-      .data([this.data])
+      .data([data])
       .join(
         enter => enter.append("path")
           .attr("fill", "#cce5df")
