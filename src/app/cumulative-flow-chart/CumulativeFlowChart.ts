@@ -16,8 +16,8 @@ export class CumulativeFlowChart {
         this.stateModel = stateModel;
     }
 
-    public init() {
-        this.svg = d3.select('#renderCFD').append("svg")
+    public init(id:string) {
+        this.svg = d3.select('#'+id).append("svg")
             .attr("width", this.chartBox.width())
             .attr("height", this.chartBox.height())
             .attr("text-anchor", "end")

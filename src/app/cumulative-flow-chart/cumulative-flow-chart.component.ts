@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { AfterViewInit, Component, Input } from '@angular/core';
+import { Project } from 'outstanding-barnacle';
 
 import { CfdDataGenerator } from './CfdDataGenerator';
 import { CumulativeFlowChart } from './CumulativeFlowChart';
@@ -8,19 +9,29 @@ import { CumulativeFlowChart } from './CumulativeFlowChart';
   templateUrl: './cumulative-flow-chart.component.html',
   styleUrls: ['./cumulative-flow-chart.component.less']
 })
-export class CumulativeFlowChartComponent implements OnInit {
+export class CumulativeFlowChartComponent implements AfterViewInit {
+  @Input() chartId: string | undefined;
+  @Input() project: Project | undefined;
+
   private readonly dataGenerator = new CfdDataGenerator();
   private readonly d3Chart = new CumulativeFlowChart(this.dataGenerator.stateModel);
 
   constructor() {
   }
 
-  ngOnInit(): void {
-    this.d3Chart.init();
-    this.d3Chart.draw(this.dataGenerator.generateData());
+  ngAfterViewInit(): void {
+    if (this.chartId === undefined) {
+      return;
+    }
+    this.d3Chart.init(this.chartId);
+    this.redraw();
   }
 
   public swap(): void {
+    this.redraw();
+  }
+
+  private redraw(): void {
     this.d3Chart.draw(this.dataGenerator.generateData());
   }
 }

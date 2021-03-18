@@ -1,8 +1,12 @@
-<p>CFD</p>
-<div id="renderCFD">
-</div>
-<div>
-    <form>
-        <button type="submit" class="btn btn-success" (click)="swap()">Swap</button>
-    </form>
+<div *ngIf="chartId">
+    <div *ngIf="project">
+        <p>CFD</p>
+        <div id="{{chartId}}">
+        </div>
+        <div>
+            <form>
+                <button type="submit" class="btn btn-success" (click)="swap()">Swap</button>
+            </form>
+        </div>
+    </div>
 </div>
