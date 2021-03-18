@@ -39,8 +39,10 @@ export class CfdDataGenerator {
         this.return1NextTime = !this.return1NextTime;
 
         this.states.forEach((aState: State) => {
-            const dataOfState = toReturn.get(aState) as TimeSeries;
-            result.push({ state: aState, entries: dataOfState });
+            if (toReturn.has(aState)) {
+                const dataOfState = toReturn.get(aState) as TimeSeries;
+                result.push({ state: aState, entries: dataOfState });
+            }
         });
 
         return result;
