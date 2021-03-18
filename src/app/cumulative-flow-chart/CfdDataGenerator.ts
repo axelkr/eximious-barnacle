@@ -17,7 +17,6 @@ export class CfdDataGenerator {
     public generateData(kanbanCards: KanbanCard[], dateRange: [Date, Date]): StateTimeSeries[] {
         this.startDate = dateRange[0];
         this.endDate = dateRange[1];
-        console.log(dateRange);
         this.numberDays = 1 + this.dayOffset(this.endDate);
         let counterPerDayPerState = this.createZeroKanbanCardsAtEveryDayInEveryState();
 
@@ -32,7 +31,7 @@ export class CfdDataGenerator {
         const currentDay = new Date(this.startDate.getTime());
         for (let i = 0; i < this.numberDays; i = i + 1) {
             const transitionAtDay = kanbanCard.history.atDate(currentDay);
-            if ( transitionAtDay === undefined) {
+            if (transitionAtDay === undefined) {
                 continue;
             }
             const indexState = this.states.findIndex(x => x.id === transitionAtDay.state);
