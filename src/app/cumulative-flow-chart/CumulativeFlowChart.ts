@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import * as d3 from 'd3';
 import { StateModel } from 'outstanding-barnacle';
 
@@ -7,22 +8,28 @@ import { StackingService } from './StackingService';
 import { ColorModel } from './ColorModel';
 
 export class CumulativeFlowChart {
-    private readonly chartBox = new BoxModel(240, 100, 5);
+    private readonly chartBox = new BoxModel(260, 140, 20);
     private readonly colorModel = new ColorModel();
     private readonly stateModel: StateModel;
     private svg!: d3.Selection<SVGGElement, unknown, HTMLElement, any>;
+    private xAxis!: d3.Selection<SVGGElement, unknown, HTMLElement, any>;
+    private yAxis!: d3.Selection<SVGGElement, unknown, HTMLElement, any>;
 
     constructor(stateModel: StateModel) {
         this.stateModel = stateModel;
     }
 
     public init(id: string) {
-        this.svg = d3.select('#' + id).append('svg')
+        const svgNode = d3.select('#' + id)
+            .append('svg')
             .attr('width', this.chartBox.width())
             .attr('height', this.chartBox.height())
-            .attr('text-anchor', 'end')
-            .append('g').attr('transform',
-                'translate(' + this.chartBox.marginLeft() + ',' + this.chartBox.marginTop() + ')');
+            .attr('text-anchor', 'end');
+
+        this.svg = svgNode.append('g').attr('transform', 'translate(' + this.chartBox.marginLeft() + ',' + this.chartBox.marginTop() + ')');
+
+        this.yAxis = svgNode.append('g').attr('transform', 'translate(' + (this.chartBox.contentWidth() + this.chartBox.marginLeft()) + ',' + this.chartBox.marginTop() + ')');
+        this.xAxis = svgNode.append('g').attr('transform', 'translate(' + this.chartBox.marginLeft() + ',' + (this.chartBox.contentHeight() + this.chartBox.marginTop()) + ')');
     }
 
     public draw(completeData: StateTimeSeries[]): void {
@@ -46,6 +53,9 @@ export class CumulativeFlowChart {
         const y = d3.scaleLinear()
             .domain([d3.min(stacked[0], a => a[0]), d3.max(stacked[stacked.length - 1], a => a[1])] as [number, number])
             .range([this.chartBox.contentHeight(), 0]);
+
+        this.xAxis.call(d3.axisBottom(x));
+        this.yAxis.call(d3.axisRight(y));
 
         this.svg.selectAll('path')
             .data(stacked)
