@@ -11,6 +11,7 @@ import { HeijunkaBoardModule } from './heijunka-board/heijunka-board.module';
 
 import { AppComponent } from './app.component';
 import { AppConfig } from './app.config';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 const initializeApp= (appConfig: AppConfig) => () => appConfig.load();
 
@@ -26,7 +27,8 @@ const initializeApp= (appConfig: AppConfig) => () => appConfig.load();
     SetupModule,
     ProjectStateDetailsModule,
     HeijunkaBoardModule,
-    CumulativeFlowChartModule
+    CumulativeFlowChartModule,
+    NoopAnimationsModule
   ],
   providers: [AppConfig,
     { provide: APP_INITIALIZER,
