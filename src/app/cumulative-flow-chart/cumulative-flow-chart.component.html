@@ -1,6 +1,7 @@
 <div *ngIf="chartId">
     <div *ngIf="project">
-        <label>CFD</label>
+        <h2>CFD</h2>
+        Showing data from {{showDataFrom |date : 'mediumDate'}} until {{showDataUntil |date : 'mediumDate'}}
         <div id="{{chartId}}">
         </div>
     </div>

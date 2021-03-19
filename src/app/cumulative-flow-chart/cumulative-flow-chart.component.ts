@@ -13,17 +13,17 @@ import { CumulativeFlowChart } from './CumulativeFlowChart';
 export class CumulativeFlowChartComponent implements AfterViewInit {
   @Input() chartId: string | undefined;
   @Input() project: Project | undefined;
+  readonly showDataFrom : Date;
+  readonly showDataUntil: Date;
 
   private dataGenerator!: CfdDataGenerator;
   private d3Chart!: CumulativeFlowChart;
-  private dateRange: [Date, Date];
 
   constructor(private heijunkaBoardService: HeijunkaBoardService) {
     const now = new Date();
-    const endOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(),23,59,59);
-    const twoWeeksAgo = new Date(endOfToday.getTime());
-    twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
-    this.dateRange = [twoWeeksAgo, endOfToday];
+    this.showDataFrom = new Date(now.getFullYear(), now.getMonth(), now.getDate(),23,59,59);
+    this.showDataUntil = new Date( this.showDataFrom.getTime());
+    this.showDataFrom.setDate( this.showDataFrom.getDate() - 14);
   }
 
   ngAfterViewInit(): void {
@@ -32,7 +32,7 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
 
   private redraw(): void {
     const kanbanCardsToChart = this.heijunkaBoardService.getKanbanCards().find({ project: this.project });
-    this.d3Chart.draw(this.dataGenerator.generateData(kanbanCardsToChart, this.dateRange));
+    this.d3Chart.draw(this.dataGenerator.generateData(kanbanCardsToChart, [this.showDataFrom,this.showDataUntil]));
   }
 
   private reinitializeChart(): void {
