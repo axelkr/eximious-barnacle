@@ -1,6 +1,7 @@
 <div *ngIf="project" class="project">
   <div *ngIf="renameMode">
-    <input value="{{project.valueOfProperty('name')}}" (keydown.enter)="commitRename($event)" (keydown.esc)="cancelRename()">
+    <input value="{{project.valueOfProperty('name')}}" (keydown.enter)="commitRename($event)"
+      (keydown.esc)="cancelRename()">
   </div>
   <div *ngIf="!renameMode">
     <label (click)="activateRenameMode()">{{project.valueOfProperty('name')}}</label>
@@ -11,5 +12,7 @@
     *ngFor="let state of linearizeStateModelService.linearize(heijunkaBoardService.getDomainModel().getStateModelOf(project))">
     <app-project-state [project]="project" [state]="state"></app-project-state>
   </div>
-  <app-cumulative-flow-chart chartId="pc{{project.id}}" [project]="project"></app-cumulative-flow-chart>
+  <div style="clear: both;">
+    <app-cumulative-flow-chart chartId="pc{{project.id}}" [project]="project"></app-cumulative-flow-chart>
+  </div>
 </div>
