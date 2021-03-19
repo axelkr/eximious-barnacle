@@ -20,10 +20,10 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
 
   constructor(private heijunkaBoardService: HeijunkaBoardService) {
     const now = new Date();
-    const today = new Date(now.getFullYear(), now.getMonth(), now.getDate());
-    const twoWeeksAgo = new Date(today.getTime());
+    const endOfToday = new Date(now.getFullYear(), now.getMonth(), now.getDate(),23,59,59);
+    const twoWeeksAgo = new Date(endOfToday.getTime());
     twoWeeksAgo.setDate(twoWeeksAgo.getDate() - 14);
-    this.dateRange = [twoWeeksAgo, today];
+    this.dateRange = [twoWeeksAgo, endOfToday];
   }
 
   ngAfterViewInit(): void {
