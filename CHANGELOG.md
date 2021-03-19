@@ -1,3 +1,6 @@
+# v3.4.1
+- fix: display minimal axes
+
 # v3.4.0
 - Display cumulative flow diagram for every project
 
