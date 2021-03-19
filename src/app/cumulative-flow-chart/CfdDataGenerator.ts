@@ -6,8 +6,8 @@ export type StateTimeSeries = { state: State; entries: TimeSeries };
 
 export class CfdDataGenerator {
     private readonly states: State[];
-    private startDate!: Date;
-    private endDate!: Date;
+    private startDay!: Date;
+    private endDay!: Date;
     private numberDays!: number;
 
     constructor(states: State[]) {
@@ -15,9 +15,10 @@ export class CfdDataGenerator {
     }
 
     public generateData(kanbanCards: KanbanCard[], dateRange: [Date, Date]): StateTimeSeries[] {
-        this.startDate = dateRange[0];
-        this.endDate = dateRange[1];
-        this.numberDays = 1 + this.dayOffset(this.endDate);
+        this.startDay = this.setTimeToEndOfDay(dateRange[0]);
+        this.endDay = this.setTimeToEndOfDay(dateRange[1]);
+
+        this.numberDays = 1 + this.dayOffset(this.endDay);
         let counterPerDayPerState = this.createZeroKanbanCardsAtEveryDayInEveryState();
 
         kanbanCards.forEach(aKanbanCard => {
@@ -27,8 +28,16 @@ export class CfdDataGenerator {
         return this.convertToStateTimeSeries(counterPerDayPerState);
     }
 
+    private setTimeToEndOfDay(aDate:Date):Date {
+        const updatedDate = new Date(aDate.getTime());
+        updatedDate.setHours(23);
+        updatedDate.setMinutes(59);
+        updatedDate.setSeconds(59);
+        return updatedDate;
+    }
+
     private countKanbanCard(kanbanCard: KanbanCard, counterPerDayPerState: number[]): number[] {
-        const currentDay = new Date(this.startDate.getTime());
+        const currentDay = new Date(this.startDay.getTime());
         for (let i = 0; i < this.numberDays; i = i + 1) {
             const transitionAtDay = kanbanCard.history.atDate(currentDay);
             if (transitionAtDay === undefined) {
@@ -59,7 +68,7 @@ export class CfdDataGenerator {
     }
 
     private dayOffset(aDate: Date): number {
-        return (aDate.getTime() - this.startDate.getTime()) / (1000 * 60 * 60 * 24);
+        return (aDate.getTime() - this.startDay.getTime()) / (1000 * 60 * 60 * 24);
     }
 
     private stateOffset(aState: State): number {
@@ -70,7 +79,7 @@ export class CfdDataGenerator {
         const result: StateTimeSeries[] = [];
         this.states.forEach(aState => {
             const entries: TimeSeries = [];
-            const currentDay = new Date(this.startDate.getTime());
+            const currentDay = new Date(this.startDay.getTime());
             for (let i = 0; i < this.numberDays; i = i + 1) {
                 entries.push({ date: new Date(currentDay.getTime()), value: counterPerDayPerState[this.indexOf(currentDay, aState)] });
                 currentDay.setDate(currentDay.getDate() + 1);
