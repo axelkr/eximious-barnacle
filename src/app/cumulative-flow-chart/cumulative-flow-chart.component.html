@@ -1,14 +1,16 @@
 <div *ngIf="chartId">
     <div *ngIf="project">
         Cumulative flow diagram from
-        <mat-form-field class="datePicker" >
-            <input matInput [matDatepicker]="showDataFromPicker" [ngModel]="showDataFrom" (dateChange)="onShowDataFromSelected($event)">
+        <mat-form-field class="datePicker">
+            <input matInput [matDatepicker]="showDataFromPicker" [ngModel]="showDataFrom"
+                (dateChange)="onShowDataFromSelected($event)">
             <mat-datepicker-toggle matSuffix [for]="showDataFromPicker"></mat-datepicker-toggle>
             <mat-datepicker #showDataFromPicker startView="month"></mat-datepicker>
         </mat-form-field>
         until
-        <mat-form-field class="datePicker" >
-            <input matInput [matDatepicker]="showDataUntilPicker" [ngModel]="showDataUntil" (dateChange)="onShowDataUntilSelected($event)">
+        <mat-form-field class="datePicker">
+            <input matInput [matDatepicker]="showDataUntilPicker" [ngModel]="showDataUntil"
+                (dateChange)="onShowDataUntilSelected($event)">
             <mat-datepicker-toggle matSuffix [for]="showDataUntilPicker"></mat-datepicker-toggle>
             <mat-datepicker #showDataUntilPicker startView="month"></mat-datepicker>
         </mat-form-field>
