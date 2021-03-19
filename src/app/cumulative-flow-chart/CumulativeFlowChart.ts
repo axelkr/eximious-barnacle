@@ -8,7 +8,7 @@ import { StackingService } from './StackingService';
 import { ColorModel } from './ColorModel';
 
 export class CumulativeFlowChart {
-    private readonly chartBox = new BoxModel(260, 140, 20);
+    private readonly chartBox = new BoxModel(200 * 1.618, 200, 30, 20);
     private readonly colorModel = new ColorModel();
     private readonly stateModel: StateModel;
     private svg!: d3.Selection<SVGGElement, unknown, HTMLElement, any>;
@@ -54,8 +54,11 @@ export class CumulativeFlowChart {
             .domain([d3.min(stacked[0], a => a[0]), d3.max(stacked[stacked.length - 1], a => a[1])] as [number, number])
             .range([this.chartBox.contentHeight(), 0]);
 
-        this.xAxis.call(d3.axisBottom(x));
-        this.yAxis.call(d3.axisRight(y));
+        const maxYValue: number = d3.max(stacked[stacked.length - 1], a => a[1]) as number;
+        const minDate: Date = completeData[0].entries[0].date;
+        const maxDate: Date = completeData[0].entries[completeData[0].entries.length - 1].date;
+        this.xAxis.call(d3.axisBottom(x).tickValues([minDate, maxDate]).tickFormat(aDate => (aDate as Date).toLocaleDateString()));
+        this.yAxis.call(d3.axisRight(y).tickValues([maxYValue]).tickFormat(numberKanbanCards => numberKanbanCards.toString()));
 
         this.svg.selectAll('path')
             .data(stacked)

@@ -2,20 +2,22 @@
 export class BoxModel {
     private readonly totalWidth: number;
     private readonly totalHeight: number;
-    private readonly marginOnEachSide: number;
+    private readonly marginLeftRight: number;
+    private readonly marginTopBottom: number;
 
-    constructor(totalWidth: number, totalHeight: number, marginOnEachSide: number) {
+    constructor(totalWidth: number, totalHeight: number, marginLeftRight: number, marginTopBottom: number) {
         this.totalWidth = totalWidth;
         this.totalHeight = totalHeight;
-        this.marginOnEachSide = marginOnEachSide;
+        this.marginLeftRight = marginLeftRight;
+        this.marginTopBottom = marginTopBottom;
     }
 
     public contentWidth(): number {
-        return this.totalWidth - 2 * this.marginOnEachSide;
+        return this.totalWidth - 2 * this.marginLeftRight;
     }
 
     public contentHeight(): number {
-        return this.totalHeight - 2 * this.marginOnEachSide;
+        return this.totalHeight - 2 * this.marginTopBottom;
     }
 
     public width(): number {
@@ -27,10 +29,10 @@ export class BoxModel {
     }
 
     public marginLeft(): number {
-        return this.marginOnEachSide;
+        return this.marginLeftRight;
     }
 
     public marginTop(): number {
-        return this.marginOnEachSide;
+        return this.marginTopBottom;
     }
 }
