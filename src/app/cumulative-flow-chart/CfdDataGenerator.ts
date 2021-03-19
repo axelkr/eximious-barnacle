@@ -28,7 +28,7 @@ export class CfdDataGenerator {
         return this.convertToStateTimeSeries(counterPerDayPerState);
     }
 
-    private setTimeToEndOfDay(aDate:Date):Date {
+    private setTimeToEndOfDay(aDate: Date): Date {
         const updatedDate = new Date(aDate.getTime());
         updatedDate.setHours(23);
         updatedDate.setMinutes(59);
