@@ -9,6 +9,7 @@ import { SetupModule } from './setup/setup.module';
 import { ProjectStateDetailsModule } from './project-state-details/project-state-details.module';
 import { HeijunkaBoardModule } from './heijunka-board/heijunka-board.module';
 import { KanbanCardModule } from './kanban-card/kanban-card.module';
+import { ProjectModule } from './project/project.module';
 
 import { AppComponent } from './app.component';
 import { AppConfig } from './app.config';
@@ -29,7 +30,7 @@ const initializeApp = (appConfig: AppConfig) => () => appConfig.load();
     ProjectStateDetailsModule,
     HeijunkaBoardModule,
     CumulativeFlowChartModule,
-    KanbanCardModule,
+    KanbanCardModule, ProjectModule,
     NoopAnimationsModule
   ],
   providers: [AppConfig,
