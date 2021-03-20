@@ -1,1 +1,5 @@
-<p>project works!</p>
+<div *ngIf="project" class="project">
+    <div *ngIf="heijunkaBoardService.getProjects().get(project) as projectObject">
+        <p>project works!</p>
+    </div>
+</div>
