@@ -9,11 +9,13 @@ import { TopicSelectComponent } from './topic-select/topic-select.component';
 import { ProjectAddComponent } from './project-add/project-add.component';
 import { SetupViewComponent } from './setup-view.component';
 
+import { SetupViewRoutingModule } from './setup-view-routing.module';
+
 @NgModule({
   declarations: [StateModelsComponent, TopicCreateComponent, TopicSelectComponent,
     ProjectAddComponent, SetupViewComponent],
   imports: [
-    CommonModule, FormsModule
+    CommonModule, FormsModule, SetupViewRoutingModule
   ],
   exports: [SetupViewComponent]
 })
