@@ -1,0 +1,6 @@
+<div *ngIf="project">
+    <div
+        *ngFor="let state of linearizeStateModelService.linearize(heijunkaBoardService.getDomainModel().getStateModelOf(project))">
+        <app-project-state-overview [project]="project" [state]="state"></app-project-state-overview>
+    </div>
+</div>
