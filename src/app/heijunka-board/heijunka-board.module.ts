@@ -8,13 +8,11 @@ import { KanbanCardModule } from '../kanban-card/kanban-card.module';
 import { HeijunkaBoardComponent } from './heijunka-board.component';
 import { ProjectComponent } from './project/project.component';
 import { ProjectStateComponent } from './project-state/project-state.component';
-import { ViewProjectsStateModelComponent } from './view-projects-state-model/view-projects-state-model.component';
 
 @NgModule({
   declarations: [HeijunkaBoardComponent,
     ProjectComponent,
-    ProjectStateComponent,
-    ViewProjectsStateModelComponent
+    ProjectStateComponent
   ],
   imports: [
     CommonModule,
