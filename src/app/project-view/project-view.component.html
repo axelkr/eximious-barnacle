@@ -1,5 +1,9 @@
 <div *ngIf="id" class="project">
     <div *ngIf="heijunkaBoardService.getProjects().get(id) as projectObject">
         <app-project-editable-name [project]="projectObject"></app-project-editable-name>
+        <div style="clear: both;">
+            <app-cumulative-flow-chart chartId="pv{{projectObject.id}}" [project]="projectObject">
+            </app-cumulative-flow-chart>
+        </div>
     </div>
 </div>

@@ -7,7 +7,4 @@
     *ngFor="let state of linearizeStateModelService.linearize(heijunkaBoardService.getDomainModel().getStateModelOf(project))">
     <app-project-state [project]="project" [state]="state"></app-project-state>
   </div>
-  <div style="clear: both;">
-    <app-cumulative-flow-chart chartId="pc{{project.id}}" [project]="project"></app-cumulative-flow-chart>
-  </div>
 </div>
