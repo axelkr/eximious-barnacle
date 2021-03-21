@@ -1,0 +1,9 @@
+<div *ngIf="kanbanCard">
+    <div *ngIf="renameMode">
+        <input value="{{kanbanCard.valueOfProperty('name')}}" (keydown.enter)="commitRename($event)"
+            (keydown.esc)="cancelRename()">
+    </div>
+    <div *ngIf="!renameMode">
+        <label (click)="activateRenameMode()">{{kanbanCard.valueOfProperty('name')}}</label>
+    </div>
+</div>

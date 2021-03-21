@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { KanbanCard, KanbanCardProperties, Project, State, TransitionType } from 'outstanding-barnacle';
+import { KanbanCard, Project, State, TransitionType } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../../heijunka-board.service';
 
 @Component({
@@ -10,7 +10,6 @@ import { HeijunkaBoardService } from '../../heijunka-board.service';
 export class KanbanCardOverviewComponent implements OnInit {
   @Input() kanbanCard: KanbanCard | undefined;
   @Input() state: State | undefined;
-  renameMode = false;
   transitionType = TransitionType;
   transition: TransitionType | undefined;
 
@@ -55,28 +54,6 @@ export class KanbanCardOverviewComponent implements OnInit {
     const moveToTrash = this.modelBoardService.kanbanCardEventFactory.moveToTrash(this.modelBoardService.currentTopic(),
       this.kanbanCard);
     this.modelBoardService.processObjectEvent(moveToTrash);
-  }
-
-  commitRename(event: any): void {
-    this.renameTo(event.target.value);
-    this.renameMode = false;
-  }
-
-  cancelRename(): void {
-    this.renameMode = false;
-  }
-
-  activateRenameMode(): void {
-    this.renameMode = true;
-  }
-
-  private renameTo(newName: string): void {
-    if (this.kanbanCard === undefined) {
-      return;
-    }
-    const renameKanbanCardEvent = this.modelBoardService.kanbanCardEventFactory.
-      updateProperty(this.modelBoardService.currentTopic(), this.kanbanCard, KanbanCardProperties.NAME, newName);
-    this.modelBoardService.processObjectEvent(renameKanbanCardEvent);
   }
 
   private readTransitionTypeOfKanbanCard() {
