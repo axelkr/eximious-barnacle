@@ -1,4 +1,4 @@
-<div *ngIf="kanbanCard" class="kanbanCard">
+<div *ngIf="kanbanCard" class="link-object">
   <a [routerLink]="['/kanbanCard/']" [queryParams]="{id:kanbanCard.id }">
     <div>{{kanbanCard.valueOfProperty('name')}}</div>
   </a>

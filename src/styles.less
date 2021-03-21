@@ -39,10 +39,19 @@ h1 {
     font-style: normal;
 }
 
-.kanbanCard {
-    background-color: rgb(194, 194, 194);
-    border-color: rgb(200, 200, 200);
-    border:1px;
-    padding: 5px;
-    margin: 15px;
+@other-state-color: rgb(240,240,240);
+@other-state-color-hover: rgb(230,230,230);
+
+.link-object a {
+    text-decoration: none;
+    color: black;
+}
+
+.link-object a div {
+    background-color: @other-state-color;
+    padding: 10px;
+}
+
+.link-object a div:hover {
+    background-color: @other-state-color-hover;
 }
