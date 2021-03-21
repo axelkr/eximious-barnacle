@@ -5,6 +5,6 @@
   <app-kanban-card-create [project]="project"></app-kanban-card-create>
   <div
     *ngFor="let state of linearizeStateModelService.linearize(heijunkaBoardService.getDomainModel().getStateModelOf(project))">
-    <app-project-state [project]="project" [state]="state"></app-project-state>
+    <app-project-state-overview [project]="project" [state]="state"></app-project-state-overview>
   </div>
 </div>

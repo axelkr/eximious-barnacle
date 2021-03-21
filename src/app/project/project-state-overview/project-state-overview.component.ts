@@ -5,11 +5,11 @@ import { HeijunkaBoardService } from '../../heijunka-board.service';
 import { Project, State, TransitionType } from 'outstanding-barnacle';
 
 @Component({
-  selector: 'app-project-state',
-  templateUrl: './project-state.component.html',
-  styleUrls: ['./project-state.component.less']
+  selector: 'app-project-state-overview',
+  templateUrl: './project-state-overview.component.html',
+  styleUrls: ['./project-state-overview.component.less']
 })
-export class ProjectStateComponent implements OnInit {
+export class ProjectStateOverviewComponent implements OnInit {
   @Input() project: Project | undefined;
   @Input() state: State | undefined;
   transitionType = TransitionType;

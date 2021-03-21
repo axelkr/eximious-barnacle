@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { ProjectStateComponent } from './project-state.component';
+import { ProjectStateOverviewComponent } from './project-state-overview.component';
 
-import {MockHeijunkaBoardService} from '../../heijunka-board.service.spec';
-import {HeijunkaBoardService} from '../../heijunka-board.service';
+import { MockHeijunkaBoardService } from '../../heijunka-board.service.spec';
+import { HeijunkaBoardService } from '../../heijunka-board.service';
 
-describe('ProjectStateComponent', () => {
-  let component: ProjectStateComponent;
-  let fixture: ComponentFixture<ProjectStateComponent>;
+describe('ProjectStateOverviewComponent', () => {
+  let component: ProjectStateOverviewComponent;
+  let fixture: ComponentFixture<ProjectStateOverviewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProjectStateComponent ],
+      declarations: [ProjectStateOverviewComponent],
       imports: [
         RouterTestingModule
       ],
@@ -20,11 +20,11 @@ describe('ProjectStateComponent', () => {
         { provide: HeijunkaBoardService, useClass: MockHeijunkaBoardService }
       ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(ProjectStateComponent);
+    fixture = TestBed.createComponent(ProjectStateOverviewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
