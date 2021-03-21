@@ -16,9 +16,10 @@
         </mat-form-field>.
 
         <form>
-            <select (change)="selectedDoneStates($event)" [ngModel]="displayDoneStates" name="displayDoneStates">
-                <option value=false>Hide done states</option>
-                <option value=true>Show done states</option>
+            <select (change)="selectedDisplayFinalStates($event)" [ngModel]="displayFinalStates"
+                name="displayFinalStates">
+                <option value=false>Hide final states</option>
+                <option value=true>Show final states</option>
             </select>
         </form>
 
