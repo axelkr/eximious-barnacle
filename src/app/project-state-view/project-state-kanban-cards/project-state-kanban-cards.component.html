@@ -9,8 +9,8 @@
                 </div>
                 <div *ngFor="let kanbanCard of heijunkaBoardService.getKanbanCards().find({project:project,states:[state],transitionType:transitionType.inProgress})"
                     style="list-style-type: none; float:center">
-                    <app-kanban-card-in-progress-overview [kanbanCard]="kanbanCard" [project]="project">
-                    </app-kanban-card-in-progress-overview>
+                    <app-kanban-card-overview [kanbanCard]="kanbanCard">
+                    </app-kanban-card-overview>
                 </div>
             </div>
             <br />
@@ -33,7 +33,7 @@
                     </div>
                     <div *ngFor="let kanbanCard of heijunkaBoardService.getKanbanCards().find({project:project,states:[predecessorState],transitionType:transitionType.completed})"
                         style="list-style-type: none;">
-                        <app-kanban-card-complete-overview [kanbanCard]="kanbanCard" [state]="state"></app-kanban-card-complete-overview>
+                        <app-kanban-card-overview [kanbanCard]="kanbanCard" [state]="state"></app-kanban-card-overview>
                     </div>
                 </div>
             </div>

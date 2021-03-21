@@ -9,9 +9,12 @@
 
   <div *ngIf="transition === transitionType.completed; else kanbanCardInProgress">
     <button type="submit" class="btn btn-success" (click)="pull()">Pull</button>
+    <button type="submit" class="btn btn-success" (click)="moveToTrash()">Delete</button>
   </div>
   <ng-template #kanbanCardInProgress>
-    <button type="submit" class="btn btn-success" (click)="markAsCompleted()">Mark as completed</button>
+    <div>
+      <button type="submit" class="btn btn-success" (click)="markAsCompleted()">Mark as completed</button>
+      <button type="submit" class="btn btn-success" (click)="moveToTrash()">Delete</button>
+    </div>
   </ng-template>
-  <button type="submit" class="btn btn-success" (click)="moveToTrash()">Delete</button>
 </div>
