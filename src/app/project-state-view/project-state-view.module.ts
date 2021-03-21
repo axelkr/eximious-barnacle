@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { AppRoutingModule } from '../app-routing.module';
 
 import { ProjectStateViewComponent } from './project-state-view.component';
 import { ProjectStateKanbanCardsByAgeComponent } from './project-state-kanban-cards-by-age/project-state-kanban-cards-by-age.component';
@@ -15,7 +14,6 @@ import { ProjectStateViewRoutingModule } from './project-state-view-routing.modu
   imports: [
     CommonModule,
     FormsModule,
-    AppRoutingModule,
     KanbanCardModule,
     ProjectStateViewRoutingModule
   ],
