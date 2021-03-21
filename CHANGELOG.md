@@ -1,5 +1,6 @@
 # next version
 - update to latest angular
+- user can now toggle between display CFD for final states
 
 # v3.5.0
 - display individual pages for projects and views. Enable user to navigate to them.
