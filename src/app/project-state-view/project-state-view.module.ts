@@ -4,18 +4,18 @@ import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
 
 import { ProjectStateViewComponent } from './project-state-view.component';
-import { KanbanCardCompleteOverviewComponent } from './kanban-card-complete-overview/kanban-card-complete-overview.component';
-import { KanbanCardInProgressOverviewComponent } from './kanban-card-in-progress-overview/kanban-card-in-progress-overview.component';
 import { ProjectStateKanbanCardsByAgeComponent } from './project-state-kanban-cards-by-age/project-state-kanban-cards-by-age.component';
 import { ProjectStateKanbanCardsComponent } from './project-state-kanban-cards/project-state-kanban-cards.component';
+import { KanbanCardModule } from '../kanban-card/kanban-card.module';
 
 @NgModule({
-  declarations: [ProjectStateViewComponent, KanbanCardCompleteOverviewComponent, KanbanCardInProgressOverviewComponent,
+  declarations: [ProjectStateViewComponent,
     ProjectStateKanbanCardsByAgeComponent, ProjectStateKanbanCardsComponent],
   imports: [
     CommonModule,
     FormsModule,
-    AppRoutingModule
+    AppRoutingModule,
+    KanbanCardModule
   ],
   exports: [ProjectStateViewComponent]
 })
