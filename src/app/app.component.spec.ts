@@ -3,23 +3,23 @@ import { FormsModule } from '@angular/forms';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { AppComponent } from './app.component';
-import { AppConfig } from './app.config';
+import { AppConfig } from './backend/app.config';
 
 describe('AppComponent', () => {
-  beforeAll(()=>{
+  beforeAll(() => {
     AppConfig.settings = {
-      backend : {
+      backend: {
         url: 'http://testURL',
         port: '800'
       },
-      title : 'title',
+      title: 'title',
       env: {
-        name:'test'
+        name: 'test'
       }
     };
   });
 
-  afterAll(()=>{
+  afterAll(() => {
     AppConfig.settings = undefined;
   });
 

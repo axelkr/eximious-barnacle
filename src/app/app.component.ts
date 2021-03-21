@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Title } from '@angular/platform-browser';
-import { AppConfig } from './app.config';
-
+import { AppConfig } from './backend/app.config';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +8,9 @@ import { AppConfig } from './app.config';
   styleUrls: ['./app.component.less']
 })
 export class AppComponent {
-  public constructor(private titleService: Title,private configuration: AppConfig) {
+  public constructor(private titleService: Title, private configuration: AppConfig) {
     if (AppConfig.settings !== undefined) {
       titleService.setTitle(AppConfig.settings.title);
     }
-   }
+  }
 }
