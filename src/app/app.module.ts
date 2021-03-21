@@ -5,11 +5,12 @@ import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { CumulativeFlowChartModule } from './cumulative-flow-chart/cumulative-flow-chart.module';
-import { SetupModule } from './setup/setup.module';
+import { SetupViewModule } from './setup-view/setup-view.module';
 import { ProjectStateDetailsModule } from './project-state-details/project-state-details.module';
 import { HeijunkaBoardModule } from './heijunka-board/heijunka-board.module';
 import { KanbanCardModule } from './kanban-card/kanban-card.module';
 import { KanbanCardViewModule } from './kanban-card-view/kanban-card-view.module';
+import { ProjectModule } from './project/project.module';
 import { ProjectViewModule } from './project-view/project-view.module';
 
 import { AppComponent } from './app.component';
@@ -27,12 +28,12 @@ const initializeApp = (appConfig: AppConfig) => () => appConfig.load();
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    SetupModule,
+    SetupViewModule,
     ProjectStateDetailsModule,
     HeijunkaBoardModule,
     CumulativeFlowChartModule,
-    KanbanCardViewModule, KanbanCardModule,
-    ProjectViewModule,
+    KanbanCardModule, KanbanCardViewModule,
+    ProjectModule, ProjectViewModule,
     NoopAnimationsModule
   ],
   providers: [AppConfig,

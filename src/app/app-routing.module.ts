@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HeijunkaBoardComponent } from './heijunka-board/heijunka-board.component';
 import { KanbanCardViewComponent } from './kanban-card-view/kanban-card-view.component';
 import { ProjectViewComponent } from './project-view/project-view.component';
-import { HeijunkaDefinitionComponent } from './setup/heijunka-definition/heijunka-definition.component';
+import { HeijunkaDefinitionComponent } from './setup-view/heijunka-definition/heijunka-definition.component';
 import { ProjectStateDetailsComponent } from './project-state-details/project-state-details.component';
 
 const routes: Routes = [

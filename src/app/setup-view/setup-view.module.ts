@@ -10,10 +10,10 @@ import { HeijunkaDefinitionComponent } from './heijunka-definition/heijunka-defi
 import { ProjectAddComponent } from './project-add/project-add.component';
 
 @NgModule({
-  declarations: [StateModelsComponent,TopicCreateComponent,TopicSelectComponent,HeijunkaDefinitionComponent,ProjectAddComponent],
+  declarations: [StateModelsComponent, TopicCreateComponent, TopicSelectComponent, HeijunkaDefinitionComponent, ProjectAddComponent],
   imports: [
     CommonModule, FormsModule
   ],
   exports: [HeijunkaDefinitionComponent]
 })
-export class SetupModule { }
+export class SetupViewModule { }
