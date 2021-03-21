@@ -1,3 +1,8 @@
+# v3.5.0
+- display individual pages for projects and views. Enable user to navigate to them.
+- improve initial load by lazy-loading views
+- extract common components per domain model to enable more reuse
+
 # v3.4.1
 - fix: display minimal axes
 

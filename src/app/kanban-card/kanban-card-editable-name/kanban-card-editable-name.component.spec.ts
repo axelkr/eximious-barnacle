@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { KanbanCardEditableNameComponent } from './kanban-card-editable-name.component';
+import { MockHeijunkaBoardService } from '../../heijunka-board.service.spec';
+import { HeijunkaBoardService } from '../../heijunka-board.service';
 
 describe('KanbanCardEditableNameComponent', () => {
   let component: KanbanCardEditableNameComponent;
@@ -8,7 +10,10 @@ describe('KanbanCardEditableNameComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [KanbanCardEditableNameComponent]
+      declarations: [KanbanCardEditableNameComponent],
+      providers: [
+        { provide: HeijunkaBoardService, useClass: MockHeijunkaBoardService }
+      ]
     })
       .compileComponents();
   });

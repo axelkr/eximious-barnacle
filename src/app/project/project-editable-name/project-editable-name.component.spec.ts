@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProjectEditableNameComponent } from './project-editable-name.component';
+import { MockHeijunkaBoardService } from '../../heijunka-board.service.spec';
+import { HeijunkaBoardService } from '../../heijunka-board.service';
 
 describe('ProjectEditableNameComponent', () => {
   let component: ProjectEditableNameComponent;
@@ -8,7 +10,10 @@ describe('ProjectEditableNameComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ProjectEditableNameComponent]
+      declarations: [ProjectEditableNameComponent],
+      providers: [
+        { provide: HeijunkaBoardService, useClass: MockHeijunkaBoardService }
+      ]
     })
       .compileComponents();
   });

@@ -1,6 +1,9 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProjectStateModelComponent } from './project-state-model.component';
+import { MockHeijunkaBoardService } from '../../heijunka-board.service.spec';
+import { HeijunkaBoardService } from '../../heijunka-board.service';
+
 
 describe('ProjectStateModelComponent', () => {
   let component: ProjectStateModelComponent;
@@ -8,9 +11,12 @@ describe('ProjectStateModelComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ProjectStateModelComponent ]
+      declarations: [ProjectStateModelComponent],
+      providers: [
+        { provide: HeijunkaBoardService, useClass: MockHeijunkaBoardService }
+      ]
     })
-    .compileComponents();
+      .compileComponents();
   });
 
   beforeEach(() => {
