@@ -1,4 +1,4 @@
-<div *ngIf="project" class="project">
+<div *ngIf="project" class="project link-object">
   <a [routerLink]="['/project/']" [queryParams]="{id:project.id }">
     <div>{{project.valueOfProperty('name')}}</div>
   </a>
