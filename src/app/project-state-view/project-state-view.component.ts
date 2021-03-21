@@ -8,11 +8,11 @@ enum ProjectStateDetailMode {
 }
 
 @Component({
-  selector: 'app-project-state-details',
-  templateUrl: './project-state-details.component.html',
-  styleUrls: ['./project-state-details.component.less']
+  selector: 'app-project-state-view',
+  templateUrl: './project-state-view.component.html',
+  styleUrls: ['./project-state-view.component.less']
 })
-export class ProjectStateDetailsComponent implements OnInit {
+export class ProjectStateViewComponent implements OnInit {
   @Input() project: string | undefined;
   @Input() state: string | undefined;
   projectStateDetailMode: Array<string> = Object.keys(ProjectStateDetailMode);
