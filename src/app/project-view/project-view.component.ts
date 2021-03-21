@@ -3,13 +3,12 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { HeijunkaBoardService } from '../heijunka-board.service';
 
 @Component({
-  selector: 'app-kanban-card',
-  templateUrl: './kanban-card.component.html',
-  styleUrls: ['./kanban-card.component.less']
+  selector: 'app-project-view',
+  templateUrl: './project-view.component.html',
+  styleUrls: ['./project-view.component.less']
 })
-export class KanbanCardComponent implements OnInit {
+export class ProjectViewComponent implements OnInit {
   @Input() project: string | undefined;
-  @Input() kanbanCard: string | undefined;
 
   constructor(private router: Router, private route: ActivatedRoute, public heijunkaBoardService: HeijunkaBoardService) { }
 
@@ -17,9 +16,6 @@ export class KanbanCardComponent implements OnInit {
     this.route.queryParams.subscribe(params => {
       if (params.project !== undefined) {
         this.project = params.project;
-      }
-      if (params.kanbanCard !== undefined) {
-        this.kanbanCard = params.kanbanCard;
       }
     });
   }

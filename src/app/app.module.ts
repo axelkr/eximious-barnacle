@@ -8,8 +8,8 @@ import { CumulativeFlowChartModule } from './cumulative-flow-chart/cumulative-fl
 import { SetupModule } from './setup/setup.module';
 import { ProjectStateDetailsModule } from './project-state-details/project-state-details.module';
 import { HeijunkaBoardModule } from './heijunka-board/heijunka-board.module';
-import { KanbanCardModule } from './kanban-card/kanban-card.module';
-import { ProjectModule } from './project/project.module';
+import { KanbanCardViewModule } from './kanban-card-view/kanban-card-view.module';
+import { ProjectViewModule } from './project-view/project-view.module';
 
 import { AppComponent } from './app.component';
 import { AppConfig } from './app.config';
@@ -30,7 +30,7 @@ const initializeApp = (appConfig: AppConfig) => () => appConfig.load();
     ProjectStateDetailsModule,
     HeijunkaBoardModule,
     CumulativeFlowChartModule,
-    KanbanCardModule, ProjectModule,
+    KanbanCardViewModule, ProjectViewModule,
     NoopAnimationsModule
   ],
   providers: [AppConfig,

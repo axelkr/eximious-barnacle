@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ProjectComponent } from './project.component';
+import { ProjectViewComponent } from './project-view.component';
 
 
 @NgModule({
-  declarations: [ProjectComponent],
+  declarations: [ProjectViewComponent],
   imports: [
     CommonModule
   ]
 })
-export class ProjectModule { }
+export class ProjectViewModule { }
