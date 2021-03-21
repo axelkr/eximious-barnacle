@@ -8,14 +8,14 @@ import { HeijunkaBoardService } from '../heijunka-board.service';
   styleUrls: ['./project-view.component.less']
 })
 export class ProjectViewComponent implements OnInit {
-  @Input() project: string | undefined;
+  @Input() id: string | undefined;
 
   constructor(private router: Router, private route: ActivatedRoute, public heijunkaBoardService: HeijunkaBoardService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      if (params.project !== undefined) {
-        this.project = params.project;
+      if (params.id !== undefined) {
+        this.id = params.id;
       }
     });
   }

@@ -8,6 +8,7 @@ import { KanbanCardModule } from '../kanban-card/kanban-card.module';
 import { HeijunkaBoardViewComponent } from './heijunka-board-view.component';
 import { ProjectComponent } from './project/project.component';
 import { ProjectStateComponent } from './project-state/project-state.component';
+import { ProjectModule } from '../project/project.module';
 
 @NgModule({
   declarations: [HeijunkaBoardViewComponent,
@@ -19,7 +20,8 @@ import { ProjectStateComponent } from './project-state/project-state.component';
     FormsModule,
     AppRoutingModule,
     CumulativeFlowChartModule,
-    KanbanCardModule
+    KanbanCardModule,
+    ProjectModule
   ],
   exports: [HeijunkaBoardViewComponent]
 })

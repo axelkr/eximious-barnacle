@@ -1,5 +1,5 @@
-<div *ngIf="project" class="project">
-    <div *ngIf="heijunkaBoardService.getProjects().get(project) as projectObject">
-        <p>project works!</p>
+<div *ngIf="id" class="project">
+    <div *ngIf="heijunkaBoardService.getProjects().get(id) as projectObject">
+        <app-project-editable-name [project]="projectObject"></app-project-editable-name>
     </div>
 </div>

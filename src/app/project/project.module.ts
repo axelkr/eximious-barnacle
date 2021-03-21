@@ -7,6 +7,7 @@ import { ProjectEditableNameComponent } from './project-editable-name/project-ed
   declarations: [ProjectEditableNameComponent],
   imports: [
     CommonModule
-  ]
+  ],
+  exports: [ProjectEditableNameComponent]
 })
 export class ProjectModule { }
