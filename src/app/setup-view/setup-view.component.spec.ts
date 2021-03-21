@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { HeijunkaDefinitionComponent } from './heijunka-definition.component';
+import { SetupViewComponent } from './setup-view.component';
 
-describe('HeijunkaDefinitionComponent', () => {
-  let component: HeijunkaDefinitionComponent;
-  let fixture: ComponentFixture<HeijunkaDefinitionComponent>;
+describe('SetupViewComponent', () => {
+  let component: SetupViewComponent;
+  let fixture: ComponentFixture<SetupViewComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ HeijunkaDefinitionComponent ]
+      declarations: [ SetupViewComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(HeijunkaDefinitionComponent);
+    fixture = TestBed.createComponent(SetupViewComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
