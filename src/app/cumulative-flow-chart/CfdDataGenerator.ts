@@ -1,4 +1,4 @@
-import { KanbanCard, State } from 'outstanding-barnacle';
+import { KanbanCard, State, StateModel } from 'outstanding-barnacle';
 
 export type TimeSeriesEntry = { date: Date; value: number };
 export type TimeSeries = TimeSeriesEntry[];
@@ -6,15 +6,17 @@ export type StateTimeSeries = { state: State; entries: TimeSeries };
 
 export class CfdDataGenerator {
     private readonly states: State[];
+    private readonly stateModel: StateModel;
     private startDay!: Date;
     private endDay!: Date;
     private numberDays!: number;
 
-    constructor(states: State[]) {
+    constructor(states: State[], stateModel: StateModel) {
         this.states = states;
+        this.stateModel = stateModel;
     }
 
-    public generateData(kanbanCards: KanbanCard[], dateRange: [Date, Date]): StateTimeSeries[] {
+    public generateData(kanbanCards: KanbanCard[], dateRange: [Date, Date], displayFinalStates: boolean): StateTimeSeries[] {
         this.startDay = this.setTimeToEndOfDay(dateRange[0]);
         this.endDay = this.setTimeToEndOfDay(dateRange[1]);
 
@@ -25,7 +27,7 @@ export class CfdDataGenerator {
             counterPerDayPerState = this.countKanbanCard(aKanbanCard, counterPerDayPerState);
         });
 
-        return this.convertToStateTimeSeries(counterPerDayPerState);
+        return this.convertToStateTimeSeries(counterPerDayPerState, displayFinalStates);
     }
 
     private setTimeToEndOfDay(aDate: Date): Date {
@@ -75,9 +77,13 @@ export class CfdDataGenerator {
         return this.states.indexOf(aState);
     }
 
-    private convertToStateTimeSeries(counterPerDayPerState: number[]): StateTimeSeries[] {
+    private convertToStateTimeSeries(counterPerDayPerState: number[], displayFinalStates: boolean): StateTimeSeries[] {
         const result: StateTimeSeries[] = [];
         this.states.forEach(aState => {
+            const isFinalState = this.stateModel.finalStates().findIndex(a => a.id === aState.id) !== -1;
+            if (!displayFinalStates && isFinalState) {
+                return;
+            }
             const entries: TimeSeries = [];
             const currentDay = new Date(this.startDay.getTime());
             for (let i = 0; i < this.numberDays; i = i + 1) {

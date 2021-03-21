@@ -32,15 +32,16 @@ export class CumulativeFlowChart {
     }
 
     public draw(completeData: StateTimeSeries[]): void {
+        // clear previous data
+        this.svg.selectAll('path')
+            .data([])
+            .join(
+                enter => enter,
+                update => update,
+                exit => exit.remove()
+            );
+
         if (completeData.length === 0) {
-            // clear previous data
-            this.svg.selectAll('path')
-                .data([])
-                .join(
-                    enter => enter,
-                    update => update,
-                    exit => exit.remove()
-                );
             return;
         }
 

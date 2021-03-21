@@ -42,7 +42,7 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
   }
 
   selectedDisplayFinalStates(event: any) {
-    this.displayFinalStates = event.target.value as boolean;
+    this.displayFinalStates = (event.target.value as string) === 'true';
     this.redraw();
   }
 
@@ -57,7 +57,8 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
 
   private redraw(): void {
     const kanbanCardsToChart = this.heijunkaBoardService.getKanbanCards().find({ project: this.project });
-    this.d3Chart.draw(this.dataGenerator.generateData(kanbanCardsToChart, [this.showDataFrom, this.showDataUntil]));
+    this.d3Chart.draw(this.dataGenerator.generateData(kanbanCardsToChart,
+      [this.showDataFrom, this.showDataUntil], this.displayFinalStates));
   }
 
   private reinitializeChart(): void {
@@ -67,7 +68,7 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
 
     const stateModel = this.heijunkaBoardService.getDomainModel().getStateModelOf(this.project);
     const states = this.orderStatesFromFinalToBeginToOther(stateModel);
-    this.dataGenerator = new CfdDataGenerator(states);
+    this.dataGenerator = new CfdDataGenerator(states, stateModel);
     this.d3Chart = new CumulativeFlowChart(stateModel);
 
     this.d3Chart.init(this.chartId);
