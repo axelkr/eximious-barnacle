@@ -13,7 +13,15 @@
                 (dateChange)="onShowDataUntilSelected($event)">
             <mat-datepicker-toggle matSuffix [for]="showDataUntilPicker"></mat-datepicker-toggle>
             <mat-datepicker #showDataUntilPicker startView="month"></mat-datepicker>
-        </mat-form-field>
+        </mat-form-field>.
+
+        <form>
+            <select (change)="selectedDoneStates($event)" [ngModel]="displayDoneStates" name="displayDoneStates">
+                <option value=false>Hide done states</option>
+                <option value=true>Show done states</option>
+            </select>
+        </form>
+
         <div id="{{chartId}}">
         </div>
     </div>

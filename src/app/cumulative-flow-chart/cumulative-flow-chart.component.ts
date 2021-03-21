@@ -15,6 +15,7 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
   @Input() project: Project | undefined;
   showDataFrom: Date;
   showDataUntil: Date;
+  displayDoneStates = false;
 
   private dataGenerator!: CfdDataGenerator;
   private d3Chart!: CumulativeFlowChart;
@@ -34,8 +35,14 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
     this.updateDateRange(event.value, this.showDataUntil);
     this.redraw();
   }
+
   onShowDataUntilSelected(event: any) {
     this.updateDateRange(this.showDataFrom, event.value);
+    this.redraw();
+  }
+
+  selectedDoneStates(event: any) {
+    this.displayDoneStates = event.target.value as boolean;
     this.redraw();
   }
 
