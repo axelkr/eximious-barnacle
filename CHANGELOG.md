@@ -1,3 +1,6 @@
+# next version
+- update to latest angular
+
 # v3.5.0
 - display individual pages for projects and views. Enable user to navigate to them.
 - improve initial load by lazy-loading views
