@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-
+import { ProjectEditableNameComponent } from './project-editable-name/project-editable-name.component';
 
 @NgModule({
-  declarations: [],
+  declarations: [ProjectEditableNameComponent],
   imports: [
     CommonModule
   ]
