@@ -7,7 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { CumulativeFlowChartModule } from './cumulative-flow-chart/cumulative-flow-chart.module';
 import { SetupViewModule } from './setup-view/setup-view.module';
 import { ProjectStateDetailsModule } from './project-state-details/project-state-details.module';
-import { HeijunkaBoardModule } from './heijunka-board/heijunka-board.module';
+import { HeijunkaBoardViewModule } from './heijunka-board-view/heijunka-board-view.module';
 import { KanbanCardModule } from './kanban-card/kanban-card.module';
 import { KanbanCardViewModule } from './kanban-card-view/kanban-card-view.module';
 import { ProjectModule } from './project/project.module';
@@ -30,7 +30,7 @@ const initializeApp = (appConfig: AppConfig) => () => appConfig.load();
     HttpClientModule,
     SetupViewModule,
     ProjectStateDetailsModule,
-    HeijunkaBoardModule,
+    HeijunkaBoardViewModule,
     CumulativeFlowChartModule,
     KanbanCardModule, KanbanCardViewModule,
     ProjectModule, ProjectViewModule,

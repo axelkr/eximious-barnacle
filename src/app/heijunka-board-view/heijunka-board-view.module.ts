@@ -5,12 +5,12 @@ import { AppRoutingModule } from '../app-routing.module';
 import { CumulativeFlowChartModule } from '../cumulative-flow-chart/cumulative-flow-chart.module';
 import { KanbanCardModule } from '../kanban-card/kanban-card.module';
 
-import { HeijunkaBoardComponent } from './heijunka-board.component';
+import { HeijunkaBoardViewComponent } from './heijunka-board-view.component';
 import { ProjectComponent } from './project/project.component';
 import { ProjectStateComponent } from './project-state/project-state.component';
 
 @NgModule({
-  declarations: [HeijunkaBoardComponent,
+  declarations: [HeijunkaBoardViewComponent,
     ProjectComponent,
     ProjectStateComponent
   ],
@@ -21,6 +21,6 @@ import { ProjectStateComponent } from './project-state/project-state.component';
     CumulativeFlowChartModule,
     KanbanCardModule
   ],
-  exports: [HeijunkaBoardComponent]
+  exports: [HeijunkaBoardViewComponent]
 })
-export class HeijunkaBoardModule { }
+export class HeijunkaBoardViewModule { }

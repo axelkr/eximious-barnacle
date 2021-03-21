@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HeijunkaBoardComponent } from './heijunka-board/heijunka-board.component';
+import { HeijunkaBoardViewComponent } from './heijunka-board-view/heijunka-board-view.component';
 import { KanbanCardViewComponent } from './kanban-card-view/kanban-card-view.component';
 import { ProjectViewComponent } from './project-view/project-view.component';
 import { SetupViewComponent } from './setup-view/setup-view.component';
@@ -8,7 +8,7 @@ import { ProjectStateDetailsComponent } from './project-state-details/project-st
 
 const routes: Routes = [
   { path: '', pathMatch: 'prefix', redirectTo: 'heijunka' },
-  { path: 'heijunka', component: HeijunkaBoardComponent },
+  { path: 'heijunka', component: HeijunkaBoardViewComponent },
   { path: 'kanbanCard', component: KanbanCardViewComponent },
   { path: 'project', component: ProjectViewComponent },
   { path: 'setup', component: SetupViewComponent },
