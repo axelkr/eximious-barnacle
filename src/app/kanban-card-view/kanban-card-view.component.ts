@@ -8,18 +8,14 @@ import { HeijunkaBoardService } from '../heijunka-board.service';
   styleUrls: ['./kanban-card-view.component.less']
 })
 export class KanbanCardViewComponent implements OnInit {
-  @Input() project: string | undefined;
-  @Input() kanbanCard: string | undefined;
+  @Input() id: string | undefined;
 
   constructor(private router: Router, private route: ActivatedRoute, public heijunkaBoardService: HeijunkaBoardService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
-      if (params.project !== undefined) {
-        this.project = params.project;
-      }
-      if (params.kanbanCard !== undefined) {
-        this.kanbanCard = params.kanbanCard;
+      if (params.id !== undefined) {
+        this.id = params.id;
       }
     });
   }

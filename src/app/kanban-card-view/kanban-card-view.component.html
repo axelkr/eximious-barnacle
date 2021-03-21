@@ -1,9 +1,5 @@
-<div *ngIf="project">
-    <div *ngIf="heijunkaBoardService.getProjects().get(project) as projectObject">
-        <div *ngIf="kanbanCard">
-            <div *ngIf="heijunkaBoardService.getKanbanCards().get(kanbanCard) as kanbanCardObject">
-                <p>kanban-card works!</p>
-            </div>
-        </div>
+<div *ngIf="id">
+    <div *ngIf="heijunkaBoardService.getKanbanCards().get(id) as kanbanCardObject">
+        <p>kanban-card works!</p>
     </div>
 </div>
