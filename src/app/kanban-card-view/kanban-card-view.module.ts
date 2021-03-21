@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { KanbanCardViewComponent } from './kanban-card-view.component';
+import { KanbanCardModule } from '../kanban-card/kanban-card.module';
 
 
 @NgModule({
@@ -8,7 +9,8 @@ import { KanbanCardViewComponent } from './kanban-card-view.component';
     KanbanCardViewComponent
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    KanbanCardModule
   ]
 })
 export class KanbanCardViewModule { }

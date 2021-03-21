@@ -1,5 +1,7 @@
 <div *ngIf="id">
     <div *ngIf="heijunkaBoardService.getKanbanCards().get(id) as kanbanCardObject">
-        <p>kanban-card works!</p>
+        <h1>
+            <app-kanban-card-editable-name [kanbanCard]="kanbanCardObject"></app-kanban-card-editable-name>
+        </h1>
     </div>
 </div>
