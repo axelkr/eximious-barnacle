@@ -33,16 +33,10 @@
     font-style: normal;
 }
 
-h1 {
-    font-family: 'Rubik';
-    font-weight: 800;
-    font-style: normal;
-}
-
 @other-state-color: rgb(240,240,240);
 @other-state-color-hover: rgb(230,230,230);
 
-.link-object a {
+a {
     text-decoration: none;
     color: black;
 }
@@ -54,4 +48,19 @@ h1 {
 
 .link-object a div:hover {
     background-color: @other-state-color-hover;
+}
+
+.link-title a > div {
+    background-color: @other-state-color;
+    display:inline-block;
+    margin-right:5px;
+}
+
+.link-title a div:hover {
+    background-color: @other-state-color-hover;
+}
+
+.link-title > div {
+    display:inline-block;
+    margin-right:5px;
 }

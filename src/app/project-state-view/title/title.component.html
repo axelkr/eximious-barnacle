@@ -1,0 +1,10 @@
+<div *ngIf="project">
+    <div *ngIf="state">
+        <h1 class='link-title'>
+            <a [routerLink]="['/project/']" [queryParams]="{id:project.id }">
+                <div>{{project.valueOfProperty('name')}}</div>
+            </a>
+            <div> > {{state.name}}</div>
+        </h1>
+    </div>
+</div>
