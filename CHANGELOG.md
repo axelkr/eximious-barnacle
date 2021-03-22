@@ -1,4 +1,4 @@
-# next version
+# 3.6.0
 - update to latest angular
 - user can now toggle between display CFD for final states
 
