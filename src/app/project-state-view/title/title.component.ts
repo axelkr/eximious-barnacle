@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Project, State } from 'outstanding-barnacle';
-import { HeijunkaBoardService } from '../../heijunka-board.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-title',
@@ -10,7 +9,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class TitleComponent implements OnInit {
   @Input() project: Project | undefined;
   @Input() state: State | undefined;
-  constructor(private router: Router, public boardService: HeijunkaBoardService) { }
+
+  constructor(private router: Router) { }
 
   ngOnInit(): void {
   }
