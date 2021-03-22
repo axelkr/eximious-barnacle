@@ -7,11 +7,11 @@ import { ProjectStateKanbanCardsByAgeComponent } from './project-state-kanban-ca
 import { ProjectStateKanbanCardsComponent } from './project-state-kanban-cards/project-state-kanban-cards.component';
 import { KanbanCardModule } from '../kanban-card/kanban-card.module';
 import { ProjectStateViewRoutingModule } from './project-state-view-routing.module';
-import { TitleComponent } from './title/title.component';
+import { ProjectStateViewTitleComponent } from './project-state-view-title/project-state-view-title.component';
 
 @NgModule({
   declarations: [ProjectStateViewComponent,
-    ProjectStateKanbanCardsByAgeComponent, ProjectStateKanbanCardsComponent, TitleComponent],
+    ProjectStateKanbanCardsByAgeComponent, ProjectStateKanbanCardsComponent, ProjectStateViewTitleComponent],
   imports: [
     CommonModule,
     FormsModule,

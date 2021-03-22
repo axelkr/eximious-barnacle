@@ -3,7 +3,8 @@
         <div *ngIf="heijunkaBoardService.getProjects().get(project) as projectObject">
             <div
                 *ngIf="heijunkaBoardService.getDomainModel().getStateModelOf(projectObject).getState(state) as stateObject">
-                <app-title [project]="projectObject" [state]="stateObject"></app-title>
+                <app-project-state-view-title [project]="projectObject" [state]="stateObject">
+                </app-project-state-view-title>
                 <div class="row">
                     <div class="column left">
                         <label>Predecessors</label><br />
