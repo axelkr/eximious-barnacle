@@ -3,8 +3,7 @@ import { HeijunkaBoardService } from '../../heijunka-board.service';
 
 @Component({
   selector: 'app-topic-create',
-  templateUrl: './topic-create.component.html',
-  styleUrls: ['./topic-create.component.less']
+  templateUrl: './topic-create.component.html'
 })
 export class TopicCreateComponent implements OnInit {
   model: { name: string } = { name: '' };

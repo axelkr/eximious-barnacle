@@ -4,8 +4,7 @@ import { State, StateModel } from 'outstanding-barnacle';
 
 @Component({
   selector: 'app-state-models',
-  templateUrl: './state-models.component.html',
-  styleUrls: ['./state-models.component.less']
+  templateUrl: './state-models.component.html'
 })
 export class StateModelsComponent implements OnInit {
   private readonly personalKanbanStateModelId = 'Personal Kanban';

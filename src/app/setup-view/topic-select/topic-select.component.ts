@@ -4,8 +4,7 @@ import { HeijunkaBoardService } from '../../heijunka-board.service';
 
 @Component({
   selector: 'app-topic-select',
-  templateUrl: './topic-select.component.html',
-  styleUrls: ['./topic-select.component.less']
+  templateUrl: './topic-select.component.html'
 })
 export class TopicSelectComponent implements OnInit {
   topic: Topic | undefined;
