@@ -1,3 +1,6 @@
+# 3.7.0
+- navigate more fluently between kanban cards, states, projects along the hierarchy
+
 # 3.6.0
 - update to latest angular
 - user can now toggle between display CFD for final states
