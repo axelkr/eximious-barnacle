@@ -1,11 +1,10 @@
 /* eslint-disable max-len */
 import * as d3 from 'd3';
-import { State, StateModel } from 'outstanding-barnacle';
 
 import { BoxModel } from './BoxModel';
 import { StateTimeSeries } from './CfdDataGenerator';
 import { StackingService } from './StackingService';
-import { StateToColor } from '../state-model/colorize.service';
+import { StateToColor } from '../state-model/colorize-state-model.service';
 
 export class CumulativeFlowChart {
     private readonly chartBox = new BoxModel(200 * 1.618, 200, 30, 20);
