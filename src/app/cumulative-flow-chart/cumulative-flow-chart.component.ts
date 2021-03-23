@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, Input } from '@angular/core';
 import { Project, StateModel, State, LinearizeStateModelService } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../heijunka-board.service';
+import { ColorizeService } from '../state-model/colorize.service';
 
 import { CfdDataGenerator } from './CfdDataGenerator';
 import { CumulativeFlowChart } from './CumulativeFlowChart';
@@ -20,7 +21,7 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
   private dataGenerator!: CfdDataGenerator;
   private d3Chart!: CumulativeFlowChart;
 
-  constructor(private heijunkaBoardService: HeijunkaBoardService) {
+  constructor(private heijunkaBoardService: HeijunkaBoardService, private colorizeService: ColorizeService) {
     const now = new Date();
     this.showDataFrom = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     this.showDataUntil = new Date(this.showDataFrom.getTime());
@@ -67,9 +68,10 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
     }
 
     const stateModel = this.heijunkaBoardService.getDomainModel().getStateModelOf(this.project);
+    const mappingToColors = this.colorizeService.createColors(stateModel);
     const states = this.orderStatesFromFinalToBeginToOther(stateModel);
     this.dataGenerator = new CfdDataGenerator(states, stateModel);
-    this.d3Chart = new CumulativeFlowChart(stateModel);
+    this.d3Chart = new CumulativeFlowChart(mappingToColors);
 
     this.d3Chart.init(this.chartId);
     this.redraw();

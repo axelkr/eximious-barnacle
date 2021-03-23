@@ -5,17 +5,17 @@ import { State, StateModel } from 'outstanding-barnacle';
 import { BoxModel } from './BoxModel';
 import { StateTimeSeries } from './CfdDataGenerator';
 import { StackingService } from './StackingService';
-import { ColorModel } from './ColorModel';
+import { StateToColor } from '../state-model/colorize.service';
 
 export class CumulativeFlowChart {
     private readonly chartBox = new BoxModel(200 * 1.618, 200, 30, 20);
-    private readonly colorsPerState: Map<State, string>;
+    private readonly colorsPerState: StateToColor;
     private svg!: d3.Selection<SVGGElement, unknown, HTMLElement, any>;
     private xAxis!: d3.Selection<SVGGElement, unknown, HTMLElement, any>;
     private yAxis!: d3.Selection<SVGGElement, unknown, HTMLElement, any>;
 
-    constructor(stateModel: StateModel) {
-        this.colorsPerState = new ColorModel().createColors(stateModel);
+    constructor(colorsPerState: StateToColor) {
+        this.colorsPerState = colorsPerState;
     }
 
     public init(id: string) {
