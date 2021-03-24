@@ -32,10 +32,6 @@ export class HeijunkaBoardService implements OnDestroy {
     this.disconnectFromBackend();
   }
 
-  public getStateModels(): StateModelCollection {
-    return this.domainModel.stateModels;
-  }
-
   public getDomainModel(): RootAggregate {
     return this.domainModel;
   }

@@ -9,4 +9,12 @@ import { HeijunkaBoardService } from '../domain-services/heijunka-board.service'
 export class StateModelService {
 
   constructor(private modelBoardService: HeijunkaBoardService) { }
+
+  public availableStateModels(): StateModel[] {
+    return this.modelBoardService.getDomainModel().stateModels.getStateModels();
+  }
+
+  public has(id: string): boolean {
+    return this.modelBoardService.getDomainModel().stateModels.has(id);
+  }
 }

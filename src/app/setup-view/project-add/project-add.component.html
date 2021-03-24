@@ -7,7 +7,7 @@
 
     <select [(ngModel)]="model.stateModel" name="stateModel" id="stateModel" required>
       <option [ngValue]="undefined" ng-selected="selected">select state model</option>
-      <option *ngFor="let stateModel of modelBoardService.getStateModels().getStateModels()" [ngValue]="stateModel">
+      <option *ngFor="let stateModel of stateModelService.availableStateModels()" [ngValue]="stateModel">
         {{stateModel.name}}</option>
     </select>
 

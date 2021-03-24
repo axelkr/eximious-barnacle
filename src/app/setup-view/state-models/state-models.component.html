@@ -1,7 +1,7 @@
 <div *ngIf="modelBoardService.getDomainModel()">
     <label>Available state models:</label>
     <ul>
-        <li *ngFor="let stateModel of modelBoardService.getStateModels().getStateModels()">
+        <li *ngFor="let stateModel of stateModelService.availableStateModels()">
             <label>{{stateModel.name}}</label>
         </li>
     </ul>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HeijunkaBoardService } from '../../domain-services/heijunka-board.service';
 import { State, StateModel } from 'outstanding-barnacle';
+import { StateModelService } from '../../domain-services/state-model.service';
 
 @Component({
   selector: 'app-state-models',
@@ -10,18 +11,18 @@ export class StateModelsComponent implements OnInit {
   private readonly personalKanbanStateModelId = 'Personal Kanban';
   private readonly projectManagerKanbanStateModelId = 'Project Manager Kanban';
 
-  constructor(public modelBoardService: HeijunkaBoardService) {
+  constructor(public modelBoardService: HeijunkaBoardService, public stateModelService: StateModelService) {
   }
 
   ngOnInit(): void {
   }
 
   public personalKanbanPartOfStateModels(): boolean {
-    return this.modelBoardService.getStateModels().has(this.personalKanbanStateModelId);
+    return this.stateModelService.has(this.personalKanbanStateModelId);
   }
 
   public projectManagerKanbanPartOfStateModels(): boolean {
-    return this.modelBoardService.getStateModels().has(this.projectManagerKanbanStateModelId);
+    return this.stateModelService.has(this.projectManagerKanbanStateModelId);
   }
 
   public addPersonalKanban() {
