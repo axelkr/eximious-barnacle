@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { ObjectEvent, Topic } from 'choicest-barnacle';
-import { HeijunkaBoard, ObjectEventCommandProcessor, UUIDGenerator } from 'outstanding-barnacle';
+import { HeijunkaBoard, ObjectEventCommandProcessor } from 'outstanding-barnacle';
 
 import { ObjectStoreBackendService } from '../backend/object-store-backend.service';
 
@@ -10,15 +10,12 @@ import { ObjectStoreBackendService } from '../backend/object-store-backend.servi
   providedIn: 'root'
 })
 export class HeijunkaBoardService implements OnDestroy {
-  private topic!: Topic;
-  private topics: Topic[] = [];
+  private current!: Topic;
   private commandProcessor!: ObjectEventCommandProcessor;
   private newObjectEvents!: Subscription;
-  private newTopicEvents!: Subscription;
 
   constructor(private backend: ObjectStoreBackendService) {
     this.connectWithBackend();
-    this.backend.queryAllTopics();
   }
 
   ngOnDestroy() {
@@ -29,16 +26,8 @@ export class HeijunkaBoardService implements OnDestroy {
     return this.commandProcessor.getHeijunkaBoard();
   }
 
-  public currentTopic2(): Topic {
-    return this.topic;
-  }
-
-  public availableTopics2(): Topic[] {
-    return this.topics;
-  }
-
   public processObjectEvent(objectEvent: ObjectEvent): void {
-    const objectEventForCurrentTopic = (objectEvent.topic === this.topic.id);
+    const objectEventForCurrentTopic = (objectEvent.topic === this.current.id);
     if (!objectEventForCurrentTopic) {
       return;
     }
@@ -52,22 +41,9 @@ export class HeijunkaBoardService implements OnDestroy {
     });
   }
 
-  public switchToTopic2(topic: Topic): void {
-    const switchToCurrentTopic = (topic === this.topic);
-    if (switchToCurrentTopic) {
-      return;
-    }
-
+  public switchToTopic(topic: Topic): void {
     this.commandProcessor = new ObjectEventCommandProcessor();
-    this.topic = topic;
-    this.backend.switchToTopic(this.topic);
-  }
-
-  public createTopic2(name: string): void {
-    const newTopicId = UUIDGenerator.createUUID();
-    const newTopic = new Topic(newTopicId, name);
-    this.backend.storeTopic(newTopic);
-    this.topics.push(newTopic);
+    this.current = topic;
   }
 
   private updateModelWithObjectEvent(objectEvent: ObjectEvent): void {
@@ -78,16 +54,9 @@ export class HeijunkaBoardService implements OnDestroy {
     this.newObjectEvents = this.backend.getNewObjectEvents().subscribe(objectEvent => {
       this.updateModelWithObjectEvent(objectEvent);
     });
-    this.newTopicEvents = this.backend.getNewTopics().subscribe(topic => {
-      this.topics.push(topic);
-      if (this.topic === undefined) {
-        this.switchToTopic2(topic);
-      }
-    });
   }
 
   private disconnectFromBackend(): void {
     this.newObjectEvents.unsubscribe();
-    this.newTopicEvents.unsubscribe();
   }
 }
