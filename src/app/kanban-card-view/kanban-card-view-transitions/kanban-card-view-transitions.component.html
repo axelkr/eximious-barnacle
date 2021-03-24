@@ -1,10 +1,20 @@
 <div *ngIf="kanbanCard">
     <div *ngIf="state">
+        <div *ngIf="transition === transitionType.completed; else kanbanCardInProgress">
+            <!--button type="submit" class="btn btn-success" (click)="pull()">Pull</button-->
+            <ul>
+                <li>(x|completed) => (move to successors as in-progress)</li>
+            </ul>
+        </div>
+        <ng-template #kanbanCardInProgress>
+            <div *ngIf="transition">
+                <button type="submit" class="btn btn-success"
+                    (click)="kanbanCardService.markAsCompleted(kanbanCard)">Mark as
+                    completed</button>
+            </div>
+        </ng-template>
+
         <button type="submit" class="btn btn-success"
             (click)="kanbanCardService.moveToTrash(kanbanCard)">Delete</button>
-        <ul>
-            <li>(x|in progress) => (mark as completed)</li>
-            <li>(x|completed) => (move to successors as in-progress)</li>
-        </ul>
     </div>
 </div>
