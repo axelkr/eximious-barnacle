@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
+import { ProjectService } from '../domain-services/project.service';
 
 @Component({
   selector: 'app-project-state-view',
@@ -11,7 +12,8 @@ export class ProjectStateViewComponent implements OnInit {
   @Input() project: string | undefined;
   @Input() state: string | undefined;
 
-  constructor(private router: Router, private route: ActivatedRoute, public heijunkaBoardService: HeijunkaBoardService) {
+  constructor(private route: ActivatedRoute, public heijunkaBoardService: HeijunkaBoardService,
+    public projectService: ProjectService) {
   }
 
   ngOnInit(): void {

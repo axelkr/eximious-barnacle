@@ -1,9 +1,8 @@
 <div *ngIf="kanbanCard">
     <div *ngIf="state">
         <div *ngIf="transition === transitionType.completed; else kanbanCardInProgress">
-            <div *ngIf="boardService.getProjects().get(kanbanCard.project) as projectObject">
-                <div
-                    *ngFor="let successorState of boardService.getDomainModel().getStateModelOf(projectObject).successors(state)">
+            <div *ngIf="projectService.get(kanbanCard.project) as projectObject">
+                <div *ngFor="let successorState of projectService.getStateModel(projectObject).successors(state)">
                     <button type="submit" class="btn btn-success" (click)="pull(successorState)">Pull to
                         {{successorState.name}}</button>
                 </div>

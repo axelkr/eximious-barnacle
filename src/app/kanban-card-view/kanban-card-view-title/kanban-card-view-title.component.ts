@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { KanbanCard, State } from 'outstanding-barnacle';
-import { HeijunkaBoardService } from '../../domain-services/heijunka-board.service';
+import { ProjectService } from '../../domain-services/project.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,7 +11,7 @@ export class KanbanCardViewTitleComponent implements OnInit {
   @Input() kanbanCard: KanbanCard | undefined;
   @Input() state: State | undefined;
 
-  constructor(private router: Router, public boardService: HeijunkaBoardService) { }
+  constructor(private router: Router, public projectService: ProjectService) { }
 
   ngOnInit(): void {
   }

@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { KanbanCard, State, TransitionType } from 'outstanding-barnacle';
+import { ProjectService } from '../../domain-services/project.service';
 import { HeijunkaBoardService } from '../../domain-services/heijunka-board.service';
 import { KanbanCardService } from '../../domain-services/kanban-card.service';
 
@@ -13,7 +14,8 @@ export class KanbanCardViewTransitionsComponent implements OnInit {
   transitionType = TransitionType;
   transition: TransitionType | undefined;
 
-  constructor(public boardService: HeijunkaBoardService, public kanbanCardService: KanbanCardService) { }
+  constructor(public kanbanCardService: KanbanCardService,
+    public projectService: ProjectService) { }
 
   ngOnInit(): void {
     this.readTransitionTypeOfKanbanCard();

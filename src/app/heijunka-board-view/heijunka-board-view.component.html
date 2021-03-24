@@ -15,7 +15,7 @@
 
     <ng-template #projectsAvailable>
         <div class="row">
-            <div class="column" *ngFor="let project of projectService.availableProjects())"
+            <div class="column" *ngFor="let project of projectService.availableProjects()"
                 style="list-style-type: none;">
                 <app-project [project]="project"></app-project>
             </div>

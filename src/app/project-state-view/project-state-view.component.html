@@ -1,6 +1,6 @@
 <div *ngIf="project" class="project">
     <div *ngIf="state" class="project">
-        <div *ngIf="heijunkaBoardService.getProjects().get(project) as projectObject">
+        <div *ngIf="projectService.get(project) as projectObject">
             <div
                 *ngIf="heijunkaBoardService.getDomainModel().getStateModelOf(projectObject).getState(state) as stateObject">
                 <app-project-state-view-title [project]="projectObject" [state]="stateObject">

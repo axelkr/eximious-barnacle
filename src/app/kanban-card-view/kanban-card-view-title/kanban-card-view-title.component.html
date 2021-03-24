@@ -2,11 +2,11 @@
     <div *ngIf="state">
         <h1 class='link-title'>
             <a [routerLink]="['/project/']" [queryParams]="{id:kanbanCard.project}">
-                <div>{{boardService.getProjects().get(kanbanCard.project).valueOfProperty('name')}}</div>
+                <div>{{projectService.get(kanbanCard.project).valueOfProperty('name')}}</div>
             </a>
             <div> > </div>
             <a [routerLink]="['/project-state/']"
-                [queryParams]="{project:boardService.getProjects().get(kanbanCard.project).id, state: state.id }">
+                [queryParams]="{project:projectService.get(kanbanCard.project).id, state: state.id }">
                 <div>
                     {{state.name}}
                 </div>

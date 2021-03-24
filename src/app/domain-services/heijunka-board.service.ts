@@ -5,7 +5,7 @@ import { ObjectEvent, Topic } from 'choicest-barnacle';
 import {
   RootAggregate, ObjectEventFactory, ObjectEventCommandProcessor,
   ProjectEventFactory, KanbanCardEventFactory, UUIDGenerator,
-  KanbanCardCollection, ProjectCollection, ContextCollection, StateModelCollection
+  StateModelCollection
 } from 'outstanding-barnacle';
 
 import { ObjectStoreBackendService } from '../backend/object-store-backend.service';
@@ -32,10 +32,6 @@ export class HeijunkaBoardService implements OnDestroy {
 
   ngOnDestroy() {
     this.disconnectFromBackend();
-  }
-
-  public getProjects(): ProjectCollection {
-    return this.domainModel.projects;
   }
 
   public getStateModels(): StateModelCollection {
