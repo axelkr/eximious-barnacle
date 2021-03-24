@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { ContextEventFactory } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
+import { TopicService } from './topic.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +10,10 @@ import { HeijunkaBoardService } from '../domain-services/heijunka-board.service'
 export class ContextService {
   private readonly eventFactory = new ContextEventFactory();
 
-  constructor(private modelBoardService: HeijunkaBoardService) { }
+  constructor(private modelBoardService: HeijunkaBoardService, private topicService: TopicService) { }
 
   public create(name: string) {
-    const createContextEvent = this.eventFactory.create(this.modelBoardService.currentTopic(), name);
+    const createContextEvent = this.eventFactory.create(this.topicService.current(), name);
     this.modelBoardService.processObjectEvent(createContextEvent);
   }
 }
