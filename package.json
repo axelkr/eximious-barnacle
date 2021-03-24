@@ -6,7 +6,7 @@
     "ng": "ng",
     "serve": "ng serve",
     "build": "ng build --base-href ./",
-    "buildProduction": "ng build --base-href ./ --prod ",
+    "buildProduction": "ng build --base-href ./ --configuration production",
     "test": "ng test --browsers=Firefox",
     "testCLI": "ng test --no-watch --no-progress --browsers=FirefoxHeadlessCI --reporters=junit",
     "lint": "ng lint"
