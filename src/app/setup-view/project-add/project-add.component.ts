@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { HeijunkaBoardService } from '../../domain-services/heijunka-board.service';
 import { StateModel } from 'outstanding-barnacle';
+import { ProjectService } from '../../domain-services/project.service';
 
 @Component({
   selector: 'app-project-add',
@@ -10,7 +11,7 @@ import { StateModel } from 'outstanding-barnacle';
 export class ProjectAddComponent implements OnInit {
   model: { name: string; stateModel: StateModel | undefined } = { name: '', stateModel: undefined };
 
-  constructor(public modelBoardService: HeijunkaBoardService) {
+  constructor(public modelBoardService: HeijunkaBoardService, private projectService: ProjectService) {
   }
 
   ngOnInit(): void {
@@ -18,11 +19,9 @@ export class ProjectAddComponent implements OnInit {
 
   addProject(): void {
     const isDoubleSubmit = (this.model.name === null || this.model.name.length === 0);
-    if (isDoubleSubmit) {
+    if (isDoubleSubmit || this.model.stateModel === undefined) {
       return;
     }
-    const createdProjectEvents = this.modelBoardService.projectEventFactory.create(this.modelBoardService.currentTopic(),
-      this.model.name, this.model.stateModel as StateModel);
-    this.modelBoardService.processObjectEvents(createdProjectEvents);
+    this.projectService.create(this.model.name, this.model.stateModel);
   }
 }

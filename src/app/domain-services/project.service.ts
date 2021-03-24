@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Project, StateModel } from 'outstanding-barnacle';
+import { Project, StateModel, ProjectEventFactory } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
 
 
@@ -8,6 +8,7 @@ import { HeijunkaBoardService } from '../domain-services/heijunka-board.service'
   providedIn: 'root'
 })
 export class ProjectService {
+  private readonly projectEventFactory = new ProjectEventFactory();
 
   constructor(private modelBoardService: HeijunkaBoardService) { }
 
@@ -26,6 +27,15 @@ export class ProjectService {
     } else {
       return this.modelBoardService.getDomainModel().getStateModelOf(id);
     }
+  }
+
+  public create(name: string, stateModel: StateModel) {
+    const createdProjectEvents = this.projectEventFactory.create(this.modelBoardService.currentTopic(), name, stateModel);
+    this.modelBoardService.processObjectEvents(createdProjectEvents);
+  }
+
+  public renameTo(project: Project, newName: string) {
+
   }
 }
 

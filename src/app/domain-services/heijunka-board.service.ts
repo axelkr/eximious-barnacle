@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs';
 import { ObjectEvent, Topic } from 'choicest-barnacle';
 import {
   RootAggregate, ObjectEventFactory, ObjectEventCommandProcessor,
-  ProjectEventFactory, KanbanCardEventFactory, UUIDGenerator,
+  UUIDGenerator,
   StateModelCollection
 } from 'outstanding-barnacle';
 
@@ -15,8 +15,6 @@ import { ObjectStoreBackendService } from '../backend/object-store-backend.servi
 })
 export class HeijunkaBoardService implements OnDestroy {
   readonly eventFactory = new ObjectEventFactory();
-  readonly projectEventFactory = new ProjectEventFactory();
-  readonly kanbanCardEventFactory = new KanbanCardEventFactory();
 
   private topic!: Topic;
   private topics: Topic[] = [];

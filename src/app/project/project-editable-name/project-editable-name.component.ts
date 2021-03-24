@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { Project, ProjectProperties } from 'outstanding-barnacle';
-import { HeijunkaBoardService } from '../../domain-services/heijunka-board.service';
+import { Project } from 'outstanding-barnacle';
+import { ProjectService } from '../../domain-services/project.service';
 
 @Component({
   selector: 'app-project-editable-name',
@@ -11,13 +11,16 @@ export class ProjectEditableNameComponent implements OnInit {
   @Input() project: Project | undefined;
   renameMode = false;
 
-  constructor(private modelBoardService: HeijunkaBoardService) { }
+  constructor(private projectService: ProjectService) { }
 
   ngOnInit(): void {
   }
 
   commitRename(event: any): void {
-    this.renameTo(event.target.value);
+    if (this.project === undefined) {
+      return;
+    }
+    this.projectService.renameTo(this.project, event.target.value);
     this.renameMode = false;
   }
 
@@ -27,14 +30,5 @@ export class ProjectEditableNameComponent implements OnInit {
 
   activateRenameMode(): void {
     this.renameMode = true;
-  }
-
-  private renameTo(newName: string): void {
-    if (this.project === undefined) {
-      return;
-    }
-    const renameProjectEvent = this.modelBoardService.projectEventFactory.
-      updateProperty(this.modelBoardService.currentTopic(), this.project, ProjectProperties.NAME, newName);
-    this.modelBoardService.processObjectEvent(renameProjectEvent);
   }
 }
