@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, Input } from '@angular/core';
 import { Project, StateModel, State, LinearizeStateModelService } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../heijunka-board.service';
+import { KanbanCardService } from '../kanban-card/kanban-card.service';
 import { ColorizeStateModelService } from '../state-model/colorize-state-model.service';
 
 import { CfdDataGenerator } from './CfdDataGenerator';
@@ -21,7 +22,8 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
   private dataGenerator!: CfdDataGenerator;
   private d3Chart!: CumulativeFlowChart;
 
-  constructor(private heijunkaBoardService: HeijunkaBoardService, private colorizeStateModelService: ColorizeStateModelService) {
+  constructor(private heijunkaBoardService: HeijunkaBoardService, private colorizeStateModelService: ColorizeStateModelService,
+    private kanbanCardService: KanbanCardService) {
     const now = new Date();
     this.showDataFrom = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     this.showDataUntil = new Date(this.showDataFrom.getTime());
@@ -57,7 +59,10 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
   }
 
   private redraw(): void {
-    const kanbanCardsToChart = this.heijunkaBoardService.getKanbanCards().find({ project: this.project });
+    if (this.project === undefined) {
+      return;
+    }
+    const kanbanCardsToChart = this.kanbanCardService.projectsKanbanCard(this.project);
     this.d3Chart.draw(this.dataGenerator.generateData(kanbanCardsToChart,
       [this.showDataFrom, this.showDataUntil], this.displayFinalStates));
   }

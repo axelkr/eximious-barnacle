@@ -46,4 +46,8 @@ export class KanbanCardService {
       aKanbanCard, currentState);
     this.modelBoardService.processObjectEvent(moveToCompleteState);
   }
+
+  public projectsKanbanCard(aProject: Project): KanbanCard[] {
+    return this.modelBoardService.getDomainModel().kanbanCards.find({ project: aProject });
+  }
 }
