@@ -4,8 +4,7 @@ import { KanbanCardService } from '../../domain-services/kanban-card.service';
 
 @Component({
   selector: 'app-kanban-card-create',
-  templateUrl: './kanban-card-create.component.html',
-  styleUrls: ['./kanban-card-create.component.less']
+  templateUrl: './kanban-card-create.component.html'
 })
 export class KanbanCardCreateComponent implements OnInit {
   @Input() project: Project | undefined;

@@ -4,8 +4,7 @@ import { ProjectService } from '../../domain-services/project.service';
 
 @Component({
   selector: 'app-project-state-model',
-  templateUrl: './project-state-model.component.html',
-  styleUrls: ['./project-state-model.component.less']
+  templateUrl: './project-state-model.component.html'
 })
 export class ProjectStateModelComponent implements OnInit {
   @Input() project: Project | undefined;
