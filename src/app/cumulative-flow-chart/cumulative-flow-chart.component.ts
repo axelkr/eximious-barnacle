@@ -72,7 +72,7 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
       return;
     }
 
-    const stateModel = this.heijunkaBoardService.getDomainModel().getStateModelOf(this.project);
+    const stateModel = this.heijunkaBoardService.getDomainModel().stateModels.get(this.project.id);
     const mappingToColors = this.colorizeStateModelService.createColors(stateModel);
     const states = this.orderStatesFromFinalToBeginToOther(stateModel);
     this.dataGenerator = new CfdDataGenerator(states, stateModel);

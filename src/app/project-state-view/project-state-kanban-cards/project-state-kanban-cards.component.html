@@ -24,7 +24,7 @@
             <br />
             <br />
             <div class='pull'>
-                <div *ngFor="let predecessorState of heijunkaBoardService.getDomainModel().getStateModelOf(project).predecessors(state)"
+                <div *ngFor="let predecessorState of projectService.getStateModel(project).predecessors(state)"
                     style="list-style-type: none;">
                     Pull card from {{predecessorState.name}}:
                     <div

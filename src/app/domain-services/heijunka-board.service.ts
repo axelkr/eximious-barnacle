@@ -2,7 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { ObjectEvent, Topic } from 'choicest-barnacle';
-import { RootAggregate, ObjectEventCommandProcessor, UUIDGenerator } from 'outstanding-barnacle';
+import { HeijunkaBoard, ObjectEventCommandProcessor, UUIDGenerator, Project, StateModel } from 'outstanding-barnacle';
 
 import { ObjectStoreBackendService } from '../backend/object-store-backend.service';
 
@@ -13,7 +13,6 @@ export class HeijunkaBoardService implements OnDestroy {
   private topic!: Topic;
   private topics: Topic[] = [];
   private commandProcessor!: ObjectEventCommandProcessor;
-  private domainModel!: RootAggregate;
   private newObjectEvents!: Subscription;
   private newTopicEvents!: Subscription;
 
@@ -26,8 +25,8 @@ export class HeijunkaBoardService implements OnDestroy {
     this.disconnectFromBackend();
   }
 
-  public getDomainModel(): RootAggregate {
-    return this.domainModel;
+  public getDomainModel(): HeijunkaBoard {
+    return this.commandProcessor.getHeijunkaBoard();
   }
 
   public currentTopic(): Topic {
@@ -60,7 +59,6 @@ export class HeijunkaBoardService implements OnDestroy {
     }
 
     this.commandProcessor = new ObjectEventCommandProcessor();
-    this.domainModel = this.commandProcessor.getRootAggregate();
     this.topic = topic;
     this.backend.switchToTopic(this.topic);
   }
@@ -74,7 +72,6 @@ export class HeijunkaBoardService implements OnDestroy {
 
   private updateModelWithObjectEvent(objectEvent: ObjectEvent): void {
     this.commandProcessor.process(objectEvent);
-    this.domainModel = this.commandProcessor.getRootAggregate();
   }
 
   private connectWithBackend(): void {

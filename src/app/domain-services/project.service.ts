@@ -1,8 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Project, StateModel, ProjectEventFactory } from 'outstanding-barnacle';
+import { Project, StateModel, ProjectEventFactory, ProjectProperties } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
-
 
 @Injectable({
   providedIn: 'root'
@@ -21,12 +20,13 @@ export class ProjectService {
   }
 
   public getStateModel(id: string | Project): StateModel {
+    let project: Project;
     if (typeof id === 'string') {
-      const project = this.modelBoardService.getDomainModel().projects.get(id);
-      return this.modelBoardService.getDomainModel().getStateModelOf(project);
+      project = this.modelBoardService.getDomainModel().projects.get(id);
     } else {
-      return this.modelBoardService.getDomainModel().getStateModelOf(id);
+      project = id;
     }
+    return this.modelBoardService.getDomainModel().stateModels.get(project.stateModelId);
   }
 
   public create(name: string, stateModel: StateModel) {
@@ -35,6 +35,9 @@ export class ProjectService {
   }
 
   public renameTo(project: Project, newName: string) {
+    const renameProjectEvent = this.projectEventFactory.updateProperty(this.modelBoardService.currentTopic(),
+      project, ProjectProperties.NAME, newName);
+    this.modelBoardService.processObjectEvent(renameProjectEvent);
 
   }
 }

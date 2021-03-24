@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { HeijunkaBoardService } from '../../domain-services/heijunka-board.service';
+import { ProjectService } from '../../domain-services/project.service';
 import { Project, State, TransitionType } from 'outstanding-barnacle';
 import { KanbanCardService } from '../../domain-services/kanban-card.service';
 
@@ -15,7 +15,7 @@ export class ProjectStateOverviewComponent implements OnInit {
   @Input() state: State | undefined;
   transitionType = TransitionType;
 
-  constructor(private router: Router, public heijunkaBoardService: HeijunkaBoardService, public kanbanCardService: KanbanCardService) { }
+  constructor(private router: Router, public projectService: ProjectService, public kanbanCardService: KanbanCardService) { }
 
   ngOnInit(): void {
   }

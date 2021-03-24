@@ -42,7 +42,7 @@ export class KanbanCardService {
 
     const project = this.modelBoardService.getDomainModel().projects.get(aKanbanCard.project);
 
-    const currentState = this.modelBoardService.getDomainModel().getStateModelOf(project).getState(currentStateTransition.state);
+    const currentState = this.modelBoardService.getDomainModel().stateModels.get(project.id).getState(currentStateTransition.state);
     const moveToCompleteState = this.kanbanCardEventFactory.moveToComplete(this.modelBoardService.currentTopic(),
       aKanbanCard, currentState);
     this.modelBoardService.processObjectEvent(moveToCompleteState);
@@ -53,7 +53,7 @@ export class KanbanCardService {
   }
 
   public create(name: string, aProject: Project) {
-    const stateModel = this.modelBoardService.getDomainModel().getStateModelOf(aProject);
+    const stateModel = this.modelBoardService.getDomainModel().stateModels.get(aProject.id);
     const createKanbanCardEvents = this.kanbanCardEventFactory.create(this.modelBoardService.currentTopic(),
       name, aProject, stateModel);
     this.modelBoardService.processObjectEvents(createKanbanCardEvents);

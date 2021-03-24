@@ -1,5 +1,6 @@
 # 3.7.1
 - navigate within a kanban card
+- update to latest
 
 # 3.7.0
 - navigate more fluently between kanban cards, states, projects along the hierarchy

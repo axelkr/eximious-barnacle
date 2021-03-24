@@ -1,18 +1,18 @@
 import { Injectable } from '@angular/core';
 
-import { StateModel, ObjectEventFactory } from 'outstanding-barnacle';
+import { StateModel, StateModelEventFactory } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StateModelService {
-  private readonly eventFactory = new ObjectEventFactory();
+  private readonly eventFactory = new StateModelEventFactory();
 
   constructor(private modelBoardService: HeijunkaBoardService) { }
 
   public create(stateModel: StateModel) {
-    const createStateModelEvent = this.eventFactory.createStateModel(this.modelBoardService.currentTopic(), stateModel);
+    const createStateModelEvent = this.eventFactory.create(this.modelBoardService.currentTopic(), stateModel);
     this.modelBoardService.processObjectEvent(createStateModelEvent);
   }
 

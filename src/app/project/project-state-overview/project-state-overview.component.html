@@ -5,10 +5,10 @@
                 <div>{{state.name}}</div>
                 <div class='projectStateInProgress'>
                     <label
-                        *ngIf="0 < heijunkaBoardService.getDomainModel().getStateModelOf(project).predecessors(state).length; else noPredecessorBlock">
+                        *ngIf="0 < projectService.getStateModel(project).predecessors(state).length; else noPredecessorBlock">
                         {{kanbanCardService.find({project:project,states:[state],transitionType:transitionType.inProgress}).length}}
                         (
-                        {{kanbanCardService.find({project:project,states:heijunkaBoardService.getDomainModel().getStateModelOf(project).predecessors(state),transitionType:transitionType.completed}).length}}
+                        {{kanbanCardService.find({project:project,states:projectService.getStateModel(project).predecessors(state),transitionType:transitionType.completed}).length}}
                         )
                     </label>
                     <ng-template #noPredecessorBlock>
