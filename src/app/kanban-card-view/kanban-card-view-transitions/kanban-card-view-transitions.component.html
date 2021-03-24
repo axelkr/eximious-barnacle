@@ -1,8 +1,11 @@
 <div *ngIf="kanbanCard">
-    <button type="submit" class="btn btn-success" (click)="kanbanCardService.moveToTrash(kanbanCard)">Delete</button>
-    <ul>
-        <li>(x|in progress) => (mark as completed)</li>
-        <li>(x|completed) => (move to successors as in-progress)</li>
-        <Li>find state in view already</Li>
-    </ul>
+    <div *ngIf="state">
+        <button type="submit" class="btn btn-success"
+            (click)="kanbanCardService.moveToTrash(kanbanCard)">Delete</button>
+        <ul>
+            <li>(x|in progress) => (mark as completed)</li>
+            <li>(x|completed) => (move to successors as in-progress)</li>
+            <Li>find state in view already</Li>
+        </ul>
+    </div>
 </div>

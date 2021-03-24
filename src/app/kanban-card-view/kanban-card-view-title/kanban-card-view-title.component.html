@@ -1,15 +1,14 @@
 <div *ngIf="kanbanCard">
-    <div *ngIf="kanbanCard?.history?.currentStateTransition()?.state as stateId">
+    <div *ngIf="state">
         <h1 class='link-title'>
             <a [routerLink]="['/project/']" [queryParams]="{id:kanbanCard.project}">
                 <div>{{boardService.getProjects().get(kanbanCard.project).valueOfProperty('name')}}</div>
             </a>
             <div> > </div>
             <a [routerLink]="['/project-state/']"
-                [queryParams]="{project:boardService.getProjects().get(kanbanCard.project).id, state: 
-                boardService.getDomainModel().getStateModelOf(boardService.getProjects().get(kanbanCard.project)).getState(stateId)?.id }">
+                [queryParams]="{project:boardService.getProjects().get(kanbanCard.project).id, state: state.id }">
                 <div>
-                    {{boardService.getDomainModel().getStateModelOf(boardService.getProjects().get(kanbanCard.project)).getState(stateId)?.name}}
+                    {{state.name}}
                 </div>
             </a>
             <div> > </div>
