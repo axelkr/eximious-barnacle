@@ -6,7 +6,7 @@
 </div>
 
 <ng-template #topicAvailable>
-    <div *ngIf="0==heijunkaBoardService.getProjects().getProjects().length else projectsAvailable">
+    <div *ngIf="0==projectService.availableProjects().length else projectsAvailable">
         <a [routerLink]="['/heijunka-setup/']">
             Define a project first.
         </a>
@@ -15,7 +15,7 @@
 
     <ng-template #projectsAvailable>
         <div class="row">
-            <div class="column" *ngFor="let project of heijunkaBoardService.getProjects().getProjects()"
+            <div class="column" *ngFor="let project of projectService.availableProjects())"
                 style="list-style-type: none;">
                 <app-project [project]="project"></app-project>
             </div>

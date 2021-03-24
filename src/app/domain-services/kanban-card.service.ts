@@ -39,7 +39,7 @@ export class KanbanCardService {
       return;
     }
 
-    const project: Project = this.modelBoardService.getProjects().get(aKanbanCard.project);
+    const project = this.modelBoardService.getDomainModel().projects.get(aKanbanCard.project);
 
     const currentState = this.modelBoardService.getDomainModel().getStateModelOf(project).getState(currentStateTransition.state);
     const moveToCompleteState = this.modelBoardService.kanbanCardEventFactory.moveToComplete(this.modelBoardService.currentTopic(),
