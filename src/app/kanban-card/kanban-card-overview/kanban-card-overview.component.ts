@@ -1,6 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { KanbanCard, Project, State, TransitionType } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../../heijunka-board.service';
+import { KanbanCardService } from '../kanban-card.service';
 
 @Component({
   selector: 'app-kanban-card-overview',
@@ -12,7 +13,7 @@ export class KanbanCardOverviewComponent implements OnInit {
   transitionType = TransitionType;
   transition: TransitionType | undefined;
 
-  constructor(private modelBoardService: HeijunkaBoardService) { }
+  constructor(private modelBoardService: HeijunkaBoardService, private aKanbanCardService: KanbanCardService) { }
 
   ngOnInit(): void {
     this.readTransitionTypeOfKanbanCard();
@@ -22,10 +23,7 @@ export class KanbanCardOverviewComponent implements OnInit {
     if (this.kanbanCard === undefined || this.state === undefined) {
       return;
     }
-
-    const pullToState = this.modelBoardService.kanbanCardEventFactory.moveToInProgress(this.modelBoardService.currentTopic(),
-      this.kanbanCard, this.state);
-    this.modelBoardService.processObjectEvent(pullToState);
+    this.aKanbanCardService.pull(this.kanbanCard, this.state);
   }
 
   markAsCompleted(): void {
@@ -47,12 +45,10 @@ export class KanbanCardOverviewComponent implements OnInit {
   }
 
   moveToTrash(): void {
-    if (this.kanbanCard === undefined || this.state === undefined) {
+    if (this.kanbanCard === undefined) {
       return;
     }
-    const moveToTrash = this.modelBoardService.kanbanCardEventFactory.moveToTrash(this.modelBoardService.currentTopic(),
-      this.kanbanCard);
-    this.modelBoardService.processObjectEvent(moveToTrash);
+    this.aKanbanCardService.moveToTrash(this.kanbanCard);
   }
 
   private readTransitionTypeOfKanbanCard() {

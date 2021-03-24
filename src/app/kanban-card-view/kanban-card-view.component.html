@@ -2,4 +2,9 @@
     <div *ngIf="heijunkaBoardService.getKanbanCards().get(id) as kanbanCardObject">
         <app-kanban-card-view-title [kanbanCard]="kanbanCardObject"></app-kanban-card-view-title>
     </div>
+    <ul>
+        <li>move to trash</li>
+        <li>(x|in progress) => (mark as completed)</li>
+        <li>(x|completed) => (move to successors as in-progress)</li>
+    </ul>
 </div>
