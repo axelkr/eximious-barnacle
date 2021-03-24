@@ -66,4 +66,8 @@ export class KanbanCardService {
       updateProperty(this.modelBoardService.currentTopic(), kanbanCard, KanbanCardProperties.NAME, newName);
     this.modelBoardService.processObjectEvent(renameKanbanCardEvent);
   }
+
+  public find(parameters: any): KanbanCard[] {
+    return this.modelBoardService.getDomainModel().kanbanCards.find(parameters);
+  }
 }
