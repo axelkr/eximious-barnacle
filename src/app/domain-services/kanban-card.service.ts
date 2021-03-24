@@ -50,4 +50,11 @@ export class KanbanCardService {
   public projectsKanbanCard(aProject: Project): KanbanCard[] {
     return this.modelBoardService.getDomainModel().kanbanCards.find({ project: aProject });
   }
+
+  public create(name: string, aProject: Project) {
+    const stateModel = this.modelBoardService.getDomainModel().getStateModelOf(aProject);
+    const createKanbanCardEvents = this.modelBoardService.kanbanCardEventFactory.create(this.modelBoardService.currentTopic(),
+      name, aProject, stateModel);
+    this.modelBoardService.processObjectEvents(createKanbanCardEvents);
+  }
 }

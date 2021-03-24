@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { Project } from 'outstanding-barnacle';
-import { HeijunkaBoardService } from '../../domain-services/heijunka-board.service';
+import { KanbanCardService } from '../../domain-services/kanban-card.service';
 
 @Component({
   selector: 'app-kanban-card-create',
@@ -11,7 +11,7 @@ export class KanbanCardCreateComponent implements OnInit {
   @Input() project: Project | undefined;
   model = { name: '' };
 
-  constructor(private modelBoardService: HeijunkaBoardService) { }
+  constructor(private kanbanCardService: KanbanCardService) { }
 
   ngOnInit(): void {
   }
@@ -21,11 +21,6 @@ export class KanbanCardCreateComponent implements OnInit {
       return;
     }
 
-    const project = this.project;
-    const stateModel = this.modelBoardService.getDomainModel().getStateModelOf(project);
-
-    const createKanbanCardEvents = this.modelBoardService.kanbanCardEventFactory.create(this.modelBoardService.currentTopic(),
-      this.model.name, project, stateModel);
-    this.modelBoardService.processObjectEvents(createKanbanCardEvents);
+    this.kanbanCardService.create(this.model.name, this.project);
   }
 }
