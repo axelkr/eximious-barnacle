@@ -4,8 +4,7 @@ import { HeijunkaBoardService } from '../../heijunka-board.service';
 
 @Component({
   selector: 'app-kanban-card-overview',
-  templateUrl: './kanban-card-overview.component.html',
-  styleUrls: ['./kanban-card-overview.component.less']
+  templateUrl: './kanban-card-overview.component.html'
 })
 export class KanbanCardOverviewComponent implements OnInit {
   @Input() kanbanCard: KanbanCard | undefined;
