@@ -1,7 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { KanbanCard, State, TransitionType } from 'outstanding-barnacle';
 import { ProjectService } from '../../domain-services/project.service';
-import { HeijunkaBoardService } from '../../domain-services/heijunka-board.service';
 import { KanbanCardService } from '../../domain-services/kanban-card.service';
 
 @Component({
@@ -49,7 +48,6 @@ export class KanbanCardViewTransitionsComponent implements OnInit {
     if (currentTransition === undefined) {
       return;
     }
-    console.log(currentTransition.type);
     this.transition = currentTransition.type;
   }
 }
