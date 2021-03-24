@@ -3,7 +3,6 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 
 import { ProjectStateViewComponent } from './project-state-view.component';
-import { ProjectStateKanbanCardsByAgeComponent } from './project-state-kanban-cards-by-age/project-state-kanban-cards-by-age.component';
 import { ProjectStateKanbanCardsComponent } from './project-state-kanban-cards/project-state-kanban-cards.component';
 import { KanbanCardModule } from '../kanban-card/kanban-card.module';
 import { ProjectStateViewRoutingModule } from './project-state-view-routing.module';
@@ -11,7 +10,7 @@ import { ProjectStateViewTitleComponent } from './project-state-view-title/proje
 
 @NgModule({
   declarations: [ProjectStateViewComponent,
-    ProjectStateKanbanCardsByAgeComponent, ProjectStateKanbanCardsComponent, ProjectStateViewTitleComponent],
+    ProjectStateKanbanCardsComponent, ProjectStateViewTitleComponent],
   imports: [
     CommonModule,
     FormsModule,
