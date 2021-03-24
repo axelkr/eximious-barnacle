@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { KanbanCard, Project, State, TransitionType } from 'outstanding-barnacle';
+import { KanbanCard, State, TransitionType } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../../heijunka-board.service';
 import { KanbanCardService } from '../kanban-card.service';
 
@@ -30,18 +30,7 @@ export class KanbanCardOverviewComponent implements OnInit {
     if (this.kanbanCard === undefined) {
       return;
     }
-
-    const currentStateTransition = this.kanbanCard.history.currentStateTransition();
-    if (currentStateTransition === undefined) {
-      return;
-    }
-
-    const project: Project = this.modelBoardService.getProjects().get(this.kanbanCard.project);
-
-    const currentState = this.modelBoardService.getDomainModel().getStateModelOf(project).getState(currentStateTransition.state);
-    const moveToCompleteState = this.modelBoardService.kanbanCardEventFactory.moveToComplete(this.modelBoardService.currentTopic(),
-      this.kanbanCard, currentState);
-    this.modelBoardService.processObjectEvent(moveToCompleteState);
+    this.aKanbanCardService.markAsCompleted(this.kanbanCard);
   }
 
   moveToTrash(): void {
