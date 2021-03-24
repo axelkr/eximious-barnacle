@@ -1,3 +1,6 @@
+# 3.7.2
+- fix: use correct id to find state model
+
 # 3.7.1
 - navigate within a kanban card
 - update to latest

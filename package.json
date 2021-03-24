@@ -1,6 +1,6 @@
 {
   "name": "eximious-barnacle",
-  "version": "3.7.1",
+  "version": "3.7.2",
   "description": "Frontend webpage for a Kanban board with swimlanes",
   "scripts": {
     "ng": "ng",
