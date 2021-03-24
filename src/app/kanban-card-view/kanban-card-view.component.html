@@ -1,11 +1,6 @@
 <div *ngIf="id">
     <div *ngIf="heijunkaBoardService.getKanbanCards().get(id) as kanbanCard">
         <app-kanban-card-view-title [kanbanCard]="kanbanCard"></app-kanban-card-view-title>
-        <button type="submit" class="btn btn-success"
-            (click)="kanbanCardService.moveToTrash(kanbanCard)">Delete</button>
+        <app-kanban-card-view-transitions [kanbanCard]="kanbanCard"></app-kanban-card-view-transitions>
     </div>
-    <ul>
-        <li>(x|in progress) => (mark as completed)</li>
-        <li>(x|completed) => (move to successors as in-progress)</li>
-    </ul>
 </div>
