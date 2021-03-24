@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { StateModel, StateModelEventFactory } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
+import { TopicService } from './topic.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,10 +10,10 @@ import { HeijunkaBoardService } from '../domain-services/heijunka-board.service'
 export class StateModelService {
   private readonly eventFactory = new StateModelEventFactory();
 
-  constructor(private modelBoardService: HeijunkaBoardService) { }
+  constructor(private modelBoardService: HeijunkaBoardService, private topicService: TopicService) { }
 
   public create(stateModel: StateModel) {
-    const createStateModelEvent = this.eventFactory.create(this.modelBoardService.currentTopic(), stateModel);
+    const createStateModelEvent = this.eventFactory.create(this.topicService.current(), stateModel);
     this.modelBoardService.processObjectEvent(createStateModelEvent);
   }
 

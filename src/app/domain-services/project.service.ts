@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 
 import { Project, StateModel, ProjectEventFactory, ProjectProperties } from 'outstanding-barnacle';
-import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
+import { HeijunkaBoardService } from './heijunka-board.service';
+import { TopicService } from './topic.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,7 +10,7 @@ import { HeijunkaBoardService } from '../domain-services/heijunka-board.service'
 export class ProjectService {
   private readonly projectEventFactory = new ProjectEventFactory();
 
-  constructor(private modelBoardService: HeijunkaBoardService) { }
+  constructor(private modelBoardService: HeijunkaBoardService, private topicService: TopicService) { }
 
   public availableProjects(): Project[] {
     return this.modelBoardService.getDomainModel().projects.getProjects();
@@ -30,15 +31,14 @@ export class ProjectService {
   }
 
   public create(name: string, stateModel: StateModel) {
-    const createdProjectEvents = this.projectEventFactory.create(this.modelBoardService.currentTopic(), name, stateModel);
+    const createdProjectEvents = this.projectEventFactory.create(this.topicService.current(), name, stateModel);
     this.modelBoardService.processObjectEvents(createdProjectEvents);
   }
 
   public renameTo(project: Project, newName: string) {
-    const renameProjectEvent = this.projectEventFactory.updateProperty(this.modelBoardService.currentTopic(),
+    const renameProjectEvent = this.projectEventFactory.updateProperty(this.topicService.current(),
       project, ProjectProperties.NAME, newName);
     this.modelBoardService.processObjectEvent(renameProjectEvent);
-
   }
 }
 

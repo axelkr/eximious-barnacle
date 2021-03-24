@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { KanbanCard, Project, State, KanbanCardProperties, KanbanCardEventFactory } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
+import { TopicService } from './topic.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,14 +10,14 @@ import { HeijunkaBoardService } from '../domain-services/heijunka-board.service'
 export class KanbanCardService {
   private readonly kanbanCardEventFactory = new KanbanCardEventFactory();
 
-  constructor(private modelBoardService: HeijunkaBoardService) { }
+  constructor(private modelBoardService: HeijunkaBoardService, private topicService: TopicService) { }
 
   public pull(aKanbanCard: KanbanCard, aState: State): void {
     if (aKanbanCard === undefined || aState === undefined) {
       return;
     }
 
-    const pullToState = this.kanbanCardEventFactory.moveToInProgress(this.modelBoardService.currentTopic(),
+    const pullToState = this.kanbanCardEventFactory.moveToInProgress(this.topicService.current(),
       aKanbanCard, aState);
     this.modelBoardService.processObjectEvent(pullToState);
   }
@@ -25,7 +26,7 @@ export class KanbanCardService {
     if (aKanbanCard === undefined) {
       return;
     }
-    const moveToTrash = this.kanbanCardEventFactory.moveToTrash(this.modelBoardService.currentTopic(),
+    const moveToTrash = this.kanbanCardEventFactory.moveToTrash(this.topicService.current(),
       aKanbanCard);
     this.modelBoardService.processObjectEvent(moveToTrash);
   }
@@ -43,7 +44,7 @@ export class KanbanCardService {
     const project = this.modelBoardService.getDomainModel().projects.get(aKanbanCard.project);
 
     const currentState = this.modelBoardService.getDomainModel().stateModels.get(project.id).getState(currentStateTransition.state);
-    const moveToCompleteState = this.kanbanCardEventFactory.moveToComplete(this.modelBoardService.currentTopic(),
+    const moveToCompleteState = this.kanbanCardEventFactory.moveToComplete(this.topicService.current(),
       aKanbanCard, currentState);
     this.modelBoardService.processObjectEvent(moveToCompleteState);
   }
@@ -54,7 +55,7 @@ export class KanbanCardService {
 
   public create(name: string, aProject: Project) {
     const stateModel = this.modelBoardService.getDomainModel().stateModels.get(aProject.id);
-    const createKanbanCardEvents = this.kanbanCardEventFactory.create(this.modelBoardService.currentTopic(),
+    const createKanbanCardEvents = this.kanbanCardEventFactory.create(this.topicService.current(),
       name, aProject, stateModel);
     this.modelBoardService.processObjectEvents(createKanbanCardEvents);
   }
@@ -64,7 +65,7 @@ export class KanbanCardService {
       return;
     }
     const renameKanbanCardEvent = this.kanbanCardEventFactory.
-      updateProperty(this.modelBoardService.currentTopic(), kanbanCard, KanbanCardProperties.NAME, newName);
+      updateProperty(this.topicService.current(), kanbanCard, KanbanCardProperties.NAME, newName);
     this.modelBoardService.processObjectEvent(renameKanbanCardEvent);
   }
 

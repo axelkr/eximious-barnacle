@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Topic } from 'choicest-barnacle';
-import { HeijunkaBoardService } from '../../domain-services/heijunka-board.service';
+import { TopicService } from '../../domain-services/topic.service';
 
 @Component({
   selector: 'app-topic-select',
@@ -9,8 +9,8 @@ import { HeijunkaBoardService } from '../../domain-services/heijunka-board.servi
 export class TopicSelectComponent implements OnInit {
   topic: Topic | undefined;
 
-  constructor(public modelBoardService: HeijunkaBoardService) {
-    this.topic = modelBoardService.currentTopic();
+  constructor(public topicService: TopicService) {
+    this.topic = topicService.current();
   }
 
   ngOnInit(): void {
@@ -20,6 +20,6 @@ export class TopicSelectComponent implements OnInit {
     if (topic === undefined) {
       return;
     }
-    this.modelBoardService.switchToTopic(topic);
+    this.topicService.switchTo(topic);
   }
 }

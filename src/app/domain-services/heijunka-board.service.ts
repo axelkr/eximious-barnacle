@@ -29,11 +29,11 @@ export class HeijunkaBoardService implements OnDestroy {
     return this.commandProcessor.getHeijunkaBoard();
   }
 
-  public currentTopic(): Topic {
+  public currentTopic2(): Topic {
     return this.topic;
   }
 
-  public availableTopics(): Topic[] {
+  public availableTopics2(): Topic[] {
     return this.topics;
   }
 
@@ -52,7 +52,7 @@ export class HeijunkaBoardService implements OnDestroy {
     });
   }
 
-  public switchToTopic(topic: Topic): void {
+  public switchToTopic2(topic: Topic): void {
     const switchToCurrentTopic = (topic === this.topic);
     if (switchToCurrentTopic) {
       return;
@@ -63,7 +63,7 @@ export class HeijunkaBoardService implements OnDestroy {
     this.backend.switchToTopic(this.topic);
   }
 
-  public createTopic(name: string): void {
+  public createTopic2(name: string): void {
     const newTopicId = UUIDGenerator.createUUID();
     const newTopic = new Topic(newTopicId, name);
     this.backend.storeTopic(newTopic);
@@ -81,7 +81,7 @@ export class HeijunkaBoardService implements OnDestroy {
     this.newTopicEvents = this.backend.getNewTopics().subscribe(topic => {
       this.topics.push(topic);
       if (this.topic === undefined) {
-        this.switchToTopic(topic);
+        this.switchToTopic2(topic);
       }
     });
   }

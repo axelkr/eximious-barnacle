@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HeijunkaBoardService } from '../../domain-services/heijunka-board.service';
+import { TopicService } from '../../domain-services/topic.service';
 
 @Component({
   selector: 'app-topic-create',
@@ -8,7 +8,7 @@ import { HeijunkaBoardService } from '../../domain-services/heijunka-board.servi
 export class TopicCreateComponent implements OnInit {
   model: { name: string } = { name: '' };
 
-  constructor(public modelBoardService: HeijunkaBoardService) {
+  constructor(private topicService: TopicService) {
   }
 
   ngOnInit(): void {
@@ -19,6 +19,6 @@ export class TopicCreateComponent implements OnInit {
     if (isDoubleSubmit) {
       return;
     }
-    this.modelBoardService.createTopic(this.model.name);
+    this.topicService.create(this.model.name);
   }
 }
