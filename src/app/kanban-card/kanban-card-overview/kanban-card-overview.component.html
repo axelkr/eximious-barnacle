@@ -5,13 +5,13 @@
 
   <div *ngIf="transition === transitionType.completed; else kanbanCardInProgress">
     <button type="submit" class="btn btn-success" (click)="pull()">Pull</button>
-    <button type="submit" class="btn btn-success" (click)="moveToTrash()">Delete</button>
+    <button type="submit" class="btn btn-success" (click)="kanbanCardService.moveToTrash(kanbanCard)">Delete</button>
   </div>
   <ng-template #kanbanCardInProgress>
     <div>
-      <button type="submit" class="btn btn-success" (click)="markAsCompleted()">Mark
+      <button type="submit" class="btn btn-success" (click)="kanbanCardService.markAsCompleted(kanbanCard)">Mark
         as completed</button>
-      <button type="submit" class="btn btn-success" (click)="moveToTrash()">Delete</button>
+      <button type="submit" class="btn btn-success" (click)="kanbanCardService.moveToTrash(kanbanCard)">Delete</button>
     </div>
   </ng-template>
 </div>

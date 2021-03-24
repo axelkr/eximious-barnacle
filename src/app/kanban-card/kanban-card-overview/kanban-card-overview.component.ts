@@ -13,7 +13,7 @@ export class KanbanCardOverviewComponent implements OnInit {
   transitionType = TransitionType;
   transition: TransitionType | undefined;
 
-  constructor(private modelBoardService: HeijunkaBoardService, private aKanbanCardService: KanbanCardService) { }
+  constructor(public kanbanCardService: KanbanCardService) { }
 
   ngOnInit(): void {
     this.readTransitionTypeOfKanbanCard();
@@ -23,21 +23,7 @@ export class KanbanCardOverviewComponent implements OnInit {
     if (this.kanbanCard === undefined || this.state === undefined) {
       return;
     }
-    this.aKanbanCardService.pull(this.kanbanCard, this.state);
-  }
-
-  markAsCompleted(): void {
-    if (this.kanbanCard === undefined) {
-      return;
-    }
-    this.aKanbanCardService.markAsCompleted(this.kanbanCard);
-  }
-
-  moveToTrash(): void {
-    if (this.kanbanCard === undefined) {
-      return;
-    }
-    this.aKanbanCardService.moveToTrash(this.kanbanCard);
+    this.kanbanCardService.pull(this.kanbanCard, this.state);
   }
 
   private readTransitionTypeOfKanbanCard() {
