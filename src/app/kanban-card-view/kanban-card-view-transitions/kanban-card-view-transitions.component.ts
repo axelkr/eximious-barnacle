@@ -19,6 +19,24 @@ export class KanbanCardViewTransitionsComponent implements OnInit {
     this.readTransitionTypeOfKanbanCard();
   }
 
+  // explicitly update transition, so view updates
+  public pull(nextState: State) {
+    if (this.kanbanCard === undefined) {
+      return;
+    }
+    this.kanbanCardService.pull(this.kanbanCard, nextState);
+    this.transition = TransitionType.inProgress;
+  }
+
+  // explicitly update transition, so view updates
+  public markAsCompleted() {
+    if (this.kanbanCard === undefined) {
+      return;
+    }
+    this.kanbanCardService.markAsCompleted(this.kanbanCard);
+    this.transition = TransitionType.completed;
+  }
+
   private readTransitionTypeOfKanbanCard() {
     this.transition = undefined;
     if (this.kanbanCard === undefined) {
