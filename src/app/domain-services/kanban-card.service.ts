@@ -70,4 +70,8 @@ export class KanbanCardService {
   public find(parameters: any): KanbanCard[] {
     return this.modelBoardService.getDomainModel().kanbanCards.find(parameters);
   }
+
+  public get(id: string): KanbanCard {
+    return this.modelBoardService.getDomainModel().kanbanCards.get(id);
+  }
 }

@@ -34,10 +34,6 @@ export class HeijunkaBoardService implements OnDestroy {
     this.disconnectFromBackend();
   }
 
-  public getKanbanCards(): KanbanCardCollection {
-    return this.domainModel.kanbanCards;
-  }
-
   public getProjects(): ProjectCollection {
     return this.domainModel.projects;
   }
