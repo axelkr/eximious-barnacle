@@ -4,8 +4,9 @@ import { MockObjectStoreBackendService } from '../backend/object-store-backend.s
 import { ObjectStoreBackendService } from '../backend/object-store-backend.service';
 
 import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
-import { KanbanCardService } from './kanban-card.service';
 import { MockHeijunkaBoardService } from '../domain-services/heijunka-board.service.spec';
+
+import { KanbanCardService } from './kanban-card.service';
 
 describe('KanbanCardService', () => {
   let service: KanbanCardService;
