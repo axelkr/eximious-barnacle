@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { KanbanCard, Project, State, TransitionType } from 'outstanding-barnacle';
+import { KanbanCard, Project, State } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../heijunka-board.service';
 
 @Injectable({
