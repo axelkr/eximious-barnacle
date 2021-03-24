@@ -14,7 +14,6 @@ export class StateModelService {
   public create(stateModel: StateModel) {
     const createStateModelEvent = this.eventFactory.createStateModel(this.modelBoardService.currentTopic(), stateModel);
     this.modelBoardService.processObjectEvent(createStateModelEvent);
-
   }
 
   public availableStateModels(): StateModel[] {
