@@ -6,8 +6,7 @@ import { ProjectService } from '../domain-services/project.service';
 
 @Component({
   selector: 'app-kanban-card-view',
-  templateUrl: './kanban-card-view.component.html',
-  styleUrls: ['./kanban-card-view.component.less']
+  templateUrl: './kanban-card-view.component.html'
 })
 export class KanbanCardViewComponent implements OnInit {
   @Input() id: string | undefined;

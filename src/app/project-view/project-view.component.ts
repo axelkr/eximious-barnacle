@@ -4,8 +4,7 @@ import { ProjectService } from '../domain-services/project.service';
 
 @Component({
   selector: 'app-project-view',
-  templateUrl: './project-view.component.html',
-  styleUrls: ['./project-view.component.less']
+  templateUrl: './project-view.component.html'
 })
 export class ProjectViewComponent implements OnInit {
   @Input() id: string | undefined;

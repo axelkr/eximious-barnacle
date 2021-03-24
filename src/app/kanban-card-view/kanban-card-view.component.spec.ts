@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MockObjectStoreBackendService } from '../backend/object-store-backend.service.spec';
+import { ObjectStoreBackendService } from '../backend/object-store-backend.service';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { KanbanCardViewComponent } from './kanban-card-view.component';
@@ -16,7 +18,8 @@ describe('KanbanCardViewComponent', () => {
       imports: [
         RouterTestingModule, HttpClientTestingModule],
       providers: [
-        { provide: HeijunkaBoardService, useClass: MockHeijunkaBoardService }
+        { provide: HeijunkaBoardService, useClass: MockHeijunkaBoardService },
+        { provide: ObjectStoreBackendService, useClass: MockObjectStoreBackendService }
       ]
     })
       .compileComponents();
