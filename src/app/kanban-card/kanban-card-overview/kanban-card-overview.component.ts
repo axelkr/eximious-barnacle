@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { KanbanCard, State, TransitionType } from 'outstanding-barnacle';
-import { HeijunkaBoardService } from '../../heijunka-board.service';
 import { KanbanCardService } from '../kanban-card.service';
 
 @Component({
