@@ -38,10 +38,6 @@ export class HeijunkaBoardService implements OnDestroy {
     return this.domainModel.projects;
   }
 
-  public getContexts(): ContextCollection {
-    return this.domainModel.contexts;
-  }
-
   public getStateModels(): StateModelCollection {
     return this.domainModel.stateModels;
   }
