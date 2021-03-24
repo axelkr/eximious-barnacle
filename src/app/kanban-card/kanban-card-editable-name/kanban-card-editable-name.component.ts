@@ -4,8 +4,7 @@ import { KanbanCardService } from '../../domain-services/kanban-card.service';
 
 @Component({
   selector: 'app-kanban-card-editable-name',
-  templateUrl: './kanban-card-editable-name.component.html',
-  styleUrls: ['./kanban-card-editable-name.component.less']
+  templateUrl: './kanban-card-editable-name.component.html'
 })
 export class KanbanCardEditableNameComponent implements OnInit {
   @Input() kanbanCard: KanbanCard | undefined;

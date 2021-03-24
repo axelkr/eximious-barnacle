@@ -4,8 +4,7 @@ import { ProjectService } from '../../domain-services/project.service';
 
 @Component({
   selector: 'app-project-editable-name',
-  templateUrl: './project-editable-name.component.html',
-  styleUrls: ['./project-editable-name.component.less']
+  templateUrl: './project-editable-name.component.html'
 })
 export class ProjectEditableNameComponent implements OnInit {
   @Input() project: Project | undefined;

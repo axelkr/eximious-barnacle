@@ -1,4 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { MockObjectStoreBackendService } from '../../backend/object-store-backend.service.spec';
+import { ObjectStoreBackendService } from '../../backend/object-store-backend.service';
 import { FormsModule } from '@angular/forms';
 
 import { TopicSelectComponent } from './topic-select.component';
@@ -13,10 +16,11 @@ describe('TopicSelectComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [TopicSelectComponent],
       imports: [
-        FormsModule]
+        FormsModule, HttpClientTestingModule]
       ,
       providers: [
-        { provide: HeijunkaBoardService, useClass: MockHeijunkaBoardService }
+        { provide: HeijunkaBoardService, useClass: MockHeijunkaBoardService },
+        { provide: ObjectStoreBackendService, useClass: MockObjectStoreBackendService }
       ]
     })
       .compileComponents();
