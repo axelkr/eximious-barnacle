@@ -22,7 +22,6 @@ describe('ProjectStateOverviewComponent', () => {
       ],
       providers: [
         { provide: HeijunkaBoardService, useClass: MockHeijunkaBoardService },
-
         { provide: ObjectStoreBackendService, useClass: MockObjectStoreBackendService }
       ]
     })
