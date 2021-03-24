@@ -1,7 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
-import { MockObjectStoreBackendService } from './backend/object-store-backend.service.spec';
-import { ObjectStoreBackendService } from './backend/object-store-backend.service';
+import { MockObjectStoreBackendService } from '../backend/object-store-backend.service.spec';
+import { ObjectStoreBackendService } from '../backend/object-store-backend.service';
 
 import { HeijunkaBoardService } from './heijunka-board.service';
 import { ProjectCollection, RootAggregate, StateModelCollection } from 'outstanding-barnacle';

@@ -3,8 +3,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { ProjectStateOverviewComponent } from './project-state-overview.component';
 
-import { MockHeijunkaBoardService } from '../../heijunka-board.service.spec';
-import { HeijunkaBoardService } from '../../heijunka-board.service';
+import { MockHeijunkaBoardService } from '../../domain-services/heijunka-board.service.spec';
+import { HeijunkaBoardService } from '../../domain-services/heijunka-board.service';
 
 describe('ProjectStateOverviewComponent', () => {
   let component: ProjectStateOverviewComponent;

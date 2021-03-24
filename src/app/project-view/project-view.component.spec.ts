@@ -3,8 +3,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { ProjectViewComponent } from './project-view.component';
-import { MockHeijunkaBoardService } from '../heijunka-board.service.spec';
-import { HeijunkaBoardService } from '../heijunka-board.service';
+import { MockHeijunkaBoardService } from '../domain-services/heijunka-board.service.spec';
+import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
 
 describe('ProjectViewComponent', () => {
   let component: ProjectViewComponent;

@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { HeijunkaBoardService } from '../heijunka-board.service';
+import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
 import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({

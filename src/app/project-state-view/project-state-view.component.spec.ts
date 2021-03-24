@@ -2,8 +2,8 @@ import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { ProjectStateViewComponent } from './project-state-view.component';
-import { MockHeijunkaBoardService } from '../heijunka-board.service.spec';
-import { HeijunkaBoardService } from '../heijunka-board.service';
+import { MockHeijunkaBoardService } from '../domain-services/heijunka-board.service.spec';
+import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
 
 describe('ProjectStateViewDetailsComponent', () => {
   let component: ProjectStateViewComponent;

@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { HeijunkaBoardService } from '../../heijunka-board.service';
+import { HeijunkaBoardService } from '../../domain-services/heijunka-board.service';
 import { Project, State, TransitionType } from 'outstanding-barnacle';
 
 @Component({

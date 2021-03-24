@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { KanbanCard, State, TransitionType } from 'outstanding-barnacle';
-import { HeijunkaBoardService } from '../../heijunka-board.service';
-import { KanbanCardService } from '../../kanban-card/kanban-card.service';
+import { HeijunkaBoardService } from '../../domain-services/heijunka-board.service';
+import { KanbanCardService } from '../../domain-services/kanban-card.service';
 
 @Component({
   selector: 'app-kanban-card-view-transitions',

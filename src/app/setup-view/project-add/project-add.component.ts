@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { HeijunkaBoardService } from '../../heijunka-board.service';
+import { HeijunkaBoardService } from '../../domain-services/heijunka-board.service';
 import { StateModel } from 'outstanding-barnacle';
 
 @Component({
@@ -17,7 +17,7 @@ export class ProjectAddComponent implements OnInit {
   }
 
   addProject(): void {
-    const isDoubleSubmit = ( this.model.name === null || this.model.name.length === 0 );
+    const isDoubleSubmit = (this.model.name === null || this.model.name.length === 0);
     if (isDoubleSubmit) {
       return;
     }

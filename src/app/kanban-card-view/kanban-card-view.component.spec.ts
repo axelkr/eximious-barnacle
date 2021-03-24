@@ -3,8 +3,8 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { KanbanCardViewComponent } from './kanban-card-view.component';
-import { MockHeijunkaBoardService } from '../heijunka-board.service.spec';
-import { HeijunkaBoardService } from '../heijunka-board.service';
+import { MockHeijunkaBoardService } from '../domain-services/heijunka-board.service.spec';
+import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
 
 describe('KanbanCardViewComponent', () => {
   let component: KanbanCardViewComponent;

@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { KanbanCard, State, TransitionType } from 'outstanding-barnacle';
-import { KanbanCardService } from '../kanban-card.service';
+import { KanbanCardService } from '../../domain-services/kanban-card.service';
 
 @Component({
   selector: 'app-kanban-card-overview',

@@ -1,8 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ProjectStateModelComponent } from './project-state-model.component';
-import { MockHeijunkaBoardService } from '../../heijunka-board.service.spec';
-import { HeijunkaBoardService } from '../../heijunka-board.service';
+import { MockHeijunkaBoardService } from '../../domain-services/heijunka-board.service.spec';
+import { HeijunkaBoardService } from '../../domain-services/heijunka-board.service';
 
 
 describe('ProjectStateModelComponent', () => {

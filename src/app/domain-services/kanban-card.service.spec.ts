@@ -3,9 +3,9 @@ import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { MockObjectStoreBackendService } from '../backend/object-store-backend.service.spec';
 import { ObjectStoreBackendService } from '../backend/object-store-backend.service';
 
-import { HeijunkaBoardService } from '../heijunka-board.service';
+import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
 import { KanbanCardService } from './kanban-card.service';
-import { MockHeijunkaBoardService } from '../heijunka-board.service.spec';
+import { MockHeijunkaBoardService } from '../domain-services/heijunka-board.service.spec';
 
 describe('KanbanCardService', () => {
   let service: KanbanCardService;

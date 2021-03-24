@@ -1,7 +1,7 @@
 import { AfterViewInit, Component, Input } from '@angular/core';
 import { Project, StateModel, State, LinearizeStateModelService } from 'outstanding-barnacle';
-import { HeijunkaBoardService } from '../heijunka-board.service';
-import { KanbanCardService } from '../kanban-card/kanban-card.service';
+import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
+import { KanbanCardService } from '../domain-services/kanban-card.service';
 import { ColorizeStateModelService } from '../state-model/colorize-state-model.service';
 
 import { CfdDataGenerator } from './CfdDataGenerator';

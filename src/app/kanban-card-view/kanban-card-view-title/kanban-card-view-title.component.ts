@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { KanbanCard, State } from 'outstanding-barnacle';
-import { HeijunkaBoardService } from '../../heijunka-board.service';
+import { HeijunkaBoardService } from '../../domain-services/heijunka-board.service';
 import { Router } from '@angular/router';
 
 @Component({

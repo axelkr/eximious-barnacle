@@ -8,7 +8,7 @@ import {
   KanbanCardCollection, ProjectCollection, ContextCollection, StateModelCollection
 } from 'outstanding-barnacle';
 
-import { ObjectStoreBackendService } from './backend/object-store-backend.service';
+import { ObjectStoreBackendService } from '../backend/object-store-backend.service';
 
 @Injectable({
   providedIn: 'root'
