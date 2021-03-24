@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { KanbanCard, Project, State } from 'outstanding-barnacle';
+import { KanbanCard, Project, State, KanbanCardProperties } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
 
 @Injectable({
@@ -56,5 +56,14 @@ export class KanbanCardService {
     const createKanbanCardEvents = this.modelBoardService.kanbanCardEventFactory.create(this.modelBoardService.currentTopic(),
       name, aProject, stateModel);
     this.modelBoardService.processObjectEvents(createKanbanCardEvents);
+  }
+
+  public renameTo(kanbanCard: KanbanCard, newName: string): void {
+    if (kanbanCard === undefined) {
+      return;
+    }
+    const renameKanbanCardEvent = this.modelBoardService.kanbanCardEventFactory.
+      updateProperty(this.modelBoardService.currentTopic(), kanbanCard, KanbanCardProperties.NAME, newName);
+    this.modelBoardService.processObjectEvent(renameKanbanCardEvent);
   }
 }

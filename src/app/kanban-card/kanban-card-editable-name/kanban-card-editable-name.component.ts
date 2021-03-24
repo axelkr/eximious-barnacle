@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { KanbanCard, KanbanCardProperties } from 'outstanding-barnacle';
-import { HeijunkaBoardService } from '../../domain-services/heijunka-board.service';
+import { KanbanCard } from 'outstanding-barnacle';
+import { KanbanCardService } from '../../domain-services/kanban-card.service';
 
 @Component({
   selector: 'app-kanban-card-editable-name',
@@ -11,13 +11,16 @@ export class KanbanCardEditableNameComponent implements OnInit {
   @Input() kanbanCard: KanbanCard | undefined;
   renameMode = false;
 
-  constructor(private modelBoardService: HeijunkaBoardService) { }
+  constructor(private kanbanCardService: KanbanCardService) { }
 
   ngOnInit(): void {
   }
 
   commitRename(event: any): void {
-    this.renameTo(event.target.value);
+    if (this.kanbanCard === undefined) {
+      return;
+    }
+    this.kanbanCardService.renameTo(this.kanbanCard, event.target.value);
     this.renameMode = false;
   }
 
@@ -27,14 +30,5 @@ export class KanbanCardEditableNameComponent implements OnInit {
 
   activateRenameMode(): void {
     this.renameMode = true;
-  }
-
-  private renameTo(newName: string): void {
-    if (this.kanbanCard === undefined) {
-      return;
-    }
-    const renameKanbanCardEvent = this.modelBoardService.kanbanCardEventFactory.
-      updateProperty(this.modelBoardService.currentTopic(), this.kanbanCard, KanbanCardProperties.NAME, newName);
-    this.modelBoardService.processObjectEvent(renameKanbanCardEvent);
   }
 }
