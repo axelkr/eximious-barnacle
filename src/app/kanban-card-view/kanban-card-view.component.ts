@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { KanbanCardService } from '../kanban-card/kanban-card.service';
 import { HeijunkaBoardService } from '../heijunka-board.service';
 
 @Component({
@@ -10,7 +11,8 @@ import { HeijunkaBoardService } from '../heijunka-board.service';
 export class KanbanCardViewComponent implements OnInit {
   @Input() id: string | undefined;
 
-  constructor(private router: Router, private route: ActivatedRoute, public heijunkaBoardService: HeijunkaBoardService) { }
+  constructor(private router: Router, private route: ActivatedRoute, public heijunkaBoardService: HeijunkaBoardService,
+    public kanbanCardService: KanbanCardService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {
