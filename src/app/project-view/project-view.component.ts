@@ -1,6 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
+import { ActivatedRoute } from '@angular/router';
+import { ProjectService } from '../domain-services/project.service';
 
 @Component({
   selector: 'app-project-view',
@@ -10,7 +10,7 @@ import { HeijunkaBoardService } from '../domain-services/heijunka-board.service'
 export class ProjectViewComponent implements OnInit {
   @Input() id: string | undefined;
 
-  constructor(private router: Router, private route: ActivatedRoute, public heijunkaBoardService: HeijunkaBoardService) { }
+  constructor(private route: ActivatedRoute, public projectService: ProjectService) { }
 
   ngOnInit(): void {
     this.route.queryParams.subscribe(params => {

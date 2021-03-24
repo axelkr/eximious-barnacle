@@ -1,5 +1,5 @@
 <div *ngIf="id" class="project">
-    <div *ngIf="heijunkaBoardService.getProjects().get(id) as projectObject">
+    <div *ngIf="projectService.get(id) as projectObject">
         <app-project-editable-name [project]="projectObject"></app-project-editable-name>
         <app-kanban-card-create [project]="projectObject"></app-kanban-card-create>
         <app-project-state-model [project]="projectObject"></app-project-state-model>

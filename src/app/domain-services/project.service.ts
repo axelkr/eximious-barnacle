@@ -14,4 +14,8 @@ export class ProjectService {
   public availableProjects(): Project[] {
     return this.modelBoardService.getDomainModel().projects.getProjects();
   }
+
+  public get(id: string): Project {
+    return this.modelBoardService.getDomainModel().projects.get(id);
+  }
 }
