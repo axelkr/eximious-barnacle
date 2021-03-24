@@ -38,7 +38,7 @@ export class StateModelsComponent implements OnInit {
       states, initialState, finalStates, trashState);
     personalKanban.setSuccessorOf(states[0], states[1]);
     personalKanban.setSuccessorOf(states[1], states[2]);
-    this.addStateModel(personalKanban);
+    this.stateModelService.create(personalKanban);
   }
 
   public addProjectManagerKanban() {
@@ -69,11 +69,6 @@ export class StateModelsComponent implements OnInit {
     projectManagerKanban.setSuccessorOf(waitingForDefiningState, definingState);
     projectManagerKanban.setSuccessorOf(implementingState, waitingForImplementingState);
     projectManagerKanban.setSuccessorOf(waitingForImplementingState, implementingState);
-    this.addStateModel(projectManagerKanban);
-  }
-
-  private addStateModel(aStateModel: StateModel) {
-    const createStateModelEvent = this.modelBoardService.eventFactory.createStateModel(this.modelBoardService.currentTopic(), aStateModel);
-    this.modelBoardService.processObjectEvent(createStateModelEvent);
+    this.stateModelService.create(projectManagerKanban);
   }
 }

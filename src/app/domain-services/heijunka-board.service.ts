@@ -2,11 +2,7 @@ import { Injectable, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { ObjectEvent, Topic } from 'choicest-barnacle';
-import {
-  RootAggregate, ObjectEventFactory, ObjectEventCommandProcessor,
-  UUIDGenerator,
-  StateModelCollection
-} from 'outstanding-barnacle';
+import { RootAggregate, ObjectEventCommandProcessor, UUIDGenerator } from 'outstanding-barnacle';
 
 import { ObjectStoreBackendService } from '../backend/object-store-backend.service';
 
@@ -14,8 +10,6 @@ import { ObjectStoreBackendService } from '../backend/object-store-backend.servi
   providedIn: 'root'
 })
 export class HeijunkaBoardService implements OnDestroy {
-  readonly eventFactory = new ObjectEventFactory();
-
   private topic!: Topic;
   private topics: Topic[] = [];
   private commandProcessor!: ObjectEventCommandProcessor;
