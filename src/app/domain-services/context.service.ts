@@ -9,6 +9,7 @@ import { TopicService } from './topic.service';
 })
 export class ContextService {
   private readonly eventFactory = new ContextEventFactory();
+  private readonly activeContexts: Context[] = [];
 
   constructor(private modelBoardService: HeijunkaBoardService, private topicService: TopicService) { }
 
@@ -19,5 +20,24 @@ export class ContextService {
 
   public availableContexts(): Context[] {
     return this.modelBoardService.getDomainModel().contexts.getContexts();
+  }
+
+  public activate(context: Context) {
+    const alreadyActive = (this.activeContexts.findIndex(aContext => (aContext.id === context.id)) > 0);
+    if (alreadyActive) {
+      return;
+    }
+    this.activeContexts.push(context);
+  }
+
+  public deactivate(context: Context) {
+    const atIndex = (this.activeContexts.findIndex(aContext => (aContext.id === context.id)));
+    if (atIndex >= 0) {
+      this.activeContexts.splice(atIndex, 1);
+    }
+  }
+
+  public isActive(context: Context) {
+    return this.activeContexts.length === 0 || this.activeContexts.findIndex(aContext => (aContext.id === context.id)) > 0;
   }
 }
