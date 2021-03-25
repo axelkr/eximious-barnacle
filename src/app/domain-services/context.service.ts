@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ContextEventFactory } from 'outstanding-barnacle';
+import { ContextEventFactory, Context } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
 import { TopicService } from './topic.service';
 
@@ -15,5 +15,9 @@ export class ContextService {
   public create(name: string) {
     const createContextEvent = this.eventFactory.create(this.topicService.current(), name);
     this.modelBoardService.processObjectEvent(createContextEvent);
+  }
+
+  public availableContexts(): Context[] {
+    return this.modelBoardService.getDomainModel().contexts.getContexts();
   }
 }

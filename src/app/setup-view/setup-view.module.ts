@@ -10,10 +10,11 @@ import { TopicCreateComponent } from './topic-create/topic-create.component';
 import { TopicSelectComponent } from './topic-select/topic-select.component';
 import { ProjectAddComponent } from './project-add/project-add.component';
 import { ContextCreateComponent } from './context-create/context-create.component';
+import { ContextListComponent } from './context-list/context-list.component';
 
 @NgModule({
   declarations: [StateModelsComponent, TopicCreateComponent, TopicSelectComponent,
-    ProjectAddComponent, SetupViewComponent, ContextCreateComponent],
+    ProjectAddComponent, SetupViewComponent, ContextCreateComponent, ContextListComponent],
   imports: [
     CommonModule, FormsModule, SetupViewRoutingModule
   ],
