@@ -4,8 +4,6 @@ import { MockObjectStoreBackendService } from '../backend/object-store-backend.s
 import { ObjectStoreBackendService } from '../backend/object-store-backend.service';
 
 import { CumulativeFlowChartComponent } from './cumulative-flow-chart.component';
-import { MockHeijunkaBoardService } from '../domain-services/heijunka-board.service.spec';
-import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
 import { KanbanCardService } from '../domain-services/kanban-card.service';
 
 describe('CumulativeFlowChartComponent', () => {
@@ -16,7 +14,6 @@ describe('CumulativeFlowChartComponent', () => {
     await TestBed.configureTestingModule({
       declarations: [CumulativeFlowChartComponent],
       providers: [
-        { provide: HeijunkaBoardService, useClass: MockHeijunkaBoardService },
         { provide: ObjectStoreBackendService, useClass: MockObjectStoreBackendService },
         KanbanCardService,
         HttpClientTestingModule
