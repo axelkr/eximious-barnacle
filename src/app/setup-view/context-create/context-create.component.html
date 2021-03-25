@@ -1,1 +1,12 @@
-<p>context-create works!</p>
+<div>
+    <form (ngSubmit)="createContext(); contextCreateForm.reset()" #contextCreateForm="ngForm">
+        <button type="submit" class="btn btn-success" (click)="createContext(); contextCreateForm.reset()"
+            [disabled]="!contextCreateForm.form.valid">Create new context:</button>
+        <input type="text" class="form-control" id="name" placeholder="enter name of new context" required
+            [(ngModel)]="model.name" name="name" #name="ngModel">
+
+        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+            Name of new context is required.
+        </div>
+    </form>
+</div>

@@ -1,3 +1,6 @@
+# 3.8.0
+- contexts: define them, filter by context, add them per kanban card
+
 # 3.7.3
 - fix: use correct id to find state model (II)
 - fix: tests 

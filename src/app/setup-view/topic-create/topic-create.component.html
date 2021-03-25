@@ -1,14 +1,12 @@
-<div class="topic-create">
-    <div>
-      <form (ngSubmit)="createTopic(); topicCreateForm.reset()" #topicCreateForm="ngForm">
-        <button type="submit" class="btn btn-success" (click)="createTopic(); topicCreateForm.reset()"
-          [disabled]="!topicCreateForm.form.valid">Create new topic:</button>
-        <input type="text" class="form-control" id="name" placeholder="enter name of new topic" required
-          [(ngModel)]="model.name" name="name" #name="ngModel">
- 
-        <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
-          Name of new topic is required.
-        </div>
-      </form>
+<div>
+  <form (ngSubmit)="createTopic(); topicCreateForm.reset()" #topicCreateForm="ngForm">
+    <button type="submit" class="btn btn-success" (click)="createTopic(); topicCreateForm.reset()"
+      [disabled]="!topicCreateForm.form.valid">Create new topic:</button>
+    <input type="text" class="form-control" id="name" placeholder="enter name of new topic" required
+      [(ngModel)]="model.name" name="name" #name="ngModel">
+
+    <div [hidden]="name.valid || name.pristine" class="alert alert-danger">
+      Name of new topic is required.
     </div>
-  </div>
+  </form>
+</div>
