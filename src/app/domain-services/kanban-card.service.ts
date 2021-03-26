@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { KanbanCard, Project, State, KanbanCardProperties, KanbanCardEventFactory } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
 import { TopicService } from './topic.service';
+import { ContextService } from './context.service';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,8 @@ import { TopicService } from './topic.service';
 export class KanbanCardService {
   private readonly kanbanCardEventFactory = new KanbanCardEventFactory();
 
-  constructor(private modelBoardService: HeijunkaBoardService, private topicService: TopicService) { }
+  constructor(private modelBoardService: HeijunkaBoardService,
+    private topicService: TopicService, private contextService: ContextService) { }
 
   public pull(aKanbanCard: KanbanCard, aState: State): void {
     if (aKanbanCard === undefined || aState === undefined) {
@@ -51,7 +53,7 @@ export class KanbanCardService {
   }
 
   public projectsKanbanCard(aProject: Project): KanbanCard[] {
-    return this.modelBoardService.getDomainModel().kanbanCards.find({ project: aProject });
+    return this.find({ project: aProject });
   }
 
   public create(name: string, aProject: Project) {
@@ -71,7 +73,8 @@ export class KanbanCardService {
   }
 
   public find(parameters: any): KanbanCard[] {
-    return this.modelBoardService.getDomainModel().kanbanCards.find(parameters);
+    return this.modelBoardService.getDomainModel().kanbanCards.find(parameters)
+      .filter(aKanbanCard => this.contextService.isIdActive(aKanbanCard.id));
   }
 
   public get(id: string): KanbanCard {

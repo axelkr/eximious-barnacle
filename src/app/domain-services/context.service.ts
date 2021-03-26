@@ -48,4 +48,18 @@ export class ContextService {
   public isExplicitlyActive(context: Context): boolean {
     return this.activeContexts.findIndex(aContext => (aContext.id === context.id)) >= 0;
   }
+
+  public isIdActive(id: string): boolean {
+    const noContextExplicitlyActivated = this.activeContexts.length === 0;
+    if (noContextExplicitlyActivated) {
+      return true;
+    }
+    let idActiveInAtLeastOneContext = false;
+    this.activeContexts.forEach(anActiveContext => {
+      if (anActiveContext.contains(id)) {
+        idActiveInAtLeastOneContext = true;
+      }
+    });
+    return idActiveInAtLeastOneContext;
+  }
 }
