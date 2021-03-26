@@ -8,7 +8,7 @@ import { ContextService } from '../../domain-services/context.service';
 export class ContextCreateComponent implements OnInit {
   model: { name: string } = { name: '' };
 
-  constructor(private contextService: ContextService) { }
+  constructor(public contextService: ContextService) { }
 
   ngOnInit(): void {
   }
