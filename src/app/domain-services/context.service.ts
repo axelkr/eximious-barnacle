@@ -55,14 +55,14 @@ export class ContextService {
       return true;
     }
     let idActiveInAtLeastOneContext = false;
-    
+
     this.modelBoardService.getDomainModel().contexts.getContexts()
-    .filter(aContext => this.activeContexts.some(a => a.id === aContext.id))
-    .forEach(anActiveContext => {
-      if (anActiveContext.contains(id)) {
-        idActiveInAtLeastOneContext = true;
-      }
-    });
+      .filter(aContext => this.activeContexts.some(a => a.id === aContext.id))
+      .forEach(anActiveContext => {
+        if (anActiveContext.contains(id)) {
+          idActiveInAtLeastOneContext = true;
+        }
+      });
     return idActiveInAtLeastOneContext;
   }
 
@@ -71,10 +71,10 @@ export class ContextService {
     this.modelBoardService.getDomainModel().contexts.getContexts()
       .filter(aContext => aContext.id === context.id)
       .forEach(anActiveContext => {
-      if (anActiveContext.contains(id)) {
-        idActiveInContext = true;
-      }
-    });
+        if (anActiveContext.contains(id)) {
+          idActiveInContext = true;
+        }
+      });
     return idActiveInContext;
   }
 
@@ -95,8 +95,8 @@ export class ContextService {
     });
     // drop trailing ', ';
     if (description.length > 0) {
-      description = description.substr(0,description.length-2);
+      description = description.substr(0, description.length - 2);
     }
-    return description ;
+    return description;
   }
 }
