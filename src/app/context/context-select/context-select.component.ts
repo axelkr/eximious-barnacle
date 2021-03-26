@@ -18,7 +18,7 @@ export class ContextSelectComponent implements OnInit {
   }
 
   public onChange(context: Context, event: any) {
-    const isChecked: boolean = event.target.value;
+    const isChecked: boolean = event.target.checked;
     if (isChecked) {
       this.contextService.activate(context);
     } else {
