@@ -1,1 +1,15 @@
-<p>context-select works!</p>
+<label>Active contexts:</label>
+<ul>
+    <li *ngFor="let context of contextService.availableContexts()">
+        <label>{{context.name}} ({{contextService.isActive(context)}})</label>
+    </li>
+</ul>
+
+<div>
+    <form (ngSubmit)="submit()">
+        <div *ngFor="let context of contextService.availableContexts()">
+            <input type="checkbox" (change)="onChange(context, $event)" />
+            {{ context.name }}
+        </div>
+    </form>
+</div>
