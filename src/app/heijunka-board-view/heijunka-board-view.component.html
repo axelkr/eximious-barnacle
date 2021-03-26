@@ -14,6 +14,7 @@
     </div>
 
     <ng-template #projectsAvailable>
+        <app-context-select></app-context-select>
         <div class="row">
             <div class="column" *ngFor="let project of projectService.availableProjects()"
                 style="list-style-type: none;">

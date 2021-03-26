@@ -2,11 +2,13 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from '../app-routing.module';
+
+import { ProjectModule } from '../project/project.module';
 import { KanbanCardModule } from '../kanban-card/kanban-card.module';
+import { ContextModule } from '../context/context.module';
 
 import { HeijunkaBoardViewComponent } from './heijunka-board-view.component';
 import { ProjectComponent } from './project/project.component';
-import { ProjectModule } from '../project/project.module';
 
 @NgModule({
   declarations: [HeijunkaBoardViewComponent,
@@ -17,7 +19,8 @@ import { ProjectModule } from '../project/project.module';
     FormsModule,
     AppRoutingModule,
     KanbanCardModule,
-    ProjectModule
+    ProjectModule,
+    ContextModule
   ],
   exports: [HeijunkaBoardViewComponent]
 })
