@@ -1,1 +1,14 @@
-<p>kanban-card-view-context-selection works!</p>
+<div *ngIf="kanbanCard">
+    <label (click)="displayContextSelection = ! displayContextSelection" class="link-object">Selected contexts:
+        {{describeSelectedContexts()}}</label>
+
+    <div *ngIf="displayContextSelection">
+        <form>
+            <div *ngFor="let context of contextService.availableContexts()">
+                <input type="checkbox" (change)="onChange(context, $event)"
+                    [checked]="contextService.isIdActiveInContext(kanbanCard.id,context)" />
+                {{ context.name }}
+            </div>
+        </form>
+    </div>
+</div>

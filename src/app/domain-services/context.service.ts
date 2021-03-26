@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { ContextEventFactory, Context } from 'outstanding-barnacle';
+import { ContextEventFactory, Context, KanbanCard } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
 import { TopicService } from './topic.service';
 
@@ -61,5 +61,25 @@ export class ContextService {
       }
     });
     return idActiveInAtLeastOneContext;
+  }
+
+  public isIdActiveInContext(id: string,context:Context): boolean {
+    let idActiveInContext = false;
+    this.activeContexts.forEach(anActiveContext => {
+      if (anActiveContext.id === context.id && anActiveContext.contains(id)) {
+        idActiveInContext = true;
+      }
+    });
+    return idActiveInContext;
+  }
+
+  public set(kanbanCard:KanbanCard,context:Context) {
+    const setContextEvent = this.eventFactory.setContext(this.topicService.current(),context,kanbanCard);
+    this.modelBoardService.processObjectEvent(setContextEvent);
+  }
+  
+  public unset(kanbanCard:KanbanCard,context:Context) {
+    const unsetContextEvent = this.eventFactory.unsetContext(this.topicService.current(),context,kanbanCard);
+    this.modelBoardService.processObjectEvent(unsetContextEvent);
   }
 }
