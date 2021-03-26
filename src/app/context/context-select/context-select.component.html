@@ -1,4 +1,5 @@
-<label>Active contexts: {{describeActiveContexts()}}</label>
+<label (click)="displayContextSelection = ! displayContextSelection" class="link-object">Active contexts:
+    {{describeActiveContexts()}}</label>
 
 <div *ngIf="displayContextSelection">
     <form>

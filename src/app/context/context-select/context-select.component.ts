@@ -7,7 +7,7 @@ import { Context } from 'outstanding-barnacle';
   templateUrl: './context-select.component.html'
 })
 export class ContextSelectComponent implements OnInit {
-  displayContextSelection = true;
+  displayContextSelection = false;
 
   constructor(public contextService: ContextService) { }
 
