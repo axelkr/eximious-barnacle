@@ -40,4 +40,20 @@ describe('ContextService', () => {
     service.deactivate(aContext);
     expect(service.isActive(aContext)).toBeFalse();
   });
+
+  it('without any selection, all contexts are active', () => {
+    const anId = 'anId';
+    const aContext = new Context(anId, anId);
+    expect(service.isActive(aContext)).toBeTrue();
+  });
+
+  it('if one context is activated, it is only one active', () => {
+    const anId = 'anId';
+    const anotherId = 'anotherId';
+    const aContext = new Context(anId, anId);
+    const anotherContext = new Context(anotherId, anotherId);
+    service.activate(aContext);
+    expect(service.isActive(aContext)).toBeTrue();
+    expect(service.isActive(anotherContext)).toBeFalse();
+  });
 });

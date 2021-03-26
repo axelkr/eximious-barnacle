@@ -38,6 +38,10 @@ export class ContextService {
   }
 
   public isActive(context: Context) {
-    return this.activeContexts.length === 0 || this.activeContexts.findIndex(aContext => (aContext.id === context.id)) > 0;
+    const noContextExplicitlyActivated = this.activeContexts.length === 0;
+    if (noContextExplicitlyActivated) {
+      return true;
+    }
+    return this.activeContexts.findIndex(aContext => (aContext.id === context.id)) >= 0;
   }
 }
