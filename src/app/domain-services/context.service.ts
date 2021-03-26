@@ -37,11 +37,15 @@ export class ContextService {
     }
   }
 
-  public isActive(context: Context) {
+  public isActive(context: Context): boolean {
     const noContextExplicitlyActivated = this.activeContexts.length === 0;
     if (noContextExplicitlyActivated) {
       return true;
     }
+    return this.isExplicitlyActive(context);
+  }
+
+  public isExplicitlyActive(context: Context): boolean {
     return this.activeContexts.findIndex(aContext => (aContext.id === context.id)) >= 0;
   }
 }
