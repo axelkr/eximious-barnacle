@@ -31,9 +31,9 @@ export class ContextService {
   }
 
   public deactivate(context: Context) {
-    const atIndex = (this.activeContexts.findIndex(aContext => (aContext.id === context.id)));
-    if (atIndex >= 0) {
-      this.activeContexts.splice(atIndex, 1);
+    const indexOfContextToDeactivate = (this.activeContexts.findIndex(aContext => (aContext.id === context.id)));
+    if (indexOfContextToDeactivate >= 0) {
+      this.activeContexts.splice(indexOfContextToDeactivate, 1);
     }
   }
 

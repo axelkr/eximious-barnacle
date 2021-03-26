@@ -32,28 +32,28 @@ describe('ContextService', () => {
     expect(service).toBeTruthy();
   });
 
-  it('even if activated multiple times, one deactivation suffices', () => {
-    const anId = 'anId';
-    const aContext = new Context(anId, anId);
+  it('even if activated multiple times, one deactivation suffices (as long as another context is still active)', () => {
+    const aContext = generateContext('anId');
+    const anotherContext = generateContext('anotherId');
+    service.activate(anotherContext);
     service.activate(aContext);
     service.activate(aContext);
     service.deactivate(aContext);
     expect(service.isActive(aContext)).toBeFalse();
   });
 
-  it('without any selection, all contexts are active', () => {
-    const anId = 'anId';
-    const aContext = new Context(anId, anId);
-    expect(service.isActive(aContext)).toBeTrue();
+  it('without any explicit activation, all contexts are implicitly active', () => {
+    expect(service.isActive(generateContext('anId'))).toBeTrue();
   });
 
-  it('if one context is activated, it is only one active', () => {
-    const anId = 'anId';
-    const anotherId = 'anotherId';
-    const aContext = new Context(anId, anId);
-    const anotherContext = new Context(anotherId, anotherId);
+  it('if one context is activated, it is the only active one', () => {
+    const aContext = generateContext('anId');
+    const anotherContext = generateContext('anotherId');
     service.activate(aContext);
     expect(service.isActive(aContext)).toBeTrue();
     expect(service.isActive(anotherContext)).toBeFalse();
   });
+
+  const generateContext = (id: string) => new Context(id, id);
 });
+
