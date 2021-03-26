@@ -55,7 +55,10 @@ export class ContextService {
       return true;
     }
     let idActiveInAtLeastOneContext = false;
-    this.activeContexts.forEach(anActiveContext => {
+    
+    this.modelBoardService.getDomainModel().contexts.getContexts()
+    .filter(aContext => this.activeContexts.some(a => a.id === aContext.id))
+    .forEach(anActiveContext => {
       if (anActiveContext.contains(id)) {
         idActiveInAtLeastOneContext = true;
       }
