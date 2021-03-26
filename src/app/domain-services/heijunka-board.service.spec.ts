@@ -4,35 +4,19 @@ import { MockObjectStoreBackendService } from '../backend/object-store-backend.s
 import { ObjectStoreBackendService } from '../backend/object-store-backend.service';
 
 import { HeijunkaBoardService } from './heijunka-board.service';
-import { ProjectCollection, HeijunkaBoard, StateModelCollection } from 'outstanding-barnacle';
-import { Topic } from 'choicest-barnacle';
+import { HeijunkaBoard } from 'outstanding-barnacle';
 
 export class MockHeijunkaBoardService {
   private board = HeijunkaBoard.createEmptyHeijunkaBoard();
-  private topic!: Topic;
 
   public switchToTopic(topic: string): void {
-  }
-
-  public currentTopic(): Topic {
-    return this.topic;
-  }
-
-  public availableTopics(): Topic[] {
-    return [];
   }
 
   public getDomainModel(): HeijunkaBoard {
     return this.board;
   }
 
-  public getProjects(): ProjectCollection {
-    return this.board.projects;
-  }
-
-  public getStateModels(): StateModelCollection {
-    return this.board.stateModels;
-  }
+  public processObjectEvent(): void { }
 }
 
 describe('HeijunkaBoardService', () => {
