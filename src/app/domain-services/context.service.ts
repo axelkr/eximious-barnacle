@@ -63,23 +63,37 @@ export class ContextService {
     return idActiveInAtLeastOneContext;
   }
 
-  public isIdActiveInContext(id: string,context:Context): boolean {
+  public isIdActiveInContext(id: string, context: Context): boolean {
     let idActiveInContext = false;
-    this.activeContexts.forEach(anActiveContext => {
-      if (anActiveContext.id === context.id && anActiveContext.contains(id)) {
+    this.modelBoardService.getDomainModel().contexts.getContexts()
+      .filter(aContext => aContext.id === context.id)
+      .forEach(anActiveContext => {
+      if (anActiveContext.contains(id)) {
         idActiveInContext = true;
       }
     });
     return idActiveInContext;
   }
 
-  public set(kanbanCard:KanbanCard,context:Context) {
-    const setContextEvent = this.eventFactory.setContext(this.topicService.current(),context,kanbanCard);
+  public set(kanbanCard: KanbanCard, context: Context) {
+    const setContextEvent = this.eventFactory.setContext(this.topicService.current(), context, kanbanCard);
     this.modelBoardService.processObjectEvent(setContextEvent);
   }
-  
-  public unset(kanbanCard:KanbanCard,context:Context) {
-    const unsetContextEvent = this.eventFactory.unsetContext(this.topicService.current(),context,kanbanCard);
+
+  public unset(kanbanCard: KanbanCard, context: Context) {
+    const unsetContextEvent = this.eventFactory.unsetContext(this.topicService.current(), context, kanbanCard);
     this.modelBoardService.processObjectEvent(unsetContextEvent);
+  }
+
+  public describeContexts(contexts: Context[]): string {
+    let description = '';
+    contexts.forEach(aContext => {
+      description += aContext.name + ', ';
+    });
+    // drop trailing ', ';
+    if (description.length > 0) {
+      description = description.substr(0,description.length-2);
+    }
+    return description ;
   }
 }

@@ -8,7 +8,7 @@ import { KanbanCard , Context} from 'outstanding-barnacle';
 })
 export class KanbanCardViewContextSelectionComponent implements OnInit {
   @Input() kanbanCard: KanbanCard | undefined;
-  displayContextSelection = true;
+  displayContextSelection = false;
 
   constructor(public contextService: ContextService) { }
 
@@ -31,17 +31,16 @@ export class KanbanCardViewContextSelectionComponent implements OnInit {
     if ( this.kanbanCard === undefined) {
       return '';
     }
-    let description = '';
     const kanbanCardId = this.kanbanCard.id;
+    const selectedContexts : Context[] = [];
     this.contextService.availableContexts().forEach(aContext => {
       if (this.contextService.isIdActiveInContext(kanbanCardId,aContext)) {
-        description += aContext.name + ', ';
+        selectedContexts.push(aContext);
       }
     });
-    if (description.length === 0) {
-      return '(all)';
+    if ( selectedContexts.length === 0 ) {
+      return '-'
     }
-    // drop trailing ', ';
-    return description.substr(0, description.length - 2);
+    return this.contextService.describeContexts(selectedContexts);
   }
 }
