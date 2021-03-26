@@ -1,6 +1,7 @@
-<label>Active contexts:</label>
-<div>
-    <form (ngSubmit)="submit()">
+<label>Active contexts: {{describeActiveContexts()}}</label>
+
+<div *ngIf="displayContextSelection">
+    <form>
         <div *ngFor="let context of contextService.availableContexts()">
             <input type="checkbox" (change)="onChange(context, $event)"
                 [checked]="contextService.isExplicitlyActive(context)" />

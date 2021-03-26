@@ -7,14 +7,11 @@ import { Context } from 'outstanding-barnacle';
   templateUrl: './context-select.component.html'
 })
 export class ContextSelectComponent implements OnInit {
+  displayContextSelection = true;
 
   constructor(public contextService: ContextService) { }
 
   ngOnInit(): void {
-  }
-
-  public submit() {
-    // ignored
   }
 
   public onChange(context: Context, event: any) {
@@ -24,5 +21,19 @@ export class ContextSelectComponent implements OnInit {
     } else {
       this.contextService.deactivate(context);
     }
+  }
+
+  public describeActiveContexts(): string {
+    let description = '';
+    this.contextService.availableContexts().forEach(aContext => {
+      if (this.contextService.isExplicitlyActive(aContext)) {
+        description += aContext.name + ', ';
+      }
+    });
+    if (description.length === 0) {
+      return '(all)';
+    }
+    // drop trailing ', ';
+    return description.substr(0, description.length - 2);
   }
 }
