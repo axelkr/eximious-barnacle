@@ -23,7 +23,7 @@ export class ContextService {
   }
 
   public activate(context: Context) {
-    const alreadyActive = (this.activeContexts.findIndex(aContext => (aContext.id === context.id)) > 0);
+    const alreadyActive = (this.activeContexts.findIndex(aContext => (aContext.id === context.id)) >= 0);
     if (alreadyActive) {
       return;
     }

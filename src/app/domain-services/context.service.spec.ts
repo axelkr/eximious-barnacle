@@ -5,8 +5,11 @@ import { ObjectStoreBackendService } from '../backend/object-store-backend.servi
 
 import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
 import { MockHeijunkaBoardService } from '../domain-services/heijunka-board.service.spec';
+import { TopicService } from '../domain-services/topic.service';
+import { MockTopicService } from '../domain-services/topic.service.spec';
 
 import { ContextService } from './context.service';
+import { Context } from 'outstanding-barnacle';
 
 describe('ContextService', () => {
   let service: ContextService;
@@ -18,7 +21,8 @@ describe('ContextService', () => {
       ],
       providers: [
         { provide: ObjectStoreBackendService, useClass: MockObjectStoreBackendService },
-        { provide: HeijunkaBoardService, useClass: MockHeijunkaBoardService }
+        { provide: HeijunkaBoardService, useClass: MockHeijunkaBoardService },
+        { provide: TopicService, useClass: MockTopicService }
       ]
     });
     service = TestBed.inject(ContextService);
@@ -26,5 +30,14 @@ describe('ContextService', () => {
 
   it('should be created', () => {
     expect(service).toBeTruthy();
+  });
+
+  it('even if activated multiple times, one deactivation suffices', () => {
+    const anId = 'anId';
+    const aContext = new Context(anId, anId);
+    service.activate(aContext);
+    service.activate(aContext);
+    service.deactivate(aContext);
+    expect(service.isActive(aContext)).toBeFalse();
   });
 });
