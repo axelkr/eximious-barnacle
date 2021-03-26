@@ -4,6 +4,16 @@ import { MockObjectStoreBackendService } from '../backend/object-store-backend.s
 import { ObjectStoreBackendService } from '../backend/object-store-backend.service';
 
 import { TopicService } from './topic.service';
+import { Topic } from 'choicest-barnacle';
+
+export class MockTopicService {
+  readonly topic = new Topic('id', 'name');
+
+  public current(): Topic {
+    return this.topic;
+  }
+};
+
 
 describe('TopicService', () => {
   let service: TopicService;
