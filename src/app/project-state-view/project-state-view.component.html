@@ -6,7 +6,6 @@
                 </app-project-state-view-title>
                 <div class="row">
                     <div class="column left">
-                        <label>Predecessors</label><br />
                         <div *ngFor="let predecessorState of projectService.getStateModel(projectObject).predecessors(stateObject)"
                             class="move-to-predecessor link-object">
                             <a [routerLink]="['/project-state/']"
@@ -21,7 +20,6 @@
                         </app-project-state-kanban-cards>
                     </div>
                     <div class="column right">
-                        <label>Successors</label><br />
                         <div *ngFor="let successorState of projectService.getStateModel(projectObject).successors(stateObject)"
                             class='move-to-successor link-object'>
                             <a [routerLink]="['/project-state/']"
