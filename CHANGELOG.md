@@ -1,3 +1,6 @@
+# 3.8.2
+- fix: works in initial setup again
+
 # 3.8.1
 - cleanup internally
 
