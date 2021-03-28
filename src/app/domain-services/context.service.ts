@@ -9,7 +9,6 @@ import { TopicService } from './topic.service';
 })
 export class ContextService {
   private readonly eventFactory = new ContextEventFactory();
-  private readonly activeContexts: Context[] = [];
 
   constructor(private modelBoardService: HeijunkaBoardService, private topicService: TopicService) { }
 
@@ -23,59 +22,30 @@ export class ContextService {
   }
 
   public activate(context: Context) {
-    const alreadyActive = (this.activeContexts.findIndex(aContext => (aContext.id === context.id)) >= 0);
-    if (alreadyActive) {
-      return;
-    }
-    this.activeContexts.push(context);
+    const activateContextEvent = this.eventFactory.activate(this.topicService.current(), context);
+    this.modelBoardService.processObjectEvent(activateContextEvent);
   }
 
   public deactivate(context: Context) {
-    const indexOfContextToDeactivate = (this.activeContexts.findIndex(aContext => (aContext.id === context.id)));
-    if (indexOfContextToDeactivate >= 0) {
-      this.activeContexts.splice(indexOfContextToDeactivate, 1);
-    }
+    const deactivateContextEvent = this.eventFactory.deactivate(this.topicService.current(), context);
+    this.modelBoardService.processObjectEvent(deactivateContextEvent);
   }
 
   public isActive(context: Context): boolean {
-    const noContextExplicitlyActivated = this.activeContexts.length === 0;
-    if (noContextExplicitlyActivated) {
-      return true;
-    }
-    return this.isExplicitlyActive(context);
+    return this.modelBoardService.getDomainModel().contexts.isExplicitlyActive(context) ||
+      this.modelBoardService.getDomainModel().contexts.isImplicitlyActive(context);
   }
 
   public isExplicitlyActive(context: Context): boolean {
-    return this.activeContexts.findIndex(aContext => (aContext.id === context.id)) >= 0;
+    return this.modelBoardService.getDomainModel().contexts.isExplicitlyActive(context);
   }
 
   public isIdActive(id: string): boolean {
-    const noContextExplicitlyActivated = this.activeContexts.length === 0;
-    if (noContextExplicitlyActivated) {
-      return true;
-    }
-    let idActiveInAtLeastOneContext = false;
-
-    this.modelBoardService.getDomainModel().contexts.getContexts()
-      .filter(aContext => this.activeContexts.some(a => a.id === aContext.id))
-      .forEach(anActiveContext => {
-        if (anActiveContext.contains(id)) {
-          idActiveInAtLeastOneContext = true;
-        }
-      });
-    return idActiveInAtLeastOneContext;
+    return this.modelBoardService.getDomainModel().contexts.isIdActive(id);
   }
 
   public isIdActiveInContext(id: string, context: Context): boolean {
-    let idActiveInContext = false;
-    this.modelBoardService.getDomainModel().contexts.getContexts()
-      .filter(aContext => aContext.id === context.id)
-      .forEach(anActiveContext => {
-        if (anActiveContext.contains(id)) {
-          idActiveInContext = true;
-        }
-      });
-    return idActiveInContext;
+    return this.modelBoardService.getDomainModel().contexts.isIdActive(id, context);
   }
 
   public set(kanbanCard: KanbanCard, context: Context) {
