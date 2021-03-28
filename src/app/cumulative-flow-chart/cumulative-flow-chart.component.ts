@@ -27,7 +27,7 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
     const now = new Date();
     this.showDataFrom = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     this.showDataUntil = new Date(this.showDataFrom.getTime());
-    this.showDataFrom.setDate(this.showDataFrom.getDate() - 14);
+    this.showDataFrom.setDate(this.showDataFrom.getDate() - 28);
   }
 
   ngAfterViewInit(): void {
