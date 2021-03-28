@@ -31,20 +31,11 @@ export class ContextService {
     this.modelBoardService.processObjectEvent(deactivateContextEvent);
   }
 
-  public isActive(context: Context): boolean {
-    return this.modelBoardService.getDomainModel().contexts.isExplicitlyActive(context) ||
-      this.modelBoardService.getDomainModel().contexts.isImplicitlyActive(context);
-  }
-
   public isExplicitlyActive(context: Context): boolean {
     return this.modelBoardService.getDomainModel().contexts.isExplicitlyActive(context);
   }
 
-  public isIdActive(id: string): boolean {
-    return this.modelBoardService.getDomainModel().contexts.isIdActive(id);
-  }
-
-  public isIdActiveInContext(id: string, context: Context): boolean {
+  public isIdActive(id: string, context: Context): boolean {
     return this.modelBoardService.getDomainModel().contexts.isIdActive(id, context);
   }
 
@@ -58,15 +49,17 @@ export class ContextService {
     this.modelBoardService.processObjectEvent(unsetContextEvent);
   }
 
-  public describeContexts(contexts: Context[]): string {
+  public describeContexts(contexts: Context[], descriptionIfEmpty: string): string {
     let description = '';
     contexts.forEach(aContext => {
       description += aContext.name + ', ';
     });
-    // drop trailing ', ';
-    if (description.length > 0) {
-      description = description.substr(0, description.length - 2);
+
+    if (description.length === 0) {
+      return descriptionIfEmpty;
     }
+    // drop trailing ', ';
+    description = description.substr(0, description.length - 2);
     return description;
   }
 }

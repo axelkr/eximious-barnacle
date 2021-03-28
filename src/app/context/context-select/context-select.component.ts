@@ -24,16 +24,8 @@ export class ContextSelectComponent implements OnInit {
   }
 
   public describeActiveContexts(): string {
-    let description = '';
-    this.contextService.availableContexts().forEach(aContext => {
-      if (this.contextService.isExplicitlyActive(aContext)) {
-        description += aContext.name + ', ';
-      }
-    });
-    if (description.length === 0) {
-      return '(all)';
-    }
-    // drop trailing ', ';
-    return description.substr(0, description.length - 2);
+    const explicitlyActiveContexts: Context[] = this.contextService.availableContexts()
+      .filter(aContext => this.contextService.isExplicitlyActive(aContext));
+    return this.contextService.describeContexts(explicitlyActiveContexts, '(all)');
   }
 }

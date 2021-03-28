@@ -32,15 +32,8 @@ export class KanbanCardViewContextSelectionComponent implements OnInit {
       return '';
     }
     const kanbanCardId = this.kanbanCard.id;
-    const selectedContexts: Context[] = [];
-    this.contextService.availableContexts().forEach(aContext => {
-      if (this.contextService.isIdActiveInContext(kanbanCardId, aContext)) {
-        selectedContexts.push(aContext);
-      }
-    });
-    if (selectedContexts.length === 0) {
-      return '-';
-    }
-    return this.contextService.describeContexts(selectedContexts);
+    const selectedContexts = this.contextService.availableContexts()
+      .filter(aContext => this.contextService.isIdActive(kanbanCardId, aContext));
+    return this.contextService.describeContexts(selectedContexts, '-');
   }
 }
