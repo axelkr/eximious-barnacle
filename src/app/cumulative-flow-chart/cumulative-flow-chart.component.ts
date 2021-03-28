@@ -62,7 +62,7 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
     if (this.project === undefined) {
       return;
     }
-    const kanbanCardsToChart = this.kanbanCardService.projectsKanbanCard(this.project);
+    const kanbanCardsToChart = this.kanbanCardService.find({ project: this.project });
     this.d3Chart.draw(this.dataGenerator.generateData(kanbanCardsToChart,
       [this.showDataFrom, this.showDataUntil], this.displayFinalStates));
   }
