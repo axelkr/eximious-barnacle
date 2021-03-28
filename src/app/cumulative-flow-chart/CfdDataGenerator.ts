@@ -19,7 +19,6 @@ export class CfdDataGenerator {
     public generateData(kanbanCards: KanbanCard[], dateRange: [Date, Date], displayFinalStates: boolean): StateTimeSeries[] {
         this.startDay = this.setTimeToEndOfDay(dateRange[0]);
         this.endDay = this.setTimeToEndOfDay(dateRange[1]);
-
         this.numberDays = 1 + this.dayOffset(this.endDay);
         let counterPerDayPerState = this.createZeroKanbanCardsAtEveryDayInEveryState();
 
@@ -70,7 +69,7 @@ export class CfdDataGenerator {
     }
 
     private dayOffset(aDate: Date): number {
-        return (aDate.getTime() - this.startDay.getTime()) / (1000 * 60 * 60 * 24);
+        return Math.round((aDate.getTime() - this.startDay.getTime()) / (1000 * 60 * 60 * 24));
     }
 
     private stateOffset(aState: State): number {
