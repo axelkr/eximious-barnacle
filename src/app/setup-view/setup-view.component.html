@@ -1,5 +1,7 @@
-<app-state-models></app-state-models>
-<app-project-add></app-project-add>
-<app-context-create></app-context-create>
+<div *ngIf="topicService.current()">
+    <app-state-models></app-state-models>
+    <app-project-add></app-project-add>
+    <app-context-create></app-context-create>
+</div>
 <app-topic-create></app-topic-create>
 <app-topic-select></app-topic-select>
