@@ -1,5 +1,5 @@
 <div *ngIf="topicService.current()===undefined else topicAvailable">
-    <a [routerLink]="['/heijunka-setup/']">
+    <a [routerLink]="['/setup/']">
         Define and select a topic first. Then define a project as well.
     </a>
     You can access the topic definition and the project definition via the menu as well.
@@ -7,7 +7,7 @@
 
 <ng-template #topicAvailable>
     <div *ngIf="0==projectService.availableProjects().length else projectsAvailable">
-        <a [routerLink]="['/heijunka-setup/']">
+        <a [routerLink]="['/setup/']">
             Define a project first.
         </a>
         You can access the project definition via the menu as well.
