@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { HeijunkaBoardService } from '../../domain-services/heijunka-board.service';
 import { StateModel } from 'outstanding-barnacle';
 import { ProjectService } from '../../domain-services/project.service';
 import { StateModelService } from '../../domain-services/state-model.service';
@@ -12,8 +11,7 @@ import { StateModelService } from '../../domain-services/state-model.service';
 export class ProjectAddComponent implements OnInit {
   model: { name: string; stateModel: StateModel | undefined } = { name: '', stateModel: undefined };
 
-  constructor(public modelBoardService: HeijunkaBoardService, private projectService: ProjectService,
-    public stateModelService: StateModelService) {
+  constructor(private projectService: ProjectService, public stateModelService: StateModelService) {
   }
 
   ngOnInit(): void {
