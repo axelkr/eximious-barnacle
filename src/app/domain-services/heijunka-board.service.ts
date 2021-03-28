@@ -32,7 +32,9 @@ export class HeijunkaBoardService implements OnDestroy {
       return;
     }
     this.updateModelWithObjectEvent(objectEvent);
-    this.backend.storeObjectEvent(objectEvent);
+    if (!objectEvent.isTransient) {
+      this.backend.storeObjectEvent(objectEvent);
+    }
   }
 
   public processObjectEvents(objectEvents: ObjectEvent[]): void {
