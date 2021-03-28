@@ -3,13 +3,13 @@
   "version": "3.8.2",
   "description": "Frontend webpage for a Kanban board with swimlanes",
   "scripts": {
-    "ng": "ng",
     "serve": "ng serve",
     "build": "ng build --base-href ./",
     "buildProduction": "ng build --base-href ./ --configuration production",
     "test": "ng test --browsers=Firefox",
     "testCLI": "ng test --no-watch --no-progress --browsers=FirefoxHeadlessCI --reporters=junit",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "bundle-report": "ng build --base-href ./ --configuration production --stats-json && webpack-bundle-analyzer dist/stats.json"
   },
   "repository": {
     "type": "git",
@@ -66,6 +66,7 @@
     "karma-jasmine-html-reporter": "^1.5.4",
     "karma-junit-reporter": "^2.0.1",
     "ts-node": "~9.1.1",
-    "typescript": "^4.2.3"
+    "typescript": "^4.2.3",
+    "webpack-bundle-analyzer": "^4.4.0"
   }
 }
