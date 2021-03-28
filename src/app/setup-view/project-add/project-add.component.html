@@ -1,4 +1,4 @@
-<div *ngIf="modelBoardService.getDomainModel()" class="project-add">
+<div class="project-add">
   <form (ngSubmit)="addProject(); projectAddForm.reset()" #projectAddForm="ngForm">
     <button type="submit" class="btn btn-success" (click)="addProject(); projectAddForm.reset()"
       [disabled]="!projectAddForm.form.valid">Create new project:</button>
