@@ -1,4 +1,4 @@
-<div *ngIf="heijunkaBoardService.getDomainModel()===undefined else topicAvailable">
+<div *ngIf="topicService.current()===undefined else topicAvailable">
     <a [routerLink]="['/heijunka-setup/']">
         Define and select a topic first. Then define a project as well.
     </a>
