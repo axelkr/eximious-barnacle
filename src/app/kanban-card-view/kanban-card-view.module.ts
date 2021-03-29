@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { KanbanCardModule } from '../kanban-card/kanban-card.module';
 import { KanbanCardViewRoutingModule } from './kanban-card-view-routing.module';
 
@@ -14,9 +15,8 @@ import { KanbanCardViewTasksComponent } from './kanban-card-view-tasks/kanban-ca
   declarations: [KanbanCardViewComponent, KanbanCardViewTitleComponent,
     KanbanCardViewTransitionsComponent, KanbanCardViewContextSelectionComponent, KanbanCardViewTasksComponent],
   imports: [
-    CommonModule,
-    KanbanCardModule,
-    KanbanCardViewRoutingModule
+    CommonModule, FormsModule,
+    KanbanCardModule, KanbanCardViewRoutingModule
   ],
   exports: [KanbanCardViewComponent]
 })
