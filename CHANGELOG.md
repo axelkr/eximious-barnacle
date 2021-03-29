@@ -1,3 +1,6 @@
+# 3.9.0
+- kanban cards can now have individual tasks
+
 # 3.8.2
 - fix: works in initial setup again
 
