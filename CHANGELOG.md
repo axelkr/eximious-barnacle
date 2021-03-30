@@ -1,3 +1,8 @@
+# 3.9.1
+- tasks can now be nested
+- tasks are no longer shown after being marked as done
+- user can rename tasks
+
 # 3.9.0
 - kanban cards can now have individual tasks
 
