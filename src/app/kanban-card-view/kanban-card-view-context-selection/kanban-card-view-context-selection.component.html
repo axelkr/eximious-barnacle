@@ -6,7 +6,7 @@
         <form>
             <div *ngFor="let context of contextService.availableContexts()">
                 <input type="checkbox" (change)="onChange(context, $event)"
-                    [checked]="contextService.isSet(kanbanCard,context)" />
+                    [checked]="contextService.isAssigned(kanbanCard,context)" />
                 {{ context.name }}
             </div>
         </form>

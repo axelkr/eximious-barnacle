@@ -21,9 +21,9 @@ export class KanbanCardViewContextSelectionComponent implements OnInit {
     }
     const isChecked: boolean = event.target.checked;
     if (isChecked) {
-      this.contextService.set(this.kanbanCard, context);
+      this.contextService.assign(this.kanbanCard, context);
     } else {
-      this.contextService.unset(this.kanbanCard, context);
+      this.contextService.unassign(this.kanbanCard, context);
     }
   }
 
@@ -33,7 +33,7 @@ export class KanbanCardViewContextSelectionComponent implements OnInit {
     }
     const kanbanCard = this.kanbanCard;
     const selectedContexts = this.contextService.availableContexts()
-      .filter(aContext => this.contextService.isSet(kanbanCard, aContext));
+      .filter(aContext => this.contextService.isAssigned(kanbanCard, aContext));
     return this.contextService.describeContexts(selectedContexts, '-');
   }
 }

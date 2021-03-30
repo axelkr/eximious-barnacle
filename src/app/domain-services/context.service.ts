@@ -39,17 +39,17 @@ export class ContextService {
     return this.modelBoardService.getDomainModel().contexts.isIdActive(id, context);
   }
 
-  public set(kanbanCard: KanbanCard, context: Context) {
+  public assign(kanbanCard: KanbanCard, context: Context) {
     const setContextEvent = this.eventFactory.setContext(this.topicService.current(), context, kanbanCard);
     this.modelBoardService.processObjectEvent(setContextEvent);
   }
 
-  public unset(kanbanCard: KanbanCard, context: Context) {
+  public unassign(kanbanCard: KanbanCard, context: Context) {
     const unsetContextEvent = this.eventFactory.unsetContext(this.topicService.current(), context, kanbanCard);
     this.modelBoardService.processObjectEvent(unsetContextEvent);
   }
 
-  public isSet(kanbanCard: KanbanCard, context: Context): boolean {
+  public isAssigned(kanbanCard: KanbanCard, context: Context): boolean {
     return this.modelBoardService.getDomainModel().contexts.get(context.id).contains(kanbanCard.id);
   }
 
