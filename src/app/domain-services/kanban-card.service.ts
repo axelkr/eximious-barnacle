@@ -74,8 +74,4 @@ export class KanbanCardService {
   public get(id: string): KanbanCard {
     return this.modelBoardService.getDomainModel().kanbanCards.get(id);
   }
-
-  public tasksOf(kanbanCard: KanbanCard): Task[] {
-    return this.modelBoardService.getDomainModel().tasks.getChildrenOf(kanbanCard.id);
-  }
 }

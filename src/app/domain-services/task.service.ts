@@ -12,7 +12,7 @@ export class TaskService {
 
   constructor(private modelBoardService: HeijunkaBoardService, private topicService: TopicService) { }
 
-  public create(description: string, parent: KanbanCard) {
+  public create(description: string, parent: KanbanCard | Task) {
     const createTaskEvent = this.taskEventFactory.create(this.topicService.current(), parent, description);
     this.modelBoardService.processObjectEvent(createTaskEvent);
   }
@@ -24,5 +24,9 @@ export class TaskService {
 
   public get(id: string): Task {
     return this.modelBoardService.getDomainModel().tasks.get(id);
+  }
+
+  public childrenOf(id: string): Task[] {
+    return this.modelBoardService.getDomainModel().tasks.getChildrenOf(id);
   }
 }

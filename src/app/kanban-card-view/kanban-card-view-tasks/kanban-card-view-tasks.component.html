@@ -1,6 +1,5 @@
-<p>Tasks</p>
-<form *ngIf="kanbanCard">
-    <div *ngFor="let task of kanbanCardService.tasksOf(kanbanCard)">
+<form *ngIf="parent">
+    <div *ngFor="let task of taskService.childrenOf(parent.id)">
         <input type="checkbox" (change)="onChange(task, $event)" [checked]="task.isDone()" />
         {{ task.description() }}
     </div>
