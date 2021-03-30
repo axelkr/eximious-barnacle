@@ -4,10 +4,12 @@ import { TaskService } from '../../domain-services/task.service';
 
 @Component({
   selector: 'app-kanban-card-view-tasks',
-  templateUrl: './kanban-card-view-tasks.component.html'
+  templateUrl: './kanban-card-view-tasks.component.html',
+  styleUrls: ['./kanban-card-view-tasks.component.less']
 })
 export class KanbanCardViewTasksComponent implements OnInit {
   @Input() parent: KanbanCard | Task | undefined;
+  @Input() indent = 0;
   model = { name: '' };
 
   constructor(public taskService: TaskService) { }
