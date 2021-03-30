@@ -31,9 +31,9 @@ export class KanbanCardViewContextSelectionComponent implements OnInit {
     if (this.kanbanCard === undefined) {
       return '';
     }
-    const kanbanCardId = this.kanbanCard.id;
+    const kanbanCard = this.kanbanCard;
     const selectedContexts = this.contextService.availableContexts()
-      .filter(aContext => this.contextService.isIdActive(kanbanCardId, aContext));
+      .filter(aContext => this.contextService.isSet(kanbanCard, aContext));
     return this.contextService.describeContexts(selectedContexts, '-');
   }
 }

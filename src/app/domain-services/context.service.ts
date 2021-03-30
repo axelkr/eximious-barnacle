@@ -49,6 +49,10 @@ export class ContextService {
     this.modelBoardService.processObjectEvent(unsetContextEvent);
   }
 
+  public isSet(kanbanCard: KanbanCard, context: Context): boolean {
+    return this.modelBoardService.getDomainModel().contexts.get(context.id).contains(kanbanCard.id);
+  }
+
   public describeContexts(contexts: Context[], descriptionIfEmpty: string): string {
     let description = '';
     contexts.forEach(aContext => {
