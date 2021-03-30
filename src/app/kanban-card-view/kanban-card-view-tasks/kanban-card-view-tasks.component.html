@@ -1,7 +1,7 @@
 <form *ngIf="parent">
-    <div *ngFor="let task of taskService.childrenOf(parent.id)">
+    <div *ngFor="let task of taskService.childrenOf(parent.id) | doneTasks:false">
         <label *ngFor="let indentedP of [].constructor(indent)" class='tab'>*</label>
-        <input type="checkbox" (change)="onChange(task, $event)" [checked]="task.isDone()" />
+        <input type="checkbox" (change)="onChange(task, $event)" />
         {{ task.description() }}
         <app-kanban-card-view-tasks [parent]="task" [indent]="1+indent"></app-kanban-card-view-tasks>
     </div>
