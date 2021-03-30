@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { KanbanCard, Project, State, KanbanCardProperties, KanbanCardEventFactory, Task } from 'outstanding-barnacle';
+import { KanbanCard, Project, State, KanbanCardProperties, KanbanCardEventFactory } from 'outstanding-barnacle';
 import { HeijunkaBoardService } from '../domain-services/heijunka-board.service';
 import { TopicService } from './topic.service';
 
