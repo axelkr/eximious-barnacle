@@ -3,7 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { Observable, Subject } from 'rxjs';
 import { ObjectEvent, Topic } from 'choicest-barnacle';
 import { AppConfig } from './app.config';
-import { Client as BackendClient, EventSourceFactory } from 'prime-barnacle';
+import { Client as BackendClient } from 'prime-barnacle';
+import { EventSourceFactory } from './EventSourceFactory';
 import { AngularHttpClientFacade } from './AngularHttpClientFacade';
 
 @Injectable({
