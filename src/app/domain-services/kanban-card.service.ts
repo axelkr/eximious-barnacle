@@ -54,7 +54,7 @@ export class KanbanCardService {
     const stateModel = this.modelBoardService.getDomainModel().stateModels.get(aProject.stateModelId);
     const createKanbanCardEvents = this.kanbanCardEventFactory.create(this.topicService.current(),
       name, aProject, stateModel);
-    this.modelBoardService.processObjectEvents(createKanbanCardEvents);
+    this.modelBoardService.processObjectEvents(createKanbanCardEvents.events);
   }
 
   public renameTo(kanbanCard: KanbanCard, newName: string): void {
