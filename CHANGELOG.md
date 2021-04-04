@@ -1,3 +1,6 @@
+# 3.9.2
+- latest and greatest 
+
 # 3.9.1
 - tasks can now be nested
 - tasks are no longer shown after being marked as done
