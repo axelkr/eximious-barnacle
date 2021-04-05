@@ -9,11 +9,12 @@ import { KanbanCardViewTitleComponent } from './kanban-card-view-title/kanban-ca
 import { KanbanCardViewTransitionsComponent } from './kanban-card-view-transitions/kanban-card-view-transitions.component';
 import { KanbanCardViewContextSelectionComponent } from './kanban-card-view-context-selection/kanban-card-view-context-selection.component';
 import { KanbanCardViewTasksComponent } from './kanban-card-view-tasks/kanban-card-view-tasks.component';
+import { KanbanCardEditableNameComponent } from './kanban-card-editable-name/kanban-card-editable-name.component';
 import { DoneTasksPipe } from './done-tasks.pipe';
 
 
 @NgModule({
-  declarations: [KanbanCardViewComponent, KanbanCardViewTitleComponent,
+  declarations: [KanbanCardViewComponent, KanbanCardViewTitleComponent, KanbanCardEditableNameComponent,
     DoneTasksPipe,
     KanbanCardViewTransitionsComponent, KanbanCardViewContextSelectionComponent, KanbanCardViewTasksComponent],
   imports: [

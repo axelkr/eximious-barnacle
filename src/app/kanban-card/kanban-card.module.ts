@@ -5,17 +5,16 @@ import { RouterModule } from '@angular/router';
 
 import { KanbanCardCreateComponent } from './kanban-card-create/kanban-card-create.component';
 import { KanbanCardOverviewComponent } from './kanban-card-overview/kanban-card-overview.component';
-import { KanbanCardEditableNameComponent } from './kanban-card-editable-name/kanban-card-editable-name.component';
 
 @NgModule({
   declarations: [
-    KanbanCardCreateComponent, KanbanCardOverviewComponent, KanbanCardEditableNameComponent
+    KanbanCardCreateComponent, KanbanCardOverviewComponent
   ],
   imports: [
     CommonModule,
     FormsModule,
     RouterModule
   ],
-  exports: [KanbanCardCreateComponent, KanbanCardOverviewComponent, KanbanCardEditableNameComponent]
+  exports: [KanbanCardCreateComponent, KanbanCardOverviewComponent]
 })
 export class KanbanCardModule { }
