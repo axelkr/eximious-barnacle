@@ -1,5 +1,5 @@
 import { AfterViewInit, Component, Input } from '@angular/core';
-import { Project, StateModel, State, LinearizeStateModelService } from 'outstanding-barnacle';
+import { Project, StateModel, State, LinearizeStateModelService, KanbanCard, StateTransition } from 'outstanding-barnacle';
 import { KanbanCardService } from '../domain-services/kanban-card.service';
 import { ProjectService } from '../domain-services/project.service';
 import { ColorizeStateModelService } from '../state-model/colorize-state-model.service';
@@ -62,7 +62,9 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
     if (this.project === undefined) {
       return;
     }
-    const kanbanCardsToChart = this.kanbanCardService.find({ project: this.project });
+    let kanbanCardsToChart = this.kanbanCardService.find({ project: this.project });
+    const finalStates = this.projectService.getStateModel(this.project).finalStates();
+    kanbanCardsToChart = this.excludeKanbanCardsInFinalStateSinceStart(this.showDataFrom, kanbanCardsToChart, finalStates);
     this.d3Chart.draw(this.dataGenerator.generateData(kanbanCardsToChart,
       [this.showDataFrom, this.showDataUntil], this.displayFinalStates));
   }
@@ -97,5 +99,14 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
     });
 
     return result;
+  }
+
+  private excludeKanbanCardsInFinalStateSinceStart(start: Date, kanbanCards: KanbanCard[], finalStates: State[]): KanbanCard[] {
+    return kanbanCards.filter(aCard => {
+      const lastTransition: StateTransition | undefined = aCard.history.currentStateTransition();
+      return lastTransition === undefined ||
+        start < lastTransition.occurredAt ||
+        !finalStates.some(aFinalState => aFinalState.id === lastTransition.state);
+    });
   }
 }
