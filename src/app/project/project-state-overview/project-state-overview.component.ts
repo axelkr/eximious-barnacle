@@ -13,6 +13,8 @@ import { KanbanCardService } from '../../domain-services/kanban-card.service';
 export class ProjectStateOverviewComponent implements OnInit {
   @Input() project: Project | undefined;
   @Input() state: State | undefined;
+  @Input() color: string | undefined;
+
   transitionType = TransitionType;
 
   constructor(private router: Router, public projectService: ProjectService, public kanbanCardService: KanbanCardService) { }

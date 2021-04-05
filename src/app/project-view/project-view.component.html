@@ -2,7 +2,7 @@
     <div *ngIf="projectService.get(id) as projectObject">
         <app-project-editable-name [project]="projectObject"></app-project-editable-name>
         <app-kanban-card-create [project]="projectObject"></app-kanban-card-create>
-        <app-project-state-model [project]="projectObject"></app-project-state-model>
+        <app-project-state-model [project]="projectObject" [colorOfStates]="colorOfStates"></app-project-state-model>
         <div style="clear: both;">
             <app-cumulative-flow-chart chartId="pv{{projectObject.id}}" [project]="projectObject">
             </app-cumulative-flow-chart>

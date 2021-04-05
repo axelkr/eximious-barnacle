@@ -1,5 +1,6 @@
 <div *ngIf="project">
     <div *ngFor="let state of linearizeStateModelService.linearize(projectService.getStateModel(project))">
-        <app-project-state-overview [project]="project" [state]="state"></app-project-state-overview>
+        <app-project-state-overview [project]="project" [state]="state" [color]="colorOfStates?.get(state)">
+        </app-project-state-overview>
     </div>
 </div>
