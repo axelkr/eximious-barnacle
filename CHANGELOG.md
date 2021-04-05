@@ -1,3 +1,6 @@
+# 3.10.0
+- states display colors in project view as well. This enables the user to connect the state model with the CFD diagram
+
 # 3.9.2
 - latest and greatest 
 
