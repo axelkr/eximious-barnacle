@@ -1,7 +1,7 @@
 <div *ngIf="project">
     <div *ngIf="state" class='link-object'>
         <a [routerLink]="['/project-state/']" [queryParams]="{project:project.id, state: state.id }">
-            <div class="projectState">
+            <div class="projectState" [style.background-color]=myColor>
                 <div>{{state.name}}</div>
                 <div class='projectStateInProgress'>
                     <label
