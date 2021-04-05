@@ -5,10 +5,11 @@ import { ProjectModule } from '../project/project.module';
 import { KanbanCardModule } from '../kanban-card/kanban-card.module';
 import { CumulativeFlowChartModule } from '../cumulative-flow-chart/cumulative-flow-chart.module';
 import { ProjectViewRoutingModule } from './project-view-routing.module';
+import { ProjectEditableNameComponent } from './project-editable-name/project-editable-name.component';
 
 
 @NgModule({
-  declarations: [ProjectViewComponent],
+  declarations: [ProjectViewComponent, ProjectEditableNameComponent],
   imports: [
     CommonModule,
     ProjectModule,
