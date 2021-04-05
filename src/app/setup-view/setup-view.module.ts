@@ -9,13 +9,13 @@ import { StateModelsComponent } from './state-models/state-models.component';
 import { TopicCreateComponent } from './topic-create/topic-create.component';
 import { TopicSelectComponent } from './topic-select/topic-select.component';
 import { ProjectAddComponent } from './project-add/project-add.component';
-import { ContextModule } from '../context/context.module';
+import { ContextCreateComponent } from './context-create/context-create.component';
 
 @NgModule({
   declarations: [StateModelsComponent, TopicCreateComponent, TopicSelectComponent,
-    ProjectAddComponent, SetupViewComponent],
+    ProjectAddComponent, SetupViewComponent, ContextCreateComponent],
   imports: [
-    CommonModule, FormsModule, SetupViewRoutingModule, ContextModule
+    CommonModule, FormsModule, SetupViewRoutingModule
   ],
   exports: [SetupViewComponent]
 })
