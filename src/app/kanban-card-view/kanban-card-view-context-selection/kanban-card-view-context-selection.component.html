@@ -1,5 +1,6 @@
-<div *ngIf="kanbanCard">
-    <label (click)="displayContextSelection = ! displayContextSelection" class="link-object">Selected contexts:
+<div *ngIf="kanbanCard && contextService.availableContexts().length > 0">
+    <label (click)="displayContextSelection = ! displayContextSelection" class="link-object-on-background">Assigned to
+        contexts:
         {{describeSelectedContexts()}}</label>
 
     <div *ngIf="displayContextSelection">
