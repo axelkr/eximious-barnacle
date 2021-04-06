@@ -1,3 +1,7 @@
+# next version
+- reduce visual clutter.
+- hint visually that certain parts can be clicked, e.g. name of kanban card and project can be clicked to edit them.
+
 # 3.10.0
 - states display colors in project view as well. This enables the user to connect the state model with the CFD diagram
 
