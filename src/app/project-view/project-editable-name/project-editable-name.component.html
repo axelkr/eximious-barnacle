@@ -4,7 +4,7 @@
             <input value="{{project.valueOfProperty('name')}}" (keydown.enter)="commitRename($event)"
                 (keydown.esc)="cancelRename()">
         </div>
-        <div *ngIf="!renameMode">
+        <div *ngIf="!renameMode" class='edit-object'>
             <label (click)="activateRenameMode()">{{project.valueOfProperty('name')}}</label>
         </div>
     </h1>
