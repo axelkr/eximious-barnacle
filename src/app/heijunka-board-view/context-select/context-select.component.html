@@ -1,12 +1,19 @@
-<label (click)="displayContextSelection = ! displayContextSelection" class="link-object">Active contexts:
-    {{describeActiveContexts()}}</label>
-
-<div *ngIf="displayContextSelection">
-    <form>
-        <div *ngFor="let context of contextService.availableContexts()">
-            <input type="checkbox" (change)="onChange(context, $event)"
-                [checked]="contextService.isExplicitlyActive(context)" />
-            {{ context.name }}
-        </div>
-    </form>
+<div *ngIf="0 === contextService.availableContexts().length; else showSelectContext">
+    <label></label>
 </div>
+
+<ng-template #showSelectContext>
+    <label (click)="displayContextSelection = ! displayContextSelection" class="link-object-on-background">Active
+        contexts:
+        {{describeActiveContexts()}}</label>
+
+    <div *ngIf="displayContextSelection">
+        <form>
+            <div *ngFor="let context of contextService.availableContexts()">
+                <input type="checkbox" (change)="onChange(context, $event)"
+                    [checked]="contextService.isExplicitlyActive(context)" />
+                {{ context.name }}
+            </div>
+        </form>
+    </div>
+</ng-template>
