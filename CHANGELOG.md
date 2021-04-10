@@ -1,3 +1,6 @@
+# next version
+- contexts can now be selected in other views as well
+
 # 3.11.0
 - reduce visual clutter.
 - hint visually that certain parts can be clicked, e.g. name of kanban card and project can be clicked to edit them.
