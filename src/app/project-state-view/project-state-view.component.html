@@ -4,6 +4,7 @@
             <div *ngIf="projectService.getStateModel(projectObject).getState(state) as stateObject">
                 <app-project-state-view-title [project]="projectObject" [state]="stateObject">
                 </app-project-state-view-title>
+                <app-context-select></app-context-select>
                 <div class="row">
                     <div class="column left">
                         <div *ngFor="let predecessorState of projectService.getStateModel(projectObject).predecessors(stateObject)"

@@ -1,6 +1,7 @@
 <div *ngIf="id" class="project">
     <div *ngIf="projectService.get(id) as projectObject">
         <app-project-editable-name [project]="projectObject"></app-project-editable-name>
+        <app-context-select></app-context-select>
         <app-kanban-card-create [project]="projectObject"></app-kanban-card-create>
         <app-project-state-model [project]="projectObject" [colorOfStates]="colorOfStates"></app-project-state-model>
         <div style="clear: both;">
