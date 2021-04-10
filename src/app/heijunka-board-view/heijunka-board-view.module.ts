@@ -5,14 +5,14 @@ import { AppRoutingModule } from '../app-routing.module';
 
 import { ProjectModule } from '../project/project.module';
 import { KanbanCardModule } from '../kanban-card/kanban-card.module';
+import { ContextModule } from '../context/context.module';
 
 import { HeijunkaBoardViewComponent } from './heijunka-board-view.component';
 import { ProjectComponent } from './project/project.component';
-import { ContextSelectComponent } from './context-select/context-select.component';
 
 @NgModule({
   declarations: [HeijunkaBoardViewComponent,
-    ProjectComponent, ContextSelectComponent
+    ProjectComponent,
   ],
   imports: [
     CommonModule,
@@ -20,6 +20,7 @@ import { ContextSelectComponent } from './context-select/context-select.componen
     AppRoutingModule,
     KanbanCardModule,
     ProjectModule,
+    ContextModule
   ],
   exports: [HeijunkaBoardViewComponent]
 })
