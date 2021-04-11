@@ -1,5 +1,6 @@
-import { AfterViewInit, Component, Input } from '@angular/core';
+import { AfterViewInit, Component, Input, OnDestroy } from '@angular/core';
 import { Project, StateModel, State, LinearizeStateModelService, KanbanCard, StateTransition } from 'outstanding-barnacle';
+import { ContextService } from '../domain-services/context.service';
 import { KanbanCardService } from '../domain-services/kanban-card.service';
 import { ProjectService } from '../domain-services/project.service';
 import { ColorizeStateModelService } from '../state-model/colorize-state-model.service';
@@ -12,7 +13,7 @@ import { CumulativeFlowChart } from './CumulativeFlowChart';
   templateUrl: './cumulative-flow-chart.component.html',
   styleUrls: ['./cumulative-flow-chart.component.less']
 })
-export class CumulativeFlowChartComponent implements AfterViewInit {
+export class CumulativeFlowChartComponent implements AfterViewInit, OnDestroy {
   @Input() chartId: string | undefined;
   @Input() project: Project | undefined;
   showDataFrom: Date;
@@ -23,11 +24,16 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
   private d3Chart!: CumulativeFlowChart;
 
   constructor(private projectService: ProjectService, private colorizeStateModelService: ColorizeStateModelService,
-    private kanbanCardService: KanbanCardService) {
+    private kanbanCardService: KanbanCardService, private contextService: ContextService) {
     const now = new Date();
     this.showDataFrom = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     this.showDataUntil = new Date(this.showDataFrom.getTime());
     this.showDataFrom.setDate(this.showDataFrom.getDate() - 28);
+    contextService.onActiveContextsChanged(this.callbackOnActiveContextsChange);
+  }
+
+  ngOnDestroy(): void {
+    this.contextService.offActiveContextsChanged(this.callbackOnActiveContextsChange);
   }
 
   ngAfterViewInit(): void {
@@ -109,4 +115,7 @@ export class CumulativeFlowChartComponent implements AfterViewInit {
         !finalStates.some(aFinalState => aFinalState.id === lastTransition.state);
     });
   }
+
+  // Angular doesn't recognize that changes to contexts has an impact on the cards to be drawn
+  private callbackOnActiveContextsChange: () => void = () => { this.redraw(); };
 }

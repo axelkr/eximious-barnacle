@@ -9,8 +9,17 @@ import { TopicService } from './topic.service';
 })
 export class ContextService {
   private readonly eventFactory = new ContextEventFactory();
+  private handlers: (() => void)[] = [];
 
   constructor(private modelBoardService: HeijunkaBoardService, private topicService: TopicService) { }
+
+  public onActiveContextsChanged(handler: () => void): void {
+    this.handlers.push(handler);
+  }
+
+  public offActiveContextsChanged(handler: () => void): void {
+    this.handlers = this.handlers.filter(h => h !== handler);
+  }
 
   public create(name: string) {
     const createContextEvent = this.eventFactory.create(this.topicService.current(), name);
@@ -24,11 +33,13 @@ export class ContextService {
   public activate(context: Context) {
     const activateContextEvent = this.eventFactory.activate(this.topicService.current(), context);
     this.modelBoardService.processObjectEvent(activateContextEvent);
+    this.activeContextsChanged();
   }
 
   public deactivate(context: Context) {
     const deactivateContextEvent = this.eventFactory.deactivate(this.topicService.current(), context);
     this.modelBoardService.processObjectEvent(deactivateContextEvent);
+    this.activeContextsChanged();
   }
 
   public isExplicitlyActive(context: Context): boolean {
@@ -65,5 +76,9 @@ export class ContextService {
     // drop trailing ', ';
     description = description.substr(0, description.length - 2);
     return description;
+  }
+
+  private activeContextsChanged() {
+    this.handlers.slice(0).forEach(h => h());
   }
 }
