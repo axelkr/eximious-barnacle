@@ -1,8 +1,9 @@
 {
   "name": "eximious-barnacle",
-  "version": "3.11.0",
+  "version": "3.12.0",
   "description": "Frontend webpage for a Kanban board with swimlanes",
   "scripts": {
+    "start": "ng serve",
     "serve": "ng serve",
     "build": "ng build --base-href ./",
     "buildProduction": "ng build --base-href ./ --configuration production",
