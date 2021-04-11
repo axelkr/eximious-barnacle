@@ -1,4 +1,4 @@
-<label>Select topic to display</label>
+<label>Display topic </label>
 <select (ngModelChange)="setTopic($event)" [(ngModel)]="topic">
     <option *ngFor="let aTopic of topicService.available()" [ngValue]="aTopic">{{aTopic.name}}</option>
 </select>
