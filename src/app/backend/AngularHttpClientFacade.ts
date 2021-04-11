@@ -3,13 +3,17 @@ import { Observable, Subject } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
 
 import { IHTTPClient } from 'prime-barnacle';
-import { ObjectEventREST} from 'choicest-barnacle';
+import { ObjectEventREST } from 'choicest-barnacle';
 
 export class AngularHttpClientFacade implements IHTTPClient {
     private readonly httpClient: HttpClient;
 
     constructor(httpClient: HttpClient) {
         this.httpClient = httpClient;
+    }
+
+    delete(url: string): void {
+        this.httpClient.delete(url);
     }
 
     postJson(url: string, json: ObjectEventREST): void {
