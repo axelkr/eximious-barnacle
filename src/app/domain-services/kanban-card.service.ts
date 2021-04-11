@@ -66,7 +66,7 @@ export class KanbanCardService {
     this.modelBoardService.processObjectEvent(renameKanbanCardEvent);
   }
 
-  public find(parameters: any): KanbanCard[] {
+  public find(parameters: any = {}): KanbanCard[] {
     return this.modelBoardService.getDomainModel().kanbanCards.find(parameters)
       .filter(aKanbanCard => this.modelBoardService.getDomainModel().contexts.isIdActive(aKanbanCard.id));
   }
