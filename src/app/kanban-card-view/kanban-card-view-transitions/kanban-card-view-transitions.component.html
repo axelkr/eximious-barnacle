@@ -1,4 +1,4 @@
-<div *ngIf="kanbanCard">
+<div *ngIf="kanbanCard && !projectService.get(kanbanCard.project).isReadonly">
     <div *ngIf="state">
         <div *ngIf="transition === transitionType.completed; else kanbanCardInProgress">
             <div *ngIf="projectService.get(kanbanCard.project) as projectObject">

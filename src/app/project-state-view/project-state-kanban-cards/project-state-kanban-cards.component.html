@@ -9,7 +9,7 @@
                 </div>
                 <div *ngFor="let kanbanCard of sortDescendingByAgeInCurrentState(kanbanCardService.find({project:project,states:[state],transitionType:transitionType.inProgress}))"
                     style="list-style-type: none; float:center">
-                    <app-kanban-card-overview [kanbanCard]="kanbanCard">
+                    <app-kanban-card-overview [kanbanCard]="kanbanCard" [isReadonly]='project.isReadonly'>
                     </app-kanban-card-overview>
                 </div>
             </div>
@@ -33,7 +33,8 @@
                     </div>
                     <div *ngFor="let kanbanCard of sortDescendingByAgeInCurrentState(kanbanCardService.find({project:project,states:[predecessorState],transitionType:transitionType.completed}))"
                         style="list-style-type: none;">
-                        <app-kanban-card-overview [kanbanCard]="kanbanCard" [state]="state"></app-kanban-card-overview>
+                        <app-kanban-card-overview [kanbanCard]="kanbanCard" [state]="state"
+                            [isReadonly]='project.isReadonly'></app-kanban-card-overview>
                     </div>
                 </div>
             </div>

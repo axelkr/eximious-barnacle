@@ -9,6 +9,7 @@ import { KanbanCardService } from '../../domain-services/kanban-card.service';
 export class KanbanCardOverviewComponent implements OnInit {
   @Input() kanbanCard: KanbanCard | undefined;
   @Input() state: State | undefined;
+  @Input() isReadonly = false;
   transitionType = TransitionType;
   transition: TransitionType | undefined;
 

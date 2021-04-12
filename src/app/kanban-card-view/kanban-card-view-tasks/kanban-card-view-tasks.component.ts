@@ -10,6 +10,7 @@ import { TaskService } from '../../domain-services/task.service';
 export class KanbanCardViewTasksComponent implements OnInit {
   @Input() parent: KanbanCard | Task | undefined;
   @Input() indent = 0;
+  @Input() isReadOnly = true;
   model = { name: '' };
 
   constructor(public taskService: TaskService) { }

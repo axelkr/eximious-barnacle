@@ -1,11 +1,18 @@
 <form *ngIf="parent">
     <div *ngFor="let task of taskService.childrenOf(parent.id) | doneTasks:false">
-        <label *ngFor="let indentedP of [].constructor(indent)" class='tab'>*</label>
-        <input type="checkbox" (change)="onChange(task, $event)" />
-        {{ task.description() }}
-        <app-kanban-card-view-tasks [parent]="task" [indent]="1+indent"></app-kanban-card-view-tasks>
+        <div *ngIf="isReadOnly; else canBeModified">
+            <label *ngFor="let indentedP of [].constructor(indent)" class='tab'>*</label>
+            {{ task.description() }}
+        </div>
+        <ng-template #canBeModified>
+            <label *ngFor="let indentedP of [].constructor(indent)" class='tab'>*</label>
+            <input type="checkbox" (change)="onChange(task, $event)" />
+            {{ task.description() }}
+        </ng-template>
+        <app-kanban-card-view-tasks [parent]="task" [indent]="1+indent" [isReadOnly]="isReadOnly">
+        </app-kanban-card-view-tasks>
     </div>
-    <form (ngSubmit)="newTask(); taskCreateForm.reset()" #taskCreateForm="ngForm">
+    <form *ngIf="!isReadOnly" (ngSubmit)="newTask(); taskCreateForm.reset()" #taskCreateForm="ngForm">
         <label *ngFor="let indentedP of [].constructor(indent)" class='tab'>*</label>
         <input type="text" class="form-control" id="name" placeholder="new task" required [(ngModel)]="model.name"
             name="name" #name="ngModel">

@@ -3,15 +3,19 @@
     <div>{{kanbanCard.valueOfProperty('name')}}</div>
   </a>
 
-  <div *ngIf="transition === transitionType.completed; else kanbanCardInProgress">
-    <button type="submit" class="btn btn-success" (click)="pull()">Pull</button>
-    <button type="submit" class="btn btn-success" (click)="kanbanCardService.moveToTrash(kanbanCard)">Delete</button>
-  </div>
-  <ng-template #kanbanCardInProgress>
-    <div>
-      <button type="submit" class="btn btn-success" (click)="kanbanCardService.markAsCompleted(kanbanCard)">Mark
-        as completed</button>
+  <div *ngIf="!isReadonly">
+
+    <div *ngIf="transition === transitionType.completed; else kanbanCardInProgress">
+      <button type="submit" class="btn btn-success" (click)="pull()">Pull</button>
       <button type="submit" class="btn btn-success" (click)="kanbanCardService.moveToTrash(kanbanCard)">Delete</button>
     </div>
-  </ng-template>
+    <ng-template #kanbanCardInProgress>
+      <div>
+        <button type="submit" class="btn btn-success" (click)="kanbanCardService.markAsCompleted(kanbanCard)">Mark
+          as completed</button>
+        <button type="submit" class="btn btn-success"
+          (click)="kanbanCardService.moveToTrash(kanbanCard)">Delete</button>
+      </div>
+    </ng-template>
+  </div>
 </div>

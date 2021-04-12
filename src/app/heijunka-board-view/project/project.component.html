@@ -2,6 +2,8 @@
   <a [routerLink]="['/project/']" [queryParams]="{id:project.id }">
     <div>{{project.valueOfProperty('name')}}</div>
   </a>
-  <app-kanban-card-create [project]="project"></app-kanban-card-create>
+  <div *ngIf='!project.isReadonly'>
+    <app-kanban-card-create [project]="project"></app-kanban-card-create>
+  </div>
   <app-project-state-model [project]="project"></app-project-state-model>
 </div>
