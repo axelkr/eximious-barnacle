@@ -1,3 +1,6 @@
+# 3.12.1
+- latest and greatest 
+
 # 3.12.0
 - contexts can now be selected in other views as well
 - a state view orders cards by how long they've been in this specific state. Hence, cards at the top haven't been moved in a whole.
