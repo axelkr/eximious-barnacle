@@ -3,10 +3,10 @@ import { Project } from 'outstanding-barnacle';
 import { ProjectService } from '../../domain-services/project.service';
 
 @Component({
-  selector: 'app-project-editable-name',
-  templateUrl: './project-editable-name.component.html'
+  selector: 'app-project-view-title',
+  templateUrl: './project-view-title.component.html'
 })
-export class ProjectEditableNameComponent implements OnInit {
+export class ProjectViewTitleComponent implements OnInit {
   @Input() project: Project | undefined;
   renameMode = false;
 
