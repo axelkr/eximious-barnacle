@@ -6,16 +6,19 @@ import { AppRoutingModule } from '../app-routing.module';
 import { ProjectModule } from '../project/project.module';
 import { KanbanCardModule } from '../kanban-card/kanban-card.module';
 import { ContextModule } from '../context/context.module';
+import { MenuModule } from '../menu/menu.module';
 
 import { HeijunkaBoardViewComponent } from './heijunka-board-view.component';
 import { ProjectComponent } from './project/project.component';
+import { HeijunkaBoardViewTitleComponent } from './heijunka-board-view-title/heijunka-board-view-title.component';
 
 @NgModule({
   declarations: [HeijunkaBoardViewComponent,
     ProjectComponent,
+    HeijunkaBoardViewTitleComponent,
   ],
   imports: [
-    CommonModule,
+    CommonModule, MenuModule,
     FormsModule,
     AppRoutingModule,
     KanbanCardModule,
