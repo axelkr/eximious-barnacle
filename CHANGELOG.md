@@ -1,3 +1,7 @@
+# 3.13.0
+- inline two-top-level menus for navigation into one
+- label navigation elements for accessibility
+
 # 3.12.1
 - latest and greatest 
 
