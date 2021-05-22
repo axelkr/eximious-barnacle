@@ -4,8 +4,7 @@ import { AppConfig } from './backend/app.config';
 
 @Component({
   selector: 'app-root',
-  templateUrl: './app.component.html',
-  styleUrls: ['./app.component.less']
+  templateUrl: './app.component.html'
 })
 export class AppComponent {
   public constructor(private titleService: Title, private configuration: AppConfig) {
