@@ -4,10 +4,10 @@ import { ProjectService } from '../../domain-services/project.service';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-kanban-card-view-title',
-  templateUrl: './kanban-card-view-title.component.html'
+  selector: 'app-kanban-card-view-menu',
+  templateUrl: './kanban-card-view-menu.component.html'
 })
-export class KanbanCardViewTitleComponent implements OnInit {
+export class KanbanCardViewMenuComponent implements OnInit {
   @Input() kanbanCard: KanbanCard | undefined;
   @Input() state: State | undefined;
 

@@ -1,0 +1,26 @@
+<nav>
+    <div *ngIf="kanbanCard">
+        <div *ngIf="state">
+            <h1 class='link-title'>
+                <app-navigate-to-board></app-navigate-to-board>
+                <div> > </div>
+
+                <a [routerLink]="['/project/']" [queryParams]="{id:kanbanCard.project}">
+                    <div>{{projectService.get(kanbanCard.project).valueOfProperty('name')}}</div>
+                </a>
+                <div> > </div>
+                <a [routerLink]="['/project-state/']"
+                    [queryParams]="{project:projectService.get(kanbanCard.project).id, state: state.id }">
+                    <div>
+                        {{state.name}}
+                    </div>
+                </a>
+                <div> > </div>
+                <div>
+                    <app-kanban-card-editable-name [kanbanCard]="kanbanCard"></app-kanban-card-editable-name>
+                </div>
+                <app-navigate-to-setup></app-navigate-to-setup>
+            </h1>
+        </div>
+    </div>
+</nav>

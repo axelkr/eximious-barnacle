@@ -2,7 +2,7 @@
     <div *ngIf="kanbanCardService.get(id) as kanbanCard">
         <div *ngIf="kanbanCard?.history?.currentStateTransition()?.state as stateId">
             <div *ngIf="projectService.getStateModel(kanbanCard.project).getState(stateId) as state">
-                <app-kanban-card-view-title [kanbanCard]="kanbanCard" [state]="state"></app-kanban-card-view-title>
+                <app-kanban-card-view-menu [kanbanCard]="kanbanCard" [state]="state"></app-kanban-card-view-menu>
                 <app-kanban-card-view-transitions [kanbanCard]="kanbanCard" [state]="state">
                 </app-kanban-card-view-transitions>
                 <app-kanban-card-view-context-selection [kanbanCard]="kanbanCard">
