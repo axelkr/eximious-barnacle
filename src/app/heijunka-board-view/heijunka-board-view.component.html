@@ -6,7 +6,7 @@
 </div>
 
 <ng-template #topicAvailable>
-    <div *ngIf="0==projectService.availableProjects().length else projectsAvailable">
+    <div *ngIf="0===projectService.availableProjects().length else projectsAvailable">
         <a [routerLink]="['/setup/']">
             Define a project first.
         </a>
