@@ -1,6 +1,9 @@
 <div *ngIf="kanbanCard">
     <div *ngIf="state">
         <h1 class='link-title'>
+            <app-navigate-to-board></app-navigate-to-board>
+            <div> > </div>
+
             <a [routerLink]="['/project/']" [queryParams]="{id:kanbanCard.project}">
                 <div>{{projectService.get(kanbanCard.project).valueOfProperty('name')}}</div>
             </a>

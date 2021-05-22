@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { KanbanCardModule } from '../kanban-card/kanban-card.module';
+import { MenuModule } from '../menu/menu.module';
 import { KanbanCardViewRoutingModule } from './kanban-card-view-routing.module';
 
 import { KanbanCardViewComponent } from './kanban-card-view.component';
@@ -18,7 +19,7 @@ import { DoneTasksPipe } from './done-tasks.pipe';
     DoneTasksPipe,
     KanbanCardViewTransitionsComponent, KanbanCardViewContextSelectionComponent, KanbanCardViewTasksComponent],
   imports: [
-    CommonModule, FormsModule,
+    CommonModule, FormsModule, MenuModule,
     KanbanCardModule, KanbanCardViewRoutingModule
   ],
   exports: [KanbanCardViewComponent]
