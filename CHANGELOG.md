@@ -1,3 +1,6 @@
+# next version
+- renaming of project and kanban card looks less odd now
+
 # 3.13.0
 - inline two-top-level menus for navigation into one
 - label navigation elements for accessibility
