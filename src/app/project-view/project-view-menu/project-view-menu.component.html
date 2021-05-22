@@ -4,9 +4,9 @@
 
             <app-navigate-to-board></app-navigate-to-board>
             <div> > </div>
-            <div *ngIf="renameMode">
+            <div *ngIf="renameMode" class="edit-name-input">
                 <input value="{{project.valueOfProperty('name')}}" (keydown.enter)="commitRename($event)"
-                    (keydown.esc)="cancelRename()">
+                    (keydown.esc)="cancelRename()" type="text">
             </div>
             <div *ngIf="!renameMode" class='edit-object'>
                 <label (click)="activateRenameMode()">{{project.valueOfProperty('name')}}</label>
