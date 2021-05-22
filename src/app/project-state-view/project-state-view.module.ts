@@ -9,11 +9,11 @@ import { MenuModule } from '../menu/menu.module';
 import { ProjectStateViewComponent } from './project-state-view.component';
 import { ProjectStateKanbanCardsComponent } from './project-state-kanban-cards/project-state-kanban-cards.component';
 import { ProjectStateViewRoutingModule } from './project-state-view-routing.module';
-import { ProjectStateViewTitleComponent } from './project-state-view-title/project-state-view-title.component';
+import { ProjectStateViewMenuComponent } from './project-state-view-menu/project-state-view-menu.component';
 
 @NgModule({
   declarations: [ProjectStateViewComponent,
-    ProjectStateKanbanCardsComponent, ProjectStateViewTitleComponent],
+    ProjectStateKanbanCardsComponent, ProjectStateViewMenuComponent],
   imports: [
     CommonModule,
     FormsModule, MenuModule,

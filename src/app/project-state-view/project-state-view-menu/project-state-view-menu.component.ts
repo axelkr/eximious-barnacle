@@ -3,10 +3,10 @@ import { Project, State } from 'outstanding-barnacle';
 import { Router } from '@angular/router';
 
 @Component({
-  selector: 'app-project-state-view-title',
-  templateUrl: './project-state-view-title.component.html'
+  selector: 'app-project-state-view-menu',
+  templateUrl: './project-state-view-menu.component.html'
 })
-export class ProjectStateViewTitleComponent implements OnInit {
+export class ProjectStateViewMenuComponent implements OnInit {
   @Input() project: Project | undefined;
   @Input() state: State | undefined;
 

@@ -2,8 +2,8 @@
     <div *ngIf="state" class="project">
         <div *ngIf="projectService.get(project) as projectObject">
             <div *ngIf="projectService.getStateModel(projectObject).getState(state) as stateObject">
-                <app-project-state-view-title [project]="projectObject" [state]="stateObject">
-                </app-project-state-view-title>
+                <app-project-state-view-menu [project]="projectObject" [state]="stateObject">
+                </app-project-state-view-menu>
                 <app-context-select></app-context-select>
                 <div class="row">
                     <div class="column left">
