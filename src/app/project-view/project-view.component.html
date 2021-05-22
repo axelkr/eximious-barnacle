@@ -1,7 +1,7 @@
 <div *ngIf="id" class="project">
     <div *ngIf="projectService.get(id) as projectObject">
-        <app-project-view-title [project]="projectObject">
-        </app-project-view-title>
+        <app-project-view-menu [project]="projectObject">
+        </app-project-view-menu>
         <app-context-select></app-context-select>
         <div *ngIf='!projectObject.isReadonly'>
             <app-kanban-card-create [project]="projectObject"></app-kanban-card-create>

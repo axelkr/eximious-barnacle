@@ -1,0 +1,18 @@
+<nav>
+    <div *ngIf="project">
+        <h1 class='link-title'>
+
+            <app-navigate-to-board></app-navigate-to-board>
+            <div> > </div>
+            <div *ngIf="renameMode">
+                <input value="{{project.valueOfProperty('name')}}" (keydown.enter)="commitRename($event)"
+                    (keydown.esc)="cancelRename()">
+            </div>
+            <div *ngIf="!renameMode" class='edit-object'>
+                <label (click)="activateRenameMode()">{{project.valueOfProperty('name')}}</label>
+            </div>
+
+            <app-navigate-to-setup></app-navigate-to-setup>
+        </h1>
+    </div>
+</nav>

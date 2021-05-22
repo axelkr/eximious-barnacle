@@ -8,12 +8,12 @@ import { KanbanCardModule } from '../kanban-card/kanban-card.module';
 import { CumulativeFlowChartModule } from '../cumulative-flow-chart/cumulative-flow-chart.module';
 
 import { ProjectViewRoutingModule } from './project-view-routing.module';
-import { ProjectViewTitleComponent } from './project-view-title/project-view-title.component';
+import { ProjectViewMenuComponent } from './project-view-menu/project-view-menu.component';
 import { ProjectViewComponent } from './project-view.component';
 
 
 @NgModule({
-  declarations: [ProjectViewComponent, ProjectViewTitleComponent],
+  declarations: [ProjectViewComponent, ProjectViewMenuComponent],
   imports: [
     CommonModule,
     ProjectModule,
