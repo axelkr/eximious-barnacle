@@ -10,12 +10,12 @@ import { MenuModule } from '../menu/menu.module';
 
 import { HeijunkaBoardViewComponent } from './heijunka-board-view.component';
 import { ProjectComponent } from './project/project.component';
-import { HeijunkaBoardViewTitleComponent } from './heijunka-board-view-title/heijunka-board-view-title.component';
+import { HeijunkaBoardViewMenuComponent } from './heijunka-board-view-menu/heijunka-board-view-menu.component';
 
 @NgModule({
   declarations: [HeijunkaBoardViewComponent,
     ProjectComponent,
-    HeijunkaBoardViewTitleComponent,
+    HeijunkaBoardViewMenuComponent,
   ],
   imports: [
     CommonModule, MenuModule,
