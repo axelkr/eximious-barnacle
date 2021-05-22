@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 
 import { ProjectModule } from '../project/project.module';
 import { ContextModule } from '../context/context.module';
+import { MenuModule } from '../menu/menu.module';
 import { KanbanCardModule } from '../kanban-card/kanban-card.module';
 import { CumulativeFlowChartModule } from '../cumulative-flow-chart/cumulative-flow-chart.module';
 
@@ -19,7 +20,7 @@ import { ProjectViewComponent } from './project-view.component';
     KanbanCardModule,
     ProjectViewRoutingModule,
     CumulativeFlowChartModule,
-    ContextModule
+    ContextModule, MenuModule
   ]
 })
 export class ProjectViewModule { }

@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 
 import { ContextModule } from '../context/context.module';
 import { KanbanCardModule } from '../kanban-card/kanban-card.module';
+import { MenuModule } from '../menu/menu.module';
 
 import { ProjectStateViewComponent } from './project-state-view.component';
 import { ProjectStateKanbanCardsComponent } from './project-state-kanban-cards/project-state-kanban-cards.component';
@@ -15,7 +16,7 @@ import { ProjectStateViewTitleComponent } from './project-state-view-title/proje
     ProjectStateKanbanCardsComponent, ProjectStateViewTitleComponent],
   imports: [
     CommonModule,
-    FormsModule,
+    FormsModule, MenuModule,
     KanbanCardModule,
     ProjectStateViewRoutingModule,
     ContextModule
