@@ -1,6 +1,6 @@
 {
   "name": "eximious-barnacle",
-  "version": "3.13.0",
+  "version": "3.14.0",
   "description": "Frontend webpage for a Kanban board with swimlanes",
   "scripts": {
     "start": "ng serve",
@@ -10,8 +10,7 @@
     "test": "ng test --browsers=Firefox",
     "testCLI": "ng test --no-watch --no-progress --browsers=FirefoxHeadlessCI --reporters=junit",
     "lint": "ng lint",
-    "bundle-report": "ng build --base-href ./ --configuration production --stats-json && webpack-bundle-analyzer dist/stats.json",
-    "compodoc": "npx compodoc -d documentation/compodoc -p tsconfig.doc.json"
+    "bundle-report": "ng build --base-href ./ --configuration production --stats-json && webpack-bundle-analyzer dist/stats.json"
   },
   "repository": {
     "type": "git",
@@ -37,7 +36,7 @@
     "choicest-barnacle": "^2.5.0",
     "d3": "^6.7.0",
     "outstanding-barnacle": "^6.6.1",
-    "prime-barnacle": "^2.6.0",
+    "prime-barnacle": "^2.6.1",
     "rxjs": "^6.6.7",
     "tslib": "^2.2.0",
     "zone.js": "~0.11.4"
@@ -51,7 +50,6 @@
     "@angular-eslint/template-parser": "^12.0.0",
     "@angular/cli": "~12.0.2",
     "@angular/compiler-cli": "~12.0.2",
-    "@compodoc/compodoc": "^1.1.11",
     "@types/d3": "^6.7.0",
     "@types/jasmine": "~3.7.6",
     "@types/node": "^14.14.39",
