@@ -5,16 +5,20 @@ import { UUIDGenerator } from 'outstanding-barnacle';
 
 import { ObjectStoreBackendService } from '../backend/object-store-backend.service';
 import { HeijunkaBoardService } from './heijunka-board.service';
+import { SettingsService } from '../backend/settings.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class TopicService implements OnDestroy {
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  private readonly KEY_SELECTED_TOPIC_ID = 'selectedTopic';
   private topic!: Topic;
   private topics: Topic[] = [];
   private newTopicEvents!: Subscription;
 
-  constructor(private backend: ObjectStoreBackendService, private boardService: HeijunkaBoardService) {
+  constructor(private backend: ObjectStoreBackendService, private boardService: HeijunkaBoardService,
+    private settings: SettingsService) {
     this.connectWithBackend();
     this.backend.queryAllTopics();
   }
@@ -36,6 +40,7 @@ export class TopicService implements OnDestroy {
     if (switchToCurrentTopic) {
       return;
     }
+    this.settings.set(this.KEY_SELECTED_TOPIC_ID, topic.id);
     this.boardService.switchToTopic(topic);
     this.topic = topic;
     this.backend.switchToTopic(this.topic);
@@ -49,10 +54,14 @@ export class TopicService implements OnDestroy {
   }
 
   private connectWithBackend(): void {
+    const previouslySelectedTopicId = this.settings.has(this.KEY_SELECTED_TOPIC_ID) ?
+      this.settings.get(this.KEY_SELECTED_TOPIC_ID) : undefined;
+    let switchedToTopic = false;
     this.newTopicEvents = this.backend.getNewTopics().subscribe(topic => {
       this.topics.push(topic);
-      if (this.topic === undefined) {
+      if (!switchedToTopic && (previouslySelectedTopicId === undefined || topic.id === previouslySelectedTopicId)) {
         this.switchTo(topic);
+        switchedToTopic = true;
       }
     });
   }
