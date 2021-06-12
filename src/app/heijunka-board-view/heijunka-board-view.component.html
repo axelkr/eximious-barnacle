@@ -19,7 +19,9 @@
         <div class="row">
             <div class="column" *ngFor="let project of projectService.availableProjects()"
                 style="list-style-type: none;">
-                <app-project [project]="project"></app-project>
+                <div *ngIf="projectService.isInFocus(project)">
+                    <app-project [project]="project"></app-project>
+                </div>
             </div>
         </div>
     </ng-template>
