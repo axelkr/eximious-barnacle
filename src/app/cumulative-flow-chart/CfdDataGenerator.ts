@@ -1,4 +1,4 @@
-import { KanbanCard, State, StateModel } from 'outstanding-barnacle';
+import { KanbanCard, State } from 'outstanding-barnacle';
 
 export type TimeSeriesEntry = { date: Date; value: number };
 export type TimeSeries = TimeSeriesEntry[];
@@ -6,17 +6,17 @@ export type StateTimeSeries = { state: State; entries: TimeSeries };
 
 export class CfdDataGenerator {
     private readonly states: State[];
-    private readonly stateModel: StateModel;
+    private readonly statesInFocus: State[];
     private startDay!: Date;
     private endDay!: Date;
     private numberDays!: number;
 
-    constructor(states: State[], stateModel: StateModel) {
+    constructor(states: State[], statesInFocus: State[]) {
         this.states = states;
-        this.stateModel = stateModel;
+        this.statesInFocus = statesInFocus;
     }
 
-    public generateData(kanbanCards: KanbanCard[], dateRange: [Date, Date], displayFinalStates: boolean): StateTimeSeries[] {
+    public generateData(kanbanCards: KanbanCard[], dateRange: [Date, Date]): StateTimeSeries[] {
         this.startDay = this.setTimeToEndOfDay(dateRange[0]);
         this.endDay = this.setTimeToEndOfDay(dateRange[1]);
         this.numberDays = 1 + this.dayOffset(this.endDay);
@@ -26,7 +26,7 @@ export class CfdDataGenerator {
             counterPerDayPerState = this.countKanbanCard(aKanbanCard, counterPerDayPerState);
         });
 
-        return this.convertToStateTimeSeries(counterPerDayPerState, displayFinalStates);
+        return this.convertToStateTimeSeries(counterPerDayPerState);
     }
 
     private setTimeToEndOfDay(aDate: Date): Date {
@@ -76,11 +76,11 @@ export class CfdDataGenerator {
         return this.states.indexOf(aState);
     }
 
-    private convertToStateTimeSeries(counterPerDayPerState: number[], displayFinalStates: boolean): StateTimeSeries[] {
+    private convertToStateTimeSeries(counterPerDayPerState: number[]): StateTimeSeries[] {
         const result: StateTimeSeries[] = [];
         this.states.forEach(aState => {
-            const isFinalState = this.stateModel.finalStates().findIndex(a => a.id === aState.id) !== -1;
-            if (!displayFinalStates && isFinalState) {
+            const isInFocus = this.statesInFocus.findIndex(a => a.id === aState.id) !== -1;
+            if (!isInFocus) {
                 return;
             }
             const entries: TimeSeries = [];

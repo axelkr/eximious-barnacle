@@ -3,6 +3,7 @@ import { Project, StateModel, State, LinearizeStateModelService, KanbanCard, Sta
 import { ContextService } from '../domain-services/context.service';
 import { KanbanCardService } from '../domain-services/kanban-card.service';
 import { ProjectService } from '../domain-services/project.service';
+import { StateModelService } from '../domain-services/state-model.service';
 import { ColorizeStateModelService } from '../state-model/colorize-state-model.service';
 
 import { CfdDataGenerator } from './CfdDataGenerator';
@@ -18,13 +19,13 @@ export class CumulativeFlowChartComponent implements AfterViewInit, OnDestroy {
   @Input() project: Project | undefined;
   showDataFrom: Date;
   showDataUntil: Date;
-  displayFinalStates = false;
 
   private dataGenerator!: CfdDataGenerator;
   private d3Chart!: CumulativeFlowChart;
 
   constructor(private projectService: ProjectService, private colorizeStateModelService: ColorizeStateModelService,
-    private kanbanCardService: KanbanCardService, private contextService: ContextService) {
+    private kanbanCardService: KanbanCardService, private contextService: ContextService,
+    private stateModelService: StateModelService) {
     const now = new Date();
     this.showDataFrom = new Date(now.getFullYear(), now.getMonth(), now.getDate());
     this.showDataUntil = new Date(this.showDataFrom.getTime());
@@ -50,11 +51,6 @@ export class CumulativeFlowChartComponent implements AfterViewInit, OnDestroy {
     this.redraw();
   }
 
-  selectedDisplayFinalStates(event: any) {
-    this.displayFinalStates = (event.target.value as string) === 'true';
-    this.redraw();
-  }
-
   private updateDateRange(showFrom: Date, showUntil: Date) {
     const validDateRange = showFrom < showUntil;
     if (!validDateRange) {
@@ -72,7 +68,7 @@ export class CumulativeFlowChartComponent implements AfterViewInit, OnDestroy {
     const finalStates = this.projectService.getStateModel(this.project).finalStates();
     kanbanCardsToChart = this.excludeKanbanCardsInFinalStateSinceStart(this.showDataFrom, kanbanCardsToChart, finalStates);
     this.d3Chart.draw(this.dataGenerator.generateData(kanbanCardsToChart,
-      [this.showDataFrom, this.showDataUntil], this.displayFinalStates));
+      [this.showDataFrom, this.showDataUntil]));
   }
 
   private reinitializeChart(): void {
@@ -83,7 +79,14 @@ export class CumulativeFlowChartComponent implements AfterViewInit, OnDestroy {
     const stateModel = this.projectService.getStateModel(this.project);
     const mappingToColors = this.colorizeStateModelService.createColors(stateModel);
     const states = this.orderStatesFromFinalToBeginToOther(stateModel);
-    this.dataGenerator = new CfdDataGenerator(states, stateModel);
+    const statesInFocus: State[] = [];
+    states.forEach(aState => {
+      if (this.stateModelService.isInFocus(aState)) {
+        statesInFocus.push(aState);
+      }
+    }
+    );
+    this.dataGenerator = new CfdDataGenerator(states, statesInFocus);
     this.d3Chart = new CumulativeFlowChart(mappingToColors);
 
     this.d3Chart.init(this.chartId);

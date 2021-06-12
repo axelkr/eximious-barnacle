@@ -14,14 +14,6 @@
             <mat-datepicker-toggle matSuffix [for]="showDataUntilPicker"></mat-datepicker-toggle>
             <mat-datepicker #showDataUntilPicker startView="month"></mat-datepicker>
         </mat-form-field>.
-        <form>
-            <select (change)="selectedDisplayFinalStates($event)" [ngModel]="displayFinalStates"
-                name="displayFinalStates">
-                <option value=false>Hide final states</option>
-                <option value=true>Show final states</option>
-            </select>
-        </form>
-
         <div id="{{chartId}}">
         </div>
     </div>
