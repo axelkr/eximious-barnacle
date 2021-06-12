@@ -1,0 +1,14 @@
+<div *ngIf="modelBoardService.getDomainModel()">
+    <div *ngIf="!personalKanbanPartOfStateModels()||!projectManagerKanbanPartOfStateModels()">
+        <label>Add pre-defined state model:</label>
+        <div>
+            <div *ngIf="!personalKanbanPartOfStateModels()">
+                <button type="submit" class="btn btn-success" (click)="addPersonalKanban()">Add Personal Kanban</button>
+            </div>
+            <div *ngIf="!projectManagerKanbanPartOfStateModels()">
+                <button type="submit" class="btn btn-success" (click)="addProjectManagerKanban()">Add Project Manager
+                    Kanban</button>
+            </div>
+        </div>
+    </div>
+</div>

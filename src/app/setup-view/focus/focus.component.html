@@ -13,16 +13,12 @@
         </li>
     </ul>
 
-    <div *ngIf="!personalKanbanPartOfStateModels()||!projectManagerKanbanPartOfStateModels()">
-        <label>Add pre-defined state model:</label>
-        <div>
-            <div *ngIf="!personalKanbanPartOfStateModels()">
-                <button type="submit" class="btn btn-success" (click)="addPersonalKanban()">Add Personal Kanban</button>
-            </div>
-            <div *ngIf="!projectManagerKanbanPartOfStateModels()">
-                <button type="submit" class="btn btn-success" (click)="addProjectManagerKanban()">Add Project Manager
-                    Kanban</button>
-            </div>
-        </div>
-    </div>
+    <label>Projects in focus:</label>
+    <ul>
+        <li *ngFor="let project of projectService.availableProjects()" style="list-style-type:none">
+            <input type="checkbox" name="project.id" (change)="onProjectFocusChange(project, $event)"
+                [value]="project.id" [checked]="projectService.isInFocus(project)" />
+            {{ project.valueOfProperty('name') }}
+        </li>
+    </ul>
 </div>

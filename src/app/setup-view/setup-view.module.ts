@@ -12,10 +12,11 @@ import { TopicSelectComponent } from './topic-select/topic-select.component';
 import { ProjectAddComponent } from './project-add/project-add.component';
 import { ContextCreateComponent } from './context-create/context-create.component';
 import { SetupViewMenuComponent } from './setup-view-menu/setup-view-menu.component';
+import { SetupStateModelComponent } from './setup-state-model/setup-state-model.component';
 
 @NgModule({
   declarations: [FocusComponent, TopicCreateComponent, TopicSelectComponent,
-    ProjectAddComponent, SetupViewComponent, ContextCreateComponent, SetupViewMenuComponent],
+    ProjectAddComponent, SetupViewComponent, ContextCreateComponent, SetupViewMenuComponent, SetupStateModelComponent],
   imports: [
     CommonModule, FormsModule, SetupViewRoutingModule, MenuModule
   ],
