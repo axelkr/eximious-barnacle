@@ -28,11 +28,11 @@ export class SettingsService {
   }
 
   public setArray(key: string, value: string[]) {
-
+    this.set(key, JSON.stringify(value));
   }
 
   public getArray(key: string): string[] {
     const internalRepresentation = this.get(key);
-    return [];
+    return JSON.parse(internalRepresentation);
   }
 }
