@@ -26,4 +26,13 @@ export class SettingsService {
   public remove(key: string) {
     localStorage.removeItem(key);
   }
+
+  public setArray(key: string, value: string[]) {
+
+  }
+
+  public getArray(key: string): string[] {
+    const internalRepresentation = this.get(key);
+    return [];
+  }
 }
