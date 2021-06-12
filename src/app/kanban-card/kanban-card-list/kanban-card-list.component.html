@@ -1,5 +1,6 @@
 <ul>
-    <li *ngFor="let kanbanCard of kanbanCards">
-        {{kanbanCard.valueOfProperty('name')}}
+    <li *ngFor="let kanbanCard of kanbanCards" value={{kanbanCard.id}} class="link-object">
+        <a [routerLink]="['/kanbanCard/']"
+            [queryParams]="{id:kanbanCard.id }">{{kanbanCard.valueOfProperty('name')}}</a>
     </li>
 </ul>
