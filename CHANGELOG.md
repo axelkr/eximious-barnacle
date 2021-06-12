@@ -1,3 +1,6 @@
+# 3.15.0
+- user can select which states to focus on.
+
 # 3.14.0
 - application starts with previously selected topic
 - renaming of project and kanban card looks less odd now
