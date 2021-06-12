@@ -5,7 +5,8 @@
             <label>{{stateModel.name}}</label>
             <ul *ngFor="let state of stateModel.find()">
                 <li style="list-style-type:none">
-                    <input type="checkbox" (change)="onStateFocusChange(state, $event)" />
+                    <input type="checkbox" name="state.id" (change)="onStateFocusChange(state, $event)"
+                        [value]="state.id" [checked]="stateModelService.isInFocus(state)" />
                     {{ state.name }}
                 </li>
             </ul>

@@ -8,7 +8,6 @@ import { StateModelService } from '../../domain-services/state-model.service';
   templateUrl: './state-models.component.html'
 })
 export class StateModelsComponent implements OnInit {
-  public readonly idsInFocus: string[] = [];
   private readonly personalKanbanStateModelId = 'Personal Kanban';
   private readonly projectManagerKanbanStateModelId = 'Project Manager Kanban';
 
@@ -75,11 +74,10 @@ export class StateModelsComponent implements OnInit {
 
   public onStateFocusChange(state: State, event: any) {
     const isChecked: boolean = event.target.checked;
-    if (isChecked && !this.idsInFocus.includes(state.id)) {
-      this.idsInFocus.push(state.id);
-    }
-    if (!isChecked && this.idsInFocus.includes(state.id)) {
-      this.idsInFocus.splice(this.idsInFocus.findIndex(aIdInFocus => aIdInFocus === state.id), 1);
+    if (isChecked) {
+      this.stateModelService.focusOn(state);
+    } else {
+      this.stateModelService.removeFocusOn(state);
     }
   }
 }
