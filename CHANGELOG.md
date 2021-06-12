@@ -1,3 +1,6 @@
+# 3.17.0
+- Overview shows progress in time period for cards in focus.
+
 # 3.16.0
 - user can select which projects to focus on.
 
