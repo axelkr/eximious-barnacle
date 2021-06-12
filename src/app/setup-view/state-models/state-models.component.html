@@ -1,8 +1,14 @@
 <div *ngIf="modelBoardService.getDomainModel()">
-    <label>Available state models:</label>
+    <label>States in focus:</label>
     <ul>
         <li *ngFor="let stateModel of stateModelService.availableStateModels()">
             <label>{{stateModel.name}}</label>
+            <ul *ngFor="let state of stateModel.find()">
+                <li style="list-style-type:none">
+                    <input type="checkbox" (change)="onStateFocusChange(state, $event)" />
+                    {{ state.name }}
+                </li>
+            </ul>
         </li>
     </ul>
 
