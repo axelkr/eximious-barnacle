@@ -1,3 +1,6 @@
+# 3.15.1
+- adapt unit-test to new interface
+
 # 3.15.0
 - user can select which states to focus on.
 
