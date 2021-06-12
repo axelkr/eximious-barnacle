@@ -11,7 +11,8 @@ import { KanbanCardInFocusPipe } from './kanban-card-in-focus.pipe';
 
 @NgModule({
   declarations: [
-    KanbanCardCreateComponent, KanbanCardOverviewComponent, KanbanCardProgressListComponent, KanbanCardListComponent, KanbanCardInFocusPipe
+    KanbanCardCreateComponent, KanbanCardOverviewComponent, KanbanCardProgressListComponent,
+    KanbanCardListComponent, KanbanCardInFocusPipe,
   ],
   imports: [
     CommonModule,
