@@ -10,6 +10,8 @@ import {
 declare const require: {
   context(path: string, deep?: boolean, filter?: RegExp): {
     keys(): string[];
+
+    // eslint-disable-next-line @typescript-eslint/member-ordering
     <T>(id: string): T;
   };
 };
