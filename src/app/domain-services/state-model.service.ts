@@ -55,7 +55,11 @@ export class StateModelService {
     this.statesInFocusCache.splice(this.statesInFocusCache.findIndex(anIdInFocus => state.id === anIdInFocus), 1);
   }
 
-  public isInFocus(state: State): boolean {
-    return this.statesInFocusCache.find(anIdInFocus => state.id === anIdInFocus) !== undefined;
+  public isInFocus(state: State | string): boolean {
+    if (state instanceof State) {
+      return this.statesInFocusCache.find(anIdInFocus => state.id === anIdInFocus) !== undefined;
+    } else {
+      return this.statesInFocusCache.find(anIdInFocus => state === anIdInFocus) !== undefined;
+    }
   }
 }

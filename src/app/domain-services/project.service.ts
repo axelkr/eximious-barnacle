@@ -71,8 +71,12 @@ export class ProjectService {
     this.projectsInFocusCache.splice(this.projectsInFocusCache.findIndex(anIdInFocus => project.id === anIdInFocus), 1);
   }
 
-  public isInFocus(project: Project): boolean {
-    return this.projectsInFocusCache.find(anIdInFocus => project.id === anIdInFocus) !== undefined;
+  public isInFocus(project: Project | string): boolean {
+    if (project instanceof Project) {
+      return this.projectsInFocusCache.find(anIdInFocus => project.id === anIdInFocus) !== undefined;
+    } else {
+      return this.projectsInFocusCache.find(anIdInFocus => project === anIdInFocus) !== undefined;
+    }
   }
 }
 

@@ -1,1 +1,1 @@
-<app-kanban-card-list [kanbanCards]="kanbanCards"></app-kanban-card-list>
+<app-kanban-card-list [kanbanCards]="kanbanCardService.find() | kanbanCardInFocus"></app-kanban-card-list>
