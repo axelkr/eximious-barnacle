@@ -4,10 +4,10 @@ import { State, StateModel } from 'outstanding-barnacle';
 import { StateModelService } from '../../domain-services/state-model.service';
 
 @Component({
-  selector: 'app-state-models',
-  templateUrl: './state-models.component.html'
+  selector: 'app-focus',
+  templateUrl: './focus.component.html'
 })
-export class StateModelsComponent implements OnInit {
+export class FocusComponent implements OnInit {
   private readonly personalKanbanStateModelId = 'Personal Kanban';
   private readonly projectManagerKanbanStateModelId = 'Project Manager Kanban';
 
