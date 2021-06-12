@@ -10,11 +10,13 @@ export class KanbanCardInFocusPipe implements PipeTransform {
   constructor(public projectService: ProjectService, public stateModelService: StateModelService) {
   }
 
-  transform(kanbanCards: KanbanCard[]): KanbanCard[] {
+  transform(kanbanCards: KanbanCard[], ...dates: Date[]): KanbanCard[] {
     return kanbanCards.filter(aKanbanCard => {
       const lastTransition = aKanbanCard.history.currentStateTransition();
       const stateIsInFocus = (lastTransition !== undefined) && this.stateModelService.isInFocus(lastTransition.state);
-      return this.projectService.isInFocus(aKanbanCard.project) && stateIsInFocus;
+      const afterFirstDate = dates.length === 0 || ((lastTransition !== undefined) && lastTransition.occurredAt >= dates[0]);
+      const beforeSecondDate = dates.length < 2 || ((lastTransition !== undefined) && lastTransition.occurredAt <= dates[1]);
+      return this.projectService.isInFocus(aKanbanCard.project) && stateIsInFocus && afterFirstDate && beforeSecondDate;
     });
   }
 }
