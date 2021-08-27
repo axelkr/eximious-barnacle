@@ -1,7 +1,7 @@
 import { Project } from 'outstanding-barnacle';
 
 export class MockProjectService {
-    public returnValueIsInFocus: boolean = true;
+    public returnValueIsInFocus = true;
 
     public availableProjects(): Project[] {
         return [];
