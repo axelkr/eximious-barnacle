@@ -19,7 +19,7 @@ describe('KanbanCardInFocusPipe', () => {
         { provide: StateModelService, useValue: mockStateModelService }
       ]
     });
-    pipe = TestBed.inject(KanbanCardInFocusPipe);
+    pipe = new KanbanCardInFocusPipe(TestBed.inject(ProjectService), TestBed.inject(StateModelService));
   });
 
 
