@@ -128,10 +128,7 @@ describe('KanbanCardInFocusPipe', () => {
   });
 });
 
-function aCard(id = 'id'): KanbanCard {
-  return KanbanCard.create(id, 'project');
-}
+const aCard = (id = 'id') => KanbanCard.create(id, 'project');
 
-function transitionAt(aKanbanCard: KanbanCard, time: Date, state = 'state'): KanbanCard {
-  return aKanbanCard.transitToNewState(StateTransition.inProgressInState(state, time));
-}
+const transitionAt = (aKanbanCard: KanbanCard, time: Date, state = 'state') =>
+  aKanbanCard.transitToNewState(StateTransition.inProgressInState(state, time));

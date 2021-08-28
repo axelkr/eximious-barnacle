@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { KanbanCard } from 'outstanding-barnacle';
+import { KanbanCard, StateTransition } from 'outstanding-barnacle';
 import { ProjectService } from '../domain-services/project.service';
 import { StateModelService } from '../domain-services/state-model.service';
 
@@ -26,7 +26,9 @@ export class KanbanCardInFocusPipe implements PipeTransform {
       if (!this.stateModelService.isInFocus(lastTransition.state)) {
         return false;
       }
-      return aKanbanCard.history.transitions.find(aTransition => { return aTransition.occurredAt >= firstDate && aTransition.occurredAt <= secondDate }) !== undefined;
+      const transitionFallsBetweenDates = (aTransition: StateTransition) =>
+        aTransition.occurredAt >= firstDate && aTransition.occurredAt <= secondDate;
+      return aKanbanCard.history.transitions.find(transitionFallsBetweenDates) !== undefined;
     });
   }
 }
