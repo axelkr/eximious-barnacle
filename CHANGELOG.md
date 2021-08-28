@@ -1,3 +1,9 @@
+# 3.17.3
+- re-upload to new version number
+
+# 3.17.2
+- Latest versions of dependencies
+
 # 3.17.1
 - Some fixes
 - Latest versions 
