@@ -29,7 +29,7 @@ describe('KanbanCardInFocusPipe', () => {
   });
 
   it('all cards are preserved if no date is given', () => {
-    const someKanbanCards: KanbanCard[] = [aCard(), KanbanCard.create('id2', 'project')];
+    const someKanbanCards: KanbanCard[] = [aCard(), aCard('id2')];
     expect(pipe.transform(someKanbanCards)).toHaveSize(2);
   });
 
@@ -128,8 +128,8 @@ describe('KanbanCardInFocusPipe', () => {
   });
 });
 
-function aCard(): KanbanCard {
-  return KanbanCard.create('id', 'project');
+function aCard(id = 'id'): KanbanCard {
+  return KanbanCard.create(id, 'project');
 }
 
 function transitionAt(aKanbanCard: KanbanCard, time: Date, state = 'state'): KanbanCard {

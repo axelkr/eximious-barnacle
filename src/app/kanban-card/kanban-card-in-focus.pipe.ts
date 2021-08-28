@@ -23,10 +23,10 @@ export class KanbanCardInFocusPipe implements PipeTransform {
       if (lastTransition === undefined) {
         return true;
       }
-      const stateIsInFocus = this.stateModelService.isInFocus(lastTransition.state);
-      const afterFirstDate = lastTransition.occurredAt >= firstDate;
-      const beforeSecondDate = lastTransition.occurredAt <= secondDate;
-      return stateIsInFocus && afterFirstDate && beforeSecondDate;
+      if (!this.stateModelService.isInFocus(lastTransition.state)) {
+        return false;
+      }
+      return aKanbanCard.history.transitions.find(aTransition => { return aTransition.occurredAt >= firstDate && aTransition.occurredAt <= secondDate }) !== undefined;
     });
   }
 }
