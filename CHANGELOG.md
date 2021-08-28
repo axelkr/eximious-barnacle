@@ -1,3 +1,7 @@
+# 3.17.1
+- Some fixes
+- Latest versions 
+
 # 3.17.0
 - Overview shows progress in time period for cards in focus.
 
