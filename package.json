@@ -33,7 +33,7 @@
     "@angular/platform-browser-dynamic": "~12.2.7",
     "@angular/router": "~12.2.7",
     "choicest-barnacle": "^2.5.1",
-    "d3": "^7.0.1",
+    "d3": "^7.1.1",
     "outstanding-barnacle": "^6.6.1",
     "prime-barnacle": "^2.6.1",
     "rxjs": "^6.6.7",
