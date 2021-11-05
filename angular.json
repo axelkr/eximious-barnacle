@@ -48,7 +48,12 @@
             "vendorChunk": true,
             "extractLicenses": false,
             "buildOptimizer": false,
-            "sourceMap": true,
+            "sourceMap": {
+              "scripts": true,
+              "styles": true,
+              "hidden": true,
+              "vendor": false
+            },
             "optimization": false,
             "namedChunks": true
           },

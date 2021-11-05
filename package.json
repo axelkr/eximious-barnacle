@@ -9,7 +9,8 @@
     "buildProduction": "ng build --base-href ./ --configuration production",
     "test": "ng test --browsers=Firefox",
     "testCLI": "ng test --no-watch --no-progress --browsers=FirefoxHeadlessCI --reporters=junit",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "exploreBundle": "source-map-explorer dist/**/*.js"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,6 @@
   "license": "GPL-3.0",
   "dependencies": {
     "@angular/animations": "~13.0.0",
-    "@angular/cdk": "^13.0.0",
     "@angular/common": "~13.0.0",
     "@angular/compiler": "~13.0.0",
     "@angular/core": "~13.0.0",
@@ -65,6 +65,7 @@
     "karma-jasmine": "~4.0.1",
     "karma-jasmine-html-reporter": "^1.7.0",
     "karma-junit-reporter": "^2.0.1",
+    "source-map-explorer": "^2.5.2",
     "ts-node": "~9.1.1",
     "typescript": "^4.4.4",
     "webpack": "^5.61.0"
